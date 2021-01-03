@@ -1,0 +1,2766 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: AbraFlexi document mailer\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-01-03 08:12+0100\n"
+"PO-Revision-Date: 2021-01-03 08:13+0100\n"
+"Last-Translator: Vítězslav Dvořák <info@vitexsoftware.cz>\n"
+"Language-Team: Vitex Software <info@vitexsoftware.cz>\n"
+"Language: cs_CZ\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop\n"
+"X-Poedit-Basepath: ../../../src\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Generator: Poedit 2.4.1\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: AbraFlexi/Mailer/Mailer.php:155
+msgid "Company logo"
+msgstr "Logo společnosti"
+
+#: AbraFlexi/Mailer/Mailer.php:170
+msgid "QR Payment"
+msgstr "QR platba"
+
+#: SendUnsent.php:24
+msgid "Send unsent mails"
+msgstr "Odeslat neodeslané"
+
+#: SendUnsentAttachments.php:27 ShowUnsent.php:24
+msgid "all sent"
+msgstr "vše odesláno"
+
+#: SendUnsentAttachments.php:51 ShowUnsent.php:30
+msgid "total"
+msgstr "celkem"
+
+#~ msgid "Adding labels"
+#~ msgstr "Přidávám štítky"
+
+#~ msgid "Adding labels done"
+#~ msgstr "Přidávání štítků hotovo"
+
+#~ msgid "pull account statements"
+#~ msgstr "Stahuji bankovní výpisy"
+
+#~ msgid "Matching program started"
+#~ msgstr "Programové párování zahájeno"
+
+#~ msgid "Matching finished"
+#~ msgstr "Párování ukončeno"
+
+#~ msgid "Invoice matching begin"
+#~ msgstr "Počátek párování faktur"
+
+#~ msgid "Invoice matching done"
+#~ msgstr "Párování faktur ukončeno"
+
+#, fuzzy
+#~ msgid "About Application"
+#~ msgstr "O Aplikaci"
+
+#, fuzzy
+#~ msgid "Used Libraries"
+#~ msgstr "Použité knihovny"
+
+#~ msgid "Configuration Generation"
+#~ msgstr "Generování konfigurace"
+
+#~ msgid "configuration file %s was created"
+#~ msgstr "konfigurační soubor %s byl vytvořen"
+
+#~ msgid "configuration file  %s was not created"
+#~ msgstr "konfigurační soubor %s nebyl vytvořen"
+
+#~ msgid "Error"
+#~ msgstr "Chyba"
+
+#~ msgid "Please check if /etc/sudoers contains:"
+#~ msgstr "Prosím zkontrolujte zdali  /etc/sudoers obsahuje"
+
+#, fuzzy
+#~ msgid "Notification period"
+#~ msgstr "Notifikační perioda"
+
+#~ msgid "is not defined anywhere"
+#~ msgstr "není nikde definováno"
+
+#, fuzzy
+#~ msgid "Error in configuration file"
+#~ msgstr "Import konfigurace"
+
+#~ msgid "Warning"
+#~ msgstr "Varování"
+
+#~ msgid "total %s warnings"
+#~ msgstr "celkem %s varování"
+
+#~ msgid "test successfully done without warnings"
+#~ msgstr "test úspěšně dokončen bez varování"
+
+#~ msgid "total %s errors"
+#~ msgstr "celkem %s chyb"
+
+#~ msgid "test successfully done without errors"
+#~ msgstr "test úspěšně dokončen bez chyb"
+
+#~ msgid "All your configuration files was regenerated"
+#~ msgstr "všechny vaše konfigurační soubory byly přegenerovány"
+
+#~ msgid "Done"
+#~ msgstr "Hotovo"
+
+#, fuzzy
+#~ msgid "Configuration Confirmed"
+#~ msgstr "konfigurační fragment"
+
+#~ msgid "Chybné volání"
+#~ msgstr "Chybné volání"
+
+#, fuzzy
+#~ msgid "User password change"
+#~ msgstr "Změna hesla uživatele"
+
+#, fuzzy
+#~ msgid "Password was changed"
+#~ msgstr "Heslo bylo změněno"
+
+#, fuzzy
+#~ msgid "Password"
+#~ msgstr "Heslo"
+
+#, fuzzy
+#~ msgid "Current password"
+#~ msgstr "Stávající heslo"
+
+#, fuzzy
+#~ msgid "New Password"
+#~ msgstr "Nové heslo"
+
+#, fuzzy
+#~ msgid "Password confirm"
+#~ msgstr "Potvrzení hesla"
+
+#, fuzzy
+#~ msgid "Change password"
+#~ msgstr "Změna hesla"
+
+#, fuzzy
+#~ msgid "Password change"
+#~ msgstr "Změna hesla"
+
+#, fuzzy
+#~ msgid "Deleted"
+#~ msgstr "Smáno"
+
+#, fuzzy
+#~ msgid "Record was added"
+#~ msgstr "Záznam  byl přidám"
+
+#, fuzzy
+#~ msgid "Record was not added"
+#~ msgstr "Záznam nebyl přidán"
+
+#, fuzzy
+#~ msgid "Record was updated"
+#~ msgstr "Záznam byl aktualizován"
+
+#~ msgid "Service %s was fixed"
+#~ msgstr "Služba %s byla opravena"
+
+#, fuzzy
+#~ msgid "Delete unused services"
+#~ msgstr "Použité knihovny"
+
+#, fuzzy
+#~ msgid "%s : %s"
+#~ msgstr "%s %s"
+
+#, fuzzy
+#~ msgid "Host Configuration"
+#~ msgstr "vytvořit konfiguraci"
+
+#, fuzzy
+#~ msgid "About"
+#~ msgstr "O aplikaci"
+
+#, fuzzy
+#~ msgid "Sign Up"
+#~ msgstr "Registace"
+
+#, fuzzy
+#~ msgid "Sign In"
+#~ msgstr "Přihlášení"
+
+#, fuzzy
+#~ msgid "Username"
+#~ msgstr "Uživatelské jméno"
+
+#, fuzzy
+#~ msgid "Settings"
+#~ msgstr "Nastavení"
+
+#, fuzzy
+#~ msgid "Support"
+#~ msgstr "Podpora"
+
+#, fuzzy
+#~ msgid "Sign off"
+#~ msgstr "Odhlášení"
+
+#, fuzzy
+#~ msgid "Click to hide messages"
+#~ msgstr "Klikni pro skrytí zpráv"
+
+#, fuzzy
+#~ msgid "Default"
+#~ msgstr "Ve většině případu ponechte výchozí hodnotu"
+
+#, fuzzy
+#~ msgid "Parameters"
+#~ msgstr "Parametry"
+
+#~ msgid "Jedno povinné políčko zůstalo nevyplněné"
+#~ msgstr "Jedno povinné políčko zůstalo nevyplněné"
+
+#~ msgid "Není vyplněno ' + errors + ' políček. Tyto byly označeny"
+#~ msgstr "Není vyplněno ' + errors + ' políček. Tyto byly označeny"
+
+#, fuzzy
+#~ msgid "The item %s not removed"
+#~ msgstr "Položka košíku %s byla odstraněna"
+
+#, fuzzy
+#~ msgid "Sensor Deploy"
+#~ msgstr "Sensor"
+
+#, fuzzy
+#~ msgid "Close"
+#~ msgstr "Zavřít"
+
+#, fuzzy
+#~ msgid "Yes"
+#~ msgstr "Ano"
+
+#, fuzzy
+#~ msgid "Contacts"
+#~ msgstr "Kontakt"
+
+#, fuzzy
+#~ msgid "Edit"
+#~ msgstr "Uprav"
+
+#, fuzzy
+#~ msgid "Created"
+#~ msgstr "vytvořeno"
+
+#, fuzzy
+#~ msgid "Contact information %s %s was added"
+#~ msgstr "konfigurační soubor %s byl vytvořen"
+
+#, fuzzy
+#~ msgid "Contact information %s %s was not saved"
+#~ msgstr "Hostname serveru"
+
+#, fuzzy
+#~ msgid "Delete"
+#~ msgstr "Smazat"
+
+#, fuzzy
+#~ msgid "Contact"
+#~ msgstr "Kontakt"
+
+#, fuzzy
+#~ msgid "Save"
+#~ msgstr "Ulož"
+
+#, fuzzy
+#~ msgid "Add"
+#~ msgstr "Přidej"
+
+#, fuzzy
+#~ msgid "Title missing"
+#~ msgstr "Chybí nadpis"
+
+#, fuzzy
+#~ msgid "Remove"
+#~ msgstr "Odstranit"
+
+#, fuzzy
+#~ msgid "Editor"
+#~ msgstr "Editor"
+
+#, fuzzy
+#~ msgid "item %s was removed"
+#~ msgstr "Položka košíku %s byla odstraněna"
+
+#, fuzzy
+#~ msgid "item %s was not removed"
+#~ msgstr "Položka košíku %s byla odstraněna"
+
+#, fuzzy
+#~ msgid "File on internet"
+#~ msgstr "Soubor na internetu"
+
+#, fuzzy
+#~ msgid "Hosts"
+#~ msgstr "Hosta"
+
+#, fuzzy
+#~ msgid "Users"
+#~ msgstr "Uživatelé"
+
+#, fuzzy
+#~ msgid "New User"
+#~ msgstr "Nový uživatel"
+
+#, fuzzy
+#~ msgid "Services"
+#~ msgstr "Služby"
+
+#~ msgid "Služby"
+#~ msgstr "Služby"
+
+#, fuzzy
+#~ msgid "New Contact"
+#~ msgstr "Nový kontakt"
+
+#, fuzzy
+#~ msgid "Import"
+#~ msgstr "Importovat"
+
+#, fuzzy
+#~ msgid "New script"
+#~ msgstr "Nový Host"
+
+#, fuzzy
+#~ msgid "Reinicialise database"
+#~ msgstr "Reinicializovat databázi"
+
+#~ msgid "PC Lin/Win/Mac"
+#~ msgstr "PC Lin/Win/Mac"
+
+#~ msgid "Android"
+#~ msgstr "Android"
+
+#~ msgid "Win Phone"
+#~ msgstr "Win Phone"
+
+#, fuzzy
+#~ msgid "Icinga Web"
+#~ msgstr "Icinga Editor"
+
+#, fuzzy
+#~ msgid "Search"
+#~ msgstr "Hledání"
+
+#, fuzzy
+#~ msgid "IP or Hostname"
+#~ msgstr "IP nebo Hostname"
+
+#~ msgid "Jméno"
+#~ msgstr "Jméno"
+
+#, fuzzy
+#~ msgid "Watched host name"
+#~ msgstr "Editace hosta"
+
+#, fuzzy
+#~ msgid "Create"
+#~ msgstr "Založ"
+
+#, fuzzy
+#~ msgid "nsca password"
+#~ msgstr "heslo"
+
+#, fuzzy
+#~ msgid "Sensor deployed"
+#~ msgstr "Sensor"
+
+#, fuzzy
+#~ msgid "Clone"
+#~ msgstr "Cloned"
+
+#, fuzzy
+#~ msgid "Service was saved"
+#~ msgstr "Hostname serveru"
+
+#, fuzzy
+#~ msgid "Form was not saved"
+#~ msgstr "Záznam nebyl přidán"
+
+#, fuzzy
+#~ msgid "Service"
+#~ msgstr "Prosím zvolte službu"
+
+#, fuzzy
+#~ msgid "Saved"
+#~ msgstr "Ulož"
+
+#, fuzzy
+#~ msgid "Service Name"
+#~ msgstr "Prosím zvolte službu"
+
+#~ msgid "Modul %s nebyl nalezen"
+#~ msgstr "Modul %s nebyl nalezen"
+
+#, fuzzy
+#~ msgid "Configuration type"
+#~ msgstr "Konfigurace tématu"
+
+#, fuzzy
+#~ msgid "Name"
+#~ msgstr "Jméno"
+
+#~ msgid "Začít sledovat"
+#~ msgstr "Začít sledovat"
+
+#, fuzzy
+#~ msgid "Group name"
+#~ msgstr "Uživatelké Jméno"
+
+#~ msgid "Nejprve se prosím přihlašte jako admin"
+#~ msgstr "Nejprve se prosím přihlašte jako admin"
+
+#~ msgid "Tabulka %s byla smazána"
+#~ msgstr "Tabulka %s byla smazána"
+
+#~ msgid "Tabulka %s byla vytvořena"
+#~ msgstr "Tabulka %s byla vytvořena"
+
+#~ msgid "Tabulka %s nebyla vytvořena"
+#~ msgstr "Tabulka %s nebyla vytvořena"
+
+#, fuzzy
+#~ msgid "was not imported"
+#~ msgstr "Položka košíku %s byla odstraněna"
+
+#~ msgid "Klonovat"
+#~ msgstr "Klonovat"
+
+#, fuzzy
+#~ msgid "Template"
+#~ msgstr "Nový kontakt"
+
+#, fuzzy
+#~ msgid "Unserialization error %s #%s "
+#~ msgstr "Chyba deserializace %s #%s "
+
+#, fuzzy
+#~ msgid "Export Target"
+#~ msgstr "Importovat"
+
+#, fuzzy
+#~ msgid "Export"
+#~ msgstr "Importovat"
+
+#, fuzzy
+#~ msgid "do not generate to configuration"
+#~ msgstr "Generovat do konfigurace"
+
+#, fuzzy
+#~ msgid "Contact Name"
+#~ msgstr "Kontakt"
+
+#, fuzzy
+#~ msgid "Contact Groups"
+#~ msgstr "Kontakt"
+
+#, fuzzy
+#~ msgid "Host notification period"
+#~ msgstr "Notifikační perioda"
+
+#, fuzzy
+#~ msgid "Service notification period"
+#~ msgstr "Notifikační perioda"
+
+#, fuzzy
+#~ msgid "Host notification options"
+#~ msgstr "Notifikační perioda"
+
+#, fuzzy
+#~ msgid "Service notification options"
+#~ msgstr "Notifikační perioda"
+
+#, fuzzy
+#~ msgid "Host notification commands"
+#~ msgstr "Notifikační perioda"
+
+#, fuzzy
+#~ msgid "Service notification commands"
+#~ msgstr "Záznam nebyl přidán"
+
+#, fuzzy
+#~ msgid "Email Address"
+#~ msgstr "Emailová adresa"
+
+#, fuzzy
+#~ msgid "Jabber Address"
+#~ msgstr "Emailová adresa"
+
+#, fuzzy
+#~ msgid "Invalid Jabber Address"
+#~ msgstr "Chybná emailová adresa"
+
+#, fuzzy
+#~ msgid "Invalid email address"
+#~ msgstr "Chybná emailová adresa"
+
+#, fuzzy
+#~ msgid "Contact %s was not removed from group %s"
+#~ msgstr "Položka košíku %s byla odstraněna"
+
+#, fuzzy
+#~ msgid "Contact %s was not removed from service %s"
+#~ msgstr "Položka košíku %s byla odstraněna"
+
+#, fuzzy
+#~ msgid "Contact %s was not removed from host %s"
+#~ msgstr "Položka košíku %s byla odstraněna"
+
+#, fuzzy
+#~ msgid "Host"
+#~ msgstr "Jméno hosta je vyžadováno"
+
+#~ msgid "Nalezena ikona %s"
+#~ msgstr "Nalezena ikona %s"
+
+#~ msgid "skupinu hostů"
+#~ msgstr "skupinu hostů"
+
+#, fuzzy
+#~ msgid " %s was renamed to %s in group %s "
+#~ msgstr "Položka košíku %s byla odstraněna"
+
+#, fuzzy
+#~ msgid "host %s was removed from group %s"
+#~ msgstr "Položka košíku %s byla odstraněna"
+
+#, fuzzy
+#~ msgid "host %s was not removed from group %s"
+#~ msgstr "Položka košíku %s byla odstraněna"
+
+#, fuzzy
+#~ msgid "Configuration was generated"
+#~ msgstr "Generování konfigurace"
+
+#, fuzzy
+#~ msgid "Configuration was not generated"
+#~ msgstr "konfigurační soubor %s nebyl vytvořen"
+
+#, fuzzy
+#~ msgid "service hosts"
+#~ msgstr "Editace hosta"
+
+#, fuzzy
+#~ msgid "notification period"
+#~ msgstr "Notifikační perioda"
+
+#, fuzzy
+#~ msgid "contacts"
+#~ msgstr "Kontakt"
+
+#, fuzzy
+#~ msgid "action url"
+#~ msgstr "Neplatné url"
+
+#, fuzzy
+#~ msgid "Group Name"
+#~ msgstr "Uživatelké Jméno"
+
+#, fuzzy
+#~ msgid "Missing name"
+#~ msgstr "Přihlašovací Jméno"
+
+#, fuzzy
+#~ msgid "Command was not saved"
+#~ msgstr "Záznam nebyl přidán"
+
+#, fuzzy
+#~ msgid "Command was saved"
+#~ msgstr "Hostname serveru"
+
+#, fuzzy
+#~ msgid "Are you sure ?"
+#~ msgstr "Jste si jistý  %s ?"
+
+#, fuzzy
+#~ msgid "Tools"
+#~ msgstr "Nástroje"
+
+#, fuzzy
+#~ msgid "Used by services"
+#~ msgstr "Použité knihovny"
+
+#, fuzzy
+#~ msgid "Used by contacts"
+#~ msgstr "Kontakt"
+
+#, fuzzy
+#~ msgid "Command overview"
+#~ msgstr "Hostname serveru"
+
+#, fuzzy
+#~ msgid "Contact was not saved"
+#~ msgstr "Hostname serveru"
+
+#, fuzzy
+#~ msgid "Contact was saved"
+#~ msgstr "Hostname serveru"
+
+#, fuzzy
+#~ msgid "Contact Editor"
+#~ msgstr "Hosti"
+
+#, fuzzy
+#~ msgid "Used by hosts"
+#~ msgstr "Editace hosta"
+
+#, fuzzy
+#~ msgid "Contact overview"
+#~ msgstr "Hostname serveru"
+
+#, fuzzy
+#~ msgid "Mail address is too short"
+#~ msgstr "Mailová adresa je příliš krátká"
+
+#, fuzzy
+#~ msgid "invalid email address"
+#~ msgstr "Chybná emailová adresa"
+
+#, fuzzy
+#~ msgid "Mail address %s is allready registered"
+#~ msgstr "Mailová adresa %s je již registrována"
+
+#, fuzzy
+#~ msgid "password is too short"
+#~ msgstr "Heslo je příliš krátké"
+
+#, fuzzy
+#~ msgid "Password control does not match"
+#~ msgstr "Kontrola hesla nesouhlasí"
+
+#, fuzzy
+#~ msgid "Username %s is used. Please choose another one"
+#~ msgstr "Uživatelské jméno %s je již použito. Prosím zvolte jiné"
+
+#, fuzzy
+#~ msgid "Admin prvileges assigned"
+#~ msgstr "Adminská oprávnění přidělena"
+
+#, fuzzy
+#~ msgid "User account created"
+#~ msgstr "Úživatelský účet byl vytvořen"
+
+#, fuzzy
+#~ msgid "Sign On info"
+#~ msgstr "Přihlašovací údaje"
+
+#, fuzzy
+#~ msgid "Icinga Editor Account"
+#~ msgstr "Icinga Editor"
+
+#, fuzzy
+#~ msgid "New Icinga Editor account: %s"
+#~ msgstr "Icinga Editor"
+
+#, fuzzy
+#~ msgid "New User:\n"
+#~ msgstr "Nový uživatel"
+
+#, fuzzy
+#~ msgid "Error writing to database"
+#~ msgstr "Chyba zápisu do databáze"
+
+#, fuzzy
+#~ msgid "Sign On"
+#~ msgstr "Registrace"
+
+#, fuzzy
+#~ msgid "All notifications target to your email"
+#~ msgstr "Všechny notifikace směřují na váš mail"
+
+#, fuzzy
+#~ msgid "Account"
+#~ msgstr "Účet"
+
+#, fuzzy
+#~ msgid "Login"
+#~ msgstr "Přihlašovací jméno"
+
+#, fuzzy
+#~ msgid "Requied"
+#~ msgstr "Požadováno"
+
+#, fuzzy
+#~ msgid "Singn On"
+#~ msgstr "Registrace"
+
+#, fuzzy
+#~ msgid "Finish"
+#~ msgstr "Dokončit"
+
+#~ msgid "nejprve se prosím přihlaš"
+#~ msgstr "nejprve se prosím přihlaš"
+
+#, fuzzy
+#~ msgid "Icinga Editor - recereate database structure"
+#~ msgstr "Icinga Editor - iniciace databáze"
+
+#, fuzzy
+#~ msgid "Create configuration"
+#~ msgstr "Přegenerovat konfiguraci"
+
+#, fuzzy
+#~ msgid "Import configuration"
+#~ msgstr "vytvořit konfiguraci"
+
+#, fuzzy
+#~ msgid "Host was saved"
+#~ msgstr "Hostname serveru"
+
+#, fuzzy
+#~ msgid "Host Editor"
+#~ msgstr "Hosti"
+
+#, fuzzy
+#~ msgid "Configuration"
+#~ msgstr "Konfigurace tématu"
+
+#, fuzzy
+#~ msgid "Sendor OK"
+#~ msgstr "NRPE Senzor"
+
+#, fuzzy
+#~ msgid "%s was not add to contacts %s"
+#~ msgstr "Kontakt %s byl odebrán ze služby %s"
+
+#, fuzzy
+#~ msgid "hostgroup"
+#~ msgstr "Skupina hostů"
+
+#, fuzzy
+#~ msgid "Apply to"
+#~ msgstr "Aplikovat"
+
+#, fuzzy
+#~ msgid "Hostgroup overview"
+#~ msgstr "Hostname serveru"
+
+#, fuzzy
+#~ msgid "Hosts Overview"
+#~ msgstr "Hostname serveru"
+
+#, fuzzy
+#~ msgid "Configure"
+#~ msgstr "Import konfigurace"
+
+#~ msgid "konfigurační fragment"
+#~ msgstr "konfigurační fragment"
+
+#, fuzzy
+#~ msgid "configuration file"
+#~ msgstr "Import konfigurace"
+
+#, fuzzy
+#~ msgid "Generate to Configuration"
+#~ msgstr "Generovat do konfigurace"
+
+#, fuzzy
+#~ msgid "Import now"
+#~ msgstr "Importovat"
+
+#, fuzzy
+#~ msgid "Command %s was imported"
+#~ msgstr "Záznam nebyl přidán"
+
+#, fuzzy
+#~ msgid "Command was not imported"
+#~ msgstr "Položka košíku %s byla odstraněna"
+
+#~ msgid "importovat"
+#~ msgstr "importovat"
+
+#, fuzzy
+#~ msgid "Import command to configuration"
+#~ msgstr "vytvořit konfiguraci"
+
+#~ msgid "Icinga Editor"
+#~ msgstr "Icinga Editor"
+
+#, fuzzy
+#~ msgid "Notifications on mail/jabber/sms/twitter"
+#~ msgstr "Notifikace mail/jabber/sms/twitter"
+
+#~ msgid "Icinga Editor - iniciace databáze"
+#~ msgstr "Icinga Editor - iniciace databáze"
+
+#~ msgid "hlavní soubor konfigurace"
+#~ msgstr "hlavní soubor konfigurace"
+
+#~ msgid "Znovu vytvořit strukturu databáze"
+#~ msgstr "Znovu vytvořit strukturu databáze"
+
+#~ msgid "Spustí proces importu"
+#~ msgstr "Spustí proces importu"
+
+#~ msgid "parametry inicializace"
+#~ msgstr "parametry inicializace"
+
+#, fuzzy
+#~ msgid "Signed in as: "
+#~ msgstr "Přihlášen jako: "
+
+#, fuzzy
+#~ msgid "Sign in"
+#~ msgstr "Přihlásit"
+
+#, fuzzy
+#~ msgid "User Name"
+#~ msgstr "Uživatelské Jméno"
+
+#, fuzzy
+#~ msgid "Password recovery"
+#~ msgstr "Obnova hesla"
+
+#~ msgid "Odhlášení"
+#~ msgstr "Odhlášení"
+
+#~ msgid "Děkujeme za vaši přízeň a těšíme se na další návštěvu"
+#~ msgstr "Děkujeme za vaši přízeň a těšíme se na další návštěvu"
+
+#~ msgid "Monitoring"
+#~ msgstr "Monitoring"
+
+#, fuzzy
+#~ msgid "Type"
+#~ msgstr "Typ"
+
+#, fuzzy
+#~ msgid "Warning treshold"
+#~ msgstr "Varování"
+
+#~ msgid "Nagstamon"
+#~ msgstr "Nagstamon"
+
+#, fuzzy
+#~ msgid "Multiplatform client"
+#~ msgstr "Multiplatformní klient"
+
+#, fuzzy
+#~ msgid "Your password"
+#~ msgstr "Vážený %s, vaše  heslo bylo změněno na"
+
+#, fuzzy
+#~ msgid "Contact was not created"
+#~ msgstr "Hostname serveru"
+
+#, fuzzy
+#~ msgid "Contact was created"
+#~ msgstr "Hostname serveru"
+
+#~ msgid "<i class=\"icon-list\"></i>"
+#~ msgstr "<i class=\"icon-list\"></i>"
+
+#, fuzzy
+#~ msgid "Create first timeperiod"
+#~ msgstr "Přegenerovat konfiguraci"
+
+#, fuzzy
+#~ msgid "Create first contact "
+#~ msgstr "Přegenerovat konfiguraci"
+
+#, fuzzy
+#~ msgid "Create first host"
+#~ msgstr "Přegenerovat konfiguraci"
+
+#, fuzzy
+#~ msgid "%s hostgroup defined"
+#~ msgstr "Skupina hostů"
+
+#, fuzzy
+#~ msgid "No hostgroup defined"
+#~ msgstr "Skupina hostů"
+
+#, fuzzy
+#~ msgid "Import commands"
+#~ msgstr "Importovat"
+
+#, fuzzy
+#~ msgid "%s services defined"
+#~ msgstr "Záznam nebyl přidán"
+
+#, fuzzy
+#~ msgid "No services defined"
+#~ msgstr "Záznam nebyl přidán"
+
+#, fuzzy
+#~ msgid "Create first service"
+#~ msgstr "Přegenerovat konfiguraci"
+
+#, fuzzy
+#~ msgid "Commands requied for service"
+#~ msgstr "Hostname serveru"
+
+#, fuzzy
+#~ msgid "New password for %s"
+#~ msgstr "Nové heslo pro %s"
+
+#, fuzzy
+#~ msgid "Sign On informations was changed:\n"
+#~ msgstr "Přihlašovací údaje byly změněny\n"
+
+#, fuzzy
+#~ msgid "Your new password was sent to %s"
+#~ msgstr "Vaše nové heslo bylo odesláno na %s"
+
+#, fuzzy
+#~ msgid "unknown email address %s"
+#~ msgstr "Neznámá mailová adresa %s"
+
+#, fuzzy
+#~ msgid "Please enter your email."
+#~ msgstr "Prosím zadejte svůj email"
+
+#, fuzzy
+#~ msgid "Lost password recovery"
+#~ msgstr "Obnova ztraceného hesla"
+
+#, fuzzy
+#~ msgid "Forgot your password? Enter your e-mail address you entered during the registration and we will send you a new one."
+#~ msgstr "Zapoměli jste heslo ? Vložte svojí e-mailovou adresu kterou jste zadali během registrace a my vám pošleme nové."
+
+#~ msgid "Email"
+#~ msgstr "Email"
+
+#, fuzzy
+#~ msgid "Send New Password"
+#~ msgstr "Pošli nové heslo"
+
+#, fuzzy
+#~ msgid "Please check your mailbox for new password"
+#~ msgstr "Prosíme zkontrolujte svou poštu pro nové heslo"
+
+#, fuzzy
+#~ msgid "Preferneces was saved"
+#~ msgstr "Hostname serveru"
+
+#, fuzzy
+#~ msgid "Preferences was not saved"
+#~ msgstr "Hostname serveru"
+
+#, fuzzy
+#~ msgid "Regenerate all configuration files"
+#~ msgstr "Přegenerovat konfiguraci"
+
+#, fuzzy
+#~ msgid "Configuration file %s was created"
+#~ msgstr "konfigurační soubor %s byl vytvořen"
+
+#, fuzzy
+#~ msgid "Configuration file %s was not created"
+#~ msgstr "konfigurační soubor %s nebyl vytvořen"
+
+#~ msgid "Error:"
+#~ msgstr "Chyba:"
+
+#~ msgid "Hosti"
+#~ msgstr "Hosti"
+
+#, fuzzy
+#~ msgid "Perform operation"
+#~ msgstr "Vykonej operaci"
+
+#, fuzzy
+#~ msgid "Script Editor"
+#~ msgstr "Icinga Editor"
+
+#, fuzzy
+#~ msgid "Search term is too short"
+#~ msgstr "Heslo je příliš krátké"
+
+#, fuzzy
+#~ msgid "Search results"
+#~ msgstr "Výsledky vyhledávání"
+
+#~ msgid "Sensor"
+#~ msgstr "Sensor"
+
+#~ msgid "Cloned"
+#~ msgstr "Cloned"
+
+#, fuzzy
+#~ msgid "Service was cloned"
+#~ msgstr "Služby"
+
+#, fuzzy
+#~ msgid "Service was not cloned"
+#~ msgstr "Záznam nebyl přidán"
+
+#, fuzzy
+#~ msgid "The service %s was derived"
+#~ msgstr "Záznam nebyl přidán"
+
+#, fuzzy
+#~ msgid "The service was not derived"
+#~ msgstr "Záznam nebyl přidán"
+
+#, fuzzy
+#~ msgid "Service was not saved"
+#~ msgstr "Hostname serveru"
+
+#, fuzzy
+#~ msgid "Service Editor"
+#~ msgstr "Icinga Editor"
+
+#~ msgid "Systémová služba"
+#~ msgstr "Systémová služba"
+
+#, fuzzy
+#~ msgid "Servicegroup was not saved"
+#~ msgstr "Hostname serveru"
+
+#, fuzzy
+#~ msgid "Servicegroup was saved"
+#~ msgstr "Hostname serveru"
+
+#, fuzzy
+#~ msgid "Servicegroup editor"
+#~ msgstr "Icinga Editor"
+
+#, fuzzy
+#~ msgid "Service group overview"
+#~ msgstr "Záznam nebyl přidán"
+
+#, fuzzy
+#~ msgid "Service was not renamed"
+#~ msgstr "Záznam nebyl přidán"
+
+#, fuzzy
+#~ msgid "Service was not derived"
+#~ msgstr "Záznam nebyl přidán"
+
+#, fuzzy
+#~ msgid "Back to"
+#~ msgstr "Zpět na %s "
+
+#, fuzzy
+#~ msgid "Login name"
+#~ msgstr "Přihlašovací Jméno"
+
+#, fuzzy
+#~ msgid "Email address"
+#~ msgstr "Emailová adresa"
+
+#, fuzzy
+#~ msgid "New template"
+#~ msgstr "Nový kontakt"
+
+#, fuzzy
+#~ msgid "New template was not created"
+#~ msgstr "Položka košíku %s byla odstraněna"
+
+#, fuzzy
+#~ msgid "No name was set"
+#~ msgstr "Hostname serveru"
+
+#, fuzzy
+#~ msgid "Services template was not saved"
+#~ msgstr "Hostname serveru"
+
+#, fuzzy
+#~ msgid "Services template was saved"
+#~ msgstr "Hostname serveru"
+
+#, fuzzy
+#~ msgid "Service template editor"
+#~ msgstr "Icinga Editor"
+
+#, fuzzy
+#~ msgid "Watched service templates overview"
+#~ msgstr "Icinga Editor"
+
+#, fuzzy
+#~ msgid "Watched service overview"
+#~ msgstr "Záznam nebyl přidán"
+
+#, fuzzy
+#~ msgid "item was not removed"
+#~ msgstr "Položka košíku %s byla odstraněna"
+
+#, fuzzy
+#~ msgid "Label"
+#~ msgstr "Štítek"
+
+#, fuzzy
+#~ msgid "Interval(s)"
+#~ msgstr "Interval(y)"
+
+#, fuzzy
+#~ msgid "group was saved"
+#~ msgstr "Hostname serveru"
+
+#, fuzzy
+#~ msgid "group was not saved"
+#~ msgstr "Záznam nebyl přidán"
+
+#, fuzzy
+#~ msgid "Usergroups"
+#~ msgstr "Hosta"
+
+#, fuzzy
+#~ msgid "%s hostgroups defined"
+#~ msgstr "Skupina hostů"
+
+#, fuzzy
+#~ msgid "New owner"
+#~ msgstr "Nový uživatel"
+
+#, fuzzy
+#~ msgid "Hand over"
+#~ msgstr "Hostname serveru"
+
+#, fuzzy
+#~ msgid "User"
+#~ msgstr "Uživatelský účet vytvořen"
+
+#, fuzzy
+#~ msgid "Regenerate configuration"
+#~ msgstr "Přegenerovat konfiguraci"
+
+#, fuzzy
+#~ msgid "IP Address"
+#~ msgstr "IPv4 Adresa"
+
+#, fuzzy
+#~ msgid "New host %s %s created"
+#~ msgstr "Mailový kontakt byl založen"
+
+#, fuzzy
+#~ msgid "Server hostname"
+#~ msgstr "Prosím zvolte službu"
+
+#, fuzzy
+#~ msgid "IPv4 Address"
+#~ msgstr "IPv4 Adresa"
+
+#, fuzzy
+#~ msgid "IPv6 Address"
+#~ msgstr "IPv4 Adresa"
+
+#, fuzzy
+#~ msgid "Add Host"
+#~ msgstr "Nemáte definovaný žádný host"
+
+#, fuzzy
+#~ msgid "Service was created"
+#~ msgstr "Hostname serveru"
+
+#, fuzzy
+#~ msgid "Please enter servce name"
+#~ msgstr "Prosím zadejte svůj email"
+
+#~ msgid "Host name is required"
+#~ msgstr "Jméno hosta je vyžadováno"
+
+#~ msgid "Host Name"
+#~ msgstr "Jméno Hosta"
+
+#~ msgid "Hostgroup"
+#~ msgstr "Skupina hostů"
+
+#, fuzzy
+#~ msgid "New host"
+#~ msgstr "Nový Host"
+
+#, fuzzy
+#~ msgid "Není zvolen vzdálený příkaz testu"
+#~ msgstr "vzdálené příkazy"
+
+#, fuzzy
+#~ msgid "Service Wizard"
+#~ msgstr "Icinga Editor"
+
+#~ msgid "New host Wizard"
+#~ msgstr "Průvodce založením nového hosta"
+
+#, fuzzy
+#~ msgid "Smazané nepoužívané služby"
+#~ msgstr "Sledované služby"
+
+#, fuzzy
+#~ msgid "Konfigurace hosta"
+#~ msgstr "Editace hosta"
+
+#~ msgid "Oskenovat a sledovat služby"
+#~ msgstr "Oskenovat a sledovat služby"
+
+#~ msgid "vzdálený test"
+#~ msgstr "vzdálený test"
+
+#~ msgid "Parametry"
+#~ msgstr "Parametry"
+
+#~ msgid "Editace"
+#~ msgstr "Editace"
+
+#~ msgid "Přestat sledovat"
+#~ msgstr "Přestat sledovat"
+
+#, fuzzy
+#~ msgid "Typ konfigurace"
+#~ msgstr "Import konfigurace"
+
+#, fuzzy
+#~ msgid "Předloha"
+#~ msgstr "předloha"
+
+#, fuzzy
+#~ msgid " %s byl přejmenován na %s ve skupině %s "
+#~ msgstr "Nepodařilo se přejmenovat %s ve službě %s"
+
+#, fuzzy
+#~ msgid "<strong>%s</strong> was add to contacts <strong>%s</strong>"
+#~ msgstr "Kontakt %s byl odebrán ze služby %s"
+
+#~ msgid "Přehled skupin hostů"
+#~ msgstr "Přehled skupin hostů"
+
+#, fuzzy
+#~ msgid "Skupiny hostů"
+#~ msgstr "skupinu hostů"
+
+#, fuzzy
+#~ msgid "Příkaz %s byl naimportován"
+#~ msgstr " byl naimportován"
+
+#, fuzzy
+#~ msgid "Příkaz nebyl naimportován"
+#~ msgstr " nebyl naimportován"
+
+#~ msgid "Zadejte konfigurační fragment příkazu, nebo zvolte soubor k importu"
+#~ msgstr "Zadejte konfigurační fragment příkazu, nebo zvolte soubor k importu"
+
+#~ msgid "Načtení příkazů ze souboru"
+#~ msgstr "Načtení příkazů ze souboru"
+
+#~ msgid "druh vkládaných příkazů"
+#~ msgstr "druh vkládaných příkazů"
+
+#, fuzzy
+#~ msgid "Import příkazu do konfigurace"
+#~ msgstr "Import konfigurace"
+
+#, fuzzy
+#~ msgid "Volba sledované diskové jednotky"
+#~ msgstr "Adresa sledované stránky"
+
+#~ msgid "Vše v pořádku"
+#~ msgstr "Vše v pořádku"
+
+#, fuzzy
+#~ msgid ""
+#~ "<br>\n"
+#~ "Nagstamon je monitor Nagiosu pro desktopové operační systémy.\n"
+#~ "Běží v systémové liště, nebo jako plovoucí aplikace, či ve stavovém řádku na\n"
+#~ "ploše a ukazuje stručný přehled stavy hostitelů či služeb tzn:\n"
+#~ "kritický, varovný, neznámý, nedosažitelný či vypnuto  a ukazuje podrobný přehled\n"
+#~ "stavu při pohybu ukazatele myši nad ním.\n"
+#~ "Připojení k zobrazeným hostitelům a službám je snadné z kontextové nabídky přes\n"
+#~ "SSH, RDP a VNC nebo jakýchkoli jiných definovaných akcí.\n"
+#~ "Uživatelé mohou být upozorněni zvukem.\n"
+#~ "Hostitelé a služby mohou být filtrovány podle kategorií a regulárních výrazů.\n"
+#~ msgstr ""
+#~ "<br>\n"
+#~ "Nagstamon je monitor Nagiosu pro desktopové operační systémy. \n"
+#~ "Běží v systémové liště, nebo jako plovoucí aplikace, či ve stavovém řádku na \n"
+#~ "ploše a ukazuje stručný přehled stavy hostitelů či služeb tzn: \n"
+#~ "kritický, varovný, neznámý, nedosažitelný či vypnuto  a ukazuje podrobný přehled \n"
+#~ "stavu při pohybu ukazatele myši nad ním. \n"
+#~ "Připojení k zobrazeným hostitelům a službám je snadné z kontextové nabídky přes \n"
+#~ "SSH, RDP a VNC nebo jakýchkoli jiných definovaných akcí. \n"
+#~ "Uživatelé mohou být upozorněni zvukem. \n"
+#~ "Hostitelé a služby mohou být filtrovány podle kategorií a regulárních výrazů. \n"
+
+#~ msgid "Domovská stránka programu"
+#~ msgstr "Domovská stránka programu"
+
+#~ msgid "Nastavení"
+#~ msgstr "Nastavení"
+
+#~ msgid "Změna hesla"
+#~ msgstr "Změna hesla"
+
+#~ msgid "Kontakt nebyl založen"
+#~ msgstr "Kontakt nebyl založen"
+
+#~ msgid "Kontakt byl založen"
+#~ msgstr "Kontakt byl založen"
+
+#~ msgid "Založení kontaktu"
+#~ msgstr "Založení kontaktu"
+
+#~ msgid "Skupina služeb nebyla uložena"
+#~ msgstr "Skupina služeb nebyla uložena"
+
+#~ msgid "Skupina služeb byla uložena"
+#~ msgstr "Skupina služeb byla uložena"
+
+#~ msgid "Editace skupiny služeb"
+#~ msgstr "Editace skupiny služeb"
+
+#~ msgid "Příkaz"
+#~ msgstr "Příkaz"
+
+#~ msgid "Přehled skupin služeb"
+#~ msgstr "Přehled skupin služeb"
+
+#, fuzzy
+#~ msgid "Skupiny služeb"
+#~ msgstr "Nemáte definovaný žádné skupiny služeb"
+
+#~ msgid "Přehled služeb"
+#~ msgstr "Přehled služeb"
+
+#, fuzzy
+#~ msgid "Přehled předloh sledovaných služeb"
+#~ msgstr "Přehled skupin služeb"
+
+#, fuzzy
+#~ msgid "Předlohy sledovaných služeb"
+#~ msgstr "Předlohy služeb"
+
+#~ msgid "Editace časové periody"
+#~ msgstr "Editace časové periody"
+
+#~ msgid "Hostname serveru"
+#~ msgstr "Hostname serveru"
+
+#~ msgid "Název hostu, tedy to co následuje po http:// ve webové adrese až k prvnímu lomítku, nebo otazníku."
+#~ msgstr "Název hostu, tedy to co následuje po http:// ve webové adrese až k prvnímu lomítku, nebo otazníku."
+
+#~ msgid "IPv4 Adresa"
+#~ msgstr "IPv4 Adresa"
+
+#~ msgid "čtyři číslice od 0 do 255 oddělené tečkou"
+#~ msgstr "čtyři číslice od 0 do 255 oddělené tečkou"
+
+#~ msgid "IPv6 Adresa"
+#~ msgstr "IPv6 Adresa"
+
+#~ msgid "nejvíce osm skupin čtyř hexadecimálních číslic oddělených dvojtečkou"
+#~ msgstr "nejvíce osm skupin čtyř hexadecimálních číslic oddělených dvojtečkou"
+
+#~ msgid "Přidej host"
+#~ msgstr "Přidej host"
+
+#~ msgid "Po zadání alespoň jednoho vstupního údaje si tento průvodce dohledá ostatní a provede sken na některé základní služby.<br>Pokud budou tyto nalezeny aktivují se jejich testy. Informace o stavu bude odesílána na první zadaný kontakt"
+#~ msgstr "Po zadání alespoň jednoho vstupního údaje si tento průvodce dohledá ostatní a provede sken na některé základní služby.<br>Pokud budou tyto nalezeny aktivují se jejich testy. Informace o stavu bude odesílána na první zadaný kontakt"
+
+#, fuzzy
+#~ msgid "Prosím zastejte název služby"
+#~ msgstr "Prosím potvrďte nastavení služby"
+
+#, fuzzy
+#~ msgid "Klon"
+#~ msgstr "Klonovat"
+
+#, fuzzy
+#~ msgid "Náhradní služba"
+#~ msgstr "Nová služba"
+
+#, fuzzy
+#~ msgid "Jméno služby"
+#~ msgstr "Sledované služby"
+
+#~ msgid "Uložit"
+#~ msgstr "Uložit"
+
+#, fuzzy
+#~ msgid "Založit"
+#~ msgstr "Uložit"
+
+#, fuzzy
+#~ msgid "Systémový uživatel"
+#~ msgstr "Nový uživatel"
+
+#~ msgid "Kontakt"
+#~ msgstr "Kontakt"
+
+#~ msgid "Toto není platná jabberová adresa"
+#~ msgstr "Toto není platná jabberová adresa"
+
+#~ msgid "Toto není platná mailová adresa"
+#~ msgstr "Toto není platná mailová adresa"
+
+#~ msgid "Toto není platné telefoní číslo"
+#~ msgstr "Toto není platné telefoní číslo"
+
+#, fuzzy
+#~ msgid "Kontakt <strong>%s</strong> byl odebrán ze skupiny <strong>%s</strong>"
+#~ msgstr "Kontakt %s byl odebrán ze služby %s"
+
+#, fuzzy
+#~ msgid "Kontakt <strong>%s</strong> nebyl odebrán ze skupiny <strong>%s</strong>"
+#~ msgstr "Kontakt %s byl odebrán ze služby %s"
+
+#, fuzzy
+#~ msgid "Kontakt <strong>%s</strong> byl odebrán ze služby <strong>%s</strong>"
+#~ msgstr "Kontakt %s byl odebrán ze služby %s"
+
+#, fuzzy
+#~ msgid "Kontakt <strong>%s</strong> nebyl odebrán ze služby <strong>%s</strong>"
+#~ msgstr "Kontakt %s byl odebrán ze služby %s"
+
+#~ msgid "Kontakt nelze přejmenovat"
+#~ msgstr "Kontakt nelze přejmenovat"
+
+#~ msgid "Hosta"
+#~ msgstr "Hosta"
+
+#~ msgid " %s byl odstraněn ze skupiny %s "
+#~ msgstr " %s byl odstraněn ze skupiny %s "
+
+#, fuzzy
+#~ msgid "host %s byl odstraněn ze skupiny %s"
+#~ msgstr " %s byl odstraněn ze skupiny %s "
+
+#, fuzzy
+#~ msgid "subgroup %s byl odstraněn ze skupiny %s"
+#~ msgstr " %s byl odstraněn ze skupiny %s "
+
+#~ msgid "konfigurace byla vygenerována"
+#~ msgstr "konfigurace byla vygenerována"
+
+#~ msgid "konfigurace nebyla vygenerována"
+#~ msgstr "konfigurace nebyla vygenerována"
+
+#, fuzzy
+#~ msgid " %s nebyl přesunut z %s/%s do %s"
+#~ msgstr "položka %s nebyla přidána do %s/%s/%s"
+
+#~ msgid "Časovou periodu"
+#~ msgstr "Časovou periodu"
+
+#, fuzzy
+#~ msgid "Ano"
+#~ msgstr "Android"
+
+#~ msgid "Definováno %s časových period"
+#~ msgstr "Definováno %s časových period"
+
+#~ msgid "Nemáte definovaný žádné časové periody"
+#~ msgstr "Nemáte definovaný žádné časové periody"
+
+#~ msgid "Založit první časovou periodu <i class=\"icon-edit\"></i>"
+#~ msgstr "Založit první časovou periodu <i class=\"icon-edit\"></i>"
+
+#~ msgid "Definováno %s kontaktů"
+#~ msgstr "Definováno %s kontaktů"
+
+#~ msgid "Nemáte definovaný kontakt"
+#~ msgstr "Nemáte definovaný kontakt"
+
+#~ msgid "Založit první kontakt "
+#~ msgstr "Založit první kontakt "
+
+#~ msgid "Kontakty vyžadují časovou periodu"
+#~ msgstr "Kontakty vyžadují časovou periodu"
+
+#~ msgid "Definováno %s skupin kontaktů"
+#~ msgstr "Definováno %s skupin kontaktů"
+
+#~ msgid "Nemáte definovanou skupinu kontaktů"
+#~ msgstr "Nemáte definovanou skupinu kontaktů"
+
+#~ msgid "Založit první skupinu kontaktů "
+#~ msgstr "Založit první skupinu kontaktů "
+
+#~ msgid "Definováno %s hostů"
+#~ msgstr "Definováno %s hostů"
+
+#~ msgid "Nemáte definovaný žádný host"
+#~ msgstr "Nemáte definovaný žádný host"
+
+#~ msgid "Založit první host"
+#~ msgstr "Založit první host"
+
+#~ msgid "Hosty vyžadují časovou periodu .."
+#~ msgstr "Hosty vyžadují časovou periodu .."
+
+#~ msgid "Definováno %s skupin hostů"
+#~ msgstr "Definováno %s skupin hostů"
+
+#~ msgid "Nemáte definovaný žádnou skupinu hostů"
+#~ msgstr "Nemáte definovaný žádnou skupinu hostů"
+
+#~ msgid "Založit první skupinu hostů <i class=\"icon-edit\"></i>"
+#~ msgstr "Založit první skupinu hostů <i class=\"icon-edit\"></i>"
+
+#~ msgid "Definováno %s příkazů"
+#~ msgstr "Definováno %s příkazů"
+
+#~ msgid "Nemáte definovaný žádné příkazy"
+#~ msgstr "Nemáte definovaný žádné příkazy"
+
+#~ msgid "Importovat příkazy"
+#~ msgstr "Importovat příkazy"
+
+#~ msgid "Definováno %s služeb"
+#~ msgstr "Definováno %s služeb"
+
+#~ msgid "Nemáte definovaný žádné služby"
+#~ msgstr "Nemáte definovaný žádné služby"
+
+#~ msgid "Založit první službu"
+#~ msgstr "Založit první službu"
+
+#~ msgid "Služby vyžadují časovou periodu .."
+#~ msgstr "Služby vyžadují časovou periodu .."
+
+#~ msgid "Služby vyžadují příkazy .."
+#~ msgstr "Služby vyžadují příkazy .."
+
+#~ msgid "Definováno %s skupin služeb"
+#~ msgstr "Definováno %s skupin služeb"
+
+#~ msgid "Nemáte definovaný žádné skupiny služeb"
+#~ msgstr "Nemáte definovaný žádné skupiny služeb"
+
+#~ msgid "Založit první skupinu služeb"
+#~ msgstr "Založit první skupinu služeb"
+
+#, fuzzy
+#~ msgid "Předvolby byly uloženy"
+#~ msgstr "Příkaz byl uložen"
+
+#, fuzzy
+#~ msgid "Předvolby nebyly uloženy"
+#~ msgstr "Příkaz nebyl uložen"
+
+#, fuzzy
+#~ msgid "Předvolby"
+#~ msgstr "Předlohy"
+
+#, fuzzy
+#~ msgid "Vyheldávaný řetězec je příliš krátký"
+#~ msgstr "heslo je příliš krátké"
+
+#, fuzzy
+#~ msgid "Výsledky hledání"
+#~ msgstr "Výsledky testů"
+
+#~ msgid "Služba %s byla odvozena"
+#~ msgstr "Služba %s byla odvozena"
+
+#~ msgid "Služba nebyla odvozena"
+#~ msgstr "Služba nebyla odvozena"
+
+#, fuzzy
+#~ msgid "Clon"
+#~ msgstr "Cloned"
+
+#, fuzzy
+#~ msgid "Nová předloha"
+#~ msgstr "Není předloha"
+
+#, fuzzy
+#~ msgid "Vlastnictví byla předána"
+#~ msgstr "položka %s byla přidána"
+
+#~ msgid "Přihlásit se jako uživatel <i class=\"icon-refresh\"></i>"
+#~ msgstr "Přihlásit se jako uživatel <i class=\"icon-refresh\"></i>"
+
+#, fuzzy
+#~ msgid "Nový vlastník"
+#~ msgstr "Nahraj vlastní"
+
+#, fuzzy
+#~ msgid "Předat"
+#~ msgstr "Předlohy"
+
+#, fuzzy
+#~ msgid "Služba byla založena"
+#~ msgstr "Služba byla uložena"
+
+#, fuzzy
+#~ msgid "Průvodce založením pasivně sledované služby"
+#~ msgstr "Průvodce založením hostu"
+
+#, fuzzy
+#~ msgid "Aktivně sledovaná služba"
+#~ msgstr "Přidána sledovaná služba: %s"
+
+#, fuzzy
+#~ msgid "Průvodce založením hosta"
+#~ msgstr "Průvodce založením hostu"
+
+#~ msgid "Hosty"
+#~ msgstr "Hosty"
+
+#, fuzzy
+#~ msgid "Služba"
+#~ msgstr "Služba byla zklonovana"
+
+#~ msgid "Založeno"
+#~ msgstr "Založeno"
+
+#~ msgid "Kontaktní údaj %s %s byl přidán"
+#~ msgstr "Kontaktní údaj %s %s byl přidán"
+
+#~ msgid "Kontaktní údaj %s %s nebyl přidán"
+#~ msgstr "Kontaktní údaj %s %s nebyl přidán"
+
+#~ msgid "Vlastnosti"
+#~ msgstr "Vlastnosti"
+
+#~ msgid "smazat"
+#~ msgstr "smazat"
+
+#~ msgid "telefonní číslo, email či jabberová adresa dle druhu kontaktu"
+#~ msgstr "telefonní číslo, email či jabberová adresa dle druhu kontaktu"
+
+#~ msgid "Přidat kontaktní údaj"
+#~ msgstr "Přidat kontaktní údaj"
+
+#~ msgid "K tomuto kontaktu již není možné přidávat další údaje."
+#~ msgstr "K tomuto kontaktu již není možné přidávat další údaje."
+
+#, fuzzy
+#~ msgid "Smazat"
+#~ msgstr "Smazat"
+
+#, fuzzy
+#~ msgid "Přehled skriptů"
+#~ msgstr "Přehled hostů"
+
+#~ msgid "Host byl přejmenován"
+#~ msgstr "Host byl přejmenován"
+
+#~ msgid "Host nebyl přejmenován"
+#~ msgstr "Host nebyl přejmenován"
+
+#~ msgid "Služba byla zklonovana"
+#~ msgstr "Služba byla zklonovana"
+
+#~ msgid "Služba nebyla zklonovana"
+#~ msgstr "Služba nebyla zklonovana"
+
+#~ msgid "Služba nebyla uložena"
+#~ msgstr "Služba nebyla uložena"
+
+#~ msgid "Služba byla uložena"
+#~ msgstr "Služba byla uložena"
+
+#~ msgid "Editace služby"
+#~ msgstr "Editace služby"
+
+#, fuzzy
+#~ msgid "Vytvořena nová předloha sledovaných služeb: %s"
+#~ msgstr "Přidána sledovaná služba: %s"
+
+#~ msgid "Příkaz nebyl uložen"
+#~ msgstr "Příkaz nebyl uložen"
+
+#~ msgid "Příkaz byl uložen"
+#~ msgstr "Příkaz byl uložen"
+
+#~ msgid "Chyba:"
+#~ msgstr "Chyba:"
+
+#~ msgid "Chyba v konfiguračním souboru"
+#~ msgstr "Chyba v konfiguračním souboru"
+
+#~ msgid "nemá přiřazené žádné služby"
+#~ msgstr "nemá přiřazené žádné služby"
+
+#~ msgid "prodleva varování"
+#~ msgstr "prodleva varování"
+
+#~ msgid "Čas v milisekundách, po jehož překročení při testu bude hlášeno varování"
+#~ msgstr "Čas v milisekundách, po jehož překročení při testu bude hlášeno varování"
+
+#~ msgid "ztráta varování"
+#~ msgstr "ztráta varování"
+
+#~ msgid "Procento ztracených paketů, po jehož překročení při testu bude hlášeno varování"
+#~ msgstr "Procento ztracených paketů, po jehož překročení při testu bude hlášeno varování"
+
+#~ msgid "prodleva kritické chyby"
+#~ msgstr "prodleva kritické chyby"
+
+#~ msgid "Čas v milisekundách, po jehož překročení při testu bude hlášena kritická chyba"
+#~ msgstr "Čas v milisekundách, po jehož překročení při testu bude hlášena kritická chyba"
+
+#~ msgid "ztráta kritické chyby"
+#~ msgstr "ztráta kritické chyby"
+
+#~ msgid "Procento ztracených paketů, po jehož překročení při testu bude hlášena kritická chyba"
+#~ msgstr "Procento ztracených paketů, po jehož překročení při testu bude hlášena kritická chyba"
+
+#~ msgid "Varování:"
+#~ msgstr "Varování:"
+
+#~ msgid "Prosím potvrďte nastavení služby"
+#~ msgstr "Prosím potvrďte nastavení služby"
+
+#, fuzzy
+#~ msgid "Původní služba byla upravena"
+#~ msgstr "Služba byla uložena"
+
+#, fuzzy
+#~ msgid "Služba byla uložena jako klon"
+#~ msgstr "Služba byla uložena"
+
+#, fuzzy
+#~ msgid "Sužba nebyla naklonována"
+#~ msgstr "Služba nebyla zklonovana"
+
+#~ msgid "Formulář nebyl uložen"
+#~ msgstr "Formulář nebyl uložen"
+
+#~ msgid "Uloženo"
+#~ msgstr "Uloženo"
+
+#, fuzzy
+#~ msgid "Toto je primární služba."
+#~ msgstr "Založit první službu"
+
+#, fuzzy
+#~ msgid "Uložit upravenou službu jako "
+#~ msgstr "Založit první službu"
+
+#, fuzzy
+#~ msgid "Přidat do skupiny"
+#~ msgstr "Přidat rodiče"
+
+#~ msgid "Editace příkazu"
+#~ msgstr "Editace příkazu"
+
+#, fuzzy
+#~ msgid "Používající kontakty"
+#~ msgstr "Založit výchozí kontakt"
+
+#~ msgid "Přehled příkazů"
+#~ msgstr "Přehled příkazů"
+
+#, fuzzy
+#~ msgid "Příkazy"
+#~ msgstr "Nemáte definovaný žádné příkazy"
+
+#~ msgid "Kontakt nebyl uložen"
+#~ msgstr "Kontakt nebyl uložen"
+
+#~ msgid "Kontakt byl uložen"
+#~ msgstr "Kontakt byl uložen"
+
+#~ msgid "Editace kontaktu"
+#~ msgstr "Editace kontaktu"
+
+#, fuzzy
+#~ msgid "Používaný službami"
+#~ msgstr "Nová služba"
+
+#, fuzzy
+#~ msgid "Kontaktní skupiny"
+#~ msgstr "Kontakty"
+
+#~ msgid "Přehled kontaktů"
+#~ msgstr "Přehled kontaktů"
+
+#~ msgid "Kontakty"
+#~ msgstr "Kontakty"
+
+#~ msgid "Chyba ukládání do databáze: "
+#~ msgstr "Chyba ukládání do databáze: "
+
+#~ msgid "Třída"
+#~ msgstr "Třída"
+
+#~ msgid "Tabulka"
+#~ msgstr "Tabulka"
+
+#~ msgid "Pole"
+#~ msgstr "Pole"
+
+#~ msgid "Hodnota"
+#~ msgstr "Hodnota"
+
+#~ msgid "Icinga Editor - znovuvytvoření struktury databáze"
+#~ msgstr "Icinga Editor - znovuvytvoření struktury databáze"
+
+#~ msgid "vytvořit konfiguraci"
+#~ msgstr "vytvořit konfiguraci"
+
+#~ msgid "importovat konfiguraci"
+#~ msgstr "importovat konfiguraci"
+
+#~ msgid "Tato akce nevratně smaže veškerou konfiguraci. Opravdu to chcete udělat ?"
+#~ msgstr "Tato akce nevratně smaže veškerou konfiguraci. Opravdu to chcete udělat ?"
+
+#~ msgid "Vím co dělám"
+#~ msgstr "Vím co dělám"
+
+#~ msgid "Budiž!"
+#~ msgstr "Budiž!"
+
+#, fuzzy
+#~ msgid "Služba byla naklonována"
+#~ msgstr "Služba byla zklonovana"
+
+#~ msgid "Služba byla přejmenována"
+#~ msgstr "Služba byla přejmenována"
+
+#~ msgid "Sužba nebyla přejmenována"
+#~ msgstr "Sužba nebyla přejmenována"
+
+#~ msgid "Přehled časových period"
+#~ msgstr "Přehled časových period"
+
+#~ msgid "Nemáte definované časové periody"
+#~ msgstr "Nemáte definované časové periody"
+
+#~ msgid "Založit časovou periodu "
+#~ msgstr "Založit časovou periodu "
+
+#, fuzzy
+#~ msgid "člen byl přidán do skupiny"
+#~ msgstr "Rodič byl přidán"
+
+#, fuzzy
+#~ msgid "člen nebyl přidán do skupiny"
+#~ msgstr "Rodič nebyl přidán"
+
+#, fuzzy
+#~ msgid "člen byl odstraněn ze skupiny"
+#~ msgstr " %s byl odstraněn ze skupiny %s "
+
+#, fuzzy
+#~ msgid "člen nbyl odstraněn ze skupiny"
+#~ msgstr " %s byl odstraněn ze skupiny %s "
+
+#, fuzzy
+#~ msgid "skupina byla uložena"
+#~ msgstr "Skupina hostů byla uložena"
+
+#, fuzzy
+#~ msgid "skupina nebyla uložena"
+#~ msgstr "Skupina hostů nebyla uložena"
+
+#, fuzzy
+#~ msgid "Uživatelská skupina"
+#~ msgstr "Uživatelská podpora"
+
+#, fuzzy
+#~ msgid "Skupina uživatelů"
+#~ msgstr "Přehled uživatelů"
+
+#, fuzzy
+#~ msgid "Přehled uživatelských skupin"
+#~ msgstr "Přehled uživatelů"
+
+#, fuzzy
+#~ msgid "Uživatelské skupiny"
+#~ msgstr "Uživatelské jméno"
+
+#~ msgid "Generování konfigurace"
+#~ msgstr "Generování konfigurace"
+
+#~ msgid "konfigurační soubor %s byl znovu vytvořen"
+#~ msgstr "konfigurační soubor %s byl znovu vytvořen"
+
+#~ msgid "konfigurační soubor  %s nebyl znovu vytvořen"
+#~ msgstr "konfigurační soubor  %s nebyl znovu vytvořen"
+
+#~ msgid "Kontrola konfigurace nevrátila výsledek."
+#~ msgstr "Kontrola konfigurace nevrátila výsledek."
+
+#~ msgid "Zkontroluj prosím zdlali nechybí potřebný fragment v /etc/sudoers:"
+#~ msgstr "Zkontroluj prosím zdlali nechybí potřebný fragment v /etc/sudoers:"
+
+#~ msgid "celkem %s varování"
+#~ msgstr "celkem %s varování"
+
+#~ msgid "test proběhl bez varování"
+#~ msgstr "test proběhl bez varování"
+
+#~ msgid "celkem %s chyb"
+#~ msgstr "celkem %s chyb"
+
+#~ msgid "test proběhl bez chyb"
+#~ msgstr "test proběhl bez chyb"
+
+#~ msgid "Všechny vaše konfigurační soubory byly přegenerovány"
+#~ msgstr "Všechny vaše konfigurační soubory byly přegenerovány"
+
+#~ msgid "Hotovo"
+#~ msgstr "Hotovo"
+
+#, fuzzy
+#~ msgid "Konfigurace %s potvrzena"
+#~ msgstr "konfigurace nebyla načtena"
+
+#, fuzzy
+#~ msgid "Chyba potvrzení konfigurace"
+#~ msgstr "hlavní soubor konfigurace"
+
+#~ msgid "Změna hesla uživatele"
+#~ msgstr "Změna hesla uživatele"
+
+#~ msgid "Heslo bylo změněno"
+#~ msgstr "Heslo bylo změněno"
+
+#~ msgid "Změněné heslo pro Monitoring"
+#~ msgstr "Změněné heslo pro Monitoring"
+
+#~ msgid "Vážený zákazníku vaše přihlašovací údaje byly změněny"
+#~ msgstr "Vážený zákazníku vaše přihlašovací údaje byly změněny"
+
+#~ msgid "Stávající heslo"
+#~ msgstr "Stávající heslo"
+
+#~ msgid "Nové heslo"
+#~ msgstr "Nové heslo"
+
+#~ msgid "potvrzení hesla"
+#~ msgstr "potvrzení hesla"
+
+#~ msgid "změna hesla"
+#~ msgstr "změna hesla"
+
+#~ msgid "Registrace"
+#~ msgstr "Registrace"
+
+#~ msgid "Přihlášení"
+#~ msgstr "Přihlášení"
+
+#~ msgid "Heslo"
+#~ msgstr "Heslo"
+
+#~ msgid "zapamatuj si mne"
+#~ msgstr "zapamatuj si mne"
+
+#~ msgid "přihlásit"
+#~ msgstr "přihlásit"
+
+#~ msgid "Přehled konfigurací"
+#~ msgstr "Přehled konfigurací"
+
+#~ msgid "Uživatelská podpora"
+#~ msgstr "Uživatelská podpora"
+
+#~ msgid "kliknutím skryjete zprávy"
+#~ msgstr "kliknutím skryjete zprávy"
+
+#~ msgid "Chybi definice"
+#~ msgstr "Chybi definice"
+
+#~ msgid "Výchozí"
+#~ msgstr "Výchozí"
+
+#~ msgid "Neznámý typ %s pro sloupec %s"
+#~ msgstr "Neznámý typ %s pro sloupec %s"
+
+#, fuzzy
+#~ msgid "Více nastavení:"
+#~ msgstr "nastavení"
+
+#~ msgid "tento záznam se nebude generovat do konfigurace"
+#~ msgstr "tento záznam se nebude generovat do konfigurace"
+
+#~ msgid "tento záznam je veřejný"
+#~ msgstr "tento záznam je veřejný"
+
+#~ msgid "Info Chybí"
+#~ msgstr "Info Chybí"
+
+#~ msgid "sloupec bez popisku"
+#~ msgstr "sloupec bez popisku"
+
+#~ msgid "Není vyplněna povinná položka"
+#~ msgstr "Není vyplněna povinná položka"
+
+#~ msgid "Rozšířené"
+#~ msgstr "Rozšířené"
+
+#~ msgid "Nejprve je potřeba uložit záznam"
+#~ msgstr "Nejprve je potřeba uložit záznam"
+
+#~ msgid "položka %s byla přidána"
+#~ msgstr "položka %s byla přidána"
+
+#~ msgid "položka %s nebyla přidána"
+#~ msgstr "položka %s nebyla přidána"
+
+#~ msgid "položka %s byla odebrána"
+#~ msgstr "položka %s byla odebrána"
+
+#~ msgid "položka %s nebyla odebrána"
+#~ msgstr "položka %s nebyla odebrána"
+
+#~ msgid "příkaz"
+#~ msgstr "příkaz"
+
+#, fuzzy
+#~ msgid "aktualizovat senzor"
+#~ msgstr "Nasadit senzor"
+
+#, fuzzy
+#~ msgid "nasadit senzor"
+#~ msgstr "Nasadit senzor"
+
+#, fuzzy
+#~ msgid "přiřadit rodiče"
+#~ msgstr "Přiřadit rodiče"
+
+#, fuzzy
+#~ msgid "přiřadit ikonu"
+#~ msgstr "Přiřadit rodiče"
+
+#, fuzzy
+#~ msgid "přiřadit kontakty"
+#~ msgstr "Editace kontaktu"
+
+#, fuzzy
+#~ msgid "Hosty dle stavu konfigurace"
+#~ msgstr "Generovat do konfigurace"
+
+#, fuzzy
+#~ msgid "Přiřadit kontakt"
+#~ msgstr "Přidat kontaktní údaj"
+
+#~ msgid "Cíle notifikací"
+#~ msgstr "Cíle notifikací"
+
+#~ msgid "Začít obesílat"
+#~ msgstr "Začít obesílat"
+
+#~ msgid "Přestat obesílat"
+#~ msgstr "Přestat obesílat"
+
+#, fuzzy
+#~ msgid "Přidat"
+#~ msgstr "Přidat rodiče"
+
+#, fuzzy
+#~ msgid "Záznam byl přidán"
+#~ msgstr "Rodič byl přidán"
+
+#, fuzzy
+#~ msgid "Záznam nebyl přidám"
+#~ msgstr "Rodič nebyl přidán"
+
+#, fuzzy
+#~ msgid "Přiřadit"
+#~ msgstr "Přiřadit rodiče"
+
+#~ msgid "Nepodařilo se odregistrovat %s ze služby %s"
+#~ msgstr "Nepodařilo se odregistrovat %s ze služby %s"
+
+#~ msgid "Nepodařilo se přejmenovat %s ve službě %s"
+#~ msgstr "Nepodařilo se přejmenovat %s ve službě %s"
+
+#~ msgid "Rodiče"
+#~ msgstr "Rodiče"
+
+#, fuzzy
+#~ msgid "Konfigurace senzoru"
+#~ msgstr "konfigurační soubor"
+
+#~ msgid "Sledované hosty služby"
+#~ msgstr "Sledované hosty služby"
+
+#~ msgid "Vyber Ikonu"
+#~ msgstr "Vyber Ikonu"
+
+#~ msgid "Nahraj vlastní"
+#~ msgstr "Nahraj vlastní"
+
+#~ msgid "Obrázek typu GIF,PNG nebo JPG, nejlépe 40x40 px"
+#~ msgstr "Obrázek typu GIF,PNG nebo JPG, nejlépe 40x40 px"
+
+#~ msgid "Ikona ze souboru"
+#~ msgstr "Ikona ze souboru"
+
+#~ msgid "Soubor v počítači"
+#~ msgstr "Soubor v počítači"
+
+#~ msgid "Ikona z adresy"
+#~ msgstr "Ikona z adresy"
+
+#~ msgid "Titulek obrázku"
+#~ msgstr "Titulek obrázku"
+
+#~ msgid "nepovinné"
+#~ msgstr "nepovinné"
+
+#~ msgid "Odeslat"
+#~ msgstr "Odeslat"
+
+#~ msgid "Načteno %s řádek konfigurace"
+#~ msgstr "Načteno %s řádek konfigurace"
+
+#~ msgid "konfigurace nebyla načtena"
+#~ msgstr "konfigurace nebyla načtena"
+
+#~ msgid "Bylo naimportováno %s konfigurací"
+#~ msgstr "Bylo naimportováno %s konfigurací"
+
+#, fuzzy
+#~ msgid "Nic se nenaimportovalo"
+#~ msgstr " nebyl naimportován"
+
+#~ msgid "Uplatnit změny"
+#~ msgstr "Uplatnit změny"
+
+#~ msgid "Průvodce založením hostu"
+#~ msgstr "Průvodce založením hostu"
+
+#, fuzzy
+#~ msgid "Nový aktivní Host"
+#~ msgstr "Nový Host"
+
+#~ msgid "Nová skupina hostů"
+#~ msgstr "Nová skupina hostů"
+
+#~ msgid "Detailní přehled hostů"
+#~ msgstr "Detailní přehled hostů"
+
+#~ msgid "Uživatelé"
+#~ msgstr "Uživatelé"
+
+#~ msgid "Nový uživatel"
+#~ msgstr "Nový uživatel"
+
+#~ msgid "Přehled uživatelů"
+#~ msgstr "Přehled uživatelů"
+
+#, fuzzy
+#~ msgid "Nová skupina uživatelů"
+#~ msgstr "Nová skupina služeb"
+
+#, fuzzy
+#~ msgid "Přehled skupin uživatelů"
+#~ msgstr "Přehled uživatelů"
+
+#, fuzzy
+#~ msgid "Průvodce založením služby"
+#~ msgstr "Průvodce založením hostu"
+
+#~ msgid "Nová služba"
+#~ msgstr "Nová služba"
+
+#~ msgid "Nová skupina služeb"
+#~ msgstr "Nová skupina služeb"
+
+#, fuzzy
+#~ msgid "Nová předloha sledované služby"
+#~ msgstr "Sledované služby"
+
+#~ msgid "Přehled Kontaktů"
+#~ msgstr "Přehled Kontaktů"
+
+#~ msgid "Nový kontakt"
+#~ msgstr "Nový kontakt"
+
+#~ msgid "Přehled skupin kontaktů"
+#~ msgstr "Přehled skupin kontaktů"
+
+#~ msgid "Nová skupina kontaktů"
+#~ msgstr "Nová skupina kontaktů"
+
+#~ msgid "Nový příkaz"
+#~ msgstr "Nový příkaz"
+
+#~ msgid "Nová časová perioda"
+#~ msgstr "Nová časová perioda"
+
+#, fuzzy
+#~ msgid "Nastavení icingy"
+#~ msgstr "Nastavení"
+
+#~ msgid "Přegenerovat všechny konfiguráky"
+#~ msgstr "Přegenerovat všechny konfiguráky"
+
+#, fuzzy
+#~ msgid "Opravit databázi"
+#~ msgstr "Reinicializovat databázi"
+
+#~ msgid "Výsledky testů"
+#~ msgstr "Výsledky testů"
+
+#, fuzzy
+#~ msgid "Potvrzení konfigurace"
+#~ msgstr "Potvrzení registrace"
+
+#~ msgid "rodiče hostu"
+#~ msgstr "rodiče hostu"
+
+#~ msgid "Přidat rodiče"
+#~ msgstr "Přidat rodiče"
+
+#~ msgid "Přiřadit rodiče"
+#~ msgstr "Přiřadit rodiče"
+
+#, fuzzy
+#~ msgid "Odstranit rodiče"
+#~ msgstr "Přidat rodiče"
+
+#, fuzzy
+#~ msgid "Název sledovaného stroje"
+#~ msgstr "Adresa sledované stránky"
+
+#, fuzzy
+#~ msgid "Platforma sledovaného stroje"
+#~ msgstr "Adresa sledované stránky"
+
+#~ msgid "Přidána sledovaná služba: %s"
+#~ msgstr "Přidána sledovaná služba: %s"
+
+#~ msgid "Přidání sledované služby: %s se nezdařilo"
+#~ msgstr "Přidání sledované služby: %s se nezdařilo"
+
+#, fuzzy
+#~ msgid "IP adresa serveru"
+#~ msgstr "Hostname serveru"
+
+#, fuzzy
+#~ msgid "Název služby testu"
+#~ msgstr "Nová služba"
+
+#, fuzzy
+#~ msgid "Vzdálený Příkaz"
+#~ msgstr "vzdálené příkazy"
+
+#~ msgid "přihlásit přez Twitter"
+#~ msgstr "přihlásit přez Twitter"
+
+#~ msgid "odhlasit twitter"
+#~ msgstr "odhlasit twitter"
+
+#~ msgid "Další sledovatelné služby budou nabídnuty po nastavení platformy hosta a vzdáleného senzoru."
+#~ msgstr "Další sledovatelné služby budou nabídnuty po nastavení platformy hosta a vzdáleného senzoru."
+
+#, fuzzy
+#~ msgid "Uložit jako předlohu"
+#~ msgstr "Uložit jako předlohu pod jménem"
+
+#, fuzzy
+#~ msgid "Konfigurace uživatele %s byla smazána"
+#~ msgstr "Uživatel %s byl smazán"
+
+#, fuzzy
+#~ msgid "Konfigurace uživatele %s nebyla smazána"
+#~ msgstr "Uživatel %s byl smazán"
+
+#~ msgid "Uživatel %s byl smazán"
+#~ msgstr "Uživatel %s byl smazán"
+
+#~ msgid "Uložit jako předlohu pod jménem"
+#~ msgstr "Uložit jako předlohu pod jménem"
+
+#~ msgid "Není předloha"
+#~ msgstr "Není předloha"
+
+#, fuzzy
+#~ msgid "Vlastník"
+#~ msgstr "Vlastnosti"
+
+#, fuzzy
+#~ msgid "vlastník"
+#~ msgstr "Nahraj vlastní"
+
+#~ msgid "předloha %s nebyla načtena"
+#~ msgstr "předloha %s nebyla načtena"
+
+#~ msgid "předloha %s byla načtena"
+#~ msgstr "předloha %s byla načtena"
+
+#~ msgid "Předloha %s není pojmenována"
+#~ msgstr "Předloha %s není pojmenována"
+
+#~ msgid "Chybí hodnota pro požadovanou položku %s pro %s"
+#~ msgstr "Chybí hodnota pro požadovanou položku %s pro %s"
+
+#~ msgid "Předloha %s je již definována. Zvolte prosím jiný název."
+#~ msgstr "Předloha %s je již definována. Zvolte prosím jiný název."
+
+#~ msgid "%s %s je již definováno. Zvolte prosím jiné."
+#~ msgstr "%s %s je již definováno. Zvolte prosím jiné."
+
+#~ msgid "je předlohou pro"
+#~ msgstr "je předlohou pro"
+
+#, fuzzy
+#~ msgid "Bez vlastníka"
+#~ msgstr "Nahraj vlastní"
+
+#~ msgid " %s %s byl smazán "
+#~ msgstr " %s %s byl smazán "
+
+#~ msgid " %s %s nebyl smazán "
+#~ msgstr " %s %s nebyl smazán "
+
+#~ msgid "předloha"
+#~ msgstr "předloha"
+
+#~ msgid " byl naimportován"
+#~ msgstr " byl naimportován"
+
+#~ msgid " nebyl naimportován"
+#~ msgstr " nebyl naimportován"
+
+#~ msgid "Očekávám název souboru"
+#~ msgstr "Očekávám název souboru"
+
+#~ msgid "položka %s nebyla přidána do %s/%s/%s"
+#~ msgstr "položka %s nebyla přidána do %s/%s/%s"
+
+#~ msgid "položka %s byla přidána do %s/%s/%s"
+#~ msgstr "položka %s byla přidána do %s/%s/%s"
+
+#~ msgid "položka %s nebyla odebrána z %s/%s/%s"
+#~ msgstr "položka %s nebyla odebrána z %s/%s/%s"
+
+#~ msgid "položka %s byla odebrána z %s/%s/%s"
+#~ msgstr "položka %s byla odebrána z %s/%s/%s"
+
+#, fuzzy
+#~ msgid "Neznámá položka %s sloupec %s při importu"
+#~ msgstr "Neznámý typ %s pro sloupec %s"
+
+#, fuzzy
+#~ msgid "Neznámý sloupec %s při importu"
+#~ msgstr "Neznámý typ %s pro sloupec %s"
+
+#, fuzzy
+#~ msgid "tento záznam se nebude generovat"
+#~ msgstr "tento záznam se nebude generovat do konfigurace"
+
+#~ msgid "Editace skupiny kontaktu"
+#~ msgstr "Editace skupiny kontaktu"
+
+#~ msgid "Skupina kontaktů nebyla uložena"
+#~ msgstr "Skupina kontaktů nebyla uložena"
+
+#~ msgid "Skupina kontaktů byla uložena"
+#~ msgstr "Skupina kontaktů byla uložena"
+
+#, fuzzy
+#~ msgid "Skupina kontaktů"
+#~ msgstr "Nová skupina kontaktů"
+
+#~ msgid "Kontakt byl přejmenován"
+#~ msgstr "Kontakt byl přejmenován"
+
+#~ msgid "Kontakt nebyl přejmenován"
+#~ msgstr "Kontakt nebyl přejmenován"
+
+#~ msgid "Přejmenovat"
+#~ msgstr "Přejmenovat"
+
+#~ msgid "Přejmenování"
+#~ msgstr "Přejmenování"
+
+#~ msgid "mailová adresa je příliš krátká"
+#~ msgstr "mailová adresa je příliš krátká"
+
+#~ msgid "chyba v mailové adrese"
+#~ msgstr "chyba v mailové adrese"
+
+#~ msgid "heslo je příliš krátké"
+#~ msgstr "heslo je příliš krátké"
+
+#~ msgid "kontrola hesla nesouhlasí"
+#~ msgstr "kontrola hesla nesouhlasí"
+
+#~ msgid "Zadané uživatelské jméno %s je již v databázi použito. Zvolte prosím jiné."
+#~ msgstr "Zadané uživatelské jméno %s je již v databázi použito. Zvolte prosím jiné."
+
+#~ msgid "Administrátirský účet byl vytvořen"
+#~ msgstr "Administrátirský účet byl vytvořen"
+
+#~ msgid "Uživatelský účet byl vytvořen"
+#~ msgstr "Uživatelský účet byl vytvořen"
+
+#~ msgid "Potvrzení registrace"
+#~ msgstr "Potvrzení registrace"
+
+#, fuzzy
+#~ msgid "Nová registrace do Monitoringu: %s"
+#~ msgstr "Nová registrace do VSmonitoringu: %s"
+
+#~ msgid "Právě byl zaregistrován nový uživatel:\n"
+#~ msgstr "Právě byl zaregistrován nový uživatel:\n"
+
+#~ msgid "Výchozí kontakt byl založen"
+#~ msgstr "Výchozí kontakt byl založen"
+
+#~ msgid "Výchozí kontakt nebyl založen"
+#~ msgstr "Výchozí kontakt nebyl založen"
+
+#~ msgid "Mailový kontakt byl založen"
+#~ msgstr "Mailový kontakt byl založen"
+
+#~ msgid "Mailový kontakt nebyl založen"
+#~ msgstr "Mailový kontakt nebyl založen"
+
+#~ msgid "Skupina"
+#~ msgstr "Skupina"
+
+#~ msgid "Prvotní kontaktní skupina byla založena"
+#~ msgstr "Prvotní kontaktní skupina byla založena"
+
+#~ msgid "Prvotní kontaktní skupina nebyla založena"
+#~ msgstr "Prvotní kontaktní skupina nebyla založena"
+
+#, fuzzy
+#~ msgid "Výchozí skupina"
+#~ msgstr "Výchozí"
+
+#~ msgid "Zápis do databáze se nezdařil!"
+#~ msgstr "Zápis do databáze se nezdařil!"
+
+#~ msgid "Vítejte v registraci"
+#~ msgstr "Vítejte v registraci"
+
+#~ msgid "Po zaregistování budete rovnou vyzváni k zadání prvního sledovaného hosta."
+#~ msgstr "Po zaregistování budete rovnou vyzváni k zadání prvního sledovaného hosta."
+
+#~ msgid "Veškeré notifikace o výsledcích testů vám budou přicházet na zadaný email."
+#~ msgstr "Veškeré notifikace o výsledcích testů vám budou přicházet na zadaný email."
+
+#~ msgid "Pro zasílání notifikací pomocí XMPP (jabber) či SMS, zadejte tyto v nastavení vašeho kontaktu."
+#~ msgstr "Pro zasílání notifikací pomocí XMPP (jabber) či SMS, zadejte tyto v nastavení vašeho kontaktu."
+
+#, fuzzy
+#~ msgid "Příjmení"
+#~ msgstr "Přejmenování"
+
+#~ msgid "Účet"
+#~ msgstr "Účet"
+
+#~ msgid "přihlašovací jméno"
+#~ msgstr "přihlašovací jméno"
+
+#~ msgid "heslo"
+#~ msgstr "heslo"
+
+#~ msgid " (pouze malými písmeny)"
+#~ msgstr " (pouze malými písmeny)"
+
+#~ msgid "Registrovat"
+#~ msgstr "Registrovat"
+
+#~ msgid "dokončit registraci"
+#~ msgstr "dokončit registraci"
+
+#~ msgid "Načítání souboru: classes/"
+#~ msgstr "Načítání souboru: classes/"
+
+#~ msgid "Soubor %s se nepodařilo stahnout"
+#~ msgstr "Soubor %s se nepodařilo stahnout"
+
+#~ msgid "Nebyl vybrán soubor s ikonou hosta"
+#~ msgstr "Nebyl vybrán soubor s ikonou hosta"
+
+#~ msgid "toto není obrázek požadovaného typu"
+#~ msgstr "toto není obrázek požadovaného typu"
+
+#~ msgid "Ikona byla přiřazena"
+#~ msgstr "Ikona byla přiřazena"
+
+#~ msgid "Ikona nebyla přiřazena"
+#~ msgstr "Ikona nebyla přiřazena"
+
+#~ msgid "Rodič nebyl nalezen"
+#~ msgstr "Rodič nebyl nalezen"
+
+#~ msgid "Rodič nebyl přidán"
+#~ msgstr "Rodič nebyl přidán"
+
+#~ msgid "Rodič byl přidán"
+#~ msgstr "Rodič byl přidán"
+
+#~ msgid "Host nebyl uložen"
+#~ msgstr "Host nebyl uložen"
+
+#~ msgid "Host byl uložen"
+#~ msgstr "Host byl uložen"
+
+#~ msgid "Změnit ikonu"
+#~ msgstr "Změnit ikonu"
+
+#, fuzzy
+#~ msgid "Sledovat cestu"
+#~ msgstr "Sledované url"
+
+#~ msgid "Nasadit senzor"
+#~ msgstr "Nasadit senzor"
+
+#, fuzzy
+#~ msgid "Chyba přiřazení kontaktu"
+#~ msgstr "Založení kontaktu"
+
+#~ msgid "Skupina hostů nebyla uložena"
+#~ msgstr "Skupina hostů nebyla uložena"
+
+#~ msgid "Skupina hostů byla uložena"
+#~ msgstr "Skupina hostů byla uložena"
+
+#~ msgid "Editace skupiny hostů"
+#~ msgstr "Editace skupiny hostů"
+
+#~ msgid "Přehled hostů"
+#~ msgstr "Přehled hostů"
+
+#~ msgid "konfigurační soubor"
+#~ msgstr "konfigurační soubor"
+
+#~ msgid "Importovat data jako veřejná"
+#~ msgstr "Importovat data jako veřejná"
+
+#~ msgid "zahájí import konfigurace"
+#~ msgstr "zahájí import konfigurace"
+
+#~ msgid "Monitoring služeb"
+#~ msgstr "Monitoring služeb"
+
+#~ msgid "Sledování hostů"
+#~ msgstr "Sledování hostů"
+
+#~ msgid "Sledování služeb"
+#~ msgstr "Sledování služeb"
+
+#~ msgid "Cookies jsou vyžadovány"
+#~ msgstr "Cookies jsou vyžadovány"
+
+#~ msgid "Přihlášen jako: "
+#~ msgstr "Přihlášen jako: "
+
+#~ msgid "Prosím zadejte vaše přihlašovací udaje"
+#~ msgstr "Prosím zadejte vaše přihlašovací udaje"
+
+#~ msgid "Přihlaš se"
+#~ msgstr "Přihlaš se"
+
+#~ msgid "Zadejte, prosím, Vaše přihlašovací údaje:"
+#~ msgstr "Zadejte, prosím, Vaše přihlašovací údaje:"
+
+#~ msgid "Uživatelské jméno"
+#~ msgstr "Uživatelské jméno"
+
+#~ msgid "Obnova hesla"
+#~ msgstr "Obnova hesla"
+
+#~ msgid "Založte si první sledovaný host"
+#~ msgstr "Založte si první sledovaný host"
+
+#~ msgid "Zatím není zaregistrovaný žádný sledovaný host"
+#~ msgstr "Zatím není zaregistrovaný žádný sledovaný host"
+
+#~ msgid "Sledované url"
+#~ msgstr "Sledované url"
+
+#~ msgid "Očekávaný obsah"
+#~ msgstr "Očekávaný obsah"
+
+#~ msgid "Text očekávaný na stránce v rámci bezchybného obsahu"
+#~ msgstr "Text očekávaný na stránce v rámci bezchybného obsahu"
+
+#~ msgid "Nechtěný obsah"
+#~ msgstr "Nechtěný obsah"
+
+#~ msgid "Neočekávaný text, např. \"Error\" nebo jiný fragment chybového hlášení"
+#~ msgstr "Neočekávaný text, např. \"Error\" nebo jiný fragment chybového hlášení"
+
+#, fuzzy
+#~ msgid "Nové heslo pro"
+#~ msgstr "Nové heslo pro "
+
+#~ msgid "Tvoje přihlašovací údaje byly změněny:\n"
+#~ msgstr "Tvoje přihlašovací údaje byly změněny:\n"
+
+#~ msgid "Zadejte prosím váš eMail."
+#~ msgstr "Zadejte prosím váš eMail."
+
+#~ msgid "Obnova zapomenutého hesla"
+#~ msgstr "Obnova zapomenutého hesla"
+
+#~ msgid "Zapoměl jste heslo? Vložte svou e-mailovou adresu, kterou jste zadal při registraci a my Vám pošleme nové."
+#~ msgstr "Zapoměl jste heslo? Vložte svou e-mailovou adresu, kterou jste zadal při registraci a my Vám pošleme nové."
+
+#~ msgid "Zaslat nové heslo"
+#~ msgstr "Zaslat nové heslo"
+
+#~ msgid "Pokračovat"
+#~ msgstr "Pokračovat"
+
+#~ msgid "Přegenerování veškeré konfigurace"
+#~ msgstr "Přegenerování veškeré konfigurace"
+
+#~ msgid "Reload icingy"
+#~ msgstr "Reload icingy"
+
+#, fuzzy
+#~ msgid "Skupiny hostů  byly odstraněny"
+#~ msgstr "Skupina hostů byla uložena"
+
+#, fuzzy
+#~ msgid "Skupiny kontaktů  byly odstraněny"
+#~ msgstr "Skupina kontaktů byla uložena"
+
+#, fuzzy
+#~ msgid "Skupiny služeb byly odstraněny"
+#~ msgstr "Skupina služeb byla uložena"
+
+#, fuzzy
+#~ msgid "Smaže skupiny hostů"
+#~ msgstr "Editace skupiny hostů"
+
+#, fuzzy
+#~ msgid "Smaže kontakty"
+#~ msgstr "Založení kontaktu"
+
+#, fuzzy
+#~ msgid "Skupiny kontaktů"
+#~ msgstr "Nová skupina kontaktů"
+
+#, fuzzy
+#~ msgid "Smaže skupiny kontaktů"
+#~ msgstr "Přehled skupin kontaktů"
+
+#, fuzzy
+#~ msgid "Smaže služby"
+#~ msgstr "Editace služby"
+
+#, fuzzy
+#~ msgid "Smaže skupiny služeb"
+#~ msgstr "Editace skupiny služeb"
+
+#, fuzzy
+#~ msgid "Editace skriptu"
+#~ msgstr "Editace hosta"
+
+#, fuzzy
+#~ msgid "Používající příkazy"
+#~ msgstr "Místní příkazy"
+
+#~ msgid "Adminská oprávnění byla potlačena"
+#~ msgstr "Adminská oprávnění byla potlačena"
+
+#~ msgid "Twitter byl odvázán od aktuálního účtu"
+#~ msgstr "Twitter byl odvázán od aktuálního účtu"
+
+#~ msgid "Profil uživatele"
+#~ msgstr "Profil uživatele"
+
+#~ msgid "nastavení"
+#~ msgstr "nastavení"
+
+#~ msgid "Zahodit adminská oprávnění"
+#~ msgstr "Zahodit adminská oprávnění"
+
+#, fuzzy
+#~ msgid "Migrace služby"
+#~ msgstr "Editace služby"
+
+#~ msgid "časová perioda nebyl uložena"
+#~ msgstr "časová perioda nebyl uložena"
+
+#~ msgid "časová byla uložena"
+#~ msgstr "časová byla uložena"
+
+#~ msgid "položka nebyla odebrána"
+#~ msgstr "položka nebyla odebrána"
+
+#~ msgid "položka byla odebrána"
+#~ msgstr "položka byla odebrána"
+
+#~ msgid "Označení"
+#~ msgstr "Označení"
+
+#~ msgid "Účet twitteru, bayl přiřazen"
+#~ msgstr "Účet twitteru, bayl přiřazen"
+
+#~ msgid "Založit uživatele"
+#~ msgstr "Založit uživatele"
+
+#, fuzzy
+#~ msgid "Hostgrupa %s nebyla naplněna"
+#~ msgstr "předloha %s nebyla načtena"
+
+#~ msgid "Založit výchozí kontakt"
+#~ msgstr "Založit výchozí kontakt"
+
+#, fuzzy
+#~ msgid "Název sledovaného hostu"
+#~ msgstr "Sledované hosty služby"
+
+#, fuzzy
+#~ msgid "Metoda sledování hostu"
+#~ msgstr "Sledování hostů"
+
+#, fuzzy
+#~ msgid "Nový pasivně sledovaný host"
+#~ msgstr "Založte si první sledovaný host"
+
+#, fuzzy
+#~ msgid "Pasivně sledovaná služba"
+#~ msgstr "Přidána sledovaná služba: %s"
+
+#~ msgid "Předloha služby %s není použita. Negeneruji do konfigurace"
+#~ msgstr "Předloha služby %s není použita. Negeneruji do konfigurace"
+
+#~ msgid "Služba %s není použita. Negeneruji do konfigurace"
+#~ msgstr "Služba %s není použita. Negeneruji do konfigurace"
+
+#~ msgid "Nemáte definovou skupinu hostů"
+#~ msgstr "Nemáte definovou skupinu hostů"
+
+#~ msgid "Nemáte definovou skupinu služeb"
+#~ msgstr "Nemáte definovou skupinu služeb"
+
+#~ msgid "Založit skupinu služeb"
+#~ msgstr "Založit skupinu služeb"
+
+#~ msgid "neurčené příkazy"
+#~ msgstr "neurčené příkazy"
+
+#~ msgid "Nemáte definovaný příkaz"
+#~ msgstr "Nemáte definovaný příkaz"
+
+#~ msgid "Založit příkaz"
+#~ msgstr "Založit příkaz"
+
+#~ msgid "zahájí import příkazů"
+#~ msgstr "zahájí import příkazů"
+
+#~ msgid "Odvodit <i class=\"icon-edit\"></i>"
+#~ msgstr "Odvodit <i class=\"icon-edit\"></i>"
+
+#~ msgid "Nemáte definovanou žádnou službu"
+#~ msgstr "Nemáte definovanou žádnou službu"
+
+#~ msgid "Založit službu <i class=\"icon-edit\"></i>"
+#~ msgstr "Založit službu <i class=\"icon-edit\"></i>"
+
+#~ msgid "Služba byla odvozena"
+#~ msgstr "Služba byla odvozena"
+
+#~ msgid "Nemáte definovou skupinu kontaktů"
+#~ msgstr "Nemáte definovou skupinu kontaktů"
+
+#~ msgid "Založit skupinu kontaktů <i class=\"icon-edit\"></i>"
+#~ msgstr "Založit skupinu kontaktů <i class=\"icon-edit\"></i>"
+
+#~ msgid "Nemáte definovaný žádný contact"
+#~ msgstr "Nemáte definovaný žádný contact"
+
+#~ msgid "Založit výchozí kontakt <i class=\"icon-edit\"></i>"
+#~ msgstr "Založit výchozí kontakt <i class=\"icon-edit\"></i>"
+
+#~ msgid "Založit kontakt <i class=\"icon-edit\"></i>"
+#~ msgstr "Založit kontakt <i class=\"icon-edit\"></i>"

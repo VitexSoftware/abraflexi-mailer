@@ -1,0 +1,13 @@
+/vendor/
+/composer.lock
+/debian/debhelper-build-stamp
+/debian/flexibee-mailer/
+/debian/flexibee-mailer.debhelper.log
+/debian/flexibee-mailer.postrm.debhelper
+/debian/flexibee-mailer.substvars
+/.vagrant/
+/nbproject
+/debian/files
+/debian/.debhelper/
+/debian/abraflexi-mailer/
+/.env

@@ -1,0 +1,18 @@
+#!/usr/bin/make -f
+
+%:
+	dh $@
+
+override_dh_install:
+	dh_install
+	sed -i -e 's/..\/vendor/\/var\/lib\/abraflexi-mailer/g' 	     debian/abraflexi-mailer/usr/lib/abraflexi-mailer/Init.php
+	sed -i -e 's/..\/vendor/\/var\/lib\/abraflexi-mailer/g' 	     debian/abraflexi-mailer/usr/lib/abraflexi-mailer/ParujPrijateFaktury.php
+	sed -i -e 's/..\/vendor/\/var\/lib\/abraflexi-mailer/g' 	     debian/abraflexi-mailer/usr/lib/abraflexi-mailer/ParujVydaneFaktury.php
+	sed -i -e 's/..\/vendor/\/var\/lib\/abraflexi-mailer/g' 	     debian/abraflexi-mailer/usr/lib/abraflexi-mailer/ParujFakturyNew2Old.php
+	sed -i -e 's/..\/vendor/\/var\/lib\/abraflexi-mailer/g' 	     debian/abraflexi-mailer/usr/lib/abraflexi-mailer/StahniBanku.php
+	sed -i -e 's/\.\./\/etc\/abraflexi/g' 	     debian/abraflexi-mailer/usr/lib/abraflexi-mailer/Init.php
+	sed -i -e 's/\.\./\/etc\/abraflexi/g' 	     debian/abraflexi-mailer/usr/lib/abraflexi-mailer/ParujPrijateFaktury.php
+	sed -i -e 's/\.\./\/etc\/abraflexi/g' 	     debian/abraflexi-mailer/usr/lib/abraflexi-mailer/ParujVydaneFaktury.php
+	sed -i -e 's/\.\./\/etc\/abraflexi/g' 	     debian/abraflexi-mailer/usr/lib/abraflexi-mailer/ParujFakturyNew2Old.php
+	sed -i -e 's/\.\./\/etc\/abraflexi/g' 	     debian/abraflexi-mailer/usr/lib/abraflexi-mailer/StahniBanku.php
+	sed -i -e 's/\.\./\/etc\/abraflexi/g' 	     debian/abraflexi-mailer/usr/lib/abraflexi-mailer/SendUnsent.php

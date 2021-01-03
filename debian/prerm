@@ -1,0 +1,8 @@
+#!/bin/bash
+# rm script for abraflexi-mailer
+
+rm -rf /usr/share/abraflexi-mailer/composer.lock /var/lib/abraflexi-mailer
+
+#DEBHELPER#
+
+exit 0
