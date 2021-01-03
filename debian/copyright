@@ -1,0 +1,14 @@
+Format-Specification: http://wiki.debian.org/Proposals/CopyrightFormat?action=recall&rev=143
+Upstream-Name: php-abraflexi-mailer
+Upstream-Source: https://github.com/VitexSoftware/php-abraflexi-mailer/archive/ease-core-based.zip
+
+Files: *
+Homepage: https://github.com/VitexSoftware/php-abraflexi-mailer
+Copyright:
+  (c) 2020 Vítězslav Dvořák (v.s.cz)
+License: MIT 
+
+License: MIT
+ On Debian systems the full text of the MIT License can be found
+ in the `/usr/share/common-licenses/MIT' file.
+

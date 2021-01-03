@@ -1,0 +1,17 @@
+Source: abraflexi-mailer
+Build-Depends: debhelper (>= 7.0.50~)
+Standards-Version: 3.8.4
+Maintainer: Vítězslav Dvořák <info@vitexsoftware.cz>
+Uploaders: Vitex <vitex@hippy.cz>
+Priority: optional
+Homepage: https://github.com/VitexSoftware/php-abraflexi-mailer
+
+Package: abraflexi-mailer
+Depends: ${misc:Depends},  php-vitexsoftware-abraflexi-bricks, php-cli
+Suggests: abraflexi-server, php-abraflexi-config
+Replaces: flexibee-mailer
+Architecture: all
+Section: web
+Priority: optional
+Description: External mailer for Abra Flexi
+ Send AbraFlexi documents and its attachments via email

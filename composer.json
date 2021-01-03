@@ -1,0 +1,20 @@
+{
+    "name": "vitexsoftware/abraflexi-mailer",
+    "description": "Document sender for AbraFlexi written in PHP",
+    "authors": [
+        {
+            "name": "Vítězslav Dvořák",
+            "email": "info@vitexsoftware.cz"
+        }
+    ],
+    "require": {
+        "vitexsoftware/flexibee-bricks": "abraflexi-dev"
+    },
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "AbraFlexi\\Mailer\\": "src/AbraFlexi/Mailer/",
+            "AbraFlexi\\Mailer\\Ui\\": "src/AbraFlexi/Mailer/Ui/"
+        }
+    }
+}
