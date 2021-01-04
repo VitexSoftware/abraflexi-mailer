@@ -15,7 +15,9 @@ define('APP_NAME', 'SentUnsentWithAttachments');
 define('EASE_LOGGER', 'syslog|console');
 require_once '../vendor/autoload.php';
 $shared = new Shared();
-$shared->loadConfig('../.env', true);
+if(file_exists('../.env')){   
+    $shared->loadConfig('../.env', true);
+}
 
 $invoicer = new \AbraFlexi\FakturaVydana();
 

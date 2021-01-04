@@ -12,9 +12,6 @@ if [ "$1" = "configure" ]; then
     mkdir -p /var/lib/composer /var/lib/abraflexi-mailer
     chown $WEBUSER:$WEBUSER /var/lib/composer /var/lib/abraflexi-mailer /usr/lib/abraflexi-mailer/ -R
     su - $WEBUSER -s /bin/bash -c 'COMPOSER_HOME="/var/lib/composer" composer --no-dev -o install -d /usr/lib/abraflexi-mailer/'
-
-    abraflexi-mailer-init
-
 fi
 
 

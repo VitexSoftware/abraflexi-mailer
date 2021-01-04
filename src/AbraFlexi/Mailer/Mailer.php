@@ -171,18 +171,24 @@ class Mailer extends HtmlMailer {
                         ['width' => $size, 'height' => $size, 'title' => $this->document->getRecordCode()]));
     }
 
+    /**
+     * 
+     * @return array
+     */
     public function addAttachments() {
         $attachments = Priloha::getAttachmentsList($this->document);
-
+        $attached = [];
         if ($attachments) {
             foreach ($attachments as $attachmentID => $attachment) {
                 if (Priloha::saveToFile($attachmentID, sys_get_temp_dir())) {
                     $tmpfile = sys_get_temp_dir() . '/' . $attachment['nazSoub'];
                     $this->addFile($tmpfile, $attachment['contentType']);
                     $this->cleanup[] = $tmpfile;
-                } 
+                    $attached[$attachmentID] = $attachment['nazSoub'];
+                }
             }
         }
+        return $attached;
     }
 
     public function send() {
