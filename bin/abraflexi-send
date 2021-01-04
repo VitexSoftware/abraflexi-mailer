@@ -1,0 +1,4 @@
+#!/bin/bash
+php -f /usr/lib/abraflexi-mailer/SendDocument.php $1 $2 $3
+
+

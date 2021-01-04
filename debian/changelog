@@ -1,29 +1,7 @@
-abraflexi-mailer (0.8.6) UNRELEASED; urgency=medium
+abraflexi-mailer (0.1) UNRELEASED; urgency=medium
 
   [ vitex ]
-  * Rename Composer Package in Debian to be Composer 2.0 valid
-  * Configuration is get from Enviroment if /etc/abraflexi/cliet.json does not exist. 
-
-  [ CyberVitexus ]
-  * create /var/lib/abraflexi-mailer at first install
-  * debian package installation fix
-  * Release target added
-  * Release target added
-  * Release target added
-  * separate AbraFlexi mailer init command
   * "Send Unsent mail" tool added
 
  -- CyberVitexus <vitex@exiv.jinonice.czf>  Fri, 14 Aug 2020 15:25:26 +0200
 
-abraflexi-mailer (0.7.6) experimental; urgency=medium
-
-  [ Vítězslav Dvořák ]
-  * Initial release
-  * Package Update
-  * Deps Update
-  * Packager deps update
-  * Deb Fix
-  * pull-bank command
-
-
- -- vitex <vitex@hosting.vitexsoftware.cz>  Mon, 19 Nov 2018 19:51:04 +0100

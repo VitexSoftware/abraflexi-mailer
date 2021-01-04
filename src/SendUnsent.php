@@ -11,10 +11,8 @@ use Ease\Shared;
 define('EASE_APPNAME', 'OdeslatNeodeslane');
 require_once '../vendor/autoload.php';
 $shared = new Shared();
-if (file_exists('../client.json')) {
-    $shared->loadConfig('../client.json', true);
-}
-if (file_exists('../.env')) {
+
+if(file_exists('../.env')){   
     $shared->loadConfig('../.env', true);
 }
 

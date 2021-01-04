@@ -1,2 +1,2 @@
 #!/bin/bash
-php -f /usr/lib/flexibee-mailer/SendUnsent.php
+php -f /usr/lib/abraflexi-mailer/SendUnsent.php

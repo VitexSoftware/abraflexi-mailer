@@ -25,10 +25,12 @@ Debian/Ubuntu
 
 Pro Linux jsou k dispozici .deb balíčky. Prosím použijte repo:
 
+ ```shell
     echo "deb http://repo.vitexsoftware.cz $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/vitexsoftware.list
     sudo wget -O /etc/apt/trusted.gpg.d/vitexsoftware.gpg http://repo.vitexsoftware.cz/keyring.gpg
     sudo apt update
     sudo apt install abraflexi-mailer
+```
 
 Po instalaci balíku jsou v systému k dispozici tyto nové příkazy:
 
@@ -38,30 +40,11 @@ Po instalaci balíku jsou v systému k dispozici tyto nové příkazy:
   * **abraflexi-send-unsent-attachments** - odešle neodeslané s přílohami
   * **abraflexi-show-unsent**             - vypíše neodeslané doklady 
 
-Závislosti
-----------
-
-Tento nástroj ke svojí funkci využívá následující knihovny:
-
- * [**EasePHP Framework**](https://github.com/VitexSoftware/php-ease-core) - pomocné funkce např. logování
- * [**AbraFlexi**](https://github.com/Spoje-NET/AbraFlexi)        - komunikace s [AbraFlexi](https://flexibee.eu/)
- * [**AbraFlexi Bricks**](https://github.com/VitexSoftware/AbraFlexi-Bricks) - používají se třídy Zákazníka, Upomínky a Upomínače
-
-
-Testování:
-----------
-
-K dispozici je základní test funkcionality spustitelný příkazem **make test** ve zdrojové složce projektu
-
-Pouze testovací faktury a platby se vytvoří příkazem **make pretest**
-![Prepare](https://raw.githubusercontent.com/VitexSoftware/php-abraflexi-mailer/master/doc/preparefortesting.png "Preparation")
-
-Test sestavení balíčku + test instalace balíčku + test funkce balíčku obstarává [Vagrant](https://www.vagrantup.com/)
-
 Konfigurace
 -----------
 
 S provádí uvedenín direktiv do .env souboru, jejich definicí jako konstant, nebo nastavením proměnných prostředí.
+Debianí balíček konfiurák očekává ve složce /etc/abraflexi-mailer, kde je k dispozici vzorový sobor .env.template
 
 
 ```
@@ -87,6 +70,25 @@ EASE_LOGGER="console|syslog"                    - způsob logování
 
 
 
+Závislosti
+----------
+
+Tento nástroj ke svojí funkci využívá následující knihovny:
+
+ * [**EasePHP Framework**](https://github.com/VitexSoftware/php-ease-core) - pomocné funkce např. logování
+ * [**AbraFlexi**](https://github.com/Spoje-NET/php-abraflexi)        - komunikace s [AbraFlexi](https://flexibee.eu/)
+ * [**AbraFlexi Bricks**](https://github.com/VitexSoftware/AbraFlexi-Bricks) - používají se třídy Zákazníka, Upomínky a Upomínače
+
+
+
+Poděkování
+----------
+
+Tento software by nevznikl pez podpory:
+
+[ ![Spoje.Net](doc/spojenet.gif?raw=true "Spoje.Net s.r.o.") ](https://spoje.net/)
+
+
 Další software pro AbraFlexi
 ---------------------------
 
@@ -96,11 +98,4 @@ Další software pro AbraFlexi
  * [Nástroje pro testování a správu AbraFlexi](https://github.com/VitexSoftware/AbraFlexi-TestingTools)
  * [Monitoring funkce AbraFlexi serveru](https://github.com/VitexSoftware/monitoring-plugins-abraflexi)
  * [AbraFlexi server bez grafických závislostí](https://github.com/VitexSoftware/abraflexi-server-deb)
-
-Poděkování
-----------
-
-Tento software by nevznikl pez podpory:
-
-[ ![Spoje.Net](doc/spojenet.gif?raw=true "Spoje.Net s.r.o.") ](https://spoje.net/)
 
