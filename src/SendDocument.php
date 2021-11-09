@@ -5,9 +5,6 @@
  * 
  * @copyright (c) 2018-2021, Vítězslav Dvořák
  */
-
-namespace AbraFlexi\Mailer;
-
 use AbraFlexi\FakturaVydana;
 use AbraFlexi\RO;
 use Ease\Functions;
@@ -18,7 +15,7 @@ define('APP_NAME', 'SentDocument');
 define('EASE_LOGGER', 'syslog|console');
 require_once '../vendor/autoload.php';
 $shared = new Shared();
-if(file_exists('../.env')){   
+if (file_exists('../.env')) {
     $shared->loadConfig('../.env', true);
 }
 
@@ -35,18 +32,7 @@ if ($argc > 2) {
         $to = (array_key_exists(3, $argv) ? $argv[3] : $documentor->getEmail());
         $documentor->addStatusMessage(RO::uncode($documentor->getRecordCode()) . "\t" . RO::uncode($documentor->getDataValue('firma')) . "\t" . $to . "\t" . $documentor->getDataValue('poznam'), 'success');
 
-        $mailer = new Mailer($documentor, $to);
-
-        if (array_key_exists('poznam', $documentor->getColumnsInfo())) {
-            preg_match_all('/cc:[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}/i', $documentor->getDataValue('poznam'), $ccs);
-            if (!empty($ccs[0])) {
-                $mailer->setMailHeaders(['Cc' => str_replace('cc:', '', implode(',', $ccs[0]))]);
-            }
-        }
-
-        if (array_key_exists('popis', $documentor->getColumnsInfo())) {
-            $mailer->addItem(new PTag($documentor->getDataValue('popis')));
-        }
+        $mailer = new \AbraFlexi\Mailer\Mailer($documentor, $to);
 
         $documentor->addStatusMessage(_('Attaching') . ': ' . implode(',', $mailer->addAttachments()));
 

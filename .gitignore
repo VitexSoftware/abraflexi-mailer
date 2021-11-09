@@ -11,3 +11,6 @@
 /debian/.debhelper/
 /debian/abraflexi-mailer/
 /.env
+/debian/abraflexi-mailer.debhelper.log
+/debian/abraflexi-mailer.postrm.debhelper
+/debian/abraflexi-mailer.substvars

@@ -47,6 +47,12 @@ class Mailer extends HtmlMailer {
     public static $styles = '';
 
     /**
+     * Where to look for templates
+     * @var string
+     */
+    private $templateDir = '../templates';
+
+    /**
      * Send Document by mail
      * 
      * @param RO $document AbraFlexi document object
@@ -76,11 +82,30 @@ class Mailer extends HtmlMailer {
             $this->setMailHeaders(['Bcc' => Functions::cfg('MAIL_CC')]);
         }
 
+        if (file_exists($this->templateFile())) {
+            $this->htmlDocument = new Templater($document, $this->templateFile());
+//            $this->htmlBody = $this->htmlDocument->body;
+        } else {
+            $this->htmlDocument = new HtmlTag(new SimpleHeadTag([
+                        new TitleTag($this->emailSubject),
+                        '<style>' . Mailer::$styles . '</style>']));
+            $this->htmlBody = $this->htmlDocument->addItem(new BodyTag());
 
-        $this->htmlDocument = new HtmlTag(new SimpleHeadTag([
-                    new TitleTag($this->emailSubject),
-                    '<style>' . Mailer::$styles . '</style>']));
-        $this->htmlBody = $this->htmlDocument->addItem(new BodyTag());
+            if (array_key_exists('poznam', $documentor->getColumnsInfo())) {
+                preg_match_all('/cc:[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}/i', $document->getDataValue('poznam'), $ccs);
+                if (!empty($ccs[0])) {
+                    $this->setMailHeaders(['Cc' => str_replace('cc:', '', implode(',', $ccs[0]))]);
+                }
+            }
+
+            if (array_key_exists('popis', $document->getColumnsInfo())) {
+                $this->addItem(new \Ease\Html\PTag($document->getDataValue('popis')));
+            }
+        }
+    }
+
+    public function templateFile() {
+        return $this->templateDir . '/' . $this->document->getEvidence() . '.ftl';
     }
 
     /**

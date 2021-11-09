@@ -68,15 +68,32 @@ MAIL_FROM=office@vitexsoftware.cz               - adresa odesilatele
 EASE_LOGGER="console|syslog"                    - způsob logování
 ```
 
+Šablony
+-------
 
+Předpokládá se že šablona se jmenuje dle evidence. např. **faktura-vydana.ftl** 
+a je uložena ve složce "templates" ( /usr/share/abraflexi-mailer/templates v Debianu )
+
+V šablonách je možné použít následující proměnné:
+
+ *    ${application} – Název aplikace, tedy "ABRA Flexi"
+ *    ${user} – Objekt uživatele, se kterým můžeme dále pracovat
+ *    ${company} – Nastavení firmy
+ *    ${uzivatelJmeno} – Vaše křestní jméno
+ *    ${uzivatelPrijmeni} – Vaše příjmení
+ *    ${titulJmenoPrijmeni} – Vaše celé jméno, včetně dosažených titulů
+ *    ${nazevFirmy} – Název firmy
+ *    ${doklad} – Doklad určený k odeslání
+
+(Načítání šablon z AbaraFlexi evidence /sablona-mail/ není zatím podporováno, ježto autor nedisponuje Licencí Premium)
 
 Závislosti
 ----------
 
 Tento nástroj ke svojí funkci využívá následující knihovny:
 
- * [**EasePHP Framework**](https://github.com/VitexSoftware/php-ease-core) - pomocné funkce např. logování
- * [**AbraFlexi**](https://github.com/Spoje-NET/php-abraflexi)        - komunikace s [AbraFlexi](https://flexibee.eu/)
+ * [**EasePHP Framework**](https://github.com/VitexSoftware/php-ease-core)   - pomocné funkce např. logování
+ * [**AbraFlexi**](https://github.com/Spoje-NET/php-abraflexi)               - komunikace s [AbraFlexi](https://flexibee.eu/)
  * [**AbraFlexi Bricks**](https://github.com/VitexSoftware/AbraFlexi-Bricks) - používají se třídy Zákazníka, Upomínky a Upomínače
 
 
