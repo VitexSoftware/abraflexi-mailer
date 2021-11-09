@@ -19,5 +19,5 @@ echo "deb file:/vagrant/deb ./" > /etc/apt/sources.list.d/local.list
 apt-get update
 
 export DEBCONF_DEBUG="developer"
-apt-get -y --allow-unauthenticated install php-abraflexi-config abraflexi-mailer
+apt-get -y --allow-unauthenticated install abraflexi-client-config abraflexi-mailer
 abraflexi-mailer-new2old
