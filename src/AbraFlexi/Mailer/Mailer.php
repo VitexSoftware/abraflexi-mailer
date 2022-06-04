@@ -91,7 +91,7 @@ class Mailer extends HtmlMailer {
                         '<style>' . Mailer::$styles . '</style>']));
             $this->htmlBody = $this->htmlDocument->addItem(new BodyTag());
 
-            if (array_key_exists('poznam', $documentor->getColumnsInfo())) {
+            if (array_key_exists('poznam', $this->document->getColumnsInfo())) {
                 preg_match_all('/cc:[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}/i', $document->getDataValue('poznam'), $ccs);
                 if (!empty($ccs[0])) {
                     $this->setMailHeaders(['Cc' => str_replace('cc:', '', implode(',', $ccs[0]))]);
@@ -163,7 +163,7 @@ class Mailer extends HtmlMailer {
                         '/tmp/'),
                 Formats::$formats['ISDOCx']['content-type']);
 
-        $heading = new DivTag($this->document->getEvidence() . ' ' . RO::uncode($unsentData['kod']));
+        $heading = new DivTag($this->document->getEvidence() . ' ' . RO::uncode($this->document->getRecordIdent()));
 
         if (Functions::cfg('ADD_LOGO')) {
             $this->addCompanyLogo($heading);
