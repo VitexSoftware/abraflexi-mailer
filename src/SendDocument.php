@@ -8,15 +8,13 @@
 use AbraFlexi\FakturaVydana;
 use AbraFlexi\RO;
 use Ease\Functions;
-use Ease\Html\PTag;
 use Ease\Shared;
 
 define('APP_NAME', 'SentDocument');
 define('EASE_LOGGER', 'syslog|console');
 require_once '../vendor/autoload.php';
-$shared = new Shared();
 if (file_exists('../.env')) {
-    $shared->loadConfig('../.env', true);
+    (new Shared())->loadConfig('../.env', true);
 }
 
 $document = $argv[1];
@@ -25,7 +23,9 @@ $evidence = array_key_exists(2, $argv) ? $argv[2] : 'faktura-vydana';
 if ($argc > 2) {
 
     $documentor = new FakturaVydana(RO::code($document), ['evidence' => $evidence, 'ignore404' => true]);
-    $documentor->logBanner(Functions::cfg('APP_NAME'));
+    if (\Ease\Functions::cfg('APP_DEBUG') == 'True') {
+        $documentor->logBanner(\Ease\Shared::appName());
+    }
 
     if ($documentor->lastResponseCode == 200) {
 

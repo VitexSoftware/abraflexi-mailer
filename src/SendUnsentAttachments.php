@@ -8,21 +8,23 @@
 
 namespace AbraFlexi\Mailer;
 
+use AbraFlexi\FakturaVydana;
 use Ease\Functions;
+use Ease\Html\PTag;
 use Ease\Shared;
 
 define('APP_NAME', 'SentUnsentWithAttachments');
 define('EASE_LOGGER', 'syslog|console');
 require_once '../vendor/autoload.php';
-$shared = new Shared();
-if(file_exists('../.env')){   
-    $shared->loadConfig('../.env', true);
+if (file_exists('../.env')) {
+    (new Shared())->loadConfig('../.env', true);
 }
 
-$invoicer = new \AbraFlexi\FakturaVydana();
+$invoicer = new FakturaVydana();
 
-$invoicer->logBanner(Functions::cfg('APP_NAME'));
-
+if (Functions::cfg('APP_DEBUG') == 'True') {
+    $invoicer->logBanner(Shared::appName());
+}
 $unsent = $invoicer->getColumnsFromAbraFlexi(['firma', 'kontaktEmail', 'popis', 'poznam'], ['stavMailK' => 'stavMail.odeslat'], 'kod');
 
 if (empty($unsent)) {
@@ -39,10 +41,10 @@ if (empty($unsent)) {
             $mailer->setMailHeaders(['Cc' => str_replace('cc:', '', implode(',', $ccs[0]))]);
         }
 
-        $mailer->addItem(new \Ease\Html\PTag($invoicer->getDataValue('popis')));
+        $mailer->addItem(new PTag($invoicer->getDataValue('popis')));
         $mailer->addAttachments();
 
-        if (\Ease\Functions::cfg('ADD_QRCODE')) {
+        if (Functions::cfg('ADD_QRCODE')) {
             $mailer->addQrCode();
         }
 
