@@ -54,7 +54,7 @@ test80:
 
 testphp: test71 test72 test7.3 test8.0
 
-check: 
+phpstan: 
 	vendor/bin/phpstan analyse  --xdebug --level 4 -n  src
 
 clean:
