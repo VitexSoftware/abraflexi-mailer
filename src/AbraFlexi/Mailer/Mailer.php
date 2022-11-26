@@ -6,7 +6,6 @@ use AbraFlexi\Formats;
 use AbraFlexi\Priloha;
 use AbraFlexi\RO;
 use AbraFlexi\ui\CompanyLogo;
-use Ease\Container;
 use Ease\Functions;
 use Ease\Html\BodyTag;
 use Ease\Html\DivTag;
@@ -18,7 +17,6 @@ use Ease\Html\TdTag;
 use Ease\Html\TitleTag;
 use Ease\Html\TrTag;
 use Ease\HtmlMailer;
-use Ease\Shared;
 
 /**
  * AbraFlexi Mailer class
@@ -26,22 +24,22 @@ use Ease\Shared;
  * @author     Vítězslav Dvořák <info@vitexsofware.cz>
  * @copyright  (G) 2021 Vitex Software
  */
-class Mailer extends HtmlMailer {
-
+class Mailer extends HtmlMailer
+{
     /**
-     * 
+     *
      * @var RO Mostly invoice
      */
     private $document;
 
     /**
-     * 
+     *
      * @var array attachment's temporary files to delete
      */
     private $cleanup = [];
 
     /**
-     * 
+     *
      * @var string additional css
      */
     public static $styles = '';
@@ -54,12 +52,16 @@ class Mailer extends HtmlMailer {
 
     /**
      * Send Document by mail
-     * 
+     *
      * @param RO $document AbraFlexi document object
      * @param string $sendTo recipient
      * @param string $subject
      */
-    public function __construct(RO $document, string $sendTo = null, string $subject = null) {
+    public function __construct(
+        RO $document,
+        string $sendTo = null,
+        string $subject = null
+    ) {
         $this->document = $document;
 
         $this->fromEmailAddress = Functions::cfg('MAIL_FROM');
@@ -87,14 +89,22 @@ class Mailer extends HtmlMailer {
 //            $this->htmlBody = $this->htmlDocument->body;
         } else {
             $this->htmlDocument = new HtmlTag(new SimpleHeadTag([
-                        new TitleTag($this->emailSubject),
-                        '<style>' . Mailer::$styles . '</style>']));
-            $this->htmlBody = $this->htmlDocument->addItem(new BodyTag());
+                    new TitleTag($this->emailSubject),
+                    '<style>' . Mailer::$styles . '</style>']));
+            $this->htmlBody     = $this->htmlDocument->addItem(new BodyTag());
 
             if (array_key_exists('poznam', $this->document->getColumnsInfo())) {
-                preg_match_all('/cc:[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}/i', $document->getDataValue('poznam'), $ccs);
+                preg_match_all(
+                    '/cc:[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}/i',
+                    $document->getDataValue('poznam'),
+                    $ccs
+                );
                 if (!empty($ccs[0])) {
-                    $this->setMailHeaders(['Cc' => str_replace('cc:', '', implode(',', $ccs[0]))]);
+                    $this->setMailHeaders(['Cc' => str_replace(
+                        'cc:',
+                        '',
+                        implode(',', $ccs[0])
+                    )]);
                 }
             }
 
@@ -104,7 +114,8 @@ class Mailer extends HtmlMailer {
         }
     }
 
-    public function templateFile() {
+    public function templateFile()
+    {
         return $this->templateDir . '/' . $this->document->getEvidence() . '.ftl';
     }
 
@@ -115,7 +126,8 @@ class Mailer extends HtmlMailer {
      *
      * @return Ease\pointer|null ukazatel na vložený obsah
      */
-    public function &addItem($item, $pageItemName = null) {
+    public function &addItem($item, $pageItemName = null)
+    {
         $mailBody = '';
         if (is_object($item)) {
             if (is_object($this->htmlDocument)) {
@@ -124,7 +136,6 @@ class Mailer extends HtmlMailer {
                 }
                 $mailBody = $this->htmlBody->addItem($item, $pageItemName);
             } else {
-
                 $mailBody = $this->htmlDocument;
             }
         } else {
@@ -135,8 +146,8 @@ class Mailer extends HtmlMailer {
         return $mailBody;
     }
 
-    public function getCss() {
-        
+    public function getCss()
+    {
     }
 
     /**
@@ -144,24 +155,36 @@ class Mailer extends HtmlMailer {
      *
      * @return int Size in bytes
      */
-    public function getCurrentMailSize() {
+    public function getCurrentMailSize()
+    {
         $this->finalize();
         $this->finalized = false;
-        if (function_exists('mb_internal_encoding') &&
-                (((int) ini_get('mbstring.func_overload')) & 2)) {
+        if (
+            function_exists('mb_internal_encoding') &&
+            (((int) ini_get('mbstring.func_overload')) & 2)
+        ) {
             return mb_strlen($this->mailBody, '8bit');
         } else {
             return strlen($this->mailBody);
         }
     }
 
-    public function addInvoice() {
-        $this->addFile($this->document->downloadInFormat('pdf',
-                        '/tmp/'),
-                Formats::$formats['PDF']['content-type']);
-        $this->addFile($this->document->downloadInFormat('isdocx',
-                        '/tmp/'),
-                Formats::$formats['ISDOCx']['content-type']);
+    public function addInvoice()
+    {
+        $this->addFile(
+            $this->document->downloadInFormat(
+                'pdf',
+                '/tmp/'
+            ),
+            Formats::$formats['PDF']['content-type']
+        );
+        $this->addFile(
+            $this->document->downloadInFormat(
+                'isdocx',
+                '/tmp/'
+            ),
+            Formats::$formats['ISDOCx']['content-type']
+        );
 
         $heading = new DivTag($this->document->getEvidence() . ' ' . RO::uncode($this->document->getRecordIdent()));
 
@@ -172,43 +195,61 @@ class Mailer extends HtmlMailer {
         }
     }
 
-    public function addCompanyLogo($heading, $width = 200) {
+    /**
+     *
+     * @param type $heading
+     * @param type $width
+     */
+    public function addCompanyLogo($heading, $width = 200)
+    {
         $headingTableRow = new TrTag();
         $headingTableRow->addItem(new TdTag($heading));
-        $logo = new CompanyLogo(['align' => 'right',
+        $logo            = new CompanyLogo(['align' => 'right',
             'id' => 'companylogo',
             'height' => '50', 'title' => _('Company logo')]);
-        $headingTableRow->addItem(new TdTag($logo,
-                        ['width' => $width . 'px']));
-        $headingTable = new TableTag($headingTableRow,
-                ['width' => '100%']);
+        $headingTableRow->addItem(new TdTag(
+            $logo,
+            ['width' => $width . 'px']
+        ));
+        $headingTable    = new TableTag(
+            $headingTableRow,
+            ['width' => '100%']
+        );
         $this->addItem($headingTable);
     }
 
     /**
      * Add QR Payment image
-     * 
+     *
      * @param int $size
      */
-    public function addQrCode($size = 200) {
-        $this->addItem(new ImgTag($this->document->getQrCodeBase64(200),
-                        _('QR Payment'),
-                        ['width' => $size, 'height' => $size, 'title' => $this->document->getRecordCode()]));
+    public function addQrCode($size = 200)
+    {
+        try {
+            $this->addItem(new ImgTag(
+                $this->document->getQrCodeBase64(200),
+                _('QR Payment'),
+                ['width' => $size, 'height' => $size, 'title' => $this->document->getRecordCode()]
+            ));
+        } catch (\AbraFlexi\Exception $exc) {
+            $this->addStatusMessage(_('Error adding QR Code'), 'error');
+        }
     }
 
     /**
-     * 
+     *
      * @return array
      */
-    public function addAttachments() {
+    public function addAttachments()
+    {
         $attachments = Priloha::getAttachmentsList($this->document);
-        $attached = [];
+        $attached    = [];
         if ($attachments) {
             foreach ($attachments as $attachmentID => $attachment) {
                 if (Priloha::saveToFile($attachmentID, sys_get_temp_dir())) {
-                    $tmpfile = sys_get_temp_dir() . '/' . $attachment['nazSoub'];
+                    $tmpfile                 = sys_get_temp_dir() . '/' . $attachment['nazSoub'];
                     $this->addFile($tmpfile, $attachment['contentType']);
-                    $this->cleanup[] = $tmpfile;
+                    $this->cleanup[]         = $tmpfile;
                     $attached[$attachmentID] = $attachment['nazSoub'];
                 }
             }
@@ -216,12 +257,17 @@ class Mailer extends HtmlMailer {
         return $attached;
     }
 
-    public function send() {
+    /**
+     * Send message
+     *
+     * @return boolean
+     */
+    public function send()
+    {
         $result = parent::send();
         foreach ($this->cleanup as $tmp) {
             unlink($tmp);
         }
         return $result;
     }
-
 }

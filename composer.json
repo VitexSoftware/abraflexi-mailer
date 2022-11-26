@@ -10,6 +10,11 @@
     "require": {
         "vitexsoftware/abraflexi-bricks": "abraflexi-dev"
     },
+    "require-dev": {
+        "phpunit/phpunit": "*",
+        "phpstan/phpstan": "*",
+        "squizlabs/php_codesniffer": "*"
+    },
     "minimum-stability": "dev",
     "autoload": {
         "psr-4": {
