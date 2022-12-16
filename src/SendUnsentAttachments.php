@@ -30,8 +30,7 @@ if ($configured === false) {
     exit(1);
 }
 
-
-new \Ease\Locale();
+new \Ease\Locale(Functions::cfg('LC_ALL','cs_CZ'));
 
 $invoicer = new FakturaVydana();
 
