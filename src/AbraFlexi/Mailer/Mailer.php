@@ -66,7 +66,7 @@ class Mailer extends HtmlMailer
 
         $this->fromEmailAddress = Functions::cfg('MAIL_FROM');
 
-        if (Functions::cfg('MUTE') === true) {
+        if (boolval(Functions::cfg('MUTE'))) {
             $sendTo = Functions::cfg('EASE_MAILTO');
         } else {
             if (empty($sendTo)) {

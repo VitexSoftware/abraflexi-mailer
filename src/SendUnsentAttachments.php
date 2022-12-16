@@ -1,5 +1,4 @@
 <?php
-
 /**
  * abraflexi-send-unsent-with-attachments
  *
@@ -18,6 +17,19 @@ require_once '../vendor/autoload.php';
 if (file_exists('../.env')) {
     (new Shared())->loadConfig('../.env', true);
 }
+$cfgKeys = ['ABRAFLEXI_URL', 'ABRAFLEXI_LOGIN', 'ABRAFLEXI_PASSWORD', 'ABRAFLEXI_COMPANY',
+    'MAIL_FROM'];
+$configured = true;
+foreach ($cfgKeys as $cfgKey) {
+    if (empty(\Ease\Functions::cfg($cfgKey))) {
+        fwrite(STDERR, 'Requied configuration '.$cfgKey." is not set.".PHP_EOL);
+        $configured = false;
+    }
+}
+if ($configured === false) {
+    exit(1);
+}
+
 
 new \Ease\Locale();
 
@@ -28,8 +40,7 @@ if (Functions::cfg('APP_DEBUG') == 'True') {
 }
 $unsent = $invoicer->getColumnsFromAbraFlexi(
     ['firma', 'kontaktEmail', 'popis', 'poznam'],
-    ['stavMailK' => 'stavMail.odeslat'],
-    'kod'
+    ['stavMailK' => 'stavMail.odeslat'], 'kod'
 );
 
 if (empty($unsent)) {
@@ -43,14 +54,11 @@ if (empty($unsent)) {
 
         preg_match_all(
             '/cc:[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}/i',
-            $unsentData['poznam'],
-            $ccs
+            $unsentData['poznam'], $ccs
         );
         if (!empty($ccs[0])) {
             $mailer->setMailHeaders(['Cc' => str_replace(
-                'cc:',
-                '',
-                implode(',', $ccs[0])
+                    'cc:', '', implode(',', $ccs[0])
             )]);
         }
 
@@ -65,9 +73,9 @@ if (empty($unsent)) {
                 'stavMailK' => 'stavMail.odeslano']));
 
         $invoicer->addStatusMessage(
-            $unsentData['kod'] . "\t" . $unsentData['firma'] . "\t" . $invoicer->getEmail() . "\t" . $unsentData['poznam'],
+            $unsentData['kod']."\t".$unsentData['firma']."\t".$invoicer->getEmail()."\t".$unsentData['poznam'],
             $result ? 'success' : 'error'
         );
     }
-    $invoicer->addStatusMessage(count($unsent) . ' ' . _('total'), 'warning');
+    $invoicer->addStatusMessage(count($unsent).' '._('total'), 'warning');
 }
