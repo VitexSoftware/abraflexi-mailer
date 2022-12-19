@@ -2,7 +2,7 @@
 /**
  * abraflexi-send-unsent-with-attachments
  *
- * @copyright (c) 2018-2020, Vítězslav Dvořák
+ * @copyright (c) 2018-2022, Vítězslav Dvořák
  */
 
 namespace AbraFlexi\Mailer;
@@ -12,13 +12,14 @@ use Ease\Functions;
 use Ease\Html\PTag;
 use Ease\Shared;
 
+
 define('APP_NAME', 'SentUnsentWithAttachments');
 require_once '../vendor/autoload.php';
 if (file_exists('../.env')) {
     (new Shared())->loadConfig('../.env', true);
 }
 $cfgKeys = ['ABRAFLEXI_URL', 'ABRAFLEXI_LOGIN', 'ABRAFLEXI_PASSWORD', 'ABRAFLEXI_COMPANY',
-    'MAIL_FROM'];
+    'MAIL_FROM','LANG'];
 $configured = true;
 foreach ($cfgKeys as $cfgKey) {
     if (empty(\Ease\Functions::cfg($cfgKey))) {
@@ -30,7 +31,9 @@ if ($configured === false) {
     exit(1);
 }
 
-new \Ease\Locale(Functions::cfg('LC_ALL','cs_CZ'));
+
+
+new \Ease\Locale();
 
 $invoicer = new FakturaVydana();
 

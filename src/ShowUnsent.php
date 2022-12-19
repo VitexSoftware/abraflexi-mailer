@@ -3,9 +3,8 @@
 /**
  * abraflexi-show-unsent
  *
- * @copyright (c) 2018-2020, Vítězslav Dvořák
+ * @copyright (c) 2018-2022, Vítězslav Dvořák
  */
-
 use AbraFlexi\FakturaVydana;
 use Ease\Functions;
 use Ease\Shared;
@@ -22,8 +21,7 @@ if (Functions::cfg('APP_DEBUG') == 'True') {
     $invoicer->logBanner(Shared::appName());
 }
 $unsent = $invoicer->getColumnsFromAbraFlexi(
-    ['firma', 'kontaktEmail', 'poznam'],
-    ['stavMailK' => 'stavMail.odeslat'],
+    ['firma', 'kontaktEmail', 'poznam'], ['stavMailK' => 'stavMail.odeslat'],
     'kod'
 );
 
@@ -33,9 +31,9 @@ if (empty($unsent)) {
     foreach ($unsent as $unsentData) {
         $invoicer->setData($unsentData);
         $invoicer->addStatusMessage(
-            $unsentData['kod'] . "\t" . $unsentData['firma'] . "\t" . $invoicer->getEmail() . "\t" . $unsentData['poznam'],
+            $unsentData['kod']."\t".$unsentData['firma']."\t".$invoicer->getEmail()."\t".$unsentData['poznam'],
             'warning'
         );
     }
-    $invoicer->addStatusMessage(count($unsent) . ' ' . _('total'), 'warning');
+    $invoicer->addStatusMessage(count($unsent).' '._('total'), 'warning');
 }
