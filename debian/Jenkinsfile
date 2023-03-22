@@ -42,27 +42,29 @@ node {
         architectures.each { arch ->
             distributions.each { dist ->
                 builds[dist] = {
-                    dir(arch + '_' + dist) {
-                        checkout scm
-                        stage('Package version ' + arch + ' ' + dist) {
+                    stage('Checkout ' + arch + ' ' + dist) {
                             buildImage = docker.image(vendor + '/' + dist)
-                            sh 'git checkout debian/changelog'
-                            debVersion = sh(
-                        script: 'dpkg-parsechangelog --show-field Version',
-                        returnStdout: true
-                    ).trim()
-                            ver = debVersion + '~' + distroCodename + '~' + env.BUILD_NUMBER
-                        }
-                        stage('Build ' + arch + ' ' + dist) {
+                            dir(arch + '_' + dist) {
+                                checkout scm
+                                sh 'git checkout debian/changelog'
+                                debVersion = sh(
+                                    script: 'dpkg-parsechangelog --show-field Version',
+                                    returnStdout: true
+                                ).trim()
+                                ver = debVersion + '~' + distroCodename + '~' + env.BUILD_NUMBER
+                            }
+                    }
+                    stage('Build ' + arch + ' ' + dist) {
                             buildImage.inside {
+                                sh 'ls -la'
                                 sh 'dch -b -v ' + ver  + ' "' + env.BUILD_TAG  + '"'
                                 sh 'sudo apt-get update --allow-releaseinfo-change'
                                 sh 'sudo chown jenkins:jenkins ..'
                                 sh 'debuild-pbuilder  -i -us -uc -b'
                                 sh 'mkdir -p $WORKSPACE/dist/debian/ ; rm -rf $WORKSPACE/dist/debian/* ; for deb in $(cat debian/files | awk \'{print $1}\'); do mv "../$deb" $WORKSPACE/dist/debian/; done'
                             }
-                        }
-                        stage('Test ' + arch + ' ' + dist) {
+                    }
+                    stage('Test ' + arch + ' ' + dist) {
                             buildImage.inside {
                                 def debconfDebug = 0 //Set to "5" or "developer" to debug debconf
                                 sh 'cd $WORKSPACE/dist/debian/ ; dpkg-scanpackages . /dev/null | gzip -9c > Packages.gz; cd $WORKSPACE'
@@ -72,10 +74,9 @@ node {
                                 sh 'IFS="\n\b"; for package in  `ls $WORKSPACE/dist/debian/ | grep .deb | grep -v dbgsym | awk -F_ \'{print \$1}\'` ; do  echo -e "${GREEN} installing ${package} on `lsb_release -sc` ${ENDCOLOR} " ; sudo  DEBIAN_FRONTEND=noninteractive DEBCONF_DEBUG=' + debconfDebug  + ' apt-get -y install $package ; echo "test now";  done;'
                                 stash includes: 'dist/**', name: 'dist-' + distroCodename
                             }
-                        }
-                        stage('CleanUP ' + arch + ' ' + dist) {
+                    }
+                    stage('CleanUP ' + arch + ' ' + dist) {
                                 new File(arch + '_' + dist).delete()
-                        }
                     }
                 }
             }
