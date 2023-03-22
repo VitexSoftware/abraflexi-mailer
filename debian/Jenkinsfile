@@ -42,13 +42,9 @@ node {
         architectures.each { arch ->
             distributions.each { dist ->
                 builds[dist] = {
-                    def exists = fileExists arch + '_' + dist
-                    if (!exists) {
-                        new File(arch + '_' + dist).mkdir()
-                    }
                     dir(arch + '_' + dist) {
-                        stage('Checkout ' + arch + ' ' + dist) {
-                            checkout scm
+                        checkout scm
+                        stage('Package version ' + arch + ' ' + dist) {
                             buildImage = docker.image(vendor + '/' + dist)
                             sh 'git checkout debian/changelog'
                             debVersion = sh(
@@ -78,9 +74,7 @@ node {
                             }
                         }
                         stage('CleanUP ' + arch + ' ' + dist) {
-
                                 new File(arch + '_' + dist).delete()
-
                         }
                     }
                 }
