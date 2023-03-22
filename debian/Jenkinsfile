@@ -75,9 +75,6 @@ node {
                                 stash includes: 'dist/**', name: 'dist-' + distroCodename
                             }
                     }
-                    stage('CleanUP ' + arch + ' ' + dist) {
-                                new File(arch + '_' + dist).delete()
-                    }
                 }
             }
         }
