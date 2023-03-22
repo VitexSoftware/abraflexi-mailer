@@ -42,7 +42,10 @@ node {
         architectures.each { arch ->
             distributions.each { dist ->
                 builds[dist] = {
-                    mkdir(dir:arch + '_' + dist)
+                    def exists = fileExists arch + '_' + dist
+                    if (!exists) {
+                        new File(arch + '_' + dist).mkdir()
+                    }
                     dir(arch + '_' + dist) {
                         stage('Checkout ' + arch + ' ' + dist) {
                             checkout scm
@@ -72,6 +75,11 @@ node {
                                 sh 'echo "INSTALATION"'
                                 sh 'IFS="\n\b"; for package in  `ls $WORKSPACE/dist/debian/ | grep .deb | grep -v dbgsym | awk -F_ \'{print \$1}\'` ; do  echo -e "${GREEN} installing ${package} on `lsb_release -sc` ${ENDCOLOR} " ; sudo  DEBIAN_FRONTEND=noninteractive DEBCONF_DEBUG=' + debconfDebug  + ' apt-get -y install $package ; echo "test now";  done;'
                                 stash includes: 'dist/**', name: 'dist-' + distroCodename
+                            }
+                        }
+                        stage('CleanUP ' + arch + ' ' + dist) {
+                            if (fileExists arch + '_' + dist) {
+                                new File(arch + '_' + dist).delete()
                             }
                         }
                     }
