@@ -49,13 +49,14 @@ node {
                                     script: 'dpkg-parsechangelog --show-field Version',
                                     returnStdout: true
                                 ).trim()
-                                ver = debVersion + '~' + dist + '~' + env.BUILD_NUMBER
+                                distroName = dist.substring(dist.lastIndexOf(':') + 1)
+                                ver = debVersion + '~' + distroName + '~' + env.BUILD_NUMBER
                             }
                     }
                     stage('Build ' + arch + ' ' + dist) {
                             buildImage.inside {
                                 dir(arch + '_' + dist) {
-                                    sh 'ls -la'
+                                    sh 'pwd'
                                     sh 'dch -b -v ' + ver  + ' "' + env.BUILD_TAG  + '"'
                                     sh 'sudo apt-get update --allow-releaseinfo-change'
                                     sh 'sudo chown jenkins:jenkins ..'
