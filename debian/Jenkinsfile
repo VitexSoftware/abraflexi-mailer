@@ -6,8 +6,6 @@ String[] architectures = [] // 'amd64', 'aarch64', 'arm', 'i386'
 String[] distributions = ['debian:buster', 'debian:bullseye', 'debian:bookworm', 'ubuntu:focal', 'ubuntu:jammy']
 
 String vendor = 'vitexsoftware'
-//String distroFamily = ''
-String distroCodename = ''
 String ver = ''
 
 properties([
@@ -51,7 +49,7 @@ node {
                                     script: 'dpkg-parsechangelog --show-field Version',
                                     returnStdout: true
                                 ).trim()
-                                ver = debVersion + '~' + distroCodename + '~' + env.BUILD_NUMBER
+                                ver = debVersion + '~' + dist + '~' + env.BUILD_NUMBER
                             }
                     }
                     stage('Build ' + arch + ' ' + dist) {
