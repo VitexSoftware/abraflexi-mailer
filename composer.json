@@ -8,7 +8,8 @@
         }
     ],
     "require": {
-        "vitexsoftware/abraflexi-bricks": "abraflexi-dev"
+        "vitexsoftware/abraflexi-bricks": "abraflexi-dev",
+        "pear/net_smtp": "dev-master"
     },
     "require-dev": {
         "phpunit/phpunit": "*",

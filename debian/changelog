@@ -1,7 +1,7 @@
-abraflexi-mailer (0.1) UNRELEASED; urgency=medium
+abraflexi-mailer (1.0.0) UNRELEASED; urgency=medium
 
   [ vitex ]
   * "Send Unsent mail" tool added
+  * Almost Stable
 
- -- CyberVitexus <vitex@exiv.jinonice.czf>  Fri, 14 Aug 2020 15:25:26 +0200
-
+ -- vitex <info@vitexsoftware.cz>  Tue, 21 Mar 2023 21:54:49 +0100

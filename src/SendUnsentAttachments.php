@@ -2,7 +2,7 @@
 /**
  * abraflexi-send-unsent-with-attachments
  *
- * @copyright (c) 2018-2022, Vítězslav Dvořák
+ * @copyright (c) 2018-2023, Vítězslav Dvořák
  */
 
 namespace AbraFlexi\Mailer;
@@ -31,8 +31,6 @@ if ($configured === false) {
     exit(1);
 }
 
-
-
 new \Ease\Locale();
 
 $invoicer = new FakturaVydana();
@@ -42,7 +40,7 @@ if (Functions::cfg('APP_DEBUG') == 'True') {
 }
 $unsent = $invoicer->getColumnsFromAbraFlexi(
     ['firma', 'kontaktEmail', 'popis', 'poznam'],
-    ['stavMailK' => 'stavMail.odeslat'], 'kod'
+    ['stavMailK' => 'stavMail.odeslat', 'limit'=>0], 'kod'
 );
 
 if (empty($unsent)) {
@@ -71,7 +69,7 @@ if (empty($unsent)) {
             $mailer->addQrCode();
         }
 
-        $result = ($mailer->send() && $invoicer->sync(['id' => $invoicer->getRecordIdent(),
+        $result = (($mailer->send() === true) && $invoicer->sync(['id' => $invoicer->getRecordIdent(),
                 'stavMailK' => 'stavMail.odeslano']));
 
         $invoicer->addStatusMessage(

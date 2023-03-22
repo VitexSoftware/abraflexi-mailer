@@ -112,6 +112,11 @@ class Mailer extends HtmlMailer
         }
     }
 
+    /**
+     * Template File name
+     * 
+     * @return string
+     */
     public function templateFile()
     {
         return $this->templateDir.'/'.$this->document->getEvidence().'.ftl';
@@ -194,9 +199,10 @@ class Mailer extends HtmlMailer
     }
 
     /**
-     *
-     * @param type $heading
-     * @param type $width
+     * Add Company Logo into mail
+     * 
+     * @param string $heading
+     * @param int $width
      */
     public function addCompanyLogo($heading, $width = 200)
     {

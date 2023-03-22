@@ -10,7 +10,7 @@ use Ease\Functions;
 use Ease\Shared;
 
 define('APP_NAME', 'ShowUnsent');
-define('EASE_LOGGER', 'syslog|console');
+
 require_once '../vendor/autoload.php';
 if (file_exists('../.env')) {
     (new Shared())->loadConfig('../.env', true);
@@ -21,7 +21,7 @@ if (Functions::cfg('APP_DEBUG') == 'True') {
     $invoicer->logBanner(Shared::appName());
 }
 $unsent = $invoicer->getColumnsFromAbraFlexi(
-    ['firma', 'kontaktEmail', 'poznam'], ['stavMailK' => 'stavMail.odeslat'],
+    ['firma', 'kontaktEmail', 'poznam'], ['stavMailK' => 'stavMail.odeslat','limit'=>0],
     'kod'
 );
 
