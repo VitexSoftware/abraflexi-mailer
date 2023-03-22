@@ -56,12 +56,14 @@ node {
                     }
                     stage('Build ' + arch + ' ' + dist) {
                             buildImage.inside {
-                                sh 'ls -la'
-                                sh 'dch -b -v ' + ver  + ' "' + env.BUILD_TAG  + '"'
-                                sh 'sudo apt-get update --allow-releaseinfo-change'
-                                sh 'sudo chown jenkins:jenkins ..'
-                                sh 'debuild-pbuilder  -i -us -uc -b'
-                                sh 'mkdir -p $WORKSPACE/dist/debian/ ; rm -rf $WORKSPACE/dist/debian/* ; for deb in $(cat debian/files | awk \'{print $1}\'); do mv "../$deb" $WORKSPACE/dist/debian/; done'
+                                dir(arch + '_' + dist) {
+                                    sh 'ls -la'
+                                    sh 'dch -b -v ' + ver  + ' "' + env.BUILD_TAG  + '"'
+                                    sh 'sudo apt-get update --allow-releaseinfo-change'
+                                    sh 'sudo chown jenkins:jenkins ..'
+                                    sh 'debuild-pbuilder  -i -us -uc -b'
+                                    sh 'mkdir -p $WORKSPACE/dist/debian/ ; rm -rf $WORKSPACE/dist/debian/* ; for deb in $(cat debian/files | awk \'{print $1}\'); do mv "../$deb" $WORKSPACE/dist/debian/; done'
+                                }
                             }
                     }
                     stage('Test ' + arch + ' ' + dist) {
