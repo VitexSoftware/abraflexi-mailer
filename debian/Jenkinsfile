@@ -78,9 +78,9 @@ node {
                             }
                         }
                         stage('CleanUP ' + arch + ' ' + dist) {
-                            if (fileExists arch + '_' + dist) {
+
                                 new File(arch + '_' + dist).delete()
-                            }
+
                         }
                     }
                 }
