@@ -63,7 +63,9 @@ node {
                                     sh 'sudo apt-get update --allow-releaseinfo-change'
                                     sh 'sudo chown jenkins:jenkins ..'
                                     sh 'debuild-pbuilder  -i -us -uc -b'
-                                    sh 'for deb in $(cat debian/files | awk \'{print $1}\'); do ls -la "../$deb"; done'
+                                    sh 'mkdir -p debs'
+                                    sh 'rm -rf debs/*'
+                                    sh 'for deb in $(cat debian/files | awk \'{print $1}\'); do mv "../$deb ./debs/"; done'
                                 }
                             }
                     }
@@ -72,12 +74,12 @@ node {
                                 def debconfDebug = 0 //Set to "5" or "developer" to debug debconf
                                 dir(arch + '_' + dist) {
                                     sh 'ls -la ..'
-                                    sh 'dpkg-scanpackages .. /dev/null | gzip -9c > Packages.gz;'
-                                    sh 'echo "deb [trusted=yes] file://///$WORKSPACE/' + arch + '_' + dist + 'dist/debian/ ./" | sudo tee /etc/apt/sources.list.d/local.list'
+                                    sh 'dpkg-scanpackages ./debs/ /dev/null | gzip -9c > ./debs/Packages.gz'
+                                    sh 'echo "deb [trusted=yes] file://///$WORKSPACE/' + arch + '_' + dist + '/debs/ ./" | sudo tee /etc/apt/sources.list.d/local.list'
                                     sh 'sudo apt-get update --allow-releaseinfo-change'
                                     sh 'echo "INSTALATION"'
                                     sh 'IFS="\n\b"; for package in  `ls $WORKSPACE/dist/debian/ | grep .deb | grep -v dbgsym | awk -F_ \'{print \$1}\'` ; do  echo -e "${GREEN} installing ${package} on `lsb_release -sc` ${ENDCOLOR} " ; sudo  DEBIAN_FRONTEND=noninteractive DEBCONF_DEBUG=' + debconfDebug  + ' apt-get -y install $package ; echo "test now";  done;'
-                                    stash includes: 'dist/**', name: 'dist-' + distroName
+                                    stash includes: 'debs/**', name: 'dist-' + distroName
                                 }
                             }
                     }
