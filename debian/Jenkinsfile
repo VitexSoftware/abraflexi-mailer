@@ -42,15 +42,17 @@ node {
                 builds[dist] = {
                     stage('Checkout ' + arch + ' ' + dist) {
                             buildImage = docker.image(vendor + '/' + dist)
-                            dir(arch + '_' + dist) {
-                                checkout scm
-                                sh 'git checkout debian/changelog'
-                                debVersion = sh(
-                                    script: 'dpkg-parsechangelog --show-field Version',
-                                    returnStdout: true
-                                ).trim()
-                                distroName = dist.substring(dist.lastIndexOf(':') + 1)
-                                ver = debVersion + '~' + distroName + '~' + env.BUILD_NUMBER
+                            buildImage.inside {
+                                dir(arch + '_' + dist) {
+                                    checkout scm
+                                    sh 'git checkout debian/changelog'
+                                    debVersion = sh(
+                                        script: 'dpkg-parsechangelog --show-field Version',
+                                        returnStdout: true
+                                    ).trim()
+                                    distroName = dist.substring(dist.lastIndexOf(':') + 1)
+                                    ver = debVersion + '~' + distroName + '~' + env.BUILD_NUMBER
+                                }
                             }
                     }
                     stage('Build ' + arch + ' ' + dist) {
