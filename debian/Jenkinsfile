@@ -65,7 +65,7 @@ node {
                                     sh 'debuild-pbuilder  -i -us -uc -b'
                                     sh 'mkdir -p debs'
                                     sh 'rm -rf debs/*'
-                                    sh 'for deb in $(cat debian/files | awk \'{print $1}\'); do mv "../$deb ./debs/"; done'
+                                    sh 'for deb in $(cat debian/files | awk \'{print $1}\'); do mv "../$deb" "./debs/"; done'
                                 }
                             }
                     }
