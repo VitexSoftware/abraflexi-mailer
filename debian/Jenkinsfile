@@ -60,6 +60,7 @@ node {
                                 dir(arch + '_' + dist) {
                                     sh 'pwd'
                                     sh 'dch -b -v ' + ver  + ' "' + env.BUILD_TAG  + '"'
+                                    sh 'head debian/changelog'
                                     sh 'sudo apt-get update --allow-releaseinfo-change'
                                     sh 'sudo chown jenkins:jenkins ..'
                                     sh 'debuild-pbuilder  -i -us -uc -b'

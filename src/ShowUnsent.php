@@ -3,7 +3,7 @@
 /**
  * abraflexi-show-unsent
  *
- * @copyright (c) 2018-2022, Vítězslav Dvořák
+ * @copyright (c) 2018-2023, Vítězslav Dvořák
  */
 use AbraFlexi\FakturaVydana;
 use Ease\Functions;
@@ -12,9 +12,8 @@ use Ease\Shared;
 define('APP_NAME', 'ShowUnsent');
 
 require_once '../vendor/autoload.php';
-if (file_exists('../.env')) {
-    (new Shared())->loadConfig('../.env', true);
-}
+
+Shared::init(['ABRAFLEXI_URL', 'ABRAFLEXI_LOGIN', 'ABRAFLEXI_PASSWORD', 'ABRAFLEXI_COMPANY'], '../.env');
 
 $invoicer = new FakturaVydana(null, ['limit' => 0]);
 if (Functions::cfg('APP_DEBUG') == 'True') {

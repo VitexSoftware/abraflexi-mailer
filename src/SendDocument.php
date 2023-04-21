@@ -12,24 +12,7 @@ use Ease\Shared;
 
 define('APP_NAME', 'SentDocument');
 
-require_once '../vendor/autoload.php';
-if (file_exists('../.env')) {
-    (new Shared())->loadConfig('../.env', true);
-}
-
-$cfgKeys = ['ABRAFLEXI_URL', 'ABRAFLEXI_LOGIN', 'ABRAFLEXI_PASSWORD', 'ABRAFLEXI_COMPANY',
-    'MAIL_FROM'];
-$configured = true;
-foreach ($cfgKeys as $cfgKey) {
-    if (empty(\Ease\Functions::cfg($cfgKey))) {
-        fwrite(STDERR, 'Requied configuration ' . $cfgKey . " is not set." . PHP_EOL);
-        $configured = false;
-    }
-}
-if ($configured === false) {
-    exit(1);
-}
-
+Shared::init(['ABRAFLEXI_URL', 'ABRAFLEXI_LOGIN', 'ABRAFLEXI_PASSWORD', 'ABRAFLEXI_COMPANY','MAIL_FROM'], '../.env');
 
 new \Ease\Locale(Functions::cfg('LC_ALL', 'cs_CZ'));
 
