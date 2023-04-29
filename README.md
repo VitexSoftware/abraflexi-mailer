@@ -7,8 +7,9 @@ Odesílač dokladů pro AbraFlexi
 
 K dispozici jsou skripty pro odesílání dokladů:
 
-[SendUnsent.php](src/SendUnsent.php) - hromadně odešle neodeslané.
-[SendUnsentAttachments.php](src/SendUnsentAttachments.php) - najde neodeslané, připojí k nim přílohy a odešle
+[SendUnsent.php](src/SendUnsent.php) - hromadně odešle neodeslané standartním způsobem přímo z AbraFlexi
+
+[SendUnsentAttachments.php](src/SendUnsentAttachments.php) - najde neodeslané, připojí k nim přílohy a odešle přes výchozí mailer PHP, nebo SMTP
 
 Doklady jsou odesílány na adresy dle následujícího klíče:
 
@@ -66,6 +67,7 @@ MAIL_CC=info@vitexsoftware.cz                   - všechny maily odesílat také
 MAIL_FROM=office@vitexsoftware.cz               - adresa odesilatele
 
 EASE_LOGGER="console|syslog"                    - způsob logování
+SEND_LOCKED=False                               - pokusi se dočasně odemknout zamknutý doklad          
 ```
 
 Šablony

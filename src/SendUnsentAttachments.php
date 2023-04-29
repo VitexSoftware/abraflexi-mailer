@@ -31,7 +31,7 @@ if (empty($unsent)) {
     foreach ($unsent as $unsentData) {
         $invoicer->setData($unsentData);
         $invoicer->updateApiURL();
-        $mailer = new Mailer($invoicer);
+        $mailer = new DocumentMailer($invoicer);
         preg_match_all(
                 '/cc:[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}/i',
                 $unsentData['poznam'], $ccs
@@ -48,12 +48,35 @@ if (empty($unsent)) {
             $mailer->addQrCode();
         }
 
-        $result = (($mailer->send() === true) && $invoicer->sync(['id' => $invoicer->getRecordIdent(),
-                    'stavMailK' => 'stavMail.odeslano']));
+
+        $lock = false;
+        if ($invoicer->getDataValue('zamekK') == 'zamek.zamceno') {
+            if (\Ease\Functions::cfg('SEND_LOCKED') == 'True') {
+                $unlock = $invoicer->performAction('unlock', 'int');
+                if ($unlock['success'] == 'false') {
+                    $this->addStatusMessage(_('Invoice locked: skipping process'), 'warning');
+                    $lock = true;
+                }
+            }
+        }
+        try {
+            $result = (($mailer->send() === true) && $invoicer->sync(['id' => $invoicer->getRecordIdent(), 'stavMailK' => 'stavMail.odeslano']));
+        } catch (\AbraFlexi\Exception $exc) {
+            
+        }
+
         $invoicer->addStatusMessage(
                 $unsentData['kod'] . "\t" . $unsentData['firma'] . "\t" . $invoicer->getEmail() . "\t" . $unsentData['poznam'],
                 $result ? 'success' : 'error'
         );
+        if ($lock === true) {
+            $lock = $invoicer->performAction('lock', 'int');
+            if ($lock['success'] == 'true') {
+                $this->addStatusMessage(sprintf(_('Invoice %s locked again'), $invoicer), 'success');
+            } else {
+                $this->addStatusMessage(sprintf(_('Invoice %s locking failed'), $invoicer), 'warning');
+            }
+        }
     }
     $invoicer->addStatusMessage(count($unsent) . ' ' . _('total'), 'warning');
 }

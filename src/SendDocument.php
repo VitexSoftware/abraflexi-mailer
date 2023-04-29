@@ -11,14 +11,10 @@ use Ease\Functions;
 use Ease\Shared;
 
 define('APP_NAME', 'SentDocument');
-
-Shared::init(['ABRAFLEXI_URL', 'ABRAFLEXI_LOGIN', 'ABRAFLEXI_PASSWORD', 'ABRAFLEXI_COMPANY','MAIL_FROM'], '../.env');
-
+Shared::init(['ABRAFLEXI_URL', 'ABRAFLEXI_LOGIN', 'ABRAFLEXI_PASSWORD', 'ABRAFLEXI_COMPANY', 'MAIL_FROM'], '../.env');
 new \Ease\Locale(Functions::cfg('LC_ALL', 'cs_CZ'));
-
 $document = (is_numeric($argv[1]) ? intval($argv[1]) : RO::code(RO::uncode($argv[1])));
 $evidence = array_key_exists(2, $argv) ? $argv[2] : 'faktura-vydana';
-
 if ($argc > 1) {
     $documentor = new FakturaVydana($document, ['evidence' => $evidence, 'ignore404' => true]);
     if (\Ease\Functions::cfg('APP_DEBUG') == 'True') {
@@ -31,13 +27,10 @@ if ($argc > 1) {
                 RO::uncode($documentor->getRecordCode()) . "\t" . RO::uncode($documentor->getDataValue('firma')) . "\t" . $to . "\t" . $documentor->getDataValue('poznam'),
                 'success'
         );
-
-        $mailer = new \AbraFlexi\Mailer\Mailer($documentor, $to);
-
+        $mailer = new \AbraFlexi\Mailer\DocumentMailer($documentor, $to);
         $documentor->addStatusMessage(_('Attaching') . ': ' . implode(
                         ',', $mailer->addAttachments()
         ));
-
         if (array_key_exists('juhSum', $documentor->getColumnsInfo())) {
             if (Functions::cfg('ADD_QRCODE')) {
                 $mailer->addQrCode();
