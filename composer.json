@@ -18,6 +18,7 @@
     "minimum-stability": "dev",
     "autoload": {
         "psr-4": {
+            "AbraFlexi\\": "src/AbraFlexi/",
             "AbraFlexi\\Mailer\\": "src/AbraFlexi/Mailer/",
             "AbraFlexi\\Mailer\\Ui\\": "src/AbraFlexi/Mailer/Ui/"
         }

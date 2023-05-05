@@ -52,6 +52,18 @@ class DocumentMailer extends HtmlMailer
     private $templateDir = '../templates';
 
     /**
+     * 
+     * @var \AbraFlexi\SablonaMail
+     */
+    private $templater = null;
+
+    /**
+     * Obtained Templates cache
+     * @var array
+     */
+    public $templates = [];
+
+    /**
      * Send Document by mail
      *
      * @param RO $document AbraFlexi document object
@@ -63,9 +75,10 @@ class DocumentMailer extends HtmlMailer
     )
     {
         $this->document = $document;
-        $this->fromEmailAddress = Functions::cfg('MAIL_FROM');
+        $this->fromEmailAddress = Functions::cfg('MAIL_FROM'); 
         if (boolval(Functions::cfg('MUTE'))) {
             $sendTo = Functions::cfg('EASE_MAILTO');
+            $this->addStatusMessage(sprintf(_('Mute mode: SendTo forced: %s'), $sendTo), 'debug');
         } else {
             if (empty($sendTo) && method_exists($this->document, 'getMail')) {
                 $sendTo = $this->document->getEmail();
@@ -81,8 +94,11 @@ class DocumentMailer extends HtmlMailer
             $this->setMailHeaders(['Bcc' => Functions::cfg('MAIL_CC')]);
         }
 
-        if (file_exists($this->templateFile())) {
-            $this->htmlDocument = new Templater($document, $this->templateFile());
+        $abraFlexiTemplate = $this->getAbraFlexiTemplate($document);
+        if ($abraFlexiTemplate) {
+            $this->htmlDocument = new Templater($document, $abraFlexiTemplate['textSablona']);
+        } elseif (file_exists($this->templateFile())) {
+            $this->htmlDocument = new Templater($document, file_get_contents($this->templateFile()));
 //            $this->htmlBody = $this->htmlDocument->body;
         } else {
             $this->htmlDocument = new HtmlTag(new SimpleHeadTag([
@@ -100,13 +116,12 @@ class DocumentMailer extends HtmlMailer
                     )]);
                 }
             }
-
-            if (array_key_exists('popis', $document->getColumnsInfo())) {
-                $this->addItem(new \Ease\Html\PTag($document->getDataValue('popis')));
-            }
-
-            $this->addInvoice();
         }
+        if (array_key_exists('popis', $document->getColumnsInfo())) {
+            $this->addItem(new \Ease\Html\PTag($document->getDataValue('popis')));
+        }
+
+        $this->addInvoice();
     }
 
     /**
@@ -278,5 +293,39 @@ class DocumentMailer extends HtmlMailer
             unlink($tmp);
         }
         return $result;
+    }
+
+    public function getAbraFlexiTemplate($document)
+    {
+        $template = [];
+        $typDoklInfo = $document->getColumnInfo('typDokl');
+        if (array_key_exists('fkEvidencePath', $typDoklInfo)) {
+            $typDokl = new \AbraFlexi\RW($document->getDataValue('typDokl'), ['evidence' => $typDoklInfo['fkEvidencePath']]);
+            $myTemplate = $typDokl->getDataValue('sablonaMail');
+            if (empty($myTemplate->value) === false) {
+                $evidence = $document->getEvidence();
+                if (array_key_exists($evidence, \AbraFlexi\EvidenceList::$evidences)) {
+                    if (array_key_exists('beanKey', \AbraFlexi\EvidenceList::$evidences[$evidence])) {
+                        $beanKey = \AbraFlexi\EvidenceList::$evidences[$evidence]['beanKey'];
+                        if (is_null($this->templater) === true) {
+                            $this->templater = new \AbraFlexi\SablonaMail(null, ['ignore404' => true]);
+                        }
+
+                        if (array_key_exists($beanKey, $this->templates) === false) {
+                            $candidates = $this->templater->getColumnsFromAbraFlexi('*', ['beanKeys' => $beanKey], 'kod');
+                            foreach ($candidates as $candidat) {
+                                if (array_key_exists($beanKey, $this->templates) === false) {
+                                    $this->templates[$candidat['kod']] = $candidat;
+                                }
+                            }
+                            if (array_key_exists(\AbraFlexi\RO::uncode($myTemplate), $candidates)) {
+                                $template = $candidates[\AbraFlexi\RO::uncode($myTemplate)];
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return $template;
     }
 }

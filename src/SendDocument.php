@@ -10,7 +10,8 @@ use AbraFlexi\RO;
 use Ease\Functions;
 use Ease\Shared;
 
-define('APP_NAME', 'SentDocument');
+define('APP_NAME', 'DocumentSender');
+require_once '../vendor/autoload.php';
 Shared::init(['ABRAFLEXI_URL', 'ABRAFLEXI_LOGIN', 'ABRAFLEXI_PASSWORD', 'ABRAFLEXI_COMPANY', 'MAIL_FROM'], '../.env');
 new \Ease\Locale(Functions::cfg('LC_ALL', 'cs_CZ'));
 $document = (is_numeric($argv[1]) ? intval($argv[1]) : RO::code(RO::uncode($argv[1])));

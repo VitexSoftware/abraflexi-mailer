@@ -22,8 +22,10 @@ if (Functions::cfg('APP_DEBUG') == 'True') {
     $invoicer->logBanner(Shared::appName());
 }
 $unsent = $invoicer->getColumnsFromAbraFlexi(
-        ['firma', 'kontaktEmail', 'popis', 'poznam'],
-        ['stavMailK' => 'stavMail.odeslat', 'limit' => 0], 'kod'
+        ['firma', 'kontaktEmail', 'popis', 'poznam', 'typDokl'],
+        ['stavMailK' => 'stavMail.odeslat', 'limit' => 0,
+        //'lastUpdate gt "'. \AbraFlexi\RO::dateToFlexiDateTime( new \DateTime('-1 hour') ).'"'            
+        ], 'kod'
 );
 if (empty($unsent)) {
     $invoicer->addStatusMessage(_('all sent'), 'success');
@@ -60,7 +62,11 @@ if (empty($unsent)) {
             }
         }
         try {
-            $result = (($mailer->send() === true) && $invoicer->sync(['id' => $invoicer->getRecordIdent(), 'stavMailK' => 'stavMail.odeslano']));
+            if (\Ease\Functions::cfg('DRY_RUN')) {
+                $result = ($mailer->send() === true);
+            } else {
+                $result = (($mailer->send() === true) && $invoicer->sync(['id' => $invoicer->getRecordIdent(), 'stavMailK' => 'stavMail.odeslano']));
+            }
         } catch (\AbraFlexi\Exception $exc) {
             
         }

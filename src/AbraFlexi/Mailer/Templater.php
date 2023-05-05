@@ -40,7 +40,7 @@ class Templater extends \Ease\Document
     {
         $this->template = $template;
         $this->document = $document;
-        parent::__construct($this->process(file_get_contents($template)));
+        parent::__construct($this->process($template));
     }
 
     /**
