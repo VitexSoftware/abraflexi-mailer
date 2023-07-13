@@ -295,6 +295,13 @@ class DocumentMailer extends HtmlMailer
         return $result;
     }
 
+    /**
+     * Get Teplate stored in AbraFlexi
+     * 
+     * @param \AbraFlexi\RO $document
+     * 
+     * @return string
+     */
     public function getAbraFlexiTemplate($document)
     {
         $template = [];

@@ -27,7 +27,7 @@ Debian/Ubuntu
 Pro Linux jsou k dispozici .deb balíčky. Prosím použijte repo:
 
  ```shell
-    echo "deb http://repo.vitexsoftware.cz $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/vitexsoftware.list
+    echo "deb http://repo.vitexsoftware.com $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/vitexsoftware.list
     sudo wget -O /etc/apt/trusted.gpg.d/vitexsoftware.gpg http://repo.vitexsoftware.cz/keyring.gpg
     sudo apt update
     sudo apt install abraflexi-mailer
@@ -87,8 +87,6 @@ V šablonách je možné použít následující proměnné:
  *    ${nazevFirmy} – Název firmy
  *    ${doklad} – Doklad určený k odeslání
 
-(Načítání šablon z AbaraFlexi evidence /sablona-mail/ není zatím podporováno, ježto autor nedisponuje Licencí Premium)
-
 Závislosti
 ----------
 
@@ -118,3 +116,4 @@ Další software pro AbraFlexi
  * [Monitoring funkce AbraFlexi serveru](https://github.com/VitexSoftware/monitoring-plugins-abraflexi)
  * [AbraFlexi server bez grafických závislostí](https://github.com/VitexSoftware/abraflexi-server-deb)
 
+q
