@@ -10,7 +10,7 @@ use AbraFlexi\RO;
 use Ease\Functions;
 use Ease\Shared;
 
-define('APP_NAME', 'DocumentSender');
+define('APP_NAME', 'AbraFlexiDocumentSender');
 require_once '../vendor/autoload.php';
 Shared::init(['ABRAFLEXI_URL', 'ABRAFLEXI_LOGIN', 'ABRAFLEXI_PASSWORD', 'ABRAFLEXI_COMPANY', 'MAIL_FROM'], '../.env');
 new \Ease\Locale(Functions::cfg('LC_ALL', 'cs_CZ'));
@@ -19,7 +19,7 @@ $evidence = array_key_exists(2, $argv) ? $argv[2] : 'faktura-vydana';
 if ($argc > 1) {
     $documentor = new FakturaVydana($document, ['evidence' => $evidence, 'ignore404' => true]);
     if (\Ease\Functions::cfg('APP_DEBUG') == 'True') {
-        $documentor->logBanner(\Ease\Shared::appName());
+        $documentor->logBanner(\Ease\Shared::appName().' v'.\Ease\Shared::appVersion());
     }
 
     if ($documentor->lastResponseCode == 200) {

@@ -26,21 +26,32 @@ class Templater extends \Ease\Document
 
     /**
      *
-     * @var string path to template file
+     * @var string template file content
      */
     public $template;
 
     /**
      * Template
      *
-     * @param \AbraFlexi\RO $document to send
-     * @param string $template .ftl file path
+     * @param string $template .ftl file content
      */
-    public function __construct(\AbraFlexi\RO $document, $template)
+    public function __construct($template)
     {
         $this->template = $template;
-        $this->document = $document;
-        parent::__construct($this->process($template));
+        parent::__construct();
+    }
+
+
+    /**
+     * Populate Template with data
+     *
+     * @param \AbraFlexi\RO $data
+     */
+    public function populate(\AbraFlexi\RO $abraflexiDocument)
+    {
+        $this->emptyContents();
+        $this->document = $abraflexiDocument;
+        $this->addItem($this->process($this->template));
     }
 
     /**
@@ -48,7 +59,7 @@ class Templater extends \Ease\Document
      *
      * @param string $templateBody
      *
-     * @return type
+     * @return string
      */
     public function process($templateBody)
     {
@@ -57,7 +68,7 @@ class Templater extends \Ease\Document
             foreach ($vars[1] as $pos => $var) {
                 $base = self::variableBase($var);
                 $prop = self::variableProperty($var);
-                $key  = $vars[0][$pos];
+                $key = $vars[0][$pos];
                 switch ($base) {
                     case 'doklad':
                         if ($prop) {
@@ -106,13 +117,13 @@ class Templater extends \Ease\Document
                     case 'application':
                         $templateBody = str_replace(
                             $key,
-                            \Ease\Functions::cfg('APP_NAME'),
+                            \Ease\Functions::cfg('APP_NAME') . ' v' . \Ease\Shared::appVersion(),
                             $templateBody
                         );
                         break;
                     case 'nazevFirmy':
                     case 'company':
-                        $company      = new \AbraFlexi\Company($this->document->company);
+                        $company = new \AbraFlexi\Company($this->document->company);
                         if ($prop) {
                             $templateBody = str_replace(
                                 $key,
@@ -128,11 +139,11 @@ class Templater extends \Ease\Document
                         }
                         break;
                     default:
-                        $this->addStatusMessage(sprintf(
-                            _('Unknown template %s variable: %s'),
-                            $this->template,
-                            $key
-                        ), 'debug');
+                        if (array_key_exists($base, $this->document->getData())) {
+                            $templateBody = str_replace($key, $this->document->getDataValue($base), $templateBody);
+                        } else {
+                            $this->addStatusMessage(sprintf(_('Unknown template\'s variable: %s'), $key), 'warning');
+                        }
                         break;
                 }
             }
