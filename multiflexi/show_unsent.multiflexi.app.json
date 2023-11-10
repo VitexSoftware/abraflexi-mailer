@@ -5,8 +5,8 @@
     "executable": "\/bin\/abraflexi-show-unsent",
     "setup": "",
     "cmdparams": "",
-    "deploy": null,
-    "homepage": null,
+    "deploy": "apt install abraflexi-mailer",
+    "homepage": "https://github.com/VitexSoftware/abraflexi-mailer/",
     "environment": {
         "ABRAFLEXI_COMPANY": {
             "type": "string",
