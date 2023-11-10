@@ -9,9 +9,17 @@ Homepage: https://github.com/VitexSoftware/php-abraflexi-mailer
 Package: abraflexi-mailer
 Depends: ${misc:Depends},  php-vitexsoftware-abraflexi-bricks, php-cli, php-vitexsoftware-ease-core (>= 1.38) , php-net-smtp
 Suggests: abraflexi-server, abraflexi-client-config, multiflexi
-Replaces: flexibee-mailer
 Architecture: all
 Section: web
 Priority: optional
 Description: External mailer for Abra Flexi
  Send AbraFlexi documents and its attachments via email
+
+Package: multiflexi-abraflexi-mailer
+Depends: abraflexi-mailer, multiflexi
+Architecture: all
+Section: web
+Priority: optional
+Description: Add External mailer for AbraFlexi to MultiFlexi
+ Add Mailer's applications into MultiFlexi
+

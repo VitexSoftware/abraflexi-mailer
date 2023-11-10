@@ -1,9 +1,9 @@
 <?php
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * AbraFlexi Mailer Template class
+ *
+ * @author     Vítězslav Dvořák <info@vitexsofware.cz>
+ * @copyright  (G) 2021-2023 Vitex Software
  */
 
 namespace AbraFlexi\Mailer;
@@ -45,7 +45,7 @@ class Templater extends \Ease\Document
     /**
      * Populate Template with data
      *
-     * @param \AbraFlexi\RO $data
+     * @param \AbraFlexi\RO $abraflexiDocument
      */
     public function populate(\AbraFlexi\RO $abraflexiDocument)
     {

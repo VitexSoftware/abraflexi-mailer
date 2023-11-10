@@ -23,7 +23,7 @@ Debian/Ubuntu
 
 Pro Linux jsou k dispozici .deb balíčky. Prosím použijte repo:
 
- ```shell
+```shell
     echo "deb http://repo.vitexsoftware.com $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/vitexsoftware.list
     sudo wget -O /etc/apt/trusted.gpg.d/vitexsoftware.gpg http://repo.vitexsoftware.cz/keyring.gpg
     sudo apt update
@@ -83,6 +83,8 @@ V šablonách je možné použít následující proměnné:
 * ${titulJmenoPrijmeni} – Vaše celé jméno, včetně dosažených titulů
 * ${nazevFirmy} – Název firmy
 * ${doklad} – Doklad určený k odeslání
+
+Hromadný rozesílač plní tyto proměnné pro každou odeslanou zprávu z https://demo.flexibee.eu/c/demo_de/adresar/properties
 
 Závislosti
 ----------
