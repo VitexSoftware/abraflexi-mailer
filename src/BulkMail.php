@@ -5,6 +5,7 @@
  *
  * @copyright (c) 2023, Vítězslav Dvořák
  */
+
 use Ease\Functions;
 use Ease\Shared;
 
@@ -21,23 +22,22 @@ if ($argc > 2) {
             $templater->logBanner(\Ease\Shared::appName());
         }
 
-        $document = new \AbraFlexi\Adresar(null,['limit'=>0,'detail'=>'full']);
-        $to = $document->getFlexiData('',$query);
+        $document = new \AbraFlexi\Adresar(null, ['limit' => 0,'detail' => 'full']);
+        $to = $document->getFlexiData('', $query);
 
-        $document->addStatusMessage(sprintf(_('Query "%s" found %d recipients'),$query, count($to)),'debug'); 
+        $document->addStatusMessage(sprintf(_('Query "%s" found %d recipients'), $query, count($to)), 'debug');
 
         foreach ($to as $recipient) {
-            $document->setData($recipient,true);
+            $document->setData($recipient, true);
             $document->updateApiURL();
             $mailAddress = $document->getNotificationEmailAddress();
             $document->addStatusMessage(sprintf(_('Sending to %s %s %s'), $document->getRecordCode(), $document->getDataValue('nazev'), $mailAddress));
             $templater->populate($document);
-            $mailer = new \Ease\HtmlMailer($mailAddress, pathinfo($template, PATHINFO_FILENAME), $templater->getRendered(), ['from' => Functions::cfg('MAIL_FROM')]); 
+            $mailer = new \Ease\HtmlMailer($mailAddress, pathinfo($template, PATHINFO_FILENAME), $templater->getRendered(), ['from' => Functions::cfg('MAIL_FROM')]);
             $mailer->send();
         }
-
     } else {
-        die(sprintf(_('Template file %s not found'), realpath($template) ));
+        die(sprintf(_('Template file %s not found'), realpath($template)));
     }
 } else {
     echo _('AbraFlexi BulkMail') . "\n";

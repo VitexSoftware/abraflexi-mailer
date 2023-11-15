@@ -15,3 +15,7 @@
 /debian/abraflexi-mailer.postrm.debhelper
 /debian/abraflexi-mailer.substvars
 /.phpunit.result.cache
+/debian/multiflexi-abraflexi-mailer.debhelper.log
+/debian/multiflexi-abraflexi-mailer.substvars
+/debian/multiflexi-abraflexi-mailer/
+

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * AbraFlexi Mailer Template class
  *

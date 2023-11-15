@@ -22,10 +22,11 @@ if (Functions::cfg('APP_DEBUG') == 'True') {
     $invoicer->logBanner(Shared::appName());
 }
 $unsent = $invoicer->getColumnsFromAbraFlexi(
-        ['firma', 'kontaktEmail', 'popis', 'poznam', 'typDokl'],
-        ['stavMailK' => 'stavMail.odeslat', 'limit' => 0,
-        //'lastUpdate gt "'. \AbraFlexi\RO::dateToFlexiDateTime( new \DateTime('-1 hour') ).'"'            
-        ], 'kod'
+    ['firma', 'kontaktEmail', 'popis', 'poznam', 'typDokl'],
+    ['stavMailK' => 'stavMail.odeslat', 'limit' => 0,
+        //'lastUpdate gt "'. \AbraFlexi\RO::dateToFlexiDateTime( new \DateTime('-1 hour') ).'"'
+        ],
+    'kod'
 );
 if (empty($unsent)) {
     $invoicer->addStatusMessage(_('all sent'), 'success');
@@ -35,12 +36,15 @@ if (empty($unsent)) {
         $invoicer->updateApiURL();
         $mailer = new DocumentMailer($invoicer);
         preg_match_all(
-                '/cc:[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}/i',
-                $unsentData['poznam'], $ccs
+            '/cc:[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}/i',
+            $unsentData['poznam'],
+            $ccs
         );
         if (!empty($ccs[0])) {
             $mailer->setMailHeaders(['Cc' => str_replace(
-                        'cc:', '', implode(',', $ccs[0])
+                'cc:',
+                '',
+                implode(',', $ccs[0])
             )]);
         }
 
@@ -68,12 +72,11 @@ if (empty($unsent)) {
                 $result = (($mailer->send() === true) && $invoicer->sync(['id' => $invoicer->getRecordIdent(), 'stavMailK' => 'stavMail.odeslano']));
             }
         } catch (\AbraFlexi\Exception $exc) {
-            
         }
 
         $invoicer->addStatusMessage(
-                $unsentData['kod'] . "\t" . $unsentData['firma'] . "\t" . $invoicer->getEmail() . "\t" . $unsentData['poznam'],
-                $result ? 'success' : 'error'
+            $unsentData['kod'] . "\t" . $unsentData['firma'] . "\t" . $invoicer->getEmail() . "\t" . $unsentData['poznam'],
+            $result ? 'success' : 'error'
         );
         if ($lock === true) {
             $lock = $invoicer->performAction('lock', 'int');

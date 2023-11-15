@@ -5,6 +5,7 @@
  *
  * @copyright (c) 2018-2023, Vítězslav Dvořák
  */
+
 use AbraFlexi\FakturaVydana;
 use AbraFlexi\RO;
 use Ease\Functions;
@@ -19,18 +20,19 @@ $evidence = array_key_exists(2, $argv) ? $argv[2] : 'faktura-vydana';
 if ($argc > 1) {
     $documentor = new FakturaVydana($document, ['evidence' => $evidence, 'ignore404' => true]);
     if (\Ease\Functions::cfg('APP_DEBUG') == 'True') {
-        $documentor->logBanner(\Ease\Shared::appName().' v'.\Ease\Shared::appVersion());
+        $documentor->logBanner(\Ease\Shared::appName() . ' v' . \Ease\Shared::appVersion());
     }
 
     if ($documentor->lastResponseCode == 200) {
         $to = (array_key_exists(3, $argv) ? $argv[3] : $documentor->getEmail());
         $documentor->addStatusMessage(
-                RO::uncode($documentor->getRecordCode()) . "\t" . RO::uncode($documentor->getDataValue('firma')) . "\t" . $to . "\t" . $documentor->getDataValue('poznam'),
-                'success'
+            RO::uncode($documentor->getRecordCode()) . "\t" . RO::uncode($documentor->getDataValue('firma')) . "\t" . $to . "\t" . $documentor->getDataValue('poznam'),
+            'success'
         );
         $mailer = new \AbraFlexi\Mailer\DocumentMailer($documentor, $to);
         $documentor->addStatusMessage(_('Attaching') . ': ' . implode(
-                        ',', $mailer->addAttachments()
+            ',',
+            $mailer->addAttachments()
         ));
         if (array_key_exists('juhSum', $documentor->getColumnsInfo())) {
             if (Functions::cfg('ADD_QRCODE')) {
@@ -46,7 +48,9 @@ if ($argc > 1) {
         }
     } else {
         $documentor->addStatusMessage(sprintf(
-                        _('Cannot read %s %s'), $evidence, $document
+            _('Cannot read %s %s'),
+            $evidence,
+            $document
         ));
     }
 } else {
