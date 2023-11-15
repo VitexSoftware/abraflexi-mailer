@@ -5,6 +5,7 @@
  *
  * @copyright (c) 2018-2020, Vítězslav Dvořák
  */
+
 use Ease\Functions;
 use Ease\Shared;
 
@@ -16,6 +17,6 @@ if (Functions::cfg('APP_DEBUG') == 'True') {
     $invoicer->logBanner(Shared::appName());
 }
 $invoicer->addStatusMessage(
-        _('Send unsent mails'),
-        $invoicer->sendUnsent() == 202 ? 'success' : 'warning'
+    _('Send unsent mails'),
+    $invoicer->sendUnsent() == 202 ? 'success' : 'warning'
 );

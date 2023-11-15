@@ -26,7 +26,6 @@ use Ease\HtmlMailer;
  */
 class DocumentMailer extends HtmlMailer
 {
-
     /**
      *
      * @var \AbraFlexi\FakturaVydana Mostly invoice
@@ -52,7 +51,7 @@ class DocumentMailer extends HtmlMailer
     private $templateDir = '../templates';
 
     /**
-     * 
+     *
      * @var \AbraFlexi\SablonaMail
      */
     private $templater = null;
@@ -71,11 +70,12 @@ class DocumentMailer extends HtmlMailer
      * @param string $subject
      */
     public function __construct(
-            RO $document, string $sendTo = null, string $subject = null
-    )
-    {
+        RO $document,
+        string $sendTo = null,
+        string $subject = null
+    ) {
         $this->document = $document;
-        $this->fromEmailAddress = Functions::cfg('MAIL_FROM'); 
+        $this->fromEmailAddress = Functions::cfg('MAIL_FROM');
         if (boolval(Functions::cfg('MUTE'))) {
             $sendTo = Functions::cfg('EASE_MAILTO');
             $this->addStatusMessage(sprintf(_('Mute mode: SendTo forced: %s'), $sendTo), 'debug');
@@ -107,12 +107,15 @@ class DocumentMailer extends HtmlMailer
             $this->htmlBody = $this->htmlDocument->addItem(new BodyTag());
             if (array_key_exists('poznam', $this->document->getColumnsInfo())) {
                 preg_match_all(
-                        '/cc:[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}/i',
-                        $document->getDataValue('poznam'), $ccs
+                    '/cc:[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}/i',
+                    $document->getDataValue('poznam'),
+                    $ccs
                 );
                 if (!empty($ccs[0])) {
                     $this->setMailHeaders(['Cc' => str_replace(
-                                'cc:', '', implode(',', $ccs[0])
+                        'cc:',
+                        '',
+                        implode(',', $ccs[0])
                     )]);
                 }
             }
@@ -126,7 +129,7 @@ class DocumentMailer extends HtmlMailer
 
     /**
      * Template File name
-     * 
+     *
      * @return string
      */
     public function templateFile()
@@ -163,7 +166,6 @@ class DocumentMailer extends HtmlMailer
 
     public function getCss()
     {
-        
     }
 
     /**
@@ -191,14 +193,18 @@ class DocumentMailer extends HtmlMailer
     public function addInvoice()
     {
         $this->addFile(
-                $this->document->downloadInFormat(
-                        'pdf', sys_get_temp_dir() . '/'
-                ), Formats::$formats['PDF']['content-type']
+            $this->document->downloadInFormat(
+                'pdf',
+                sys_get_temp_dir() . '/'
+            ),
+            Formats::$formats['PDF']['content-type']
         );
         $this->addFile(
-                $this->document->downloadInFormat(
-                        'isdocx', sys_get_temp_dir() . '/'
-                ), Formats::$formats['ISDOCx']['content-type']
+            $this->document->downloadInFormat(
+                'isdocx',
+                sys_get_temp_dir() . '/'
+            ),
+            Formats::$formats['ISDOCx']['content-type']
         );
         $heading = new DivTag($this->document->getEvidence() . ' ' . RO::uncode($this->document->getRecordIdent()));
         if (Functions::cfg('ADD_LOGO')) {
@@ -210,7 +216,7 @@ class DocumentMailer extends HtmlMailer
 
     /**
      * Add Company Logo into mail
-     * 
+     *
      * @param string $heading
      * @param int $width
      */
@@ -222,10 +228,12 @@ class DocumentMailer extends HtmlMailer
             'id' => 'companylogo',
             'height' => '50', 'title' => _('Company logo')]);
         $headingTableRow->addItem(new TdTag(
-                        $logo, ['width' => $width . 'px']
+            $logo,
+            ['width' => $width . 'px']
         ));
         $headingTable = new TableTag(
-                $headingTableRow, ['width' => '100%']
+            $headingTableRow,
+            ['width' => '100%']
         );
         $this->addItem($headingTable);
     }
@@ -239,8 +247,9 @@ class DocumentMailer extends HtmlMailer
     {
         try {
             $this->addItem(new ImgTag(
-                            $this->document->getQrCodeBase64(200), _('QR Payment'),
-                            ['width' => $size, 'height' => $size, 'title' => $this->document->getRecordCode()]
+                $this->document->getQrCodeBase64(200),
+                _('QR Payment'),
+                ['width' => $size, 'height' => $size, 'title' => $this->document->getRecordCode()]
             ));
         } catch (\AbraFlexi\Exception $exc) {
             $this->addStatusMessage(_('Error adding QR Code'), 'error');
@@ -272,7 +281,7 @@ class DocumentMailer extends HtmlMailer
      *
      * @param string $filename
      * @param string $mimeType
-     * 
+     *
      * @return success
      */
     public function addFile($filename, $mimeType = 'text/plain')
@@ -297,9 +306,9 @@ class DocumentMailer extends HtmlMailer
 
     /**
      * Get Teplate stored in AbraFlexi
-     * 
+     *
      * @param \AbraFlexi\RO $document
-     * 
+     *
      * @return string
      */
     public function getAbraFlexiTemplate($document)

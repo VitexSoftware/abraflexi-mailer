@@ -1,5 +1,6 @@
 debian/conf/composer.json       usr/lib/abraflexi-mailer/
 src/*			        usr/lib/abraflexi-mailer/
+src/AbraFlexi/*	                usr/lib/abraflexi-mailer/AbraFlexi/
 #src/AbraFlexi/Mailer/*          usr/lib/abraflexi-mailer/Mailer/
 bin/*                           usr/bin/
 .env.template                   etc/abraflexi-mailer

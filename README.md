@@ -65,6 +65,7 @@ MAIL_FROM=office@vitexsoftware.cz               - adresa odesilatele
 
 EASE_LOGGER="console|syslog"                    - způsob logování
 SEND_LOCKED=False                               - pokusi se dočasně odemknout zamknutý doklad          
+DRY_RUN=False                                   - je-li povoleno nezapisuje do dokladů datum a stav odeslání
 ```
 
 Šablony

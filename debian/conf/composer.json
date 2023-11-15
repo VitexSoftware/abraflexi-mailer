@@ -17,6 +17,7 @@
     },
     "autoload": {
         "psr-4": {
+            "AbraFlexi\\": "AbraFlexi/",
             "AbraFlexi\\Mailer\\": "AbraFlexi/Mailer/",
             "AbraFlexi\\Mailer\\Ui\\": "AbraFlexi/Mailer/Ui/"
         }

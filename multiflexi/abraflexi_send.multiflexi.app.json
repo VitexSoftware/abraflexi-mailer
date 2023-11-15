@@ -7,27 +7,32 @@
     "cmdparams": "",
     "deploy": "apt install abraflexi-mailer",
     "homepage": "https://github.com/VitexSoftware/abraflexi-mailer/",
+    "requirements": "AbraFlexi",
     "environment": {
         "ABRAFLEXI_COMPANY": {
             "type": "string",
-            "description": "",
-            "defval": "demo_de"
+            "description": "AbraFlexi comapny code",
+            "defval": "demo_de",
+            "required": true
         },
         "ABRAFLEXI_LOGIN": {
             "type": "string",
             "description": "AbraFlexi Login",
-            "defval": "winstrom"
+            "defval": "winstrom",
+            "required": true
         },
         "ABRAFLEXI_PASSWORD": {
             "type": "string",
             "description": "AbraFlexi password",
-            "defval": "winstrom"
+            "defval": "winstrom",
+            "required": true
         },
         "ABRAFLEXI_URL": {
             "type": "string",
             "description": "AbraFlexi Server URI",
-            "defval": "https:\/\/demo.flexibee.eu:5434"
+            "defval": "https:\/\/demo.flexibee.eu:5434",
+            "required": true
         }
     },
-    "multiflexi": "MultiFlexi v1.7.1.166 @127.0.1.1 2023-11-10 07:33:29 GMT"
+    "multiflexi": "1.7.2"
 }
