@@ -7,7 +7,6 @@
  */
 
 use AbraFlexi\FakturaVydana;
-use Ease\Functions;
 use Ease\Shared;
 
 define('APP_NAME', 'ShowUnsent');
@@ -17,7 +16,7 @@ require_once '../vendor/autoload.php';
 Shared::init(['ABRAFLEXI_URL', 'ABRAFLEXI_LOGIN', 'ABRAFLEXI_PASSWORD', 'ABRAFLEXI_COMPANY'], '../.env');
 
 $invoicer = new FakturaVydana(null, ['limit' => 0]);
-if (Functions::cfg('APP_DEBUG') == 'True') {
+if (Shared::cfg('APP_DEBUG') == 'True') {
     $invoicer->logBanner(Shared::appName());
 }
 $unsent = $invoicer->getColumnsFromAbraFlexi(

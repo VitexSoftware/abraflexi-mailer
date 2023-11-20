@@ -9,16 +9,15 @@
 namespace AbraFlexi\Mailer;
 
 use AbraFlexi\FakturaVydana;
-use Ease\Functions;
 use Ease\Html\PTag;
 use Ease\Shared;
 
-define('APP_NAME', 'SentUnsentWithAttachments');
+define('APP_NAME', 'AbraFlexiSentUnsentWithAttachments');
 require_once '../vendor/autoload.php';
-\Ease\Shared::init(['ABRAFLEXI_URL', 'ABRAFLEXI_LOGIN', 'ABRAFLEXI_PASSWORD', 'ABRAFLEXI_COMPANY', 'MAIL_FROM', 'LANG'], '../.env');
+\Ease\Shared::init(['ABRAFLEXI_URL', 'ABRAFLEXI_LOGIN', 'ABRAFLEXI_PASSWORD', 'ABRAFLEXI_COMPANY', 'MAIL_FROM', 'LANG'], array_key_exists(1, $argv) ? $argv[1] : '../.env');
 new \Ease\Locale();
 $invoicer = new FakturaVydana();
-if (Functions::cfg('APP_DEBUG') == 'True') {
+if (Shared::cfg('APP_DEBUG', false)) {
     $invoicer->logBanner(Shared::appName());
 }
 $unsent = $invoicer->getColumnsFromAbraFlexi(
@@ -50,14 +49,14 @@ if (empty($unsent)) {
 
         $mailer->addItem(new PTag($invoicer->getDataValue('popis')));
         $mailer->addAttachments();
-        if (Functions::cfg('ADD_QRCODE')) {
+        if (Shared::cfg('ADD_QRCODE')) {
             $mailer->addQrCode();
         }
 
 
         $lock = false;
         if ($invoicer->getDataValue('zamekK') == 'zamek.zamceno') {
-            if (\Ease\Functions::cfg('SEND_LOCKED') == 'True') {
+            if (\Ease\Shared::cfg('SEND_LOCKED') == 'True') {
                 $unlock = $invoicer->performAction('unlock', 'int');
                 if ($unlock['success'] == 'false') {
                     $this->addStatusMessage(_('Invoice locked: skipping process'), 'warning');
@@ -66,12 +65,13 @@ if (empty($unsent)) {
             }
         }
         try {
-            if (\Ease\Functions::cfg('DRY_RUN')) {
+            if (\Ease\Shared::cfg('DRY_RUN')) {
                 $result = ($mailer->send() === true);
             } else {
                 $result = (($mailer->send() === true) && $invoicer->sync(['id' => $invoicer->getRecordIdent(), 'stavMailK' => 'stavMail.odeslano']));
             }
         } catch (\AbraFlexi\Exception $exc) {
+            $mailer->addStatusMessage('Problem sending document ' . $invoicer->getRecordIdent(), 'error');
         }
 
         $invoicer->addStatusMessage(

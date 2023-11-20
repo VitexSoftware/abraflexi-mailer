@@ -6,7 +6,7 @@ use AbraFlexi\Formats;
 use AbraFlexi\Priloha;
 use AbraFlexi\RO;
 use AbraFlexi\ui\CompanyLogo;
-use Ease\Functions;
+use Ease\Shared;
 use Ease\Html\BodyTag;
 use Ease\Html\DivTag;
 use Ease\Html\HtmlTag;
@@ -65,7 +65,7 @@ class DocumentMailer extends HtmlMailer
     /**
      * Send Document by mail
      *
-     * @param RO $document AbraFlexi document object
+     * @param RO     $document AbraFlexi document object
      * @param string $sendTo recipient
      * @param string $subject
      */
@@ -75,13 +75,15 @@ class DocumentMailer extends HtmlMailer
         string $subject = null
     ) {
         $this->document = $document;
-        $this->fromEmailAddress = Functions::cfg('MAIL_FROM');
-        if (boolval(Functions::cfg('MUTE'))) {
-            $sendTo = Functions::cfg('EASE_MAILTO');
+        $this->fromEmailAddress = Shared::cfg('MAIL_FROM');
+        if (boolval(Shared::cfg('MUTE'))) {
+            $sendTo = Shared::cfg('EASE_MAILTO');
             $this->addStatusMessage(sprintf(_('Mute mode: SendTo forced: %s'), $sendTo), 'debug');
         } else {
-            if (empty($sendTo) && method_exists($this->document, 'getMail')) {
-                $sendTo = $this->document->getEmail();
+            if (empty($sendTo) && method_exists($this->document, 'getEmail')) {
+                $sendTo = $this->document->getEmail($this->docmentToRole($this->document));
+            } else {
+                $this->addStatusMessage(\Ease\Logger\Message::getCallerName($this->document) . ' does not have getEmail method', 'warning');
             }
         }
 
@@ -90,8 +92,8 @@ class DocumentMailer extends HtmlMailer
         }
 
         parent::__construct($sendTo, $subject);
-        if (Functions::cfg('MAIL_CC')) {
-            $this->setMailHeaders(['Bcc' => Functions::cfg('MAIL_CC')]);
+        if (Shared::cfg('MAIL_CC')) {
+            $this->setMailHeaders(['Bcc' => Shared::cfg('MAIL_CC')]);
         }
 
         $abraFlexiTemplate = $this->getAbraFlexiTemplate($document);
@@ -207,7 +209,7 @@ class DocumentMailer extends HtmlMailer
             Formats::$formats['ISDOCx']['content-type']
         );
         $heading = new DivTag($this->document->getEvidence() . ' ' . RO::uncode($this->document->getRecordIdent()));
-        if (Functions::cfg('ADD_LOGO')) {
+        if (Shared::cfg('ADD_LOGO')) {
             $this->addCompanyLogo($heading);
         } else {
             $this->addItem($heading);
@@ -343,5 +345,54 @@ class DocumentMailer extends HtmlMailer
             }
         }
         return $template;
+    }
+
+    /**
+     * Object To Contact Role
+     *
+     * @param \AbraFlexi\RO $document
+     *
+     * @return string Contact role Fak|Obj|Nab|Ppt|Skl|Pok or ''
+     */
+    public function docmentToRole($document)
+    {
+        switch (get_class($document)) {
+            case 'AbraFlexi\\FakturaPrijata':
+            case 'AbraFlexi\\FakturaPrijataPolozka':
+            case 'AbraFlexi\\FakturaVydana':
+            case 'AbraFlexi\\FakturaVydanaPolozka':
+                $role = 'Fa';
+                break;
+            case 'AbraFlexi\\ObjednavkaPrijata':
+            case 'AbraFlexi\\ObjednavkaPrijataPolozka':
+            case 'AbraFlexi\\ObjednavkaVydana':
+            case 'AbraFlexi\\ObjednavkaVydanaPolozka':
+                $role = 'Obj';
+                break;
+            case 'AbraFlexi\\NabidkaVydana':
+            case 'AbraFlexi\\NabidkaVydanaPolozka':
+            case 'AbraFlexi\\NabidkaPrijata':
+            case 'AbraFlexi\\NabidkaPrijataPolozka':
+                $role = 'Nab';
+                break;
+            case 'AbraFlexi\\PoptavkaVydana':
+            case 'AbraFlexi\\PoptavkaVydanaPolozka':
+            case 'AbraFlexi\\PoptavkaPrijata':
+            case 'AbraFlexi\\PoptavkaPrijataPolozka':
+                $role = 'Ppt';
+                break;
+            case 'AbraFlexi\\SkladovaKarta':
+            case 'AbraFlexi\\SkladovyPohyb':
+                $role = 'Skl';
+                break;
+            case 'AbraFlexi\\Pokladna':
+            case 'AbraFlexi\\PokladniPohyb':
+                $role = 'Pok';
+                break;
+            default:
+                $role = '';
+                break;
+        }
+        return $role;
     }
 }

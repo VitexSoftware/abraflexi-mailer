@@ -8,18 +8,17 @@
 
 use AbraFlexi\FakturaVydana;
 use AbraFlexi\RO;
-use Ease\Functions;
 use Ease\Shared;
 
 define('APP_NAME', 'AbraFlexiDocumentSender');
 require_once '../vendor/autoload.php';
 Shared::init(['ABRAFLEXI_URL', 'ABRAFLEXI_LOGIN', 'ABRAFLEXI_PASSWORD', 'ABRAFLEXI_COMPANY', 'MAIL_FROM'], '../.env');
-new \Ease\Locale(Functions::cfg('LC_ALL', 'cs_CZ'));
+new \Ease\Locale(Shared::cfg('LC_ALL', 'cs_CZ'));
 $document = (is_numeric($argv[1]) ? intval($argv[1]) : RO::code(RO::uncode($argv[1])));
 $evidence = array_key_exists(2, $argv) ? $argv[2] : 'faktura-vydana';
 if ($argc > 1) {
     $documentor = new FakturaVydana($document, ['evidence' => $evidence, 'ignore404' => true]);
-    if (\Ease\Functions::cfg('APP_DEBUG') == 'True') {
+    if (\Ease\Shared::cfg('APP_DEBUG') == 'True') {
         $documentor->logBanner(\Ease\Shared::appName() . ' v' . \Ease\Shared::appVersion());
     }
 
@@ -35,7 +34,7 @@ if ($argc > 1) {
             $mailer->addAttachments()
         ));
         if (array_key_exists('juhSum', $documentor->getColumnsInfo())) {
-            if (Functions::cfg('ADD_QRCODE')) {
+            if (Shared::cfg('ADD_QRCODE')) {
                 $mailer->addQrCode();
             }
         }

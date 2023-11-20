@@ -118,7 +118,7 @@ class Templater extends \Ease\Document
                     case 'application':
                         $templateBody = str_replace(
                             $key,
-                            \Ease\Functions::cfg('APP_NAME') . ' v' . \Ease\Shared::appVersion(),
+                            \Ease\Shared::cfg('APP_NAME') . ' v' . \Ease\Shared::appVersion(),
                             $templateBody
                         );
                         break;
