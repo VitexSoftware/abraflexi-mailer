@@ -76,7 +76,7 @@ a je uložena ve složce "templates" ( /usr/share/abraflexi-mailer/templates v D
 
 V šablonách je možné použít následující proměnné:
 
-* ${application} – Název aplikace, tedy "ABRA Flexi"
+* ${application} – Název aplikace, tedy "AbraFlexi BulkMail"
 * ${user} – Objekt uživatele, se kterým můžeme dále pracovat
 * ${company} – Nastavení firmy
 * ${uzivatelJmeno} – Vaše křestní jméno
@@ -85,7 +85,17 @@ V šablonách je možné použít následující proměnné:
 * ${nazevFirmy} – Název firmy
 * ${doklad} – Doklad určený k odeslání
 
-Hromadný rozesílač plní tyto proměnné pro každou odeslanou zprávu z https://demo.flexibee.eu/c/demo_de/adresar/properties
+Hromadný rozesílač
+------------------
+
+Pokud chceme obeslat všechny klienty z Pražské nerudovy ulice: 
+
+```shell
+abraflexi-bulkmail templates/template.ftl "(mesto='Praha' AND ulice='Nerudova')"
+```
+
+Při použití v [šabloně](tests/test.ftl) se proměnné pro každou odeslanou zprávu
+naplní z https://demo.flexibee.eu/c/demo_de/adresar/properties
 
 Závislosti
 ----------

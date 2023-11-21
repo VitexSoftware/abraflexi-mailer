@@ -19,3 +19,5 @@
 /debian/multiflexi-abraflexi-mailer.substvars
 /debian/multiflexi-abraflexi-mailer/
 
+/.vitexsoftware.env
+/.spojenet.env

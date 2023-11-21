@@ -11,11 +11,12 @@ use Ease\Shared;
 define('APP_NAME', 'AbraFlexiBulkMail');
 
 require_once '../vendor/autoload.php';
-Shared::init(['ABRAFLEXI_URL', 'ABRAFLEXI_LOGIN', 'ABRAFLEXI_PASSWORD', 'ABRAFLEXI_COMPANY', 'MAIL_FROM'], '../.env');
-new \Ease\Locale(Shared::cfg('LOCALIZE', 'cs_CZ'), '../i18n', 'abraflexi-mailer');
 $template = ($argv[1]);
 $query = array_key_exists(2, $argv) ? $argv[2] : '';
 if ($argc > 2) {
+    Shared::init(['ABRAFLEXI_URL', 'ABRAFLEXI_LOGIN', 'ABRAFLEXI_PASSWORD', 'ABRAFLEXI_COMPANY', 'MAIL_FROM'], array_key_exists(3, $argv) ? $argv[3] :  '../.env');
+    new \Ease\Locale(Shared::cfg('LOCALIZE', 'cs_CZ'), '../i18n', 'abraflexi-mailer');
+
     if (file_exists($template)) {
         $templater = new \AbraFlexi\Mailer\Templater(file_get_contents($template));
         if (\Ease\Shared::cfg('APP_DEBUG') == 'True') {
@@ -41,6 +42,6 @@ if ($argc > 2) {
     }
 } else {
     echo _('AbraFlexi BulkMail') . "\n";
-    echo "abraflexi-bulkmail <template> [recipient query]\n";
+    echo "abraflexi-bulkmail <template> [recipient query] [config/file.env]\n";
     echo "abraflexi-bulkmail oznameni_vypadku.ftl \"ulice=Lomená AND mesto=Praha\" \n";
 }
