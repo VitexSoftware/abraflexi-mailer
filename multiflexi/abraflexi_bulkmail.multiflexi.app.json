@@ -42,7 +42,7 @@
         "ABRAFLEXI_BULKMAIL_QUERY": {
             "type": "string",
             "description": "Filter of recipients",
-            "defval": "https:\/\/demo.flexibee.eu:5434",
+            "defval": "(kod='ZAKAZNIKA' or kod='ZAKAZNIKB' or kod='ZAKAZNIKC')",
             "required": true
         }
     },

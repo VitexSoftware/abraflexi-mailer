@@ -1,6 +1,6 @@
-<div style="backgrond: blue; color: yellow">
+<div>
 
-<h1>${application}<h1> 
+<h1 style="color: red">${application}<h1> 
 
 ${kod}
 ${nazev}
