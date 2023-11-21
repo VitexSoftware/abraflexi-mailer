@@ -7,3 +7,4 @@ override_dh_install:
 	dh_install
 	sed -i -e 's/..\/vendor/\/var\/lib\/abraflexi-mailer/g'   debian/abraflexi-mailer/usr/lib/abraflexi-mailer/*.php
 	sed -i -e 's/..\/.env//'                                  debian/abraflexi-mailer/usr/lib/abraflexi-mailer/*.php
+	sed -i -e 's/\.\.\/i18n/\/usr\/share\/locale/g'           debian/abraflexi-mailer/usr/lib/abraflexi-mailer/*.php

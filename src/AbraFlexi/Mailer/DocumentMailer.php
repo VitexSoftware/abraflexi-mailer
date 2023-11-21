@@ -81,7 +81,7 @@ class DocumentMailer extends HtmlMailer
             $this->addStatusMessage(sprintf(_('Mute mode: SendTo forced: %s'), $sendTo), 'debug');
         } else {
             if (empty($sendTo) && method_exists($this->document, 'getEmail')) {
-                $sendTo = $this->document->getEmail($this->docmentToRole($this->document));
+                $sendTo = $this->document->getRecipients();
             } else {
                 $this->addStatusMessage(\Ease\Logger\Message::getCallerName($this->document) . ' does not have getEmail method', 'warning');
             }
@@ -98,9 +98,9 @@ class DocumentMailer extends HtmlMailer
 
         $abraFlexiTemplate = $this->getAbraFlexiTemplate($document);
         if ($abraFlexiTemplate) {
-            $this->htmlDocument = new Templater($document, $abraFlexiTemplate['textSablona']);
+            $this->htmlDocument = new Templater($abraFlexiTemplate, $document);
         } elseif (file_exists($this->templateFile())) {
-            $this->htmlDocument = new Templater($document, file_get_contents($this->templateFile()));
+            $this->htmlDocument = new Templater(file_get_contents($this->templateFile()), $document);
 //            $this->htmlBody = $this->htmlDocument->body;
         } else {
             $this->htmlDocument = new HtmlTag(new SimpleHeadTag([

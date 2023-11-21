@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AbraFlexi document mailer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-03 08:12+0100\n"
-"PO-Revision-Date: 2021-01-03 08:13+0100\n"
+"POT-Creation-Date: 2023-11-21 15:31+0100\n"
+"PO-Revision-Date: 2023-11-21 15:37+0100\n"
 "Last-Translator: Vítězslav Dvořák <info@vitexsoftware.cz>\n"
 "Language-Team: Vitex Software <info@vitexsoftware.cz>\n"
 "Language: cs_CZ\n"
@@ -13,26 +13,86 @@ msgstr ""
 "X-Poedit-KeywordsList: _;gettext;gettext_noop\n"
 "X-Poedit-Basepath: ../../../src\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Generator: Poedit 2.4.1\n"
+"X-Generator: Poedit 2.4.2\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: AbraFlexi/Mailer/Mailer.php:155
+#: AbraFlexi/Mailer/DocumentMailer.php:81
+#, php-format
+msgid "Mute mode: SendTo forced: %s"
+msgstr "Tichý režim: Příjemce je nyní vždy %s"
+
+#: AbraFlexi/Mailer/DocumentMailer.php:226
 msgid "Company logo"
 msgstr "Logo společnosti"
 
-#: AbraFlexi/Mailer/Mailer.php:170
+#: AbraFlexi/Mailer/DocumentMailer.php:247
 msgid "QR Payment"
 msgstr "QR platba"
 
-#: SendUnsent.php:24
+#: AbraFlexi/Mailer/DocumentMailer.php:251
+msgid "Error adding QR Code"
+msgstr "Chyba přidání QR Code"
+
+#: AbraFlexi/Mailer/Templater.php:149
+#, php-format
+msgid "Unknown template's variable: %s"
+msgstr "Neznámá proměnná v šabloně %s"
+
+#: BulkMail.php:27
+#, php-format
+msgid "Query \"%s\" found %d recipients"
+msgstr "Dotaz \"%s\" nalezl %d adresátů"
+
+#: BulkMail.php:33
+#, php-format
+msgid "Sending to %s %s %s"
+msgstr "Odesílám na %s %s %s"
+
+#: BulkMail.php:39
+#, php-format
+msgid "Template file %s not found"
+msgstr "Soubor šablony %s nebyl nalezen"
+
+#: BulkMail.php:42
+msgid "AbraFlexi BulkMail"
+msgstr "Hromadná pošta z AbraFlexi"
+
+#: SendDocument.php:32
+msgid "Attaching"
+msgstr "Přikládám"
+
+#: SendDocument.php:50
+#, php-format
+msgid "Cannot read %s %s"
+msgstr "Nemohu číst %s %s"
+
+#: SendDocument.php:56
+msgid "AbraFlexi Document Sender"
+msgstr "Odesílač dokladů AbraFlexi"
+
+#: SendUnsent.php:19
 msgid "Send unsent mails"
 msgstr "Odeslat neodeslané"
 
-#: SendUnsentAttachments.php:27 ShowUnsent.php:24
+#: SendUnsentWithAttachments.php:31 ShowUnsent.php:29
 msgid "all sent"
 msgstr "vše odesláno"
 
-#: SendUnsentAttachments.php:51 ShowUnsent.php:30
+#: SendUnsentWithAttachments.php:62
+msgid "Invoice locked: skipping process"
+msgstr "Faktura uzamčena: přeskakuji zpracování"
+
+#: SendUnsentWithAttachments.php:84
+#, php-format
+msgid "Invoice %s locked again"
+msgstr "Faktura %s znovu uzamčena"
+
+#: SendUnsentWithAttachments.php:86
+#, php-format
+msgid "Invoice %s locking failed"
+msgstr "Selhalo %s zamykání faktury"
+
+#: SendUnsentWithAttachments.php:90 ShowUnsent.php:38
 msgid "total"
 msgstr "celkem"
 
@@ -53,9 +113,6 @@ msgstr "celkem"
 
 #~ msgid "Invoice matching begin"
 #~ msgstr "Počátek párování faktur"
-
-#~ msgid "Invoice matching done"
-#~ msgstr "Párování faktur ukončeno"
 
 #, fuzzy
 #~ msgid "About Application"
@@ -227,10 +284,6 @@ msgstr "celkem"
 
 #~ msgid "Není vyplněno ' + errors + ' políček. Tyto byly označeny"
 #~ msgstr "Není vyplněno ' + errors + ' políček. Tyto byly označeny"
-
-#, fuzzy
-#~ msgid "The item %s not removed"
-#~ msgstr "Položka košíku %s byla odstraněna"
 
 #, fuzzy
 #~ msgid "Sensor Deploy"
@@ -915,10 +968,6 @@ msgstr "celkem"
 #, fuzzy
 #~ msgid "Your new password was sent to %s"
 #~ msgstr "Vaše nové heslo bylo odesláno na %s"
-
-#, fuzzy
-#~ msgid "unknown email address %s"
-#~ msgstr "Neznámá mailová adresa %s"
 
 #, fuzzy
 #~ msgid "Please enter your email."

@@ -9,19 +9,20 @@
 use Ease\Shared;
 
 define('APP_NAME', 'AbraFlexiBulkMail');
+
 require_once '../vendor/autoload.php';
 Shared::init(['ABRAFLEXI_URL', 'ABRAFLEXI_LOGIN', 'ABRAFLEXI_PASSWORD', 'ABRAFLEXI_COMPANY', 'MAIL_FROM'], '../.env');
-new \Ease\Locale(Shared::cfg('LC_ALL', 'cs_CZ'));
+new \Ease\Locale(Shared::cfg('LOCALIZE', 'cs_CZ'), '../i18n', 'abraflexi-mailer');
 $template = ($argv[1]);
 $query = array_key_exists(2, $argv) ? $argv[2] : '';
 if ($argc > 2) {
     if (file_exists($template)) {
         $templater = new \AbraFlexi\Mailer\Templater(file_get_contents($template));
         if (\Ease\Shared::cfg('APP_DEBUG') == 'True') {
-            $templater->logBanner(\Ease\Shared::appName());
+            $templater->logBanner();
         }
 
-        $document = new \AbraFlexi\Adresar(null, ['limit' => 0,'detail' => 'full']);
+        $document = new \AbraFlexi\Adresar(null, ['limit' => 0, 'detail' => 'full']);
         $to = $document->getFlexiData('', $query);
 
         $document->addStatusMessage(sprintf(_('Query "%s" found %d recipients'), $query, count($to)), 'debug');
@@ -32,7 +33,7 @@ if ($argc > 2) {
             $mailAddress = $document->getNotificationEmailAddress();
             $document->addStatusMessage(sprintf(_('Sending to %s %s %s'), $document->getRecordCode(), $document->getDataValue('nazev'), $mailAddress));
             $templater->populate($document);
-            $mailer = new \Ease\HtmlMailer($mailAddress, pathinfo($template, PATHINFO_FILENAME), $templater->getRendered(), ['from' => Shared::cfg('MAIL_FROM')]);
+            $mailer = new \Ease\HtmlMailer($mailAddress, pathinfo($template, PATHINFO_FILENAME), $templater->getRendered(), ['From' => Shared::cfg('MAIL_FROM')]);
             $mailer->send();
         }
     } else {

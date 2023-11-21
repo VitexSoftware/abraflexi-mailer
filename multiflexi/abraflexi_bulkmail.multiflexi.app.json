@@ -34,7 +34,7 @@
             "required": true
         },
         "ABRAFLEXI_BULKMAIL_TEMPLATE": {
-            "type": "string",
+            "type": "file",
             "description": "Mail Template Filename",
             "defval": "",
             "required": true

@@ -13,7 +13,7 @@ use Ease\Shared;
 define('APP_NAME', 'AbraFlexiDocumentSender');
 require_once '../vendor/autoload.php';
 Shared::init(['ABRAFLEXI_URL', 'ABRAFLEXI_LOGIN', 'ABRAFLEXI_PASSWORD', 'ABRAFLEXI_COMPANY', 'MAIL_FROM'], '../.env');
-new \Ease\Locale(Shared::cfg('LC_ALL', 'cs_CZ'));
+new \Ease\Locale(Shared::cfg('LOCALIZE', 'cs_CZ'), '../i18n', 'abraflexi-mailer');
 $document = (is_numeric($argv[1]) ? intval($argv[1]) : RO::code(RO::uncode($argv[1])));
 $evidence = array_key_exists(2, $argv) ? $argv[2] : 'faktura-vydana';
 if ($argc > 1) {

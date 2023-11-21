@@ -34,12 +34,16 @@ class Templater extends \Ease\Document
     /**
      * Template
      *
-     * @param string $template .ftl file content
+     * @param string       $template          .ftl file content
+     * @param \AbraFlexiRO $abraflexiDocument AbraFlexi Document
      */
-    public function __construct($template)
+    public function __construct($template, \AbraFlexi\RO $abraflexiDocument = null)
     {
         $this->template = $template;
         parent::__construct();
+        if ($abraflexiDocument) {
+            $this->populate($abraflexiDocument);
+        }
     }
 
 
@@ -64,7 +68,6 @@ class Templater extends \Ease\Document
      */
     public function process($templateBody)
     {
-
         if (preg_match_all('/\$\{(.*?)\}/', $templateBody, $vars)) {
             foreach ($vars[1] as $pos => $var) {
                 $base = self::variableBase($var);
@@ -118,7 +121,7 @@ class Templater extends \Ease\Document
                     case 'application':
                         $templateBody = str_replace(
                             $key,
-                            \Ease\Shared::cfg('APP_NAME') . ' v' . \Ease\Shared::appVersion(),
+                            \Ease\Shared::appName() . ' ' . \Ease\Shared::appVersion(),
                             $templateBody
                         );
                         break;

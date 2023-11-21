@@ -15,7 +15,7 @@ use Ease\Shared;
 define('APP_NAME', 'AbraFlexiSentUnsentWithAttachments');
 require_once '../vendor/autoload.php';
 \Ease\Shared::init(['ABRAFLEXI_URL', 'ABRAFLEXI_LOGIN', 'ABRAFLEXI_PASSWORD', 'ABRAFLEXI_COMPANY', 'MAIL_FROM', 'LANG'], array_key_exists(1, $argv) ? $argv[1] : '../.env');
-new \Ease\Locale();
+new \Ease\Locale(Shared::cfg('LOCALIZE', 'cs_CZ'), '../i18n', 'abraflexi-mailer');
 $invoicer = new FakturaVydana();
 if (Shared::cfg('APP_DEBUG', false)) {
     $invoicer->logBanner(Shared::appName());

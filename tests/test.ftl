@@ -1,7 +1,6 @@
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<div style="backgrond: blue; color: yellow">
 
-${application} 
-============================
+<h1>${application}<h1> 
 
 ${kod}
 ${nazev}
@@ -9,4 +8,4 @@ ${email}
 ${ulice}
 ${stitky}
 
--------------------------------
+</div>

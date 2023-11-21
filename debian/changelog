@@ -1,4 +1,4 @@
-abraflexi-mailer (1.0.2) UNRELEASED; urgency=medium
+abraflexi-mailer (1.1.0) UNRELEASED; urgency=medium
 
   [ vitex ]
   * "Send Unsent mail" tool added
@@ -8,4 +8,7 @@ abraflexi-mailer (1.0.2) UNRELEASED; urgency=medium
   [  ]
   * Class Loader Fix
 
- --  <vitezslav.dvorak@spojenet.cz>  Wed, 15 Nov 2023 11:50:29 +0100
+  [  ]
+  * Bulk Maile works now somehow
+
+ --  <vitezslav.dvorak@spojenet.cz>  Tue, 21 Nov 2023 15:22:17 +0100
