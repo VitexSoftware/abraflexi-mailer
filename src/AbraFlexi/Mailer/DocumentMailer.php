@@ -76,9 +76,10 @@ class DocumentMailer extends HtmlMailer
     ) {
         $this->document = $document;
         $this->fromEmailAddress = Shared::cfg('MAIL_FROM');
+        $this->setObjectName();
         if (boolval(Shared::cfg('MUTE'))) {
             $sendTo = Shared::cfg('EASE_MAILTO');
-            $this->addStatusMessage(sprintf(_('Mute mode: SendTo forced: %s'), $sendTo), 'debug');
+            $this->addStatusMessage(sprintf(_('Mute mode: SendTo forced: %s'), $sendTo), 'warning');
         } else {
             if (empty($sendTo) && method_exists($this->document, 'getEmail')) {
                 $sendTo = $this->document->getRecipients();
@@ -98,7 +99,7 @@ class DocumentMailer extends HtmlMailer
 
         $abraFlexiTemplate = $this->getAbraFlexiTemplate($document);
         if ($abraFlexiTemplate) {
-            $this->htmlDocument = new Templater($abraFlexiTemplate, $document);
+            $this->htmlDocument = new Templater($abraFlexiTemplate['textSablona'], $document);
         } elseif (file_exists($this->templateFile())) {
             $this->htmlDocument = new Templater(file_get_contents($this->templateFile()), $document);
 //            $this->htmlBody = $this->htmlDocument->body;
@@ -347,52 +348,21 @@ class DocumentMailer extends HtmlMailer
         return $template;
     }
 
-    /**
-     * Object To Contact Role
-     *
-     * @param \AbraFlexi\RO $document
-     *
-     * @return string Contact role Fak|Obj|Nab|Ppt|Skl|Pok or ''
-     */
-    public function docmentToRole($document)
+    public function javaToApiMacros()
     {
-        switch (get_class($document)) {
-            case 'AbraFlexi\\FakturaPrijata':
-            case 'AbraFlexi\\FakturaPrijataPolozka':
-            case 'AbraFlexi\\FakturaVydana':
-            case 'AbraFlexi\\FakturaVydanaPolozka':
-                $role = 'Fa';
-                break;
-            case 'AbraFlexi\\ObjednavkaPrijata':
-            case 'AbraFlexi\\ObjednavkaPrijataPolozka':
-            case 'AbraFlexi\\ObjednavkaVydana':
-            case 'AbraFlexi\\ObjednavkaVydanaPolozka':
-                $role = 'Obj';
-                break;
-            case 'AbraFlexi\\NabidkaVydana':
-            case 'AbraFlexi\\NabidkaVydanaPolozka':
-            case 'AbraFlexi\\NabidkaPrijata':
-            case 'AbraFlexi\\NabidkaPrijataPolozka':
-                $role = 'Nab';
-                break;
-            case 'AbraFlexi\\PoptavkaVydana':
-            case 'AbraFlexi\\PoptavkaVydanaPolozka':
-            case 'AbraFlexi\\PoptavkaPrijata':
-            case 'AbraFlexi\\PoptavkaPrijataPolozka':
-                $role = 'Ppt';
-                break;
-            case 'AbraFlexi\\SkladovaKarta':
-            case 'AbraFlexi\\SkladovyPohyb':
-                $role = 'Skl';
-                break;
-            case 'AbraFlexi\\Pokladna':
-            case 'AbraFlexi\\PokladniPohyb':
-                $role = 'Pok';
-                break;
-            default:
-                $role = '';
-                break;
-        }
-        return $role;
+        echo
+        '${object.nazFirmy}',
+        '${object}',
+        '${object.bspBan.buc}',
+        '${object.bspBan.smerKod}',
+        '${object.mena.kod}',
+        '${object.varSym}',
+        '${object.nazFirmy}',
+        '${object.sumCelkem}',
+        '${object.mena.symbol}',
+        '${object.datSplat}',
+        '${object.varSym}',
+        '${object.bspBan.buc}',
+        '${object.bspBan.smerKod}';
     }
 }

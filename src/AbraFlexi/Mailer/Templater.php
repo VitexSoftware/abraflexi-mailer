@@ -32,6 +32,12 @@ class Templater extends \Ease\Document
     public $template;
 
     /**
+     * Sender Company
+     * @var \AbraFlexi\Nastaveni
+     */
+    private $myCompany;
+
+    /**
      * Template
      *
      * @param string       $template          .ftl file content
@@ -46,7 +52,6 @@ class Templater extends \Ease\Document
         }
     }
 
-
     /**
      * Populate Template with data
      *
@@ -56,6 +61,8 @@ class Templater extends \Ease\Document
     {
         $this->emptyContents();
         $this->document = $abraflexiDocument;
+        $this->myCompany = new \AbraFlexi\Nastaveni(1);
+
         $this->addItem($this->process($this->template));
     }
 
@@ -127,19 +134,28 @@ class Templater extends \Ease\Document
                         break;
                     case 'nazevFirmy':
                     case 'company':
-                        $company = new \AbraFlexi\Company($this->document->company);
                         if ($prop) {
                             $templateBody = str_replace(
                                 $key,
-                                $company->getDataValue($prop),
+                                $this->myCompany->getDataValue($prop),
                                 $templateBody
                             );
                         } else {
                             $templateBody = str_replace(
                                 $key,
-                                $company->getDataValue('nazev'),
+                                $this->myCompany->getDataValue('nazev'),
                                 $templateBody
                             );
+                        }
+                        break;
+                    case 'object':
+                            $objectData = $this->document->getData();
+                        if ($prop == '') {
+                            $templateBody = str_replace($key, $this->document->getRecordCode(), $templateBody);
+                        } elseif (array_key_exists($prop, $objectData)) {
+                            $templateBody = str_replace($key, \AbraFlexi\RO::uncode($this->document->getDataValue($prop)), $templateBody);
+                        } else {
+                            $this->addStatusMessage(sprintf(_('Cannot find %s in %s'), $key, $this->document), 'warning');
                         }
                         break;
                     default:
@@ -171,6 +187,13 @@ class Templater extends \Ease\Document
         return $base;
     }
 
+    /**
+     *
+     *
+     * @param string $key
+     *
+     * @return string
+     */
     public static function variableProperty($key)
     {
         $property = '';
@@ -180,6 +203,12 @@ class Templater extends \Ease\Document
         return $property;
     }
 
+    /**
+     *
+     * @param string $var
+     *
+     * @return string
+     */
     public static function stripMarkup($var)
     {
         return substr($var, 2, strlen($var) - 3);

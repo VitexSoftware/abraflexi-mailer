@@ -18,10 +18,10 @@ require_once '../vendor/autoload.php';
 new \Ease\Locale(Shared::cfg('LOCALIZE', 'cs_CZ'), '../i18n', 'abraflexi-mailer');
 $invoicer = new FakturaVydana();
 if (Shared::cfg('APP_DEBUG', false)) {
-    $invoicer->logBanner(Shared::appName());
+    $invoicer->logBanner();
 }
 $unsent = $invoicer->getColumnsFromAbraFlexi(
-    ['firma', 'kontaktEmail', 'popis', 'poznam', 'typDokl'],
+    'full',
     ['stavMailK' => 'stavMail.odeslat', 'limit' => 0,
         //'lastUpdate gt "'. \AbraFlexi\RO::dateToFlexiDateTime( new \DateTime('-1 hour') ).'"'
         ],
