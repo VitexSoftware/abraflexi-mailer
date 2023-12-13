@@ -63,6 +63,8 @@ class Templater extends \Ease\Document
         $this->document = $abraflexiDocument;
         $this->myCompany = new \AbraFlexi\Nastaveni(1);
 
+        $templateData = ['company' => $this->myCompany->getData(), 'object' => $this->document->getData()];
+        file_put_contents('/tmp/templatedata.json', json_encode($templateData));
         $this->addItem($this->process($this->template));
     }
 
@@ -149,7 +151,7 @@ class Templater extends \Ease\Document
                         }
                         break;
                     case 'object':
-                            $objectData = $this->document->getData();
+                        $objectData = $this->document->getData();
                         if ($prop == '') {
                             $templateBody = str_replace($key, $this->document->getRecordCode(), $templateBody);
                         } elseif (array_key_exists($prop, $objectData)) {
