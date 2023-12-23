@@ -14,7 +14,7 @@ require_once '../vendor/autoload.php';
 $template = ($argv[1]);
 $query = array_key_exists(2, $argv) ? $argv[2] : '';
 if ($argc > 2) {
-    Shared::init(['ABRAFLEXI_URL', 'ABRAFLEXI_LOGIN', 'ABRAFLEXI_PASSWORD', 'ABRAFLEXI_COMPANY', 'MAIL_FROM'], array_key_exists(3, $argv) ? $argv[3] :  '../.env');
+    Shared::init(['ABRAFLEXI_URL', 'ABRAFLEXI_LOGIN', 'ABRAFLEXI_PASSWORD', 'ABRAFLEXI_COMPANY', 'MAIL_FROM'], array_key_exists(3, $argv) ? $argv[3] : '../.env');
     new \Ease\Locale(Shared::cfg('LOCALIZE', 'cs_CZ'), '../i18n', 'abraflexi-mailer');
 
     if (file_exists($template)) {
@@ -32,10 +32,14 @@ if ($argc > 2) {
             $document->setData($recipient, true);
             $document->updateApiURL();
             $mailAddress = $document->getNotificationEmailAddress();
-            $document->addStatusMessage(sprintf(_('Sending to %s %s %s'), $document->getRecordCode(), $document->getDataValue('nazev'), $mailAddress));
-            $templater->populate($document);
-            $mailer = new \Ease\HtmlMailer($mailAddress, pathinfo($template, PATHINFO_FILENAME), $templater->getRendered(), ['From' => Shared::cfg('MAIL_FROM')]);
-            $mailer->send();
+            if ($mailAddress) {
+                $document->addStatusMessage(sprintf(_('Sending to %s %s %s'), $document->getRecordCode(), $document->getDataValue('nazev'), $mailAddress));
+                $templater->populate($document);
+                $mailer = new \Ease\HtmlMailer($mailAddress, pathinfo($template, PATHINFO_FILENAME), $templater->getRendered(), ['From' => Shared::cfg('MAIL_FROM')]);
+                $mailer->send();
+            } else {
+                $document->addStatusMessage(sprintf(_('Address and contact %s without email address'), $document), 'warning');
+            }
         }
     } else {
         die(sprintf(_('Template file %s not found'), realpath($template)));

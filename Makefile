@@ -72,8 +72,8 @@ dimage: deb
 dtest:
 	docker-compose run --rm default install
         
-drun: dimage
-	docker run  -dit --name AbraFlexiMailer -p 2323:80 vitexsoftware/abraflexi-mailer
+#drun: dimage
+#	docker run  -dit --name AbraFlexiMailer -p 2323:80 vitexsoftware/abraflexi-mailer
 
 release:
 	echo Release v$(nextversion)
@@ -81,6 +81,17 @@ release:
 	debuild -i -us -uc -b
 	git commit -a -m "Release v$(nextversion)"
 	git tag -a $(nextversion) -m "version $(nextversion)"
+
+
+buildimage:
+	docker build -f Containerfile  -t vitexsoftware/abraflexi-mailer:latest .
+
+buildx:
+	docker buildx build  -f Containerfile  . --push --platform linux/arm/v7,linux/arm64/v8,linux/amd64 --tag vitexsoftware/abraflexi-mailer:latest
+
+drun:
+	docker run  -f Containerfile --env-file .env vitexsoftware/abraflexi-mailer:latest
+
 
 
 .PHONY : install

@@ -8,3 +8,7 @@ override_dh_install:
 	sed -i -e 's/..\/vendor/\/var\/lib\/abraflexi-mailer/g'   debian/abraflexi-mailer/usr/lib/abraflexi-mailer/*.php
 	sed -i -e 's/..\/.env//'                                  debian/abraflexi-mailer/usr/lib/abraflexi-mailer/*.php
 	sed -i -e 's/\.\.\/i18n/\/usr\/share\/locale/g'           debian/abraflexi-mailer/usr/lib/abraflexi-mailer/*.php
+	jq '.version = "'`dpkg-parsechangelog | sed -n 's/^Version: //p'| sed 's/~.*//'`'"'  multiflexi/abraflexi_bulkmail.multiflexi.app.json |sponge debian/multiflexi-abraflexi-mailer/usr/lib/abraflexi-mailer/multiflexi/abraflexi_bulkmail.multiflexi.app.json
+	jq '.version = "'`dpkg-parsechangelog | sed -n 's/^Version: //p'| sed 's/~.*//'`'"'  multiflexi/abraflexi_send.multiflexi.app.json |sponge debian/multiflexi-abraflexi-mailer/usr/lib/abraflexi-mailer/multiflexi/abraflexi_send.multiflexi.app.json
+	jq '.version = "'`dpkg-parsechangelog | sed -n 's/^Version: //p'| sed 's/~.*//'`'"'  multiflexi/email_sender.multiflexi.app.json |sponge debian/multiflexi-abraflexi-mailer/usr/lib/abraflexi-mailer/multiflexi/email_sender.multiflexi.app.json
+	jq '.version = "'`dpkg-parsechangelog | sed -n 's/^Version: //p'| sed 's/~.*//'`'"'  multiflexi/show_unsent.multiflexi.app.json |sponge debian/multiflexi-abraflexi-mailer/usr/lib/abraflexi-mailer/multiflexi/show_unsent.multiflexi.app.json
