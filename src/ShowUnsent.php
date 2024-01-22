@@ -3,7 +3,7 @@
 /**
  * abraflexi-show-unsent
  *
- * @copyright (c) 2018-2023, Vítězslav Dvořák
+ * @copyright (c) 2018-2024, Vítězslav Dvořák
  */
 
 use AbraFlexi\FakturaVydana;
@@ -31,10 +31,14 @@ if (empty($unsent)) {
 } else {
     foreach ($unsent as $unsentData) {
         $invoicer->setData($unsentData);
+        $unsent[$unsentData['kod']]['email'] = $invoicer->getEmail();
+        $unsent[$unsentData['kod']]['recipients'] = $invoicer->getRecipients();
         $invoicer->addStatusMessage(
-            $unsentData['kod'] . "\t" . $unsentData['firma'] . "\t" . $invoicer->getEmail() . ' ' . $invoicer->getRecipients() . "\t" . $unsentData['poznam'],
+            $unsentData['kod'] . "\t" . $unsentData['firma'] . "\t" . $unsent[$unsentData['kod']]['email'] . ' ' . $unsent[$unsentData['kod']]['recipients'] . "\t" . $unsentData['poznam'],
             'warning'
         );
     }
     $invoicer->addStatusMessage(count($unsent) . ' ' . _('total'), 'warning');
 }
+
+echo json_encode($unsent, \Ease\Shared::cfg('DEBUG') ? JSON_PRETTY_PRINT : 0);

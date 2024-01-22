@@ -1,4 +1,4 @@
-abraflexi-mailer (1.1.1) UNRELEASED; urgency=medium
+abraflexi-mailer (1.2.0) UNRELEASED; urgency=medium
 
   [ vitex ]
   * "Send Unsent mail" tool added
@@ -11,5 +11,6 @@ abraflexi-mailer (1.1.1) UNRELEASED; urgency=medium
   [  ]
   * Bulk Maile works now somehow
   * Do not fail on empty address
+  * Show Unsent Json Output
 
- -- vitex <info@vitexsoftware.cz>  Sat, 23 Dec 2023 17:35:19 +0100
+ -- vitex <info@vitexsoftware.cz>  Mon, 22 Jan 2024 23:08:47 +0100
