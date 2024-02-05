@@ -145,7 +145,7 @@ class Templater extends \Ease\Document
                         } else {
                             $templateBody = str_replace(
                                 $key,
-                                $this->myCompany->getDataValue('nazev'),
+                                $this->myCompany->getDataValue('nazFirmy'),
                                 $templateBody
                             );
                         }

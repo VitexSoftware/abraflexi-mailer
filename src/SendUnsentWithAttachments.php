@@ -3,7 +3,7 @@
 /**
  * abraflexi-send-unsent-with-attachments
  *
- * @copyright (c) 2018-2023, Vítězslav Dvořák
+ * @copyright (c) 2018-2024, Vítězslav Dvořák
  */
 
 namespace AbraFlexi\Mailer;
@@ -53,7 +53,6 @@ if (empty($unsent)) {
             $mailer->addQrCode();
         }
 
-
         $lock = false;
         if ($invoicer->getDataValue('zamekK') == 'zamek.zamceno') {
             if (\Ease\Shared::cfg('SEND_LOCKED') == 'True') {
@@ -65,15 +64,15 @@ if (empty($unsent)) {
             }
         }
         try {
-            if (\Ease\Shared::cfg('DRY_RUN')) {
+            if (strtolower(\Ease\Shared::cfg('DRY_RUN', '')) == 'true') {
                 $result = ($mailer->send() === true);
             } else {
                 $result = (($mailer->send() === true) && $invoicer->sync(['id' => $invoicer->getRecordIdent(), 'stavMailK' => 'stavMail.odeslano']));
             }
-        } catch (\AbraFlexi\Exception $exc) {
-            $mailer->addStatusMessage('Problem sending document ' . $invoicer->getRecordIdent(), 'error');
+        } catch (\Exception $exc) {
+            $mailer->addStatusMessage('Problem sending document ' . $invoicer->getRecordCode(), 'error');
+            $result = false;
         }
-
         $invoicer->addStatusMessage(
             $unsentData['kod'] . "\t" . $unsentData['firma'] . "\t" . $invoicer->getEmail() . "\t" . $unsentData['poznam'],
             $result ? 'success' : 'error'
