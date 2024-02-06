@@ -30,7 +30,7 @@ $unsent = $invoicer->getColumnsFromAbraFlexi(
 if (empty($unsent)) {
     $invoicer->addStatusMessage(_('all sent'), 'success');
 } else {
-    foreach ($unsent as $unsentData) {
+    foreach ($unsent as $unsentId => $unsentData) {
         $invoicer->setData($unsentData);
         $invoicer->updateApiURL();
         $mailer = new DocumentMailer($invoicer);
@@ -63,16 +63,25 @@ if (empty($unsent)) {
                 }
             }
         }
+        $result = false;
         try {
-            if (strtolower(\Ease\Shared::cfg('DRY_RUN', '')) == 'true') {
-                $result = ($mailer->send() === true);
-            } else {
-                $result = (($mailer->send() === true) && $invoicer->sync(['id' => $invoicer->getRecordIdent(), 'stavMailK' => 'stavMail.odeslano']));
-            }
+            $sendResult = $mailer->send();
         } catch (\Exception $exc) {
             $mailer->addStatusMessage('Problem sending document ' . $invoicer->getRecordCode(), 'error');
-            $result = false;
         }
+
+        if (strtolower(\Ease\Shared::cfg('DRY_RUN', '')) != 'true') {
+            $invoiceUpdate = $invoicer->sync(['id' => $invoicer->getRecordIdent(), 'stavMailK' => 'stavMail.odeslano']);
+            $invoicer->addStatusMessage(sprintf(_('Updating Mail State of %s to "sent"'), $invoicer), $invoiceUpdate ? 'success' : 'event');
+            $result = ($sendResult && $invoiceUpdate);
+        } else {
+            $result = $sendResult;
+        }
+
+        if ($result === true) {
+            unset($unsent[$unsentId]);
+        }
+
         $invoicer->addStatusMessage(
             $unsentData['kod'] . "\t" . $unsentData['firma'] . "\t" . $invoicer->getEmail() . "\t" . $unsentData['poznam'],
             $result ? 'success' : 'error'
@@ -86,5 +95,5 @@ if (empty($unsent)) {
             }
         }
     }
-    $invoicer->addStatusMessage(count($unsent) . ' ' . _('total'), 'warning');
+    $invoicer->addStatusMessage(count($unsent) . ' ' . _('total'), 'info');
 }
