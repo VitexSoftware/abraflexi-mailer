@@ -22,7 +22,7 @@ if (Shared::cfg('APP_DEBUG', false)) {
 }
 $unsent = $invoicer->getColumnsFromAbraFlexi(
     'full',
-    ['stavMailK' => 'stavMail.odeslat', 'limit' => 0,
+    ['stavMailK' => 'stavMail.odeslat', 'limit' => 0, 'storno' => false,
         //'lastUpdate gt "'. \AbraFlexi\RO::dateToFlexiDateTime( new \DateTime('-1 hour') ).'"'
         ],
     'kod'
@@ -54,28 +54,34 @@ if (empty($unsent)) {
         }
 
         $lock = false;
-        if ($invoicer->getDataValue('zamekK') == 'zamek.zamceno') {
-            if (\Ease\Shared::cfg('SEND_LOCKED') == 'True') {
+        if ($invoicer->getDataValue('zamekK') != 'zamek.otevreno') {
+            if (\Ease\Shared::cfg('SEND_LOCKED', false) == 'True') {
                 $unlock = $invoicer->performAction('unlock', 'int');
                 if ($unlock['success'] == 'false') {
-                    $this->addStatusMessage(_('Invoice locked: skipping process'), 'warning');
-                    $lock = true;
+                    $invoicer->addStatusMessage(sprintf(_('Invoice %s cannot unlock: skipping process'), $invoicer->getRecordCode()), 'warning');
+                    continue;
                 }
+            } else {
+                $invoicer->addStatusMessage(sprintf(_('Invoice %s locked: skipping process'), $invoicer->getRecordCode()), 'info');
+                continue;
             }
         }
         $result = false;
-        try {
-            $sendResult = $mailer->send();
-        } catch (\Exception $exc) {
-            $mailer->addStatusMessage('Problem sending document ' . $invoicer->getRecordCode(), 'error');
-        }
-
         if (strtolower(\Ease\Shared::cfg('DRY_RUN', '')) != 'true') {
-            $invoiceUpdate = $invoicer->sync(['id' => $invoicer->getRecordIdent(), 'stavMailK' => 'stavMail.odeslano']);
-            $invoicer->addStatusMessage(sprintf(_('Updating Mail State of %s to "sent"'), $invoicer), $invoiceUpdate ? 'success' : 'event');
-            $result = ($sendResult && $invoiceUpdate);
+            try {
+                $sendResult = $mailer->send();
+                if ($sendResult) {
+                    $invoiceUpdate = $invoicer->sync(['id' => $invoicer->getRecordIdent(), 'stavMailK' => 'stavMail.odeslano']);
+                } else {
+                    $invoiceUpdate = false;
+                }
+                $invoicer->addStatusMessage(sprintf(_('Updating Mail State of %s to "sent"'), $invoicer), $invoiceUpdate ? 'success' : 'event');
+                $result = ($sendResult && $invoiceUpdate);
+            } catch (\Exception $exc) {
+                $mailer->addStatusMessage('Problem sending document ' . $invoicer->getRecordCode(), 'error');
+            }
         } else {
-            $result = $sendResult;
+            $result = false;
         }
 
         if ($result === true) {
