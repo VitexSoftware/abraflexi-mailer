@@ -129,7 +129,7 @@ class DocumentMailer extends HtmlMailer
 
         $this->addInvoice();
         $this->addItem(new \Ease\Html\HrTag());
-        $this->addItem(new \Ease\Html\PTag(\Ease\Shared::appName() . ' ' . \Ease\Shared::appVersion()));
+        $this->addItem(new \Ease\Html\PTag(_('Send by') . ' ' . \Ease\Shared::appName() . ' ' . \Ease\Shared::appVersion()));
     }
 
     /**
