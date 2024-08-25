@@ -122,3 +122,12 @@ Další software pro AbraFlexi
 * [Nástroje pro testování a správu AbraFlexi](https://github.com/VitexSoftware/AbraFlexi-TestingTools)
 * [Monitoring funkce AbraFlexi serveru](https://github.com/VitexSoftware/monitoring-plugins-abraflexi)
 * [AbraFlexi server bez grafických závislostí](https://github.com/VitexSoftware/abraflexi-server-deb)
+
+
+MultiFlexi
+----------
+
+AbraFlexi Mailer is ready for run as [MultiFlexi](https://multiflexi.eu) application.
+See the full list of ready-to-run applications within the MultiFlexi platform on the [application list page](https://www.multiflexi.eu/apps.php).
+
+[![MultiFlexi App](https://github.com/VitexSoftware/MultiFlexi/blob/main/doc/multiflexi-app.svg)](https://www.multiflexi.eu/apps.php)
