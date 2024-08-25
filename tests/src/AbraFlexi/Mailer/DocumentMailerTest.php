@@ -9,7 +9,6 @@ use AbraFlexi\Mailer\Mailer;
  */
 class DocumentMailerTest extends \PHPUnit\Framework\TestCase
 {
-
     /**
      * @var Mailer
      */
@@ -38,7 +37,7 @@ class DocumentMailerTest extends \PHPUnit\Framework\TestCase
      */
     protected function tearDown(): void
     {
-        
+
     }
 
     /**
@@ -47,8 +46,8 @@ class DocumentMailerTest extends \PHPUnit\Framework\TestCase
     public function testtemplateFile()
     {
         $this->assertEquals(
-                '../templates/faktura-vydana.ftl',
-                $this->object->templateFile()
+            '../templates/faktura-vydana.ftl',
+            $this->object->templateFile()
         );
     }
 
@@ -82,8 +81,8 @@ class DocumentMailerTest extends \PHPUnit\Framework\TestCase
     public function testaddInvoice()
     {
         $this->assertEquals(
-                '',
-                $this->object->addInvoice(new \AbraFlexi\FakturaVydana($this->invoicer->getNextRecordID()))
+            '',
+            $this->object->addInvoice(new \AbraFlexi\FakturaVydana($this->invoicer->getNextRecordID()))
         );
     }
 

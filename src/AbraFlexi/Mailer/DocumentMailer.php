@@ -102,7 +102,7 @@ class DocumentMailer extends HtmlMailer
             $this->htmlDocument = new Templater($abraFlexiTemplate['textSablona'], $document);
         } elseif (file_exists($this->templateFile())) {
             $this->htmlDocument = new Templater(file_get_contents($this->templateFile()), $document);
-//            $this->htmlBody = $this->htmlDocument->body;
+            //            $this->htmlBody = $this->htmlDocument->body;
         } else {
             $this->htmlDocument = new HtmlTag(new SimpleHeadTag([
                         new TitleTag($this->emailSubject),
@@ -183,8 +183,8 @@ class DocumentMailer extends HtmlMailer
         $this->finalize();
         $this->finalized = false;
         if (
-                function_exists('mb_internal_encoding') &&
-                (((int) ini_get('mbstring.func_overload')) & 2)
+            function_exists('mb_internal_encoding') &&
+            (((int) ini_get('mbstring.func_overload')) & 2)
         ) {
             return mb_strlen($this->mailBody, '8bit');
         } else {
