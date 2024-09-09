@@ -1,16 +1,22 @@
 <?php
 
+declare(strict_types=1);
+
 /**
- * AbraFlexi Changes processor - nastavení testů.
+ * This file is part of the AbraFlexi Mailer package
  *
- * @author     Vítězslav Dvořák <vitex@arachne.cz>
- * @copyright  2015-2020 Spoje.Net 2021-2022 VitexSoftware
+ * https://github.com/VitexSoftware/abraflexi-mailer
+ *
+ * (c) Vítězslav Dvořák <http://vitexsoftware.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 include_once file_exists('../vendor/autoload.php') ? '../vendor/autoload.php' : 'vendor/autoload.php';
 
 echo __DIR__;
 
-if (file_exists(__DIR__ . '/../.env')) {
-    (new \Ease\Shared())->loadConfig(__DIR__ . '/../.env', true);
+if (file_exists(__DIR__.'/../.env')) {
+    (new \Ease\Shared())->loadConfig(__DIR__.'/../.env', true);
 }

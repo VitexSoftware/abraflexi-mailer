@@ -1,5 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
+/**
+ * This file is part of the AbraFlexi Mailer package
+ *
+ * https://github.com/VitexSoftware/abraflexi-mailer
+ *
+ * (c) Vítězslav Dvořák <http://vitexsoftware.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Test\AbraFlexi\Mailer;
 
 use AbraFlexi\Mailer\Mailer;
@@ -9,16 +22,8 @@ use AbraFlexi\Mailer\Mailer;
  */
 class DocumentMailerTest extends \PHPUnit\Framework\TestCase
 {
-    /**
-     * @var Mailer
-     */
-    protected $object;
-
-    /**
-     *
-     * @var \AbraFlexi\FakturaVydana
-     */
-    public $invoicer;
+    public \AbraFlexi\FakturaVydana $invoicer;
+    protected Mailer $object;
 
     /**
      * Sets up the fixture, for example, opens a network connection.
@@ -37,83 +42,82 @@ class DocumentMailerTest extends \PHPUnit\Framework\TestCase
      */
     protected function tearDown(): void
     {
-
     }
 
     /**
-     * @covers AbraFlexi\Mailer\Mailer::templateFile
+     * @covers \AbraFlexi\Mailer\Mailer::templateFile
      */
-    public function testtemplateFile()
+    public function testtemplateFile(): void
     {
         $this->assertEquals(
             '../templates/faktura-vydana.ftl',
-            $this->object->templateFile()
+            $this->object->templateFile(),
         );
     }
 
     /**
-     * @covers AbraFlexi\Mailer\Mailer::addItem
+     * @covers \AbraFlexi\Mailer\Mailer::addItem
      */
-    public function testaddItem()
+    public function testaddItem(): void
     {
-        $this->assertIsObject($this->object->addItem(new \Ease\Html\PTag("TEST")));
+        $this->assertIsObject($this->object->addItem(new \Ease\Html\PTag('TEST')));
     }
 
     /**
-     * @covers AbraFlexi\Mailer\Mailer::getCss
+     * @covers \AbraFlexi\Mailer\Mailer::getCss
      */
-    public function testgetCss()
+    public function testgetCss(): void
     {
         $this->assertEquals('', $this->object->getCss());
     }
 
     /**
-     * @covers AbraFlexi\Mailer\Mailer::getCurrentMailSize
+     * @covers \AbraFlexi\Mailer\Mailer::getCurrentMailSize
      */
-    public function testgetCurrentMailSize()
+    public function testgetCurrentMailSize(): void
     {
         $this->assertIsNumeric($this->object->getCurrentMailSize());
     }
 
     /**
-     * @covers AbraFlexi\Mailer\Mailer::addInvoice
+     * @covers \AbraFlexi\Mailer\Mailer::addInvoice
      */
-    public function testaddInvoice()
+    public function testaddInvoice(): void
     {
         $this->assertEquals(
             '',
-            $this->object->addInvoice(new \AbraFlexi\FakturaVydana($this->invoicer->getNextRecordID()))
+            $this->object->addInvoice(new \AbraFlexi\FakturaVydana($this->invoicer->getNextRecordID())),
         );
     }
 
     /**
-     * @covers AbraFlexi\Mailer\Mailer::addCompanyLogo
+     * @covers \AbraFlexi\Mailer\Mailer::addCompanyLogo
      */
-    public function testaddCompanyLogo()
+    public function testaddCompanyLogo(): void
     {
         $this->assertEquals('', $this->object->addCompanyLogo('test'));
     }
 
     /**
-     * @covers AbraFlexi\Mailer\Mailer::addQrCode
+     * @covers \AbraFlexi\Mailer\Mailer::addQrCode
      */
-    public function testaddQrCode()
+    public function testaddQrCode(): void
     {
         $this->assertEquals('', $this->object->addQrCode());
     }
 
     /**
-     * @covers AbraFlexi\Mailer\Mailer::addAttachments
+     * @covers \AbraFlexi\Mailer\Mailer::addAttachments
      */
-    public function testaddAttachments()
+    public function testaddAttachments(): void
     {
         $this->assertIsArray($this->object->addAttachments());
     }
 
     /**
-     * @covers AbraFlexi\Mailer\Mailer::send
+     * @covers \AbraFlexi\Mailer\Mailer::send
      */
-    public function testsend()
+    public function testsend(): void
     {
         $this->assertTrue($this->object->send());
     }

@@ -1,4 +1,10 @@
-abraflexi-mailer (1.2.2) UNRELEASED; urgency=medium
+abraflexi-mailer (1.3.0) UNRELEASED; urgency=medium
+
+  * Strict Types
+
+ -- vitex <info@vitexsoftware.cz>  Mon, 09 Sep 2024 11:52:53 +0200
+
+abraflexi-mailer (1.2.2) unstable; urgency=medium
 
   [ vitex ]
   * "Send Unsent mail" tool added
@@ -17,4 +23,4 @@ abraflexi-mailer (1.2.2) UNRELEASED; urgency=medium
   [  ]
   * Locked ignored
 
- --  <vitezslav.dvorak@spojenet.cz>  Wed, 07 Feb 2024 16:42:17 +0100
+ -- vitex <info@vitexsoftware.cz>  Mon, 09 Sep 2024 11:52:34 +0200

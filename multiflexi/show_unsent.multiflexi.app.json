@@ -35,6 +35,12 @@
             "description": "AbraFlexi Server URI",
             "defval": "https:\/\/demo.flexibee.eu:5434",
             "required": true
+        },
+        "RESULT_FILE": {
+            "type": "string",
+            "description": "write output json data to",
+            "defval": "unsent_report.json",
+            "required": false
         }
     },
     "multiflexi": "1.7.2"

@@ -1,12 +1,24 @@
 <?php
 
+declare(strict_types=1);
+
+/**
+ * This file is part of the AbraFlexi Mailer package
+ *
+ * https://github.com/VitexSoftware/abraflexi-mailer
+ *
+ * (c) Vítězslav Dvořák <http://vitexsoftware.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace AbraFlexi\Mailer;
 
 use AbraFlexi\Formats;
 use AbraFlexi\Priloha;
 use AbraFlexi\RO;
 use AbraFlexi\ui\CompanyLogo;
-use Ease\Shared;
 use Ease\Html\BodyTag;
 use Ease\Html\DivTag;
 use Ease\Html\HtmlTag;
@@ -17,9 +29,10 @@ use Ease\Html\TdTag;
 use Ease\Html\TitleTag;
 use Ease\Html\TrTag;
 use Ease\HtmlMailer;
+use Ease\Shared;
 
 /**
- * AbraFlexi Mailer class
+ * AbraFlexi Mailer class.
  *
  * @author     Vítězslav Dvořák <info@vitexsofware.cz>
  * @copyright  (G) 2021-2023 Vitex Software
@@ -27,77 +40,69 @@ use Ease\HtmlMailer;
 class DocumentMailer extends HtmlMailer
 {
     /**
-     *
-     * @var \AbraFlexi\FakturaVydana Mostly invoice
-     */
-    private $document;
-
-    /**
-     *
-     * @var array attachment's temporary files to delete
-     */
-    private $cleanup = [];
-
-    /**
-     *
      * @var string additional css
      */
-    public static $styles = '';
+    public static string $styles = '';
 
     /**
-     * Where to look for templates
-     * @var string
+     * Obtained Templates cache.
      */
-    private $templateDir = '../templates';
+    public array $templates = [];
 
     /**
-     *
-     * @var \AbraFlexi\SablonaMail
+     * @var \AbraFlexi\FakturaVydana Mostly invoice
      */
-    private $templater = null;
+    private \AbraFlexi\FakturaVydana $document;
 
     /**
-     * Obtained Templates cache
-     * @var array
+     * @var array attachment's temporary files to delete
      */
-    public $templates = [];
+    private array $cleanup = [];
 
     /**
-     * Send Document by mail
+     * Where to look for templates.
+     */
+    private string $templateDir = '../templates';
+    private \AbraFlexi\SablonaMail $templater = null;
+
+    /**
+     * Send Document by mail.
      *
      * @param RO     $document AbraFlexi document object
-     * @param string $sendTo recipient
-     * @param string $subject
+     * @param string $sendTo   recipient
      */
     public function __construct(
         RO $document,
-        string $sendTo = null,
-        string $subject = null
+        ?string $sendTo = null,
+        ?string $subject = null
     ) {
         $this->document = $document;
         $this->fromEmailAddress = Shared::cfg('MAIL_FROM');
         $this->setObjectName();
-        if (boolval(Shared::cfg('MUTE'))) {
+
+        if ((bool) Shared::cfg('MUTE')) {
             $sendTo = Shared::cfg('EASE_MAILTO');
             $this->addStatusMessage(sprintf(_('Mute mode: SendTo forced: %s'), $sendTo), 'warning');
         } else {
             if (empty($sendTo) && method_exists($this->document, 'getEmail')) {
                 $sendTo = $this->document->getRecipients();
             } else {
-                $this->addStatusMessage(\Ease\Logger\Message::getCallerName($this->document) . ' does not have getEmail method', 'warning');
+                $this->addStatusMessage(\Ease\Logger\Message::getCallerName($this->document).' does not have getEmail method', 'warning');
             }
         }
 
         if (empty($subject)) {
-            $subject = $this->document->getEvidence() . ' ' . \AbraFlexi\RO::uncode($document->getRecordCode());
+            $subject = $this->document->getEvidence().' '.\AbraFlexi\Functions::uncode((string) $document->getRecordCode());
         }
 
         parent::__construct($sendTo, $subject);
+
         if (Shared::cfg('MAIL_CC')) {
             $this->setMailHeaders(['Bcc' => Shared::cfg('MAIL_CC')]);
         }
 
         $abraFlexiTemplate = $this->getAbraFlexiTemplate($document);
+
         if ($abraFlexiTemplate) {
             $this->htmlDocument = new Templater($abraFlexiTemplate['textSablona'], $document);
         } elseif (file_exists($this->templateFile())) {
@@ -105,76 +110,82 @@ class DocumentMailer extends HtmlMailer
             //            $this->htmlBody = $this->htmlDocument->body;
         } else {
             $this->htmlDocument = new HtmlTag(new SimpleHeadTag([
-                        new TitleTag($this->emailSubject),
-                        '<style>' . DocumentMailer::$styles . '</style>']));
+                new TitleTag($this->emailSubject),
+                '<style>'.self::$styles.'</style>']));
             $this->htmlBody = $this->htmlDocument->addItem(new BodyTag());
-            if (array_key_exists('poznam', $this->document->getColumnsInfo())) {
+
+            if (\array_key_exists('poznam', $this->document->getColumnsInfo())) {
                 preg_match_all(
                     '/cc:[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}/i',
                     $document->getDataValue('poznam'),
-                    $ccs
+                    $ccs,
                 );
+
                 if (!empty($ccs[0])) {
                     $this->setMailHeaders(['Cc' => str_replace(
                         'cc:',
                         '',
-                        implode(',', $ccs[0])
+                        implode(',', $ccs[0]),
                     )]);
                 }
             }
         }
-        if (array_key_exists('popis', $document->getColumnsInfo())) {
+
+        if (\array_key_exists('popis', $document->getColumnsInfo())) {
             $this->addItem(new \Ease\Html\PTag($document->getDataValue('popis')));
         }
 
         $this->addInvoice();
         $this->addItem(new \Ease\Html\HrTag());
-        $this->addItem(new \Ease\Html\PTag(_('Send by') . ' ' . \Ease\Shared::appName() . ' ' . \Ease\Shared::appVersion()));
+        $this->addItem(new \Ease\Html\PTag(_('Send by').' '.\Ease\Shared::appName().' '.\Ease\Shared::appVersion()));
     }
 
     /**
-     * Template File name
+     * Template File name.
      *
      * @return string
      */
     public function templateFile()
     {
-        return $this->templateDir . '/' . $this->document->getEvidence() . '.ftl';
+        return $this->templateDir.'/'.$this->document->getEvidence().'.ftl';
     }
 
     /**
      * Přidá položku do těla mailu.
      *
-     * @param mixed $item EaseObjekt nebo cokoliv s metodou draw();
+     * @param mixed      $item         EaseObjekt nebo cokoliv s metodou draw();
+     * @param null|mixed $pageItemName
      *
-     * @return Ease\pointer|null ukazatel na vložený obsah
+     * @return null|Ease\pointer ukazatel na vložený obsah
      */
     public function &addItem($item, $pageItemName = null)
     {
         $mailBody = '';
-        if (is_object($item)) {
-            if (is_object($this->htmlDocument)) {
-                if (is_null($this->htmlBody)) {
+
+        if (\is_object($item)) {
+            if (\is_object($this->htmlDocument)) {
+                if (null === $this->htmlBody) {
                     $this->htmlBody = new BodyTag();
                 }
+
                 $mailBody = $this->htmlBody->addItem($item, $pageItemName);
             } else {
                 $mailBody = $this->htmlDocument;
             }
         } else {
-            $this->textBody .= is_array($item) ? implode("\n", $item) : $item;
+            $this->textBody .= \is_array($item) ? implode("\n", $item) : $item;
             $this->mimer->setTXTBody($this->textBody);
         }
 
         return $mailBody;
     }
 
-    public function getCss()
+    public function getCss(): void
     {
     }
 
     /**
-     * Count current mail size
+     * Count current mail size.
      *
      * @return int Size in bytes
      */
@@ -182,36 +193,38 @@ class DocumentMailer extends HtmlMailer
     {
         $this->finalize();
         $this->finalized = false;
+
         if (
-            function_exists('mb_internal_encoding') &&
-            (((int) ini_get('mbstring.func_overload')) & 2)
+            \function_exists('mb_internal_encoding')
+            && (((int) \ini_get('mbstring.func_overload')) & 2)
         ) {
             return mb_strlen($this->mailBody, '8bit');
-        } else {
-            return strlen($this->mailBody);
         }
+
+        return \strlen($this->mailBody);
     }
 
     /**
-     * Attach PDF and IsDOCx
+     * Attach PDF and IsDOCx.
      */
-    public function addInvoice()
+    public function addInvoice(): void
     {
         $this->addFile(
             $this->document->downloadInFormat(
                 'pdf',
-                sys_get_temp_dir() . '/'
+                sys_get_temp_dir().'/',
             ),
-            Formats::$formats['PDF']['content-type']
+            Formats::$formats['PDF']['content-type'],
         );
         $this->addFile(
             $this->document->downloadInFormat(
                 'isdocx',
-                sys_get_temp_dir() . '/'
+                sys_get_temp_dir().'/',
             ),
-            Formats::$formats['ISDOCx']['content-type']
+            Formats::$formats['ISDOCx']['content-type'],
         );
-        $heading = new DivTag($this->document->getEvidence() . ' ' . RO::uncode($this->document->getRecordIdent()));
+        $heading = new DivTag($this->document->getEvidence().' '.RO::uncode($this->document->getRecordIdent()));
+
         if (Shared::cfg('ADD_LOGO')) {
             $this->addCompanyLogo($heading);
         } else {
@@ -220,12 +233,12 @@ class DocumentMailer extends HtmlMailer
     }
 
     /**
-     * Add Company Logo into mail
+     * Add Company Logo into mail.
      *
      * @param string $heading
-     * @param int $width
+     * @param int    $width
      */
-    public function addCompanyLogo($heading, $width = 200)
+    public function addCompanyLogo($heading, $width = 200): void
     {
         $headingTableRow = new TrTag();
         $headingTableRow->addItem(new TdTag($heading));
@@ -234,27 +247,27 @@ class DocumentMailer extends HtmlMailer
             'height' => '50', 'title' => _('Company logo')]);
         $headingTableRow->addItem(new TdTag(
             $logo,
-            ['width' => $width . 'px']
+            ['width' => $width.'px'],
         ));
         $headingTable = new TableTag(
             $headingTableRow,
-            ['width' => '100%']
+            ['width' => '100%'],
         );
         $this->addItem($headingTable);
     }
 
     /**
-     * Add QR Payment image
+     * Add QR Payment image.
      *
      * @param int $size
      */
-    public function addQrCode($size = 200)
+    public function addQrCode($size = 200): void
     {
         try {
             $this->addItem(new ImgTag(
                 $this->document->getQrCodeBase64(200),
                 _('QR Payment'),
-                ['width' => $size, 'height' => $size, 'title' => $this->document->getRecordCode()]
+                ['width' => $size, 'height' => $size, 'title' => $this->document->getRecordCode()],
             ));
         } catch (\AbraFlexi\Exception $exc) {
             $this->addStatusMessage(_('Error adding QR Code'), 'error');
@@ -262,27 +275,28 @@ class DocumentMailer extends HtmlMailer
     }
 
     /**
-     *
      * @return array
      */
     public function addAttachments()
     {
         $attachments = Priloha::getAttachmentsList($this->document);
         $attached = [];
+
         if ($attachments) {
             foreach ($attachments as $attachmentID => $attachment) {
                 if (Priloha::saveToFile($attachmentID, sys_get_temp_dir())) {
-                    $tmpfile = sys_get_temp_dir() . '/' . $attachment['nazSoub'];
+                    $tmpfile = sys_get_temp_dir().'/'.$attachment['nazSoub'];
                     $this->addFile($tmpfile, $attachment['contentType']);
                     $attached[$attachmentID] = $attachment['nazSoub'];
                 }
             }
         }
+
         return $attached;
     }
 
     /**
-     * Add File attachment into mail
+     * Add File attachment into mail.
      *
      * @param string $filename
      * @param string $mimeType
@@ -292,25 +306,28 @@ class DocumentMailer extends HtmlMailer
     public function addFile($filename, $mimeType = 'text/plain')
     {
         $this->cleanup[] = $filename;
+
         return parent::addFile($filename, $mimeType);
     }
 
     /**
-     * Send message
+     * Send message.
      *
-     * @return boolean
+     * @return bool
      */
     public function send()
     {
         $result = parent::send();
+
         foreach ($this->cleanup as $tmp) {
             unlink($tmp);
         }
+
         return $result;
     }
 
     /**
-     * Get Teplate stored in AbraFlexi
+     * Get Teplate stored in AbraFlexi.
      *
      * @param \AbraFlexi\RO $document
      *
@@ -320,40 +337,46 @@ class DocumentMailer extends HtmlMailer
     {
         $template = [];
         $typDoklInfo = $document->getColumnInfo('typDokl');
-        if (array_key_exists('fkEvidencePath', $typDoklInfo)) {
+
+        if (\array_key_exists('fkEvidencePath', $typDoklInfo)) {
             $typDokl = new \AbraFlexi\RW($document->getDataValue('typDokl'), ['evidence' => $typDoklInfo['fkEvidencePath']]);
             $myTemplate = $typDokl->getDataValue('sablonaMail');
+
             if (empty($myTemplate->value) === false) {
                 $evidence = $document->getEvidence();
-                if (array_key_exists($evidence, \AbraFlexi\EvidenceList::$evidences)) {
-                    if (array_key_exists('beanKey', \AbraFlexi\EvidenceList::$evidences[$evidence])) {
+
+                if (\array_key_exists($evidence, \AbraFlexi\EvidenceList::$evidences)) {
+                    if (\array_key_exists('beanKey', \AbraFlexi\EvidenceList::$evidences[$evidence])) {
                         $beanKey = \AbraFlexi\EvidenceList::$evidences[$evidence]['beanKey'];
-                        if (is_null($this->templater) === true) {
+
+                        if ((null === $this->templater) === true) {
                             $this->templater = new \AbraFlexi\SablonaMail(null, ['ignore404' => true]);
                         }
 
-                        if (array_key_exists($beanKey, $this->templates) === false) {
+                        if (\array_key_exists($beanKey, $this->templates) === false) {
                             $candidates = $this->templater->getColumnsFromAbraFlexi('*', ['beanKeys' => $beanKey], 'kod');
+
                             foreach ($candidates as $candidat) {
-                                if (array_key_exists($beanKey, $this->templates) === false) {
+                                if (\array_key_exists($beanKey, $this->templates) === false) {
                                     $this->templates[$candidat['kod']] = $candidat;
                                 }
                             }
-                            if (array_key_exists(\AbraFlexi\RO::uncode($myTemplate), $candidates)) {
-                                $template = $candidates[\AbraFlexi\RO::uncode($myTemplate)];
+
+                            if (\array_key_exists(\AbraFlexi\Functions::uncode((string) $myTemplate), $candidates)) {
+                                $template = $candidates[\AbraFlexi\Functions::uncode((string) $myTemplate)];
                             }
                         }
                     }
                 }
             }
         }
+
         return $template;
     }
 
-    public function javaToApiMacros()
+    public function javaToApiMacros(): void
     {
-        echo
-        '${object.nazFirmy}',
+        echo '${object.nazFirmy}',
         '${object}',
         '${object.bspBan.buc}',
         '${object.bspBan.smerKod}',

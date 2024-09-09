@@ -13,7 +13,10 @@
     },
     "require-dev": {
         "phpunit/phpunit": "*",
-        "phpstan/phpstan": "*"
+        "phpstan/phpstan": "*",
+        "friendsofphp/php-cs-fixer": "^3.61",
+        "ergebnis/composer-normalize": "^2.43",
+        "ergebnis/php-cs-fixer-config": "^6.34"
     },
     "minimum-stability": "dev",
     "autoload": {
@@ -21,6 +24,11 @@
             "AbraFlexi\\": "src/AbraFlexi/",
             "AbraFlexi\\Mailer\\": "src/AbraFlexi/Mailer/",
             "AbraFlexi\\Mailer\\Ui\\": "src/AbraFlexi/Mailer/Ui/"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "ergebnis/composer-normalize": true
         }
     }
 }

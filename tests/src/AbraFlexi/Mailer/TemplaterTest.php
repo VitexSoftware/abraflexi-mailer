@@ -1,5 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
+/**
+ * This file is part of the AbraFlexi Mailer package
+ *
+ * https://github.com/VitexSoftware/abraflexi-mailer
+ *
+ * (c) Vítězslav Dvořák <http://vitexsoftware.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Test\AbraFlexi\Mailer;
 
 use AbraFlexi\Mailer\Templater;
@@ -9,16 +22,8 @@ use AbraFlexi\Mailer\Templater;
  */
 class TemplaterTest extends \PHPUnit\Framework\TestCase
 {
-    /**
-     * @var Templater
-     */
-    protected $object;
-
-    /**
-     *
-     * @var \AbraFlexi\FakturaVydana
-     */
-    public $invoicer;
+    public \AbraFlexi\FakturaVydana $invoicer;
+    protected Templater $object;
 
     /**
      * Sets up the fixture, for example, opens a network connection.
@@ -28,10 +33,10 @@ class TemplaterTest extends \PHPUnit\Framework\TestCase
     {
         $this->invoicer = new \AbraFlexi\FakturaVydana();
         $this->invoicer->loadFromAbraFlexi($this->invoicer->getFirstRecordID());
-        $helper         = new \AbraFlexi\Mailer\Mailer($this->invoicer);
-        $this->object   = new Templater(
+        $helper = new \AbraFlexi\Mailer\Mailer($this->invoicer);
+        $this->object = new Templater(
             $this->invoicer,
-            'tests/test.ftl'
+            'tests/test.ftl',
         );
     }
 
@@ -44,36 +49,36 @@ class TemplaterTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @covers AbraFlexi\Mailer\Templater::process
+     * @covers \AbraFlexi\Mailer\Templater::process
      */
-    public function testprocess()
+    public function testprocess(): void
     {
         $this->assertEquals(
             \Ease\Shared::appName(),
-            $this->object->process(file_get_contents($this->object->template))
+            $this->object->process(file_get_contents($this->object->template)),
         );
     }
 
     /**
-     * @covers AbraFlexi\Mailer\Templater::variableBase
+     * @covers \AbraFlexi\Mailer\Templater::variableBase
      */
-    public function testvariableBase()
+    public function testvariableBase(): void
     {
         $this->assertEquals('', $this->object->variableBase(''));
     }
 
     /**
-     * @covers AbraFlexi\Mailer\Templater::variableProperty
+     * @covers \AbraFlexi\Mailer\Templater::variableProperty
      */
-    public function testvariableProperty()
+    public function testvariableProperty(): void
     {
         $this->assertEquals('', $this->object->variableProperty(''));
     }
 
     /**
-     * @covers AbraFlexi\Mailer\Templater::stripMarkup
+     * @covers \AbraFlexi\Mailer\Templater::stripMarkup
      */
-    public function teststripMarkup()
+    public function teststripMarkup(): void
     {
         $this->assertEquals('', $this->object->stripMarkup(''));
     }
