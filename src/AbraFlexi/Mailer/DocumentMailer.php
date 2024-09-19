@@ -63,7 +63,7 @@ class DocumentMailer extends HtmlMailer
      * Where to look for templates.
      */
     private string $templateDir = '../templates';
-    private \AbraFlexi\SablonaMail $templater = null;
+    private ?\AbraFlexi\SablonaMail $templater = null;
 
     /**
      * Send Document by mail.
