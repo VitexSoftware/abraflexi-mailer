@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /**
- * This file is part of the AbraFlexi Mailer package
+ * This file is part of the Mailer for AbraFlexi package
  *
  * https://github.com/VitexSoftware/abraflexi-mailer
  *

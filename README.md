@@ -1,27 +1,27 @@
 ![Package Logo](project-logo.svg?raw=true "Project Logo")
 
-Odesílač dokladů pro AbraFlexi
-==============================
+Document Sender for AbraFlexi
+=============================
 
-K dispozici jsou skripty pro odesílání dokladů:
+Scripts for sending documents are available:
 
-[SendUnsent.php](src/SendUnsent.php) - hromadně odešle neodeslané standartním způsobem přímo z AbraFlexi
+[SendUnsent.php](src/SendUnsent.php) - sends unsent documents in bulk directly from AbraFlexi in the standard way
 
-[SendUnsentAttachments.php](src/SendUnsentAttachments.php) - najde neodeslané, připojí k nim přílohy a odešle přes výchozí mailer PHP, nebo SMTP
+[SendUnsentAttachments.php](src/SendUnsentAttachments.php) - finds unsent documents, attaches attachments to them, and sends them via the default PHP mailer or SMTP
 
-Doklady jsou odesílány na adresy dle následujícího klíče:
+Documents are sent to addresses according to the following key:
 
-1. "kontaktEmail" z dokladu
-2. email firmy
-3. email primárního kontaktu
-4. email kontaktu
+1. "contactEmail" from the document
+2. company email
+3. primary contact email
+4. contact email
 
-Pokud je v poznámce dokladu nalezena adresa s prefixem cc např.: "cc:emailova@adresa.cz, cc:kopii@sem.com", odešle se kopie i na tyto maily.  
+If an address with the prefix cc is found in the document note, e.g., "cc:email@example.com, cc:copy@example.com", a copy will also be sent to these emails.
 
 Debian/Ubuntu
 -------------
 
-Pro Linux jsou k dispozici .deb balíčky. Prosím použijte repo:
+For Linux, .deb packages are available. Please use the repo:
 
 ```shell
     echo "deb http://repo.vitexsoftware.com $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/vitexsoftware.list
@@ -30,27 +30,27 @@ Pro Linux jsou k dispozici .deb balíčky. Prosím použijte repo:
     sudo apt install abraflexi-mailer
 ```
 
-Po instalaci balíku jsou v systému k dispozici tyto nové příkazy:
+After installing the package, the following new commands are available in the system:
 
-* **abraflexi-send**                    - odešle doklad (TODO)
-* **abraflexi-send-unsent**             - odešle neodeslané
-* **abraflexi-send-attachments**        - odešle doklad s přílohami (TODO)
-* **abraflexi-send-unsent-attachments** - odešle neodeslané s přílohami
-* **abraflexi-show-unsent**             - vypíše neodeslané doklady 
-* **abraflexi-bulkmail**                - hromadně odešle maily kontaktům z adresáře
+* **abraflexi-send**                    - sends a document
+* **abraflexi-send-unsent**             - sends unsent documents
+* **abraflexi-send-attachments**        - sends a document with attachments (TODO)
+* **abraflexi-send-unsent-attachments** - sends unsent documents with attachments
+* **abraflexi-show-unsent**             - lists unsent documents
+* **abraflexi-bulkmail**                - sends emails to contacts from the address book in bulk
 
-Konfigurace
------------
+Configuration
+-------------
 
-S provádí uvedenín direktiv do .env souboru, jejich definicí jako konstant, nebo nastavením proměnných prostředí.
-Debianí balíček konfiurák očekává ve složce /etc/abraflexi-mailer, kde je k dispozici vzorový sobor .env.template
+Configuration is done by entering directives into the .env file, defining them as constants, or setting environment variables.
+The Debian package expects the configuration file in the /etc/abraflexi-mailer folder, where a sample file .env.template is available.
 
 ```env
-APP_NAME=AbraFlexiMailer                        - název aplikace v syslogu
-APP_DEBUG=true                                  - zapnutí ladícího režimu
-MUTE=true                                       - neodesílat zprávy příjemcům ale na
+APP_NAME=AbraFlexiMailer                        - application name in syslog
+APP_DEBUG=true                                  - enable debug mode
+MUTE=true                                       - do not send messages to recipients but to
 
-EASE_MAILTO=info@vitexsoftware.cz               - sem se posílají zprávy je-li mute aktivní
+EASE_MAILTO=info@vitexsoftware.cz               - messages are sent here if mute is active
 
 ABRAFLEXI_URL="https://demo.abraflexi.eu:5434"
 ABRAFLEXI_LOGIN="winstrom"
@@ -58,76 +58,76 @@ ABRAFLEXI_PASSWORD="winstrom"
 ABRAFLEXI_COMPANY="demo"
 ABRAFLEXI_CUSTOMER="demo"
 
-ADD_LOGO=true                                   - vkládat do mailu i logo firmy
-ADD_QRCODE=true                                 - vkládat do mailu i Obrázek pro QR platbu
-MAIL_CC=info@vitexsoftware.cz                   - všechny maily odesílat také v kopii na tuto adresu
-MAIL_FROM=office@vitexsoftware.cz               - adresa odesilatele
+ADD_LOGO=true                                   - include company logo in the email
+ADD_QRCODE=true                                 - include QR payment image in the email
+MAIL_CC=info@vitexsoftware.cz                   - send all emails also in copy to this address
+MAIL_FROM=office@vitexsoftware.cz               - sender address
 
-EASE_LOGGER="console|syslog"                    - způsob logování
-SEND_LOCKED=False                               - pokusi se dočasně odemknout zamknutý doklad          
-DRY_RUN=False                                   - je-li povoleno nezapisuje do dokladů datum a stav odeslání
+EASE_LOGGER="console|syslog"                    - logging method
+SEND_LOCKED=False                               - try to temporarily unlock a locked document
+DRY_RUN=False                                   - if enabled, does not write the date and sending status to documents
 ```
 
-Šablony
--------
+Templates
+---------
 
-Předpokládá se že šablona se jmenuje dle evidence. např. **faktura-vydana.ftl** 
-a je uložena ve složce "templates" ( /usr/share/abraflexi-mailer/templates v Debianu )
+It is assumed that the template is named according to the record type, e.g., **invoice-issued.ftl** 
+and is stored in the "templates" folder ( /usr/share/abraflexi-mailer/templates in Debian )
 
-V šablonách je možné použít následující proměnné:
+The following variables can be used in the templates:
 
-* ${application} – Název aplikace, tedy "AbraFlexi BulkMail"
-* ${user} – Objekt uživatele, se kterým můžeme dále pracovat
-* ${company} – Nastavení firmy
-* ${uzivatelJmeno} – Vaše křestní jméno
-* ${uzivatelPrijmeni} – Vaše příjmení
-* ${titulJmenoPrijmeni} – Vaše celé jméno, včetně dosažených titulů
-* ${nazevFirmy} – Název firmy
-* ${doklad} – Doklad určený k odeslání
+* ${application} – Application name, i.e., "AbraFlexi BulkMail"
+* ${user} – User object, which can be further worked with
+* ${company} – Company settings
+* ${uzivatelJmeno} – Your first name
+* ${uzivatelPrijmeni} – Your last name
+* ${titulJmenoPrijmeni} – Your full name, including achieved titles
+* ${nazevFirmy} – Company name
+* ${doklad} – Document to be sent
 
-Hromadný rozesílač
-------------------
+Bulk Mailer
+-----------
 
-Pokud chceme obeslat všechny klienty z Pražské nerudovy ulice: 
+If we want to send emails to all clients from Nerudova Street in Prague:
 
 ```shell
-abraflexi-bulkmail templates/template.ftl "(mesto='Praha' AND ulice='Nerudova')"
+abraflexi-bulkmail templates/template.ftl "(city='Prague' AND street='Nerudova')"
 ```
 
-Při použití v [šabloně](tests/test.ftl) se proměnné pro každou odeslanou zprávu
-naplní z https://demo.flexibee.eu/c/demo_de/adresar/properties
+When used in a [template](tests/test.ftl), the variables for each sent message
+are filled from https://demo.flexibee.eu/c/demo_de/addressbook/properties
 
-Závislosti
-----------
+Dependencies
+------------
 
-Tento nástroj ke svojí funkci využívá následující knihovny:
+This tool uses the following libraries for its functionality:
 
-* [**EasePHP Framework**](https://github.com/VitexSoftware/php-ease-core)   - pomocné funkce např. logování
-* [**AbraFlexi**](https://github.com/Spoje-NET/php-abraflexi)               - komunikace s [AbraFlexi](https://flexibee.eu/)
-* [**AbraFlexi Bricks**](https://github.com/VitexSoftware/AbraFlexi-Bricks) - používají se třídy Zákazníka, Upomínky a Upomínače
+* [**EasePHP Framework**](https://github.com/VitexSoftware/php-ease-core)   - helper functions, e.g., logging
+* [**AbraFlexi**](https://github.com/Spoje-NET/php-abraflexi)               - communication with [AbraFlexi](https://flexibee.eu/)
+* [**AbraFlexi Bricks**](https://github.com/VitexSoftware/AbraFlexi-Bricks) - classes for Customer, Reminder, and ReminderSender are used
 
-Poděkování
-----------
+Acknowledgements
+----------------
 
-Tento software by nevznikl pez podpory:
+This software would not have been created without the support of:
 
 [ ![Spoje.Net](doc/spojenet.gif?raw=true "Spoje.Net s.r.o.") ](https://spoje.net/)
 
-Další software pro AbraFlexi
----------------------------
+Other software for AbraFlexi
+----------------------------
 
-* [Pravidelné reporty z AbraFlexi](https://github.com/VitexSoftware/AbraFlexi-Digest)
-* [Odesílač upomínek](https://github.com/VitexSoftware/php-abraflexi-reminder)
-* [Klientská Zóna pro AbraFlexi](https://github.com/VitexSoftware/AbraFlexi-ClientZone)
-* [Nástroje pro testování a správu AbraFlexi](https://github.com/VitexSoftware/AbraFlexi-TestingTools)
-* [Monitoring funkce AbraFlexi serveru](https://github.com/VitexSoftware/monitoring-plugins-abraflexi)
-* [AbraFlexi server bez grafických závislostí](https://github.com/VitexSoftware/abraflexi-server-deb)
-
+* [Regular reports from AbraFlexi](https://github.com/VitexSoftware/AbraFlexi-Digest)
+* [Reminder sender](https://github.com/VitexSoftware/php-abraflexi-reminder)
+* [Client Zone for AbraFlexi](https://github.com/VitexSoftware/AbraFlexi-ClientZone)
+* [Tools for testing and managing AbraFlexi](https://github.com/VitexSoftware/AbraFlexi-TestingTools)
+* [Monitoring the functionality of the AbraFlexi server](https://github.com/VitexSoftware/monitoring-plugins-abraflexi)
+* [AbraFlexi server without graphical dependencies](https://github.com/VitexSoftware/abraflexi-server-deb)
 
 MultiFlexi
 ----------
 
-AbraFlexi Mailer is ready for run as [MultiFlexi](https://multiflexi.eu) application.
+AbraFlexi Mailer is ready to run as a [MultiFlexi](https://multiflexi.eu) application.
 See the full list of ready-to-run applications within the MultiFlexi platform on the [application list page](https://www.multiflexi.eu/apps.php).
 
 [![MultiFlexi App](https://github.com/VitexSoftware/MultiFlexi/blob/main/doc/multiflexi-app.svg)](https://www.multiflexi.eu/apps.php)
+
