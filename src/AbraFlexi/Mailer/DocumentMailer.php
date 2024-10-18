@@ -109,9 +109,9 @@ class DocumentMailer extends HtmlMailer
             $this->htmlDocument = new Templater(file_get_contents($this->templateFile()), $document);
             //            $this->htmlBody = $this->htmlDocument->body;
         } else {
-            $this->htmlDocument = new HtmlTag(new SimpleHeadTag([
+            $this->htmlDocument = new Body(new HtmlTag(new SimpleHeadTag([
                 new TitleTag($this->emailSubject),
-                '<style>'.self::$styles.'</style>']));
+                '<style>'.self::$styles.'</style>'])));
             $this->htmlBody = $this->htmlDocument->addItem(new BodyTag());
 
             if (\array_key_exists('poznam', $this->document->getColumnsInfo())) {

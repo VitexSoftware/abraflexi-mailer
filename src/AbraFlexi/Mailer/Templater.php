@@ -21,7 +21,7 @@ namespace AbraFlexi\Mailer;
  * @author     Vítězslav Dvořák <info@vitexsofware.cz>
  * @copyright  (G) 2021-2023 Vitex Software
  */
-class Templater extends \Ease\Document
+class Templater extends \Ease\Document implements mailbody
 {
     /**
      * @var string template file content
@@ -84,7 +84,7 @@ class Templater extends \Ease\Document
                         if ($prop) {
                             $templateBody = str_replace(
                                 $key,
-                                (string)$this->document->getDataValue($prop),
+                                (string) $this->document->getDataValue($prop),
                                 $templateBody,
                             );
                         }
@@ -139,13 +139,13 @@ class Templater extends \Ease\Document
                         if ($prop) {
                             $templateBody = str_replace(
                                 $key,
-                                (string)$this->myCompany->getDataValue($prop),
+                                (string) $this->myCompany->getDataValue($prop),
                                 $templateBody,
                             );
                         } else {
                             $templateBody = str_replace(
                                 $key,
-                                (string)$this->myCompany->getDataValue('nazFirmy'),
+                                (string) $this->myCompany->getDataValue('nazFirmy'),
                                 $templateBody,
                             );
                         }
