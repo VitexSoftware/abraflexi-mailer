@@ -84,7 +84,7 @@ class Templater extends \Ease\Document
                         if ($prop) {
                             $templateBody = str_replace(
                                 $key,
-                                $this->document->getDataValue($prop),
+                                (string)$this->document->getDataValue($prop),
                                 $templateBody,
                             );
                         }
@@ -99,19 +99,19 @@ class Templater extends \Ease\Document
                             ['evidence' => 'uzivatel', 'autoload' => true],
                         );
 
-                        if ($prop) {
+                        if ($prop && $user->getDataValue($prop)) {
                             $templateBody = str_replace(
                                 $key,
                                 $user->getDataValue($prop),
                                 $templateBody,
                             );
-                        } elseif ($base === 'uzivatelJmeno') {
+                        } elseif (($base === 'uzivatelJmeno') && $user->getDataValue('jmeno')) {
                             $templateBody = str_replace(
                                 $key,
                                 $user->getDataValue('jmeno'),
                                 $templateBody,
                             );
-                        } elseif ($base === 'uzivatelPrijmeni') {
+                        } elseif (($base === 'uzivatelPrijmeni') && $user->getDataValue('prijmeni')) {
                             $templateBody = str_replace(
                                 $key,
                                 $user->getDataValue('prijmeni'),
