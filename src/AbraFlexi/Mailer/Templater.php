@@ -139,13 +139,13 @@ class Templater extends \Ease\Document
                         if ($prop) {
                             $templateBody = str_replace(
                                 $key,
-                                $this->myCompany->getDataValue($prop),
+                                (string)$this->myCompany->getDataValue($prop),
                                 $templateBody,
                             );
                         } else {
                             $templateBody = str_replace(
                                 $key,
-                                $this->myCompany->getDataValue('nazFirmy'),
+                                (string)$this->myCompany->getDataValue('nazFirmy'),
                                 $templateBody,
                             );
                         }
