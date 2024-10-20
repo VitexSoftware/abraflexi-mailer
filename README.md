@@ -1,4 +1,4 @@
-![Package Logo](project-logo.svg?raw=true "Project Logo")
+![Package Logo](social-preview.svg?raw=true "Project Logo")
 
 Document Sender for AbraFlexi
 =============================
