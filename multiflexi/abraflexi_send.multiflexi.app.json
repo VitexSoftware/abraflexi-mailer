@@ -1,4 +1,5 @@
 {
+    "image": "",
     "name": "AbraFlexi send",
     "description": "Simple trigger AbraFlexi to send all unsent documents in Issued Invoices Agenda",
     "executable": "abraflexi-send-unsent",

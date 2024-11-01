@@ -1,4 +1,5 @@
 {
+    "image": "",
     "name": "Email Sender",
     "description": "Send unsent documents with attachments",
     "executable": "abraflexi-send-unsent-with-attachments",

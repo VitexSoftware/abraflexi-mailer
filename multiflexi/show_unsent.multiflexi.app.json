@@ -1,4 +1,5 @@
 {
+    "image": "",
     "name": "Show Unsent",
     "description": "Show Unsent documents",
     "executable": "abraflexi-show-unsent",

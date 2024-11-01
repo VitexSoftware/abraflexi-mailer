@@ -1,4 +1,5 @@
 {
+    "image": "",
     "name": "AbraFlexi Bulk Mailer",
     "description": "By Query select recipients from Addressbook and send mail based on template",
     "executable": "abraflexi-bulkmail",
