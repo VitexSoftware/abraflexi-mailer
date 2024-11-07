@@ -72,7 +72,7 @@ if (empty($unsent)) {
             if (\Ease\Shared::cfg('SEND_LOCKED', false) === 'True') {
                 $unlock = $invoicer->performAction('unlock', 'int');
 
-                if ($unlock['success'] === 'false') {
+                if ($unlock === false) {
                     $invoicer->addStatusMessage(sprintf(_('Invoice %s cannot unlock: skipping process'), $invoicer->getRecordCode()), 'warning');
 
                     continue;

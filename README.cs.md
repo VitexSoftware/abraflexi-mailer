@@ -18,27 +18,6 @@ Doklady jsou odesílány na adresy dle následujícího klíče:
 
 Pokud je v poznámce dokladu nalezena adresa s prefixem cc např.: "cc:emailova@adresa.cz, cc:kopii@sem.com", odešle se kopie i na tyto maily.  
 
-Debian/Ubuntu
--------------
-
-Pro Linux jsou k dispozici .deb balíčky. Prosím použijte repo:
-
-```shell
-    echo "deb http://repo.vitexsoftware.com $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/vitexsoftware.list
-    sudo wget -O /etc/apt/trusted.gpg.d/vitexsoftware.gpg http://repo.vitexsoftware.cz/keyring.gpg
-    sudo apt update
-    sudo apt install abraflexi-mailer
-```
-
-Po instalaci balíku jsou v systému k dispozici tyto nové příkazy:
-
-* **abraflexi-send**                    - odešle doklad (TODO)
-* **abraflexi-send-unsent**             - odešle neodeslané
-* **abraflexi-send-attachments**        - odešle doklad s přílohami (TODO)
-* **abraflexi-send-unsent-attachments** - odešle neodeslané s přílohami
-* **abraflexi-show-unsent**             - vypíše neodeslané doklady 
-* **abraflexi-bulkmail**                - hromadně odešle maily kontaktům z adresáře
-
 Konfigurace
 -----------
 
@@ -131,3 +110,24 @@ AbraFlexi Mailer is ready for run as [MultiFlexi](https://multiflexi.eu) applica
 See the full list of ready-to-run applications within the MultiFlexi platform on the [application list page](https://www.multiflexi.eu/apps.php).
 
 [![MultiFlexi App](https://github.com/VitexSoftware/MultiFlexi/blob/main/doc/multiflexi-app.svg)](https://www.multiflexi.eu/apps.php)
+
+Debian/Ubuntu
+-------------
+
+Pro Linux jsou k dispozici .deb balíčky. Prosím použijte repo:
+
+```shell
+    echo "deb http://repo.vitexsoftware.com $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/vitexsoftware.list
+    sudo wget -O /etc/apt/trusted.gpg.d/vitexsoftware.gpg http://repo.vitexsoftware.cz/keyring.gpg
+    sudo apt update
+    sudo apt install abraflexi-mailer
+```
+
+Po instalaci balíku jsou v systému k dispozici tyto nové příkazy:
+
+* **abraflexi-send**                    - odešle doklad (TODO)
+* **abraflexi-send-unsent**             - odešle neodeslané
+* **abraflexi-send-attachments**        - odešle doklad s přílohami (TODO)
+* **abraflexi-send-unsent-attachments** - odešle neodeslané s přílohami
+* **abraflexi-show-unsent**             - vypíše neodeslané doklady
+* **abraflexi-bulkmail**                - hromadně odešle maily kontaktům z adresáře

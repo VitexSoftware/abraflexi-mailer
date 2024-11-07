@@ -18,27 +18,6 @@ Documents are sent to addresses according to the following key:
 
 If an address with the prefix cc is found in the document note, e.g., "cc:email@example.com, cc:copy@example.com", a copy will also be sent to these emails.
 
-Debian/Ubuntu
--------------
-
-For Linux, .deb packages are available. Please use the repo:
-
-```shell
-    echo "deb http://repo.vitexsoftware.com $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/vitexsoftware.list
-    sudo wget -O /etc/apt/trusted.gpg.d/vitexsoftware.gpg http://repo.vitexsoftware.cz/keyring.gpg
-    sudo apt update
-    sudo apt install abraflexi-mailer
-```
-
-After installing the package, the following new commands are available in the system:
-
-* **abraflexi-send**                    - sends a document
-* **abraflexi-send-unsent**             - sends unsent documents
-* **abraflexi-send-attachments**        - sends a document with attachments (TODO)
-* **abraflexi-send-unsent-attachments** - sends unsent documents with attachments
-* **abraflexi-show-unsent**             - lists unsent documents
-* **abraflexi-bulkmail**                - sends emails to contacts from the address book in bulk
-
 Configuration
 -------------
 
@@ -71,7 +50,7 @@ DRY_RUN=False                                   - if enabled, does not write the
 Templates
 ---------
 
-It is assumed that the template is named according to the record type, e.g., **invoice-issued.ftl** 
+It is assumed that the template is named according to the record type, e.g., **invoice-issued.ftl**
 and is stored in the "templates" folder ( /usr/share/abraflexi-mailer/templates in Debian )
 
 The following variables can be used in the templates:
@@ -130,4 +109,25 @@ AbraFlexi Mailer is ready to run as a [MultiFlexi](https://multiflexi.eu) applic
 See the full list of ready-to-run applications within the MultiFlexi platform on the [application list page](https://www.multiflexi.eu/apps.php).
 
 [![MultiFlexi App](https://github.com/VitexSoftware/MultiFlexi/blob/main/doc/multiflexi-app.svg)](https://www.multiflexi.eu/apps.php)
+
+Debian/Ubuntu
+-------------
+
+For Linux, .deb packages are available. Please use the repo:
+
+```shell
+    echo "deb http://repo.vitexsoftware.com $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/vitexsoftware.list
+    sudo wget -O /etc/apt/trusted.gpg.d/vitexsoftware.gpg http://repo.vitexsoftware.cz/keyring.gpg
+    sudo apt update
+    sudo apt install abraflexi-mailer
+```
+
+After installing the package, the following new commands are available in the system:
+
+* **abraflexi-send**                    - sends a document
+* **abraflexi-send-unsent**             - sends unsent documents
+* **abraflexi-send-attachments**        - sends a document with attachments (TODO)
+* **abraflexi-send-unsent-attachments** - sends unsent documents with attachments
+* **abraflexi-show-unsent**             - lists unsent documents
+* **abraflexi-bulkmail**                - sends emails to contacts from the address book in bulk
 
