@@ -19,7 +19,7 @@ namespace AbraFlexi\Mailer;
  * AbraFlexi Mailer Template processor class.
  *
  * @author     Vítězslav Dvořák <info@vitexsofware.cz>
- * @copyright  (G) 2021-2023 Vitex Software
+ * @copyright  (G) 2021-2024 Vitex Software
  */
 class Templater extends \Ease\Document implements mailbody
 {

@@ -52,7 +52,7 @@ class DocumentMailer extends HtmlMailer
     /**
      * @var \AbraFlexi\FakturaVydana Mostly invoice
      */
-    private \AbraFlexi\FakturaVydana $document;
+    private \AbraFlexi\document $document;
 
     /**
      * @var array attachment's temporary files to delete
@@ -312,10 +312,8 @@ class DocumentMailer extends HtmlMailer
 
     /**
      * Send message.
-     *
-     * @return bool
      */
-    public function send()
+    public function send(): bool
     {
         $result = parent::send();
 
@@ -327,7 +325,7 @@ class DocumentMailer extends HtmlMailer
     }
 
     /**
-     * Get Teplate stored in AbraFlexi.
+     * Get Template stored in AbraFlexi.
      *
      * @param \AbraFlexi\RO $document
      *
