@@ -76,6 +76,32 @@ abraflexi-bulkmail templates/template.ftl "(city='Prague' AND street='Nerudova')
 When used in a [template](tests/test.ftl), the variables for each sent message
 are filled from https://demo.flexibee.eu/c/demo_de/addressbook/properties
 
+Unsent mail reporter
+--------------------
+
+Simple script which produce list of unsent invoices
+
+```json
+{
+  "VF1-0077/2024": {
+    "id": 1131,
+    "firma": {
+      "value": "code:CUSTOMER",
+      "target": "adresar",
+      "ref": "/c/vitex_software/adresar/827.odeslat')",
+      "showAs": "CUSTOMER: CUSTOMER l.t.d."
+    },
+    "kontaktEmail": "info@customer.com",
+    "poznam": "",
+    "kod": "VF1-0077/2024",
+    "email": "info@customer.com",
+    "recipients": "info@customer.com"
+  }
+}
+```
+
+
+
 Dependencies
 ------------
 

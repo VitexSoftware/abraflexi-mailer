@@ -35,7 +35,7 @@ use Ease\Shared;
  * AbraFlexi Mailer class.
  *
  * @author     Vítězslav Dvořák <info@vitexsofware.cz>
- * @copyright  (G) 2021-2023 Vitex Software
+ * @copyright  (G) 2021-2024 Vitex Software
  */
 class DocumentMailer extends HtmlMailer
 {
@@ -65,6 +65,9 @@ class DocumentMailer extends HtmlMailer
     private string $templateDir = '../templates';
     private ?\AbraFlexi\SablonaMail $templater = null;
 
+    public bool $muted = false;
+
+
     /**
      * Send Document by mail.
      *
@@ -80,8 +83,9 @@ class DocumentMailer extends HtmlMailer
         $this->fromEmailAddress = Shared::cfg('MAIL_FROM');
         $this->setObjectName();
 
-        if ((bool) Shared::cfg('MUTE')) {
+        if (strtolower(Shared::cfg('MUTE','')) == 'true') {
             $sendTo = Shared::cfg('EASE_MAILTO');
+            $this->muted = true;
             $this->addStatusMessage(sprintf(_('Mute mode: SendTo forced: %s'), $sendTo), 'warning');
         } else {
             if (empty($sendTo) && method_exists($this->document, 'getEmail')) {
@@ -387,5 +391,9 @@ class DocumentMailer extends HtmlMailer
         '${object.varSym}',
         '${object.bspBan.buc}',
         '${object.bspBan.smerKod}';
+    }
+    
+    public function isMuted(): bool {
+        return $this->muted;
     }
 }

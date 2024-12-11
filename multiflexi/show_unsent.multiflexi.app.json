@@ -39,7 +39,7 @@
         "RESULT_FILE": {
             "type": "string",
             "description": "write output json data to",
-            "defval": "unsent_report.json",
+            "defval": "unsent_{ABRAFLEXI_COMPANY}_report.json",
             "required": false
         }
     },

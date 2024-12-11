@@ -19,7 +19,7 @@ use AbraFlexi\FakturaVydana;
 use Ease\Html\PTag;
 use Ease\Shared;
 
-\define('APP_NAME', 'AbraFlexiSentUnsentWithAttachments');
+\define('APP_NAME', 'AbraFlexi SentWith📎');
 
 require_once '../vendor/autoload.php';
 \Ease\Shared::init(['ABRAFLEXI_URL', 'ABRAFLEXI_LOGIN', 'ABRAFLEXI_PASSWORD', 'ABRAFLEXI_COMPANY', 'MAIL_FROM', 'LANG'], \array_key_exists(1, $argv) ? $argv[1] : '../.env');
@@ -86,11 +86,11 @@ if (empty($unsent)) {
 
         $result = false;
 
-        if (strtolower(\Ease\Shared::cfg('DRY_RUN', '')) !== 'true') {
+        if (strtolower(Shared::cfg('DRY_RUN', '')) !== 'true') {
             try {
                 $sendResult = $mailer->send();
 
-                if ($sendResult) {
+                if ($sendResult && ($mailer->isMuted() === false)) {
                     $invoiceUpdate = $invoicer->sync(['id' => $invoicer->getRecordIdent(), 'stavMailK' => 'stavMail.odeslano']);
                 } else {
                     $invoiceUpdate = false;
