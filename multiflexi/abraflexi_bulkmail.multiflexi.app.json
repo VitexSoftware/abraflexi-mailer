@@ -47,7 +47,26 @@
             "description": "Filter of recipients",
             "defval": "(kod='ZAKAZNIKA' or kod='ZAKAZNIKB' or kod='ZAKAZNIKC')",
             "required": true
+        },
+        "MAIL_FROM": {
+            "type": "email",
+            "description": "sender email address",
+            "defval": "",
+            "required": true
+        },
+        "LOCALIZE": {
+            "type": "string",
+            "description": "Localize to choosen language",
+            "defval": "",
+            "required": false
+        },
+        "EASE_LOGGER": {
+            "type": "string",
+            "description": "write log messages using",
+            "defval": "console|syslog",
+            "required": false
         }
+
     },
     "multiflexi": "1.7.2"
 }

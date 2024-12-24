@@ -41,6 +41,18 @@
             "description": "write output json data to",
             "defval": "unsent_{ABRAFLEXI_COMPANY}_report.json",
             "required": false
+        },
+        "EASE_LOGGER": {
+            "type": "string",
+            "description": "write log messages using",
+            "defval": "console|syslog",
+            "required": false
+        },
+        "ZABBIX_KEY": {
+            "type": "string",
+            "description": "Default name for Zabbix Item key name",
+            "defval": "Unsent-Documents-{ABRAFLEXI_COMPANY}",
+            "required": false
         }
     },
     "multiflexi": "1.7.2"
