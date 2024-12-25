@@ -9,7 +9,8 @@
     ],
     "require": {
         "vitexsoftware/abraflexi-bricks": "abraflexi-dev",
-        "pear/net_smtp": "dev-master"
+        "pear/net_smtp": "dev-master",
+        "symfony/mailer": "7.3.x-dev"
     },
     "require-dev": {
         "phpunit/phpunit": "*",

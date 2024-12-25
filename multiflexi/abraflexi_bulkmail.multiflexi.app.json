@@ -12,6 +12,12 @@
     "uuid": "a5caea28-2580-42b5-bad9-5b3092385eca",
     "topics": "AbraFlexi,Bulkmail",
     "environment": {
+        "MAILER_DSN": {
+	    "type": "string",
+            "hint": "smtp://user:pass@smtp.example.com:port"
+	    "description": "Mail sending configuration string",
+	    "link": "https://symfony.com/doc/current/mailer.html"
+        },
         "ABRAFLEXI_COMPANY": {
             "type": "string",
             "description": "AbraFlexi comapny code",
