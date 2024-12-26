@@ -54,6 +54,12 @@
             "defval": "",
             "required": true
         },
+        "MAIL_SUBJECT": {
+            "type": "string",
+            "description": "Subject for mails",
+            "defval": "",
+            "required": true
+        },
         "LOCALIZE": {
             "type": "string",
             "description": "Localize to choosen language",
@@ -65,8 +71,13 @@
             "description": "write log messages using",
             "defval": "console|syslog",
             "required": false
+        },
+        "APP_DEBUG": {
+            "type": "bool",
+            "description": "",
+            "defval": "",
+            "required": false
         }
-
     },
     "multiflexi": "1.7.2"
 }

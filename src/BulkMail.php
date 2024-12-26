@@ -18,7 +18,7 @@ use Ease\Shared;
 \define('APP_NAME', 'AbraFlexiBulkMail');
 
 require_once '../vendor/autoload.php';
-$template = $argv[1];
+$template = array_key_exists(1, $argv) ? $argv[1] : '';
 $query = \array_key_exists(2, $argv) ? $argv[2] : '';
 
 if ($argc > 2) {
@@ -33,7 +33,7 @@ if ($argc > 2) {
         }
 
         $document = new \AbraFlexi\Adresar(null, ['limit' => 0, 'detail' => 'full']);
-        $to = $document->getFlexiData('', $query);
+        $to = $document->getFlexiData('', [$query,'limit'=>0]);
 
         $document->addStatusMessage(sprintf(_('Query "%s" found %d recipients'), $query, \count($to)), 'debug');
 
@@ -45,7 +45,7 @@ if ($argc > 2) {
             if ($mailAddress) {
                 $document->addStatusMessage(sprintf(_('Sending to %s %s %s'), $document->getRecordCode(), $document->getDataValue('nazev'), $mailAddress));
                 $templater->populate($document);
-                $mailer = new \Ease\HtmlMailer($mailAddress, pathinfo($template, \PATHINFO_FILENAME), $templater->getRendered(), ['From' => Shared::cfg('MAIL_FROM')]);
+                $mailer = new \Ease\HtmlMailer($mailAddress, \Ease\Shared::cfg('MAIL_SUBJECT',pathinfo($template, \PATHINFO_FILENAME)), $templater->getRendered(), ['From' => Shared::cfg('MAIL_FROM')]);
                 $mailer->send();
             } else {
                 $document->addStatusMessage(sprintf(_('Address and contact %s without email address'), $document), 'warning');
