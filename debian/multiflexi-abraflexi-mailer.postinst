@@ -9,3 +9,5 @@ for file in `ls /usr/lib/$APPLICATION/multiflexi/*.json`
 do
 	multiflexi-json2app $file
 done
+
+sed -i 's/null, $value);/"", $value);/' /usr/share/php/Mail.php
