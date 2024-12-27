@@ -74,7 +74,13 @@
         },
         "APP_DEBUG": {
             "type": "bool",
-            "description": "",
+            "description": "show app version at startup",
+            "defval": "",
+            "required": false
+        },
+        "MUTE": {
+            "type": "bool",
+            "description": "true to dry run",
             "defval": "",
             "required": false
         }
