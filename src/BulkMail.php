@@ -53,7 +53,7 @@ if ($argc > 2) {
                     $document->addStatusMessage(sprintf(_('Address and contact %s without email address'), $document), 'warning');
                 }
             }
-        } catch (\AbraFlexi\AdresarException $ex) {
+        } catch (\AbraFlexi\Exception $ex) {
             fwrite(\STDERR, $ex->getMessage().\PHP_EOL);
 
             exit(2);
