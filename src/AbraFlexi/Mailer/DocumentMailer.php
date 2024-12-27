@@ -48,6 +48,7 @@ class DocumentMailer extends HtmlMailer
      * Obtained Templates cache.
      */
     public array $templates = [];
+    public bool $muted = false;
 
     /**
      * @var \AbraFlexi\FakturaVydana Mostly invoice
@@ -65,9 +66,6 @@ class DocumentMailer extends HtmlMailer
     private string $templateDir = '../templates';
     private ?\AbraFlexi\SablonaMail $templater = null;
 
-    public bool $muted = false;
-
-
     /**
      * Send Document by mail.
      *
@@ -83,7 +81,7 @@ class DocumentMailer extends HtmlMailer
         $this->fromEmailAddress = Shared::cfg('MAIL_FROM');
         $this->setObjectName();
 
-        if (strtolower(Shared::cfg('MUTE','')) == 'true') {
+        if (strtolower(Shared::cfg('MUTE', '')) === 'true') {
             $sendTo = Shared::cfg('EASE_MAILTO');
             $this->muted = true;
             $this->addStatusMessage(sprintf(_('Mute mode: SendTo forced: %s'), $sendTo), 'warning');
@@ -392,8 +390,9 @@ class DocumentMailer extends HtmlMailer
         '${object.bspBan.buc}',
         '${object.bspBan.smerKod}';
     }
-    
-    public function isMuted(): bool {
+
+    public function isMuted(): bool
+    {
         return $this->muted;
     }
 }

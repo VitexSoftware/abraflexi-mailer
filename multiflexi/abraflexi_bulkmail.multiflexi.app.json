@@ -4,7 +4,7 @@
     "description": "By Query select recipients from Addressbook and send mail based on template",
     "executable": "abraflexi-bulkmail",
     "setup": "",
-    "cmdparams": "{ABRAFLEXI_BULKMAIL_TEMPLATE} {ABRAFLEXI_BULKMAIL_QUERY}",
+    "cmdparams": "",
     "deploy": "apt install abraflexi-mailer",
     "homepage": "https://github.com/VitexSoftware/abraflexi-mailer/",
     "requirements": "AbraFlexi",
@@ -45,7 +45,7 @@
         "ABRAFLEXI_BULKMAIL_QUERY": {
             "type": "string",
             "description": "Filter of recipients",
-            "defval": "(kod='ZAKAZNIKA' or kod='ZAKAZNIKB' or kod='ZAKAZNIKC')",
+            "defval": "kod='ZAKAZNIKA' or kod='ZAKAZNIKB' or kod='ZAKAZNIKC'",
             "required": true
         },
         "MAIL_FROM": {

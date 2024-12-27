@@ -13,7 +13,7 @@
     "topics": "AbraFlexi,Mail,Check,Json",
     "environment": {
         "ABRAFLEXI_COMPANY": {
-            "type": "string",
+            "type": "string",   
             "description": "AbraFlexi comapny code",
             "defval": "demo_de",
             "required": true
