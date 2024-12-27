@@ -36,6 +36,12 @@
             "defval": "https:\/\/demo.flexibee.eu:5434",
             "required": true
         },
+        "EASE_SMTP": {
+          "type": "string",
+          "description": "configuration string for Pear_Mail",
+          "defval": "",
+          "required": true
+        },
         "EASE_LOGGER": {
             "type": "string",
             "description": "write log messages using",

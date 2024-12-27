@@ -60,6 +60,12 @@
             "defval": "",
             "required": true
         },
+        "EASE_SMTP": {
+          "type": "string",
+          "description": "configuration string for Pear_Mail",
+          "defval": "",
+          "required": true
+        },
         "LOCALIZE": {
             "type": "string",
             "description": "Localize to choosen language",
