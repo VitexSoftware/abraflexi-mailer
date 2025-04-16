@@ -69,7 +69,11 @@
         "LOCALIZE": {
             "type": "string",
             "description": "Localize to choosen language",
-            "defval": "",
+            "defval": "cs_CZ",
+            "options": [
+                "cs_CS",
+                "en_US"
+            ],
             "required": false
         },
         "EASE_LOGGER": {

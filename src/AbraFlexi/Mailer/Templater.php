@@ -19,7 +19,7 @@ namespace AbraFlexi\Mailer;
  * AbraFlexi Mailer Template processor class.
  *
  * @author     Vítězslav Dvořák <info@vitexsofware.cz>
- * @copyright  (G) 2021-2024 Vitex Software
+ * @copyright  (G) 2021-2025 Vitex Software
  */
 class Templater extends \Ease\Document implements mailbody
 {
@@ -57,9 +57,20 @@ class Templater extends \Ease\Document implements mailbody
     {
         $this->emptyContents();
         $this->document = $abraflexiDocument;
-        $this->myCompany = new \AbraFlexi\Nastaveni(1);
 
-        $templateData = ['company' => $this->myCompany->getData(), 'object' => $this->document->getData()];
+        try {
+            $this->myCompany = new \AbraFlexi\Nastaveni(1);
+            $companyData = $this->myCompany->getData();
+        } catch (\AbraFlexi\Exception $e) {
+            $this->addStatusMessage(_('Failed to load company settings').':'.$e->getMessage(), 'warning');
+            $companyData = []; // Fallback to empty data
+        }
+
+        $templateData = [
+            'company' => $companyData,
+            'object' => $this->document->getData(),
+        ];
+
         file_put_contents('/tmp/templatedata.json', json_encode($templateData));
         $this->addItem($this->process($this->template));
     }

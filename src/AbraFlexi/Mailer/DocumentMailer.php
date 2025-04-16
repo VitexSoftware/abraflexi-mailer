@@ -75,7 +75,7 @@ class DocumentMailer extends HtmlMailer
     public function __construct(
         RO $document,
         ?string $sendTo = null,
-        ?string $subject = null
+        ?string $subject = null,
     ) {
         $this->document = $document;
         $this->fromEmailAddress = Shared::cfg('MAIL_FROM');

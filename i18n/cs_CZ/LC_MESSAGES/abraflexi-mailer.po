@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AbraFlexi document mailer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-21 15:31+0100\n"
-"PO-Revision-Date: 2023-11-21 15:37+0100\n"
-"Last-Translator: Vítězslav Dvořák <info@vitexsoftware.cz>\n"
+"POT-Creation-Date: 2025-04-16 13:18+0200\n"
+"PO-Revision-Date: 2025-04-16 13:21+0200\n"
+"Last-Translator: Vítězslav Dvořák <vitex@vitexsoftware.cz>\n"
 "Language-Team: Vitex Software <info@vitexsoftware.cz>\n"
 "Language: cs_CZ\n"
 "MIME-Version: 1.0\n"
@@ -13,88 +13,122 @@ msgstr ""
 "X-Poedit-KeywordsList: _;gettext;gettext_noop\n"
 "X-Poedit-Basepath: ../../../src\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Generator: Poedit 2.4.2\n"
+"X-Generator: Poedit 3.6\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: AbraFlexi/Mailer/DocumentMailer.php:81
+#: AbraFlexi/Mailer/DocumentMailer.php:87
 #, php-format
 msgid "Mute mode: SendTo forced: %s"
 msgstr "Tichý režim: Příjemce je nyní vždy %s"
 
-#: AbraFlexi/Mailer/DocumentMailer.php:226
+#: AbraFlexi/Mailer/DocumentMailer.php:142
+msgid "Send by"
+msgstr "Odeslal"
+
+#: AbraFlexi/Mailer/DocumentMailer.php:249
 msgid "Company logo"
 msgstr "Logo společnosti"
 
-#: AbraFlexi/Mailer/DocumentMailer.php:247
+#: AbraFlexi/Mailer/DocumentMailer.php:271
 msgid "QR Payment"
 msgstr "QR platba"
 
-#: AbraFlexi/Mailer/DocumentMailer.php:251
+#: AbraFlexi/Mailer/DocumentMailer.php:275
 msgid "Error adding QR Code"
 msgstr "Chyba přidání QR Code"
 
-#: AbraFlexi/Mailer/Templater.php:149
+#: AbraFlexi/Mailer/Templater.php:65
+msgid "Failed to load company settings"
+msgstr "Nepodařilo se načíst nastavení firmy"
+
+#: AbraFlexi/Mailer/Templater.php:173
+#, php-format
+msgid "Cannot find %s in %s"
+msgstr "Nemohu najít %s v %s"
+
+#: AbraFlexi/Mailer/Templater.php:182
 #, php-format
 msgid "Unknown template's variable: %s"
 msgstr "Neznámá proměnná v šabloně %s"
 
-#: BulkMail.php:27
+#: BulkMail.php:40
 #, php-format
 msgid "Query \"%s\" found %d recipients"
 msgstr "Dotaz \"%s\" nalezl %d adresátů"
 
-#: BulkMail.php:33
+#: BulkMail.php:48
 #, php-format
 msgid "Sending to %s %s %s"
 msgstr "Odesílám na %s %s %s"
 
-#: BulkMail.php:39
+#: BulkMail.php:53
+#, php-format
+msgid "Address and contact %s without email address"
+msgstr "Adresa a  kontakt %s bez emailové adresy"
+
+#: BulkMail.php:62
 #, php-format
 msgid "Template file %s not found"
 msgstr "Soubor šablony %s nebyl nalezen"
 
-#: BulkMail.php:42
+#: BulkMail.php:67
 msgid "AbraFlexi BulkMail"
 msgstr "Hromadná pošta z AbraFlexi"
 
-#: SendDocument.php:32
+#: SendDocument.php:42
 msgid "Attaching"
 msgstr "Přikládám"
 
-#: SendDocument.php:50
+#: SendDocument.php:61
 #, php-format
 msgid "Cannot read %s %s"
 msgstr "Nemohu číst %s %s"
 
-#: SendDocument.php:56
+#: SendDocument.php:67
 msgid "AbraFlexi Document Sender"
 msgstr "Odesílač dokladů AbraFlexi"
 
-#: SendUnsent.php:19
+#: SendUnsent.php:29
 msgid "Send unsent mails"
 msgstr "Odeslat neodeslané"
 
-#: SendUnsentWithAttachments.php:31 ShowUnsent.php:29
+#: SendUnsentWithAttachments.php:42 ShowUnsent.php:41
 msgid "all sent"
 msgstr "vše odesláno"
 
-#: SendUnsentWithAttachments.php:62
-msgid "Invoice locked: skipping process"
-msgstr "Faktura uzamčena: přeskakuji zpracování"
+#: SendUnsentWithAttachments.php:76
+#, php-format
+msgid "Invoice %s cannot unlock: skipping process"
+msgstr "Nemohu odemknout amčenou faktur %s: přeskakuji zpracování"
 
-#: SendUnsentWithAttachments.php:84
+#: SendUnsentWithAttachments.php:81
+#, php-format
+msgid "Invoice %s locked: skipping process"
+msgstr "Faktura %s uzamčena: přeskakuji zpracování"
+
+#: SendUnsentWithAttachments.php:99
+#, php-format
+msgid "Updating Mail State of %s to \"sent\""
+msgstr "Aktualizuji stav mailu %s na \"odesláno\""
+
+#: SendUnsentWithAttachments.php:121
 #, php-format
 msgid "Invoice %s locked again"
 msgstr "Faktura %s znovu uzamčena"
 
-#: SendUnsentWithAttachments.php:86
+#: SendUnsentWithAttachments.php:123
 #, php-format
 msgid "Invoice %s locking failed"
 msgstr "Selhalo %s zamykání faktury"
 
-#: SendUnsentWithAttachments.php:90 ShowUnsent.php:38
+#: SendUnsentWithAttachments.php:128 ShowUnsent.php:53
 msgid "total"
 msgstr "celkem"
+
+#: ShowUnsent.php:57
+#, php-format
+msgid "Saving result to %s"
+msgstr "Ukládám vysledek do %s"
 
 #~ msgid "Adding labels"
 #~ msgstr "Přidávám štítky"
@@ -783,10 +817,6 @@ msgstr "celkem"
 #~ msgstr "Konfigurace tématu"
 
 #, fuzzy
-#~ msgid "Sendor OK"
-#~ msgstr "NRPE Senzor"
-
-#, fuzzy
 #~ msgid "%s was not add to contacts %s"
 #~ msgstr "Kontakt %s byl odebrán ze služby %s"
 
@@ -1029,10 +1059,6 @@ msgstr "celkem"
 #, fuzzy
 #~ msgid "Search term is too short"
 #~ msgstr "Heslo je příliš krátké"
-
-#, fuzzy
-#~ msgid "Search results"
-#~ msgstr "Výsledky vyhledávání"
 
 #~ msgid "Sensor"
 #~ msgstr "Sensor"

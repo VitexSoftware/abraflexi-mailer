@@ -48,6 +48,16 @@
             "defval": "False",
             "required": true
         },
+        "LOCALIZE": {
+            "type": "string",
+            "description": "Localize to choosen language",
+            "defval": "cs_CZ",
+            "options": [
+                "cs_CS",
+                "en_US"
+            ],
+            "required": false
+        },
         "MUTE": {
             "type": "checkbox",
             "description": "Do not send messages to customer",

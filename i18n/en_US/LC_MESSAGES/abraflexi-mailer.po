@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AbraFlexi document mailer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-21 15:31+0100\n"
-"PO-Revision-Date: 2023-11-21 15:45+0100\n"
-"Last-Translator: Vítězslav Dvořák <info@vitexsoftware.cz>\n"
+"POT-Creation-Date: 2025-04-16 13:21+0200\n"
+"PO-Revision-Date: 2025-04-16 13:21+0200\n"
+"Last-Translator: Vítězslav Dvořák <vitex@vitexsoftware.cz>\n"
 "Language-Team: Vitex Software <info@vitexsoftware.cz>\n"
 "Language: en_US\n"
 "MIME-Version: 1.0\n"
@@ -13,88 +13,125 @@ msgstr ""
 "X-Poedit-KeywordsList: _;gettext;gettext_noop\n"
 "X-Poedit-Basepath: ../../../src\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Generator: Poedit 2.4.2\n"
+"X-Generator: Poedit 3.6\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: AbraFlexi/Mailer/DocumentMailer.php:81
+#: AbraFlexi/Mailer/DocumentMailer.php:87
 #, php-format
 msgid "Mute mode: SendTo forced: %s"
 msgstr "Mute mode: SendTo forced: %s"
 
-#: AbraFlexi/Mailer/DocumentMailer.php:226
+#: AbraFlexi/Mailer/DocumentMailer.php:142
+msgid "Send by"
+msgstr "Send by"
+
+#: AbraFlexi/Mailer/DocumentMailer.php:249
 msgid "Company logo"
 msgstr "Company logo"
 
-#: AbraFlexi/Mailer/DocumentMailer.php:247
+#: AbraFlexi/Mailer/DocumentMailer.php:271
 msgid "QR Payment"
 msgstr "QR Payment"
 
-#: AbraFlexi/Mailer/DocumentMailer.php:251
+#: AbraFlexi/Mailer/DocumentMailer.php:275
 msgid "Error adding QR Code"
 msgstr "Error adding QR Code"
 
-#: AbraFlexi/Mailer/Templater.php:149
+#: AbraFlexi/Mailer/Templater.php:65
+msgid "Failed to load company settings"
+msgstr "Failed to load company settings"
+
+#: AbraFlexi/Mailer/Templater.php:173
+#, php-format
+#| msgid "Cannot read %s %s"
+msgid "Cannot find %s in %s"
+msgstr "Cannot find %s in %s"
+
+#: AbraFlexi/Mailer/Templater.php:182
 #, php-format
 msgid "Unknown template's variable: %s"
 msgstr "Unknown template's variable: %s"
 
-#: BulkMail.php:27
+#: BulkMail.php:40
 #, php-format
 msgid "Query \"%s\" found %d recipients"
 msgstr "Query \"%s\" found %d recipients"
 
-#: BulkMail.php:33
+#: BulkMail.php:48
 #, php-format
 msgid "Sending to %s %s %s"
 msgstr "Sending to %s %s %s"
 
-#: BulkMail.php:39
+#: BulkMail.php:53
+#, php-format
+msgid "Address and contact %s without email address"
+msgstr "Address and contact %s without email address"
+
+#: BulkMail.php:62
 #, php-format
 msgid "Template file %s not found"
 msgstr "Template file %s not found"
 
-#: BulkMail.php:42
+#: BulkMail.php:67
 msgid "AbraFlexi BulkMail"
 msgstr "AbraFlexi BulkMail"
 
-#: SendDocument.php:32
+#: SendDocument.php:42
 msgid "Attaching"
 msgstr "Attaching"
 
-#: SendDocument.php:50
+#: SendDocument.php:61
 #, php-format
 msgid "Cannot read %s %s"
 msgstr "Cannot read %s %s"
 
-#: SendDocument.php:56
+#: SendDocument.php:67
 msgid "AbraFlexi Document Sender"
 msgstr "AbraFlexi Document Sender"
 
-#: SendUnsent.php:19
+#: SendUnsent.php:29
 msgid "Send unsent mails"
 msgstr "Send unsent mails"
 
-#: SendUnsentWithAttachments.php:31 ShowUnsent.php:29
+#: SendUnsentWithAttachments.php:42 ShowUnsent.php:41
 msgid "all sent"
 msgstr "all sent"
 
-#: SendUnsentWithAttachments.php:62
-msgid "Invoice locked: skipping process"
-msgstr "Invoice locked: skipping process"
+#: SendUnsentWithAttachments.php:76
+#, php-format
+#| msgid "Invoice locked: skipping process"
+msgid "Invoice %s cannot unlock: skipping process"
+msgstr "Invoice %s cannot unlock: skipping process"
 
-#: SendUnsentWithAttachments.php:84
+#: SendUnsentWithAttachments.php:81
+#, php-format
+#| msgid "Invoice locked: skipping process"
+msgid "Invoice %s locked: skipping process"
+msgstr "Invoice %s locked: skipping process"
+
+#: SendUnsentWithAttachments.php:99
+#, php-format
+msgid "Updating Mail State of %s to \"sent\""
+msgstr "Updating Mail State of %s to \"sent\""
+
+#: SendUnsentWithAttachments.php:121
 #, php-format
 msgid "Invoice %s locked again"
 msgstr "Invoice %s locked again"
 
-#: SendUnsentWithAttachments.php:86
+#: SendUnsentWithAttachments.php:123
 #, php-format
 msgid "Invoice %s locking failed"
 msgstr "Invoice %s locking failed"
 
-#: SendUnsentWithAttachments.php:90 ShowUnsent.php:38
+#: SendUnsentWithAttachments.php:128 ShowUnsent.php:53
 msgid "total"
 msgstr "total"
+
+#: ShowUnsent.php:57
+#, php-format
+msgid "Saving result to %s"
+msgstr "Saving result to %s"
 
 #~ msgid "Adding labels"
 #~ msgstr "Přidávám štítky"
@@ -783,10 +820,6 @@ msgstr "total"
 #~ msgstr "Konfigurace tématu"
 
 #, fuzzy
-#~ msgid "Sendor OK"
-#~ msgstr "NRPE Senzor"
-
-#, fuzzy
 #~ msgid "%s was not add to contacts %s"
 #~ msgstr "Kontakt %s byl odebrán ze služby %s"
 
@@ -1029,10 +1062,6 @@ msgstr "total"
 #, fuzzy
 #~ msgid "Search term is too short"
 #~ msgstr "Heslo je příliš krátké"
-
-#, fuzzy
-#~ msgid "Search results"
-#~ msgstr "Výsledky vyhledávání"
 
 #~ msgid "Sensor"
 #~ msgstr "Sensor"
