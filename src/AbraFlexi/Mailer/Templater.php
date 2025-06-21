@@ -37,8 +37,8 @@ class Templater extends \Ease\Document implements mailbody
     /**
      * Template.
      *
-     * @param string       $template          .ftl file content
-     * @param \AbraFlexiRO $abraflexiDocument AbraFlexi Document
+     * @param string        $template          .ftl file content
+     * @param \AbraFlexi\RO $abraflexiDocument AbraFlexi Document
      */
     public function __construct($template, ?\AbraFlexi\RO $abraflexiDocument = null)
     {
@@ -63,7 +63,12 @@ class Templater extends \Ease\Document implements mailbody
             $companyData = $this->myCompany->getData();
         } catch (\AbraFlexi\Exception $e) {
             $this->addStatusMessage(_('Failed to load company settings').':'.$e->getMessage(), 'warning');
-            $companyData = []; // Fallback to empty data
+            $companyData = [
+                'nazev' => $this->getOption('companyName') ?? \Ease\Shared::cfg('COMPANY_NAME') ?? '',
+                'email' => $this->getOption('companyEmail') ?? \Ease\Shared::cfg('COMPANY_EMAIL') ?? '',
+                'signature' => $this->getOption('companySignature') ?? \Ease\Shared::cfg('COMPANY_SIGNATURE') ?? '',
+            ];
+            $this->addStatusMessage(_('Using default company settings. Please set COMPANY_NAME, COMPANY_EMAIL, and COMPANY_SIGNATURE in the configuration.'), 'warning');
         }
 
         $templateData = [

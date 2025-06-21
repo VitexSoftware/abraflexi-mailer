@@ -1,7 +1,7 @@
 {
     "image": "",
     "name": "Show Unsent",
-    "description": "Show Unsent documents",
+    "description": "Report Unsent documents",
     "executable": "abraflexi-show-unsent",
     "setup": "",
     "cmdparams": "",

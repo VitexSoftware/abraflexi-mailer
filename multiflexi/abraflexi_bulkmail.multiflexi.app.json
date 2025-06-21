@@ -93,6 +93,24 @@
             "description": "true to dry run",
             "defval": "",
             "required": false
+        },
+        "COMPANY_NAME": {
+            "type": "string",
+            "description": "Company name to be used in messages",
+            "defval": "Demo Company",
+            "required": false
+        },
+        "COMPANY_EMAIL": {
+            "type": "email",
+            "description": "Company email address",
+            "defval": "info@democompany.com",
+            "required": false
+        },
+        "COMPANY_SIGNATURE": {
+            "type": "string",
+            "description": "Company email signature",
+            "defval": "Best regards,\nDemo Company",
+            "required": false
         }
     },
     "multiflexi": "1.7.2"

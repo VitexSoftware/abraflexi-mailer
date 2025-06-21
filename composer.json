@@ -8,15 +8,15 @@
         }
     ],
     "require": {
-        "vitexsoftware/abraflexi-bricks": "abraflexi-dev",
+        "vitexsoftware/abraflexi-bricks": "^1.3",
         "pear/net_smtp": "dev-master"
     },
     "require-dev": {
         "phpunit/phpunit": "*",
         "phpstan/phpstan": "*",
-        "friendsofphp/php-cs-fixer": "^3.61",
-        "ergebnis/composer-normalize": "^2.43",
-        "ergebnis/php-cs-fixer-config": "^6.34"
+        "friendsofphp/php-cs-fixer": "^3.65",
+        "ergebnis/composer-normalize": "^2.45",
+        "ergebnis/php-cs-fixer-config": "^6.39"
     },
     "minimum-stability": "dev",
     "autoload": {
