@@ -64,9 +64,9 @@ class Templater extends \Ease\Document implements mailbody
         } catch (\AbraFlexi\Exception $e) {
             $this->addStatusMessage(_('Failed to load company settings').':'.$e->getMessage(), 'warning');
             $companyData = [
-                'nazev' => $this->getOption('companyName') ?? \Ease\Shared::cfg('COMPANY_NAME') ?? '',
-                'email' => $this->getOption('companyEmail') ?? \Ease\Shared::cfg('COMPANY_EMAIL') ?? '',
-                'signature' => $this->getOption('companySignature') ?? \Ease\Shared::cfg('COMPANY_SIGNATURE') ?? '',
+                'nazev' => \Ease\Shared::cfg('COMPANY_NAME', ''),
+                'email' => \Ease\Shared::cfg('COMPANY_EMAIL', ''),
+                'signature' => \Ease\Shared::cfg('COMPANY_SIGNATURE', ''),
             ];
             $this->addStatusMessage(_('Using default company settings. Please set COMPANY_NAME, COMPANY_EMAIL, and COMPANY_SIGNATURE in the configuration.'), 'warning');
         }
@@ -111,7 +111,7 @@ class Templater extends \Ease\Document implements mailbody
                     case 'uzivatelPrijmeni':
                     case 'titulJmenoPrijmeni':
                         $user = new \AbraFlexi\RO(
-                            \AbraFlexi\RO::code($this->document->user),
+                            \AbraFlexi\Functions::code($this->document->user),
                             ['evidence' => 'uzivatel', 'autoload' => true],
                         );
 
