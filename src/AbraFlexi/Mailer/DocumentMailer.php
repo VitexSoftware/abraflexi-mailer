@@ -19,7 +19,6 @@ use AbraFlexi\Document;
 use AbraFlexi\Formats;
 use AbraFlexi\Priloha;
 use AbraFlexi\SablonaMail;
-use AbraFlexi\ui\CompanyLogo;
 use Ease\Html\BodyTag;
 use Ease\Html\DivTag;
 use Ease\Html\HtmlTag;

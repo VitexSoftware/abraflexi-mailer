@@ -9,7 +9,7 @@
     ],
     "require": {
         "php": ">=8.1",
-        "vitexsoftware/abraflexi-bricks": "^1.4",
+        "vitexsoftware/abraflexi-bricks": "dev-main",
         "pear/net_smtp": "dev-master"
     },
     "require-dev": {
