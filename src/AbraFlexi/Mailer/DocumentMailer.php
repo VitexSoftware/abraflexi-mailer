@@ -15,9 +15,10 @@ declare(strict_types=1);
 
 namespace AbraFlexi\Mailer;
 
+use AbraFlexi\Document;
 use AbraFlexi\Formats;
 use AbraFlexi\Priloha;
-use AbraFlexi\RO;
+use AbraFlexi\SablonaMail;
 use AbraFlexi\ui\CompanyLogo;
 use Ease\Html\BodyTag;
 use Ease\Html\DivTag;
@@ -51,9 +52,9 @@ class DocumentMailer extends HtmlMailer
     public bool $muted = false;
 
     /**
-     * @var \AbraFlexi\FakturaVydana Mostly invoice
+     * @var \AbraFlexi\Document Mostly invoice
      */
-    private \AbraFlexi\document $document;
+    private Document $document;
 
     /**
      * @var array attachment's temporary files to delete
@@ -64,16 +65,16 @@ class DocumentMailer extends HtmlMailer
      * Where to look for templates.
      */
     private string $templateDir = '../templates';
-    private ?\AbraFlexi\SablonaMail $templater = null;
+    private ?SablonaMail $templater = null;
 
     /**
      * Send Document by mail.
      *
-     * @param RO     $document AbraFlexi document object
-     * @param string $sendTo   recipient
+     * @param Document $document AbraFlexi document object
+     * @param string   $sendTo   recipient
      */
     public function __construct(
-        RO $document,
+        Document $document,
         ?string $sendTo = null,
         ?string $subject = null,
     ) {
@@ -225,7 +226,7 @@ class DocumentMailer extends HtmlMailer
             ),
             Formats::$formats['ISDOCx']['content-type'],
         );
-        $heading = new DivTag($this->document->getEvidence().' '.RO::uncode($this->document->getRecordIdent()));
+        $heading = new DivTag($this->document->getEvidence().' '.\AbraFlexi\Functions::uncode($this->document->getRecordIdent()));
 
         if (Shared::cfg('ADD_LOGO')) {
             $this->addCompanyLogo($heading);
@@ -329,11 +330,9 @@ class DocumentMailer extends HtmlMailer
     /**
      * Get Template stored in AbraFlexi.
      *
-     * @param \AbraFlexi\RO $document
-     *
      * @return string
      */
-    public function getAbraFlexiTemplate($document)
+    public function getAbraFlexiTemplate(Document $document)
     {
         $template = [];
         $typDoklInfo = $document->getColumnInfo('typDokl');
@@ -350,7 +349,7 @@ class DocumentMailer extends HtmlMailer
                         $beanKey = \AbraFlexi\EvidenceList::$evidences[$evidence]['beanKey'];
 
                         if ((null === $this->templater) === true) {
-                            $this->templater = new \AbraFlexi\SablonaMail(null, ['ignore404' => true]);
+                            $this->templater = new SablonaMail(null, ['ignore404' => true]);
                         }
 
                         if (\array_key_exists($beanKey, $this->templates) === false) {
