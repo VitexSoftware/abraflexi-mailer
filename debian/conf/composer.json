@@ -13,6 +13,7 @@
         "vendor-dir": "/var/lib/abraflexi-mailer"
     },
     "require": {
+        "deb/ease-html": "*",
         "deb/abraflexi-bricks": "*"
     },
     "autoload": {
