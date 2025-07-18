@@ -305,7 +305,7 @@ class DocumentMailer extends HtmlMailer
      *
      * @return success
      */
-    public function addFile($filename, $mimeType = 'text/plain')
+    public function addFile($filename, $mimeType = 'text/plain'): bool
     {
         $this->cleanup[] = $filename;
 
