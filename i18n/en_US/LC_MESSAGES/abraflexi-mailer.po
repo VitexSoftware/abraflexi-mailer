@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AbraFlexi document mailer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-16 13:21+0200\n"
-"PO-Revision-Date: 2025-04-16 13:21+0200\n"
+"POT-Creation-Date: 2025-07-18 11:57+0200\n"
+"PO-Revision-Date: 2025-07-18 11:58+0200\n"
 "Last-Translator: Vítězslav Dvořák <vitex@vitexsoftware.cz>\n"
 "Language-Team: Vitex Software <info@vitexsoftware.cz>\n"
 "Language: en_US\n"
@@ -16,24 +16,24 @@ msgstr ""
 "X-Generator: Poedit 3.6\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: AbraFlexi/Mailer/DocumentMailer.php:87
+#: AbraFlexi/Mailer/DocumentMailer.php:88
 #, php-format
 msgid "Mute mode: SendTo forced: %s"
 msgstr "Mute mode: SendTo forced: %s"
 
-#: AbraFlexi/Mailer/DocumentMailer.php:142
+#: AbraFlexi/Mailer/DocumentMailer.php:143
 msgid "Send by"
 msgstr "Send by"
 
-#: AbraFlexi/Mailer/DocumentMailer.php:249
+#: AbraFlexi/Mailer/DocumentMailer.php:250
 msgid "Company logo"
 msgstr "Company logo"
 
-#: AbraFlexi/Mailer/DocumentMailer.php:271
+#: AbraFlexi/Mailer/DocumentMailer.php:272
 msgid "QR Payment"
 msgstr "QR Payment"
 
-#: AbraFlexi/Mailer/DocumentMailer.php:275
+#: AbraFlexi/Mailer/DocumentMailer.php:276
 msgid "Error adding QR Code"
 msgstr "Error adding QR Code"
 
@@ -41,13 +41,20 @@ msgstr "Error adding QR Code"
 msgid "Failed to load company settings"
 msgstr "Failed to load company settings"
 
-#: AbraFlexi/Mailer/Templater.php:173
+#: AbraFlexi/Mailer/Templater.php:71
+msgid ""
+"Using default company settings. Please set COMPANY_NAME, COMPANY_EMAIL, and "
+"COMPANY_SIGNATURE in the configuration."
+msgstr ""
+"Using default company settings. Please set COMPANY_NAME, COMPANY_EMAIL, and "
+"COMPANY_SIGNATURE in the configuration."
+
+#: AbraFlexi/Mailer/Templater.php:178
 #, php-format
-#| msgid "Cannot read %s %s"
 msgid "Cannot find %s in %s"
 msgstr "Cannot find %s in %s"
 
-#: AbraFlexi/Mailer/Templater.php:182
+#: AbraFlexi/Mailer/Templater.php:187
 #, php-format
 msgid "Unknown template's variable: %s"
 msgstr "Unknown template's variable: %s"
@@ -99,13 +106,11 @@ msgstr "all sent"
 
 #: SendUnsentWithAttachments.php:76
 #, php-format
-#| msgid "Invoice locked: skipping process"
 msgid "Invoice %s cannot unlock: skipping process"
 msgstr "Invoice %s cannot unlock: skipping process"
 
 #: SendUnsentWithAttachments.php:81
 #, php-format
-#| msgid "Invoice locked: skipping process"
 msgid "Invoice %s locked: skipping process"
 msgstr "Invoice %s locked: skipping process"
 
@@ -1011,8 +1016,12 @@ msgstr "Saving result to %s"
 #~ msgstr "Obnova ztraceného hesla"
 
 #, fuzzy
-#~ msgid "Forgot your password? Enter your e-mail address you entered during the registration and we will send you a new one."
-#~ msgstr "Zapoměli jste heslo ? Vložte svojí e-mailovou adresu kterou jste zadali během registrace a my vám pošleme nové."
+#~ msgid ""
+#~ "Forgot your password? Enter your e-mail address you entered during the "
+#~ "registration and we will send you a new one."
+#~ msgstr ""
+#~ "Zapoměli jste heslo ? Vložte svojí e-mailovou adresu kterou jste zadali "
+#~ "během registrace a my vám pošleme nové."
 
 #~ msgid "Email"
 #~ msgstr "Email"
@@ -1342,25 +1351,33 @@ msgstr "Saving result to %s"
 #~ msgid ""
 #~ "<br>\n"
 #~ "Nagstamon je monitor Nagiosu pro desktopové operační systémy.\n"
-#~ "Běží v systémové liště, nebo jako plovoucí aplikace, či ve stavovém řádku na\n"
+#~ "Běží v systémové liště, nebo jako plovoucí aplikace, či ve stavovém řádku "
+#~ "na\n"
 #~ "ploše a ukazuje stručný přehled stavy hostitelů či služeb tzn:\n"
-#~ "kritický, varovný, neznámý, nedosažitelný či vypnuto  a ukazuje podrobný přehled\n"
+#~ "kritický, varovný, neznámý, nedosažitelný či vypnuto  a ukazuje podrobný "
+#~ "přehled\n"
 #~ "stavu při pohybu ukazatele myši nad ním.\n"
-#~ "Připojení k zobrazeným hostitelům a službám je snadné z kontextové nabídky přes\n"
+#~ "Připojení k zobrazeným hostitelům a službám je snadné z kontextové "
+#~ "nabídky přes\n"
 #~ "SSH, RDP a VNC nebo jakýchkoli jiných definovaných akcí.\n"
 #~ "Uživatelé mohou být upozorněni zvukem.\n"
-#~ "Hostitelé a služby mohou být filtrovány podle kategorií a regulárních výrazů.\n"
+#~ "Hostitelé a služby mohou být filtrovány podle kategorií a regulárních "
+#~ "výrazů.\n"
 #~ msgstr ""
 #~ "<br>\n"
 #~ "Nagstamon je monitor Nagiosu pro desktopové operační systémy. \n"
-#~ "Běží v systémové liště, nebo jako plovoucí aplikace, či ve stavovém řádku na \n"
+#~ "Běží v systémové liště, nebo jako plovoucí aplikace, či ve stavovém řádku "
+#~ "na \n"
 #~ "ploše a ukazuje stručný přehled stavy hostitelů či služeb tzn: \n"
-#~ "kritický, varovný, neznámý, nedosažitelný či vypnuto  a ukazuje podrobný přehled \n"
+#~ "kritický, varovný, neznámý, nedosažitelný či vypnuto  a ukazuje podrobný "
+#~ "přehled \n"
 #~ "stavu při pohybu ukazatele myši nad ním. \n"
-#~ "Připojení k zobrazeným hostitelům a službám je snadné z kontextové nabídky přes \n"
+#~ "Připojení k zobrazeným hostitelům a službám je snadné z kontextové "
+#~ "nabídky přes \n"
 #~ "SSH, RDP a VNC nebo jakýchkoli jiných definovaných akcí. \n"
 #~ "Uživatelé mohou být upozorněni zvukem. \n"
-#~ "Hostitelé a služby mohou být filtrovány podle kategorií a regulárních výrazů. \n"
+#~ "Hostitelé a služby mohou být filtrovány podle kategorií a regulárních "
+#~ "výrazů. \n"
 
 #~ msgid "Domovská stránka programu"
 #~ msgstr "Domovská stránka programu"
@@ -1416,8 +1433,12 @@ msgstr "Saving result to %s"
 #~ msgid "Hostname serveru"
 #~ msgstr "Hostname serveru"
 
-#~ msgid "Název hostu, tedy to co následuje po http:// ve webové adrese až k prvnímu lomítku, nebo otazníku."
-#~ msgstr "Název hostu, tedy to co následuje po http:// ve webové adrese až k prvnímu lomítku, nebo otazníku."
+#~ msgid ""
+#~ "Název hostu, tedy to co následuje po http:// ve webové adrese až k "
+#~ "prvnímu lomítku, nebo otazníku."
+#~ msgstr ""
+#~ "Název hostu, tedy to co následuje po http:// ve webové adrese až k "
+#~ "prvnímu lomítku, nebo otazníku."
 
 #~ msgid "IPv4 Adresa"
 #~ msgstr "IPv4 Adresa"
@@ -1429,13 +1450,22 @@ msgstr "Saving result to %s"
 #~ msgstr "IPv6 Adresa"
 
 #~ msgid "nejvíce osm skupin čtyř hexadecimálních číslic oddělených dvojtečkou"
-#~ msgstr "nejvíce osm skupin čtyř hexadecimálních číslic oddělených dvojtečkou"
+#~ msgstr ""
+#~ "nejvíce osm skupin čtyř hexadecimálních číslic oddělených dvojtečkou"
 
 #~ msgid "Přidej host"
 #~ msgstr "Přidej host"
 
-#~ msgid "Po zadání alespoň jednoho vstupního údaje si tento průvodce dohledá ostatní a provede sken na některé základní služby.<br>Pokud budou tyto nalezeny aktivují se jejich testy. Informace o stavu bude odesílána na první zadaný kontakt"
-#~ msgstr "Po zadání alespoň jednoho vstupního údaje si tento průvodce dohledá ostatní a provede sken na některé základní služby.<br>Pokud budou tyto nalezeny aktivují se jejich testy. Informace o stavu bude odesílána na první zadaný kontakt"
+#~ msgid ""
+#~ "Po zadání alespoň jednoho vstupního údaje si tento průvodce dohledá "
+#~ "ostatní a provede sken na některé základní služby.<br>Pokud budou tyto "
+#~ "nalezeny aktivují se jejich testy. Informace o stavu bude odesílána na "
+#~ "první zadaný kontakt"
+#~ msgstr ""
+#~ "Po zadání alespoň jednoho vstupního údaje si tento průvodce dohledá "
+#~ "ostatní a provede sken na některé základní služby.<br>Pokud budou tyto "
+#~ "nalezeny aktivují se jejich testy. Informace o stavu bude odesílána na "
+#~ "první zadaný kontakt"
 
 #, fuzzy
 #~ msgid "Prosím zastejte název služby"
@@ -1477,19 +1507,23 @@ msgstr "Saving result to %s"
 #~ msgstr "Toto není platné telefoní číslo"
 
 #, fuzzy
-#~ msgid "Kontakt <strong>%s</strong> byl odebrán ze skupiny <strong>%s</strong>"
+#~ msgid ""
+#~ "Kontakt <strong>%s</strong> byl odebrán ze skupiny <strong>%s</strong>"
 #~ msgstr "Kontakt %s byl odebrán ze služby %s"
 
 #, fuzzy
-#~ msgid "Kontakt <strong>%s</strong> nebyl odebrán ze skupiny <strong>%s</strong>"
+#~ msgid ""
+#~ "Kontakt <strong>%s</strong> nebyl odebrán ze skupiny <strong>%s</strong>"
 #~ msgstr "Kontakt %s byl odebrán ze služby %s"
 
 #, fuzzy
-#~ msgid "Kontakt <strong>%s</strong> byl odebrán ze služby <strong>%s</strong>"
+#~ msgid ""
+#~ "Kontakt <strong>%s</strong> byl odebrán ze služby <strong>%s</strong>"
 #~ msgstr "Kontakt %s byl odebrán ze služby %s"
 
 #, fuzzy
-#~ msgid "Kontakt <strong>%s</strong> nebyl odebrán ze služby <strong>%s</strong>"
+#~ msgid ""
+#~ "Kontakt <strong>%s</strong> nebyl odebrán ze služby <strong>%s</strong>"
 #~ msgstr "Kontakt %s byl odebrán ze služby %s"
 
 #~ msgid "Kontakt nelze přejmenovat"
@@ -1757,26 +1791,40 @@ msgstr "Saving result to %s"
 #~ msgid "prodleva varování"
 #~ msgstr "prodleva varování"
 
-#~ msgid "Čas v milisekundách, po jehož překročení při testu bude hlášeno varování"
-#~ msgstr "Čas v milisekundách, po jehož překročení při testu bude hlášeno varování"
+#~ msgid ""
+#~ "Čas v milisekundách, po jehož překročení při testu bude hlášeno varování"
+#~ msgstr ""
+#~ "Čas v milisekundách, po jehož překročení při testu bude hlášeno varování"
 
 #~ msgid "ztráta varování"
 #~ msgstr "ztráta varování"
 
-#~ msgid "Procento ztracených paketů, po jehož překročení při testu bude hlášeno varování"
-#~ msgstr "Procento ztracených paketů, po jehož překročení při testu bude hlášeno varování"
+#~ msgid ""
+#~ "Procento ztracených paketů, po jehož překročení při testu bude hlášeno "
+#~ "varování"
+#~ msgstr ""
+#~ "Procento ztracených paketů, po jehož překročení při testu bude hlášeno "
+#~ "varování"
 
 #~ msgid "prodleva kritické chyby"
 #~ msgstr "prodleva kritické chyby"
 
-#~ msgid "Čas v milisekundách, po jehož překročení při testu bude hlášena kritická chyba"
-#~ msgstr "Čas v milisekundách, po jehož překročení při testu bude hlášena kritická chyba"
+#~ msgid ""
+#~ "Čas v milisekundách, po jehož překročení při testu bude hlášena kritická "
+#~ "chyba"
+#~ msgstr ""
+#~ "Čas v milisekundách, po jehož překročení při testu bude hlášena kritická "
+#~ "chyba"
 
 #~ msgid "ztráta kritické chyby"
 #~ msgstr "ztráta kritické chyby"
 
-#~ msgid "Procento ztracených paketů, po jehož překročení při testu bude hlášena kritická chyba"
-#~ msgstr "Procento ztracených paketů, po jehož překročení při testu bude hlášena kritická chyba"
+#~ msgid ""
+#~ "Procento ztracených paketů, po jehož překročení při testu bude hlášena "
+#~ "kritická chyba"
+#~ msgstr ""
+#~ "Procento ztracených paketů, po jehož překročení při testu bude hlášena "
+#~ "kritická chyba"
 
 #~ msgid "Varování:"
 #~ msgstr "Varování:"
@@ -1875,8 +1923,10 @@ msgstr "Saving result to %s"
 #~ msgid "importovat konfiguraci"
 #~ msgstr "importovat konfiguraci"
 
-#~ msgid "Tato akce nevratně smaže veškerou konfiguraci. Opravdu to chcete udělat ?"
-#~ msgstr "Tato akce nevratně smaže veškerou konfiguraci. Opravdu to chcete udělat ?"
+#~ msgid ""
+#~ "Tato akce nevratně smaže veškerou konfiguraci. Opravdu to chcete udělat ?"
+#~ msgstr ""
+#~ "Tato akce nevratně smaže veškerou konfiguraci. Opravdu to chcete udělat ?"
 
 #~ msgid "Vím co dělám"
 #~ msgstr "Vím co dělám"
@@ -2318,8 +2368,12 @@ msgstr "Saving result to %s"
 #~ msgid "odhlasit twitter"
 #~ msgstr "odhlasit twitter"
 
-#~ msgid "Další sledovatelné služby budou nabídnuty po nastavení platformy hosta a vzdáleného senzoru."
-#~ msgstr "Další sledovatelné služby budou nabídnuty po nastavení platformy hosta a vzdáleného senzoru."
+#~ msgid ""
+#~ "Další sledovatelné služby budou nabídnuty po nastavení platformy hosta a "
+#~ "vzdáleného senzoru."
+#~ msgstr ""
+#~ "Další sledovatelné služby budou nabídnuty po nastavení platformy hosta a "
+#~ "vzdáleného senzoru."
 
 #, fuzzy
 #~ msgid "Uložit jako předlohu"
@@ -2454,8 +2508,10 @@ msgstr "Saving result to %s"
 #~ msgid "kontrola hesla nesouhlasí"
 #~ msgstr "kontrola hesla nesouhlasí"
 
-#~ msgid "Zadané uživatelské jméno %s je již v databázi použito. Zvolte prosím jiné."
-#~ msgstr "Zadané uživatelské jméno %s je již v databázi použito. Zvolte prosím jiné."
+#~ msgid ""
+#~ "Zadané uživatelské jméno %s je již v databázi použito. Zvolte prosím jiné."
+#~ msgstr ""
+#~ "Zadané uživatelské jméno %s je již v databázi použito. Zvolte prosím jiné."
 
 #~ msgid "Administrátirský účet byl vytvořen"
 #~ msgstr "Administrátirský účet byl vytvořen"
@@ -2504,14 +2560,22 @@ msgstr "Saving result to %s"
 #~ msgid "Vítejte v registraci"
 #~ msgstr "Vítejte v registraci"
 
-#~ msgid "Po zaregistování budete rovnou vyzváni k zadání prvního sledovaného hosta."
-#~ msgstr "Po zaregistování budete rovnou vyzváni k zadání prvního sledovaného hosta."
+#~ msgid ""
+#~ "Po zaregistování budete rovnou vyzváni k zadání prvního sledovaného hosta."
+#~ msgstr ""
+#~ "Po zaregistování budete rovnou vyzváni k zadání prvního sledovaného hosta."
 
-#~ msgid "Veškeré notifikace o výsledcích testů vám budou přicházet na zadaný email."
-#~ msgstr "Veškeré notifikace o výsledcích testů vám budou přicházet na zadaný email."
+#~ msgid ""
+#~ "Veškeré notifikace o výsledcích testů vám budou přicházet na zadaný email."
+#~ msgstr ""
+#~ "Veškeré notifikace o výsledcích testů vám budou přicházet na zadaný email."
 
-#~ msgid "Pro zasílání notifikací pomocí XMPP (jabber) či SMS, zadejte tyto v nastavení vašeho kontaktu."
-#~ msgstr "Pro zasílání notifikací pomocí XMPP (jabber) či SMS, zadejte tyto v nastavení vašeho kontaktu."
+#~ msgid ""
+#~ "Pro zasílání notifikací pomocí XMPP (jabber) či SMS, zadejte tyto v "
+#~ "nastavení vašeho kontaktu."
+#~ msgstr ""
+#~ "Pro zasílání notifikací pomocí XMPP (jabber) či SMS, zadejte tyto v "
+#~ "nastavení vašeho kontaktu."
 
 #, fuzzy
 #~ msgid "Příjmení"
@@ -2651,8 +2715,10 @@ msgstr "Saving result to %s"
 #~ msgid "Nechtěný obsah"
 #~ msgstr "Nechtěný obsah"
 
-#~ msgid "Neočekávaný text, např. \"Error\" nebo jiný fragment chybového hlášení"
-#~ msgstr "Neočekávaný text, např. \"Error\" nebo jiný fragment chybového hlášení"
+#~ msgid ""
+#~ "Neočekávaný text, např. \"Error\" nebo jiný fragment chybového hlášení"
+#~ msgstr ""
+#~ "Neočekávaný text, např. \"Error\" nebo jiný fragment chybového hlášení"
 
 #, fuzzy
 #~ msgid "Nové heslo pro"
@@ -2667,8 +2733,12 @@ msgstr "Saving result to %s"
 #~ msgid "Obnova zapomenutého hesla"
 #~ msgstr "Obnova zapomenutého hesla"
 
-#~ msgid "Zapoměl jste heslo? Vložte svou e-mailovou adresu, kterou jste zadal při registraci a my Vám pošleme nové."
-#~ msgstr "Zapoměl jste heslo? Vložte svou e-mailovou adresu, kterou jste zadal při registraci a my Vám pošleme nové."
+#~ msgid ""
+#~ "Zapoměl jste heslo? Vložte svou e-mailovou adresu, kterou jste zadal při "
+#~ "registraci a my Vám pošleme nové."
+#~ msgstr ""
+#~ "Zapoměl jste heslo? Vložte svou e-mailovou adresu, kterou jste zadal při "
+#~ "registraci a my Vám pošleme nové."
 
 #~ msgid "Zaslat nové heslo"
 #~ msgstr "Zaslat nové heslo"

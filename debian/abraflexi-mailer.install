@@ -1,7 +1,7 @@
 debian/conf/composer.json       usr/lib/abraflexi-mailer/
-src/*			        usr/lib/abraflexi-mailer/
-src/AbraFlexi/Mailer/*         usr/lib/abraflexi-mailer/AbraFlexi/Mailer/
+src/*		        	        usr/lib/abraflexi-mailer/
+src/AbraFlexi/Mailer/*          usr/lib/abraflexi-mailer/AbraFlexi/Mailer/
 bin/*                           usr/bin/
-.env.template                   usr/share/doc/abraflexi-mailer
-i18n/cs_CZ/LC_MESSAGES/*.mo               usr/share/locale/cs_CZ/LC_MESSAGES/
-i18n/en_US/LC_MESSAGES/*.mo               usr/share/locale/en_US/LC_MESSAGES/
+example.env                     usr/share/doc/abraflexi-mailer
+i18n/cs_CZ/LC_MESSAGES/*.mo     usr/share/locale/cs_CZ/LC_MESSAGES/
+i18n/en_US/LC_MESSAGES/*.mo     usr/share/locale/en_US/LC_MESSAGES/

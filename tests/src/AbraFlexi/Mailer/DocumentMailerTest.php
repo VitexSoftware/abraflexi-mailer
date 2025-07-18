@@ -33,7 +33,7 @@ class DocumentMailerTest extends \PHPUnit\Framework\TestCase
     {
         $this->invoicer = new \AbraFlexi\FakturaVydana();
         $this->invoicer->loadFromAbraFlexi($this->invoicer->getFirstRecordID());
-        $this->object = new DocumentMailer($this->invoicer);
+        $this->object = new \AbraFlexi\Mailer\DocumentMailer($this->invoicer);
     }
 
     /**
