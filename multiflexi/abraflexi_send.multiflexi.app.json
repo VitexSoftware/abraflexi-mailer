@@ -8,9 +8,9 @@
     "deploy": "apt install abraflexi-mailer",
     "homepage": "https://github.com/VitexSoftware/abraflexi-mailer/",
     "ociimage": "docker.io/vitexsoftware/abraflexi-mailer",
-    "requirements": "AbraFlexi",
+    "requirements": ["AbraFlexi"],
     "uuid": "37386766-78e5-46f6-8240-a15fb8d895ba",
-    "topics": "AbraFlexi,Mail,Sender",
+    "topics": ["AbraFlexi", "Mail", "Sender"],
     "environment": {
         "ABRAFLEXI_COMPANY": {
             "type": "string",
