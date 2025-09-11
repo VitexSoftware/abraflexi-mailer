@@ -7,7 +7,7 @@ override_dh_install:
 	mkdir -p debian/tmp/
 	jq '.version = "'`dpkg-parsechangelog | sed -n 's/^Version: //p'| sed 's/~.*//'`'"'  debian/conf/composer.json |sponge debian/tmp/composer.json
 	dh_install
-	sed -i -e 's/..\/vendor/\/var\/lib\/abraflexi-mailer/g'   debian/abraflexi-mailer/usr/lib/abraflexi-mailer/*.php
+	sed -i -e 's/..\/vendor/\/var\/lib\/composer\/abraflexi-mailer/g'   debian/abraflexi-mailer/usr/lib/abraflexi-mailer/*.php
 	sed -i -e 's/..\/.env//'                                  debian/abraflexi-mailer/usr/lib/abraflexi-mailer/*.php
 	sed -i -e 's/\.\.\/i18n/\/usr\/share\/locale/g'           debian/abraflexi-mailer/usr/lib/abraflexi-mailer/*.php
 	jq '.version = "'`dpkg-parsechangelog | sed -n 's/^Version: //p'| sed 's/~.*//'`'"'  multiflexi/abraflexi_bulkmail.multiflexi.app.json |sponge debian/multiflexi-abraflexi-mailer/usr/lib/abraflexi-mailer/multiflexi/abraflexi_bulkmail.multiflexi.app.json

@@ -3,17 +3,7 @@
 
 set -e
 
-if [ "$1" = "configure" ]; then
-
-    . /usr/share/debconf/confmodule
-    db_get composer/WEB_USER
-    WEBUSER=$RET
-
-    mkdir -p /var/lib/composer /var/lib/abraflexi-mailer
-    chown $WEBUSER:$WEBUSER /var/lib/composer /var/lib/abraflexi-mailer /usr/lib/abraflexi-mailer/ -R
-    su - $WEBUSER -s /bin/bash -c 'COMPOSER_HOME="/var/lib/composer" composer --no-dev -o update -d /usr/lib/abraflexi-mailer/'
-fi
-
+composer-debian abraflexi-mailer
 
 #DEBHELPER#
 

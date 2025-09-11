@@ -1,9 +1,15 @@
-abraflexi-mailer (1.3.6) UNRELEASED; urgency=medium
+abraflexi-mailer (1.3.7) UNRELEASED; urgency=medium
+
+  * php autoloader fix
+
+ -- vitex <info@vitexsoftware.cz>  Thu, 11 Sep 2025 16:50:24 +0200
+
+abraflexi-mailer (1.3.6) noble; urgency=medium
 
   * Read company name, signature and email from configuration when no
     /nastaveni endpoint is accesible
 
- -- vitex <info@vitexsoftware.cz>  Sat, 21 Jun 2025 12:20:00 +0200
+ -- vitex <info@vitexsoftware.cz>  Thu, 11 Sep 2025 16:50:10 +0200
 
 abraflexi-mailer (1.3.5) noble; urgency=medium
 
