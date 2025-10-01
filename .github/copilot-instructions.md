@@ -1,5 +1,55 @@
-# Copilot Instructions
+<!-- Use this file to provide workspace-specific custom instructions to Copilot. For more details, visit https://code.visualstudio.com/docs/copilot/copilot-customization#_use-a-githubcopilotinstructionsmd-file -->
+
+All code comments should be written in English.
+
+All messages, including error messages, should be written in English.
+
+All code should be written in PHP 8.4 or later.
+
+All code should follow the PSR-12 coding standard.
+
+When writing code, always include a docblock for functions and classes, describing their purpose, parameters, and return types.
+
+When writing tests, use PHPUnit and follow the PSR-12 coding standard.
+
+When writing documentation, use reStructuredText (reST) format.
+
+When writing commit messages, use the imperative mood and keep them concise.
+
+When writing code comments, use complete sentences and proper grammar.
+
+When writing code, always use meaningful variable names that describe their purpose.
+
+When writing code, avoid using magic numbers or strings; instead, define constants for them.
+
+When writing code, always handle exceptions properly and provide meaningful error messages.
+
+When writing code, always include type hints for function parameters and return types.
+
+We are using the i18n library for internationalization, so always use the _() functions for strings that need to be translated.
+
+When writing code, always ensure that it is secure and does not expose any sensitive information.
+
+When writing code, always consider performance and optimize where necessary.
+
+When writing code, always ensure that it is compatible with the latest version of PHP and the libraries we are using.
+
+When writing code, always ensure that it is well-tested and includes unit tests where applicable.
+
+When writing code, always ensure that it is maintainable and follows best practices.
 
 All files in the multiflexi/*.app.json directory must conform to the schema available at: https://raw.githubusercontent.com/VitexSoftware/php-vitexsoftware-multiflexi-core/refs/heads/main/multiflexi.app.schema.json
 
-All produced reports must satisfy the schema available at: https://raw.githubusercontent.com/VitexSoftware/php-vitexsoftware-multiflexi-core/refs/heads/main/multiflexi.report.schema.json
+All produced reports must conform to the schema available at: https://raw.githubusercontent.com/VitexSoftware/php-vitexsoftware-multiflexi-core/refs/heads/main/multiflexi.report.schema.json
+
+When create new class or update existing class, always create or update its phpunit test files.
+
+When developing or testing this application, always run the main script from the src/ directory:
+```bash
+cd src/
+php pohoda-bank-to-realpad.php
+```
+This ensures the relative paths (../vendor/autoload.php and ../.env) work correctly during development.
+
+The application uses relative paths intentionally - they are resolved during Debian packaging via sed commands in debian/rules file for production deployment.
+
