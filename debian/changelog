@@ -1,6 +1,10 @@
 abraflexi-mailer (1.3.8) UNRELEASED; urgency=medium
 
-  * reports update
+  * Updated reports to conform to MultiFlexi report schema
+  * Added structured report format with status, timestamp, message, artifacts, and metrics
+  * Added produces section to show_unsent multiflexi configuration
+  * Improved schema compliance for better MultiFlexi integration
+  * Updated documentation with new report format examples
 
  -- vitex <info@vitexsoftware.cz>  Sat, 04 Oct 2025 01:39:50 +0200
 

@@ -79,23 +79,36 @@ are filled from https://demo.flexibee.eu/c/demo_de/addressbook/properties
 Unsent mail reporter
 --------------------
 
-Simple script which produce list of unsent invoices
+Script which produces reports of unsent invoices in MultiFlexi-compliant format.
+
+Since version 1.3.8, reports conform to the [MultiFlexi report schema](https://raw.githubusercontent.com/VitexSoftware/php-vitexsoftware-multiflexi-core/refs/heads/main/multiflexi.report.schema.json):
 
 ```json
 {
-  "VF1-0077/2024": {
-    "id": 1131,
-    "firma": {
-      "value": "code:CUSTOMER",
-      "target": "adresar",
-      "ref": "/c/vitex_software/adresar/827.odeslat')",
-      "showAs": "CUSTOMER: CUSTOMER l.t.d."
-    },
-    "kontaktEmail": "info@customer.com",
-    "poznam": "",
-    "kod": "VF1-0077/2024",
-    "email": "info@customer.com",
-    "recipients": "info@customer.com"
+  "status": "warning",
+  "timestamp": "2025-10-04T01:00:00+00:00",
+  "message": "2 unsent invoices found affecting 1 companies",
+  "artifacts": {
+    "unsent_invoices": [
+      {
+        "id": 1131,
+        "firma": {
+          "value": "code:CUSTOMER",
+          "target": "adresar",
+          "ref": "/c/vitex_software/adresar/827.odeslat')",
+          "showAs": "CUSTOMER: CUSTOMER l.t.d."
+        },
+        "kontaktEmail": "info@customer.com",
+        "poznam": "",
+        "kod": "VF1-0077/2024",
+        "email": "info@customer.com",
+        "recipients": "info@customer.com"
+      }
+    ]
+  },
+  "metrics": {
+    "total_unsent": 2,
+    "companies_affected": 1
   }
 }
 ```
@@ -133,6 +146,8 @@ MultiFlexi
 
 AbraFlexi Mailer is ready to run as a [MultiFlexi](https://multiflexi.eu) application.
 See the full list of ready-to-run applications within the MultiFlexi platform on the [application list page](https://www.multiflexi.eu/apps.php).
+
+Since version 1.3.8, all produced reports conform to the [MultiFlexi report schema](https://raw.githubusercontent.com/VitexSoftware/php-vitexsoftware-multiflexi-core/refs/heads/main/multiflexi.report.schema.json), ensuring proper integration and monitoring capabilities within the MultiFlexi ecosystem.
 
 [![MultiFlexi App](https://github.com/VitexSoftware/MultiFlexi/blob/main/doc/multiflexi-app.svg)](https://www.multiflexi.eu/apps.php)
 

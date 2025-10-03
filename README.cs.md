@@ -47,6 +47,34 @@ SEND_LOCKED=False                               - pokusi se dočasně odemknout 
 DRY_RUN=False                                   - je-li povoleno nezapisuje do dokladů datum a stav odeslání
 ```
 
+Hlášení neodešlaných dokladů
+-----------------------------
+
+Skript, který vytváří hlášení o neodešlaných fakturách ve formátu kompatibilním s MultiFlexi.
+
+Od verze 1.3.8 hlášení odpovídají [schématu hlášení MultiFlexi](https://raw.githubusercontent.com/VitexSoftware/php-vitexsoftware-multiflexi-core/refs/heads/main/multiflexi.report.schema.json):
+
+```json
+{
+  "status": "warning",
+  "timestamp": "2025-10-04T01:00:00+00:00",
+  "message": "Nalezeno 2 neodešlané faktury ovlivňující 1 společnosti",
+  "artifacts": {
+    "unsent_invoices": [
+      {
+        "kod": "VF1-0077/2024",
+        "firma": "ZÁKAZNÍK s.r.o.",
+        "email": "info@zakaznik.cz"
+      }
+    ]
+  },
+  "metrics": {
+    "total_unsent": 2,
+    "companies_affected": 1
+  }
+}
+```
+
 Šablony
 -------
 
