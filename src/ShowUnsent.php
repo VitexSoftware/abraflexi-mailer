@@ -37,23 +37,47 @@ $unsent = $invoicer->getColumnsFromAbraFlexi(
     'kod',
 );
 
+// Prepare report structure according to multiflexi.report.schema.json
+$report = [
+    'status' => 'success',
+    'timestamp' => date('c'), // ISO8601 format
+    'message' => '',
+    'artifacts' => [
+        'unsent_invoices' => []
+    ],
+    'metrics' => [
+        'total_unsent' => 0,
+        'companies_affected' => 0
+    ]
+];
+
 if (empty($unsent)) {
     $invoicer->addStatusMessage(_('all sent'), 'success');
+    $report['message'] = _('All invoices have been sent successfully');
+    $report['status'] = 'success';
 } else {
+    $companies = [];
     foreach ($unsent as $unsentData) {
         $invoicer->setData($unsentData);
         $unsent[$unsentData['kod']]['email'] = $invoicer->getEmail();
         $unsent[$unsentData['kod']]['recipients'] = $invoicer->getRecipients();
+        $companies[$unsentData['firma']] = true;
         $invoicer->addStatusMessage(
             $unsentData['kod']."\t".$unsentData['firma']."\t".$unsent[$unsentData['kod']]['email'].' '.$unsent[$unsentData['kod']]['recipients']."\t".$unsentData['poznam'],
             'warning',
         );
     }
 
+    $report['artifacts']['unsent_invoices'] = array_values($unsent);
+    $report['metrics']['total_unsent'] = count($unsent);
+    $report['metrics']['companies_affected'] = count($companies);
+    $report['message'] = sprintf(_('%d unsent invoices found affecting %d companies'), count($unsent), count($companies));
+    $report['status'] = 'warning';
+    
     $invoicer->addStatusMessage(\count($unsent).' '._('total'), 'warning');
 }
 
-$written = file_put_contents($destination, json_encode($unsent, \Ease\Shared::cfg('DEBUG') ? \JSON_PRETTY_PRINT : 0));
+$written = file_put_contents($destination, json_encode($report, \Ease\Shared::cfg('DEBUG') ? \JSON_PRETTY_PRINT : 0));
 $invoicer->addStatusMessage(sprintf(_('Saving result to %s'), $destination), $written ? 'success' : 'error');
 
 exit($written ? 0 : 1);

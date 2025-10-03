@@ -32,7 +32,7 @@ class Templater extends \Ease\Document implements mailbody
     /**
      * Sender Company.
      */
-    private \AbraFlexi\Nastaveni $myCompany;
+    private ?\AbraFlexi\Nastaveni $myCompany = null;
 
     /**
      * Template.
@@ -68,6 +68,7 @@ class Templater extends \Ease\Document implements mailbody
                 'email' => \Ease\Shared::cfg('COMPANY_EMAIL', ''),
                 'signature' => \Ease\Shared::cfg('COMPANY_SIGNATURE', ''),
             ];
+            $this->myCompany = null;
             $this->addStatusMessage(_('Using default company settings. Please set COMPANY_NAME, COMPANY_EMAIL, and COMPANY_SIGNATURE in the configuration.'), 'warning');
         }
 
@@ -111,7 +112,7 @@ class Templater extends \Ease\Document implements mailbody
                     case 'uzivatelPrijmeni':
                     case 'titulJmenoPrijmeni':
                         $user = new \AbraFlexi\RO(
-                            \AbraFlexi\Functions::code($this->document->user),
+                            \AbraFlexi\Code::ensure($this->document->user),
                             ['evidence' => 'uzivatel', 'autoload' => true],
                         );
 
@@ -152,20 +153,36 @@ class Templater extends \Ease\Document implements mailbody
                         break;
                     case 'nazevFirmy':
                     case 'company':
-                        if ($prop) {
-                            $templateBody = str_replace(
-                                $key,
-                                (string) $this->myCompany->getDataValue($prop),
-                                $templateBody,
-                            );
+                        if ($this->myCompany) {
+                            if ($prop) {
+                                $templateBody = str_replace(
+                                    $key,
+                                    (string) $this->myCompany->getDataValue($prop),
+                                    $templateBody,
+                                );
+                            } else {
+                                $templateBody = str_replace(
+                                    $key,
+                                    (string) $this->myCompany->getDataValue('nazFirmy'),
+                                    $templateBody,
+                                );
+                            }
                         } else {
-                            $templateBody = str_replace(
-                                $key,
-                                (string) $this->myCompany->getDataValue('nazFirmy'),
-                                $templateBody,
-                            );
+                            // Fallback to config values if myCompany is not available
+                            if ($prop) {
+                                $templateBody = str_replace(
+                                    $key,
+                                    (string) \Ease\Shared::cfg('COMPANY_' . strtoupper($prop), ''),
+                                    $templateBody,
+                                );
+                            } else {
+                                $templateBody = str_replace(
+                                    $key,
+                                    (string) \Ease\Shared::cfg('COMPANY_NAME', ''),
+                                    $templateBody,
+                                );
+                            }
                         }
-
                         break;
                     case 'object':
                         $objectData = $this->document->getData();

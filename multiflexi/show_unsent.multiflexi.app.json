@@ -55,5 +55,12 @@
             "required": false
         }
     },
+    "produces": {
+        "unsent_invoices": {
+            "type": "array",
+            "format": "json",
+            "description": "List of unsent invoice documents with recipient information"
+        }
+    },
     "multiflexi": "1.7.2"
 }
