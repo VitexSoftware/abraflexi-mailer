@@ -1,66 +1,105 @@
 {
-    "image": "",
-    "name": "Show Unsent",
-    "description": "Report Unsent documents",
-    "executable": "abraflexi-show-unsent",
-    "setup": "",
-    "cmdparams": "",
-    "deploy": "apt install abraflexi-mailer",
-    "homepage": "https://github.com/VitexSoftware/abraflexi-mailer/",
-    "ociimage": "docker.io/vitexsoftware/abraflexi-mailer",
-    "requirements": ["AbraFlexi"],
+    "$schema": "https://raw.githubusercontent.com/VitexSoftware/php-vitexsoftware-multiflexi-core/refs/heads/main/multiflexi.app.schema.json",
+    "schemaVersion": "3.0.0",
     "uuid": "137f24ef-11a5-4bf3-81b3-bdf2e0ea7919",
-    "topics": ["AbraFlexi", "Mail", "Check", "Json"],
+    "name": {
+        "en": "Show Unsent",
+        "cs": "Show Unsent"
+    },
+    "description": {
+        "en": "Report Unsent documents",
+        "cs": "Report Unsent documents"
+    },
+    "tags": [
+        "AbraFlexi",
+        "Mail",
+        "Check",
+        "Json"
+    ],
+    "homepage": "https://github.com/VitexSoftware/abraflexi-mailer/",
+    "image": "",
+    "ociimage": "docker.io/vitexsoftware/abraflexi-mailer",
+    "executable": "abraflexi-show-unsent",
     "environment": {
         "ABRAFLEXI_COMPANY": {
-            "type": "string",   
-            "description": "AbraFlexi comapny code",
+            "type": "string",
+            "description": {
+                "en": "AbraFlexi comapny code",
+                "cs": "AbraFlexi comapny code"
+            },
             "defval": "demo_de",
-            "required": true
+            "required": true,
+            "category": "API"
         },
         "ABRAFLEXI_LOGIN": {
             "type": "string",
-            "description": "AbraFlexi Login",
+            "description": {
+                "en": "AbraFlexi Login",
+                "cs": "AbraFlexi Login"
+            },
             "defval": "winstrom",
-            "required": true
+            "required": true,
+            "category": "API"
         },
         "ABRAFLEXI_PASSWORD": {
-            "type": "string",
-            "description": "AbraFlexi password",
+            "type": "password",
+            "description": {
+                "en": "AbraFlexi password",
+                "cs": "AbraFlexi password"
+            },
             "defval": "winstrom",
-            "required": true
+            "required": true,
+            "category": "API"
         },
         "ABRAFLEXI_URL": {
             "type": "string",
-            "description": "AbraFlexi Server URI",
-            "defval": "https:\/\/demo.flexibee.eu:5434",
-            "required": true
+            "description": {
+                "en": "AbraFlexi Server URI",
+                "cs": "AbraFlexi Server URI"
+            },
+            "defval": "https://demo.flexibee.eu:5434",
+            "required": true,
+            "category": "API"
         },
         "RESULT_FILE": {
             "type": "string",
-            "description": "write output json data to",
+            "description": {
+                "en": "write output json data to",
+                "cs": "write output json data to"
+            },
             "defval": "unsent_{ABRAFLEXI_COMPANY}_report.json",
-            "required": false
+            "required": false,
+            "category": "Other"
         },
         "EASE_LOGGER": {
             "type": "string",
-            "description": "write log messages using",
+            "description": {
+                "en": "write log messages using",
+                "cs": "write log messages using"
+            },
             "defval": "console|syslog",
-            "required": false
+            "required": false,
+            "category": "Behavior"
         },
         "ZABBIX_KEY": {
             "type": "string",
-            "description": "Default name for Zabbix Item key name",
+            "description": {
+                "en": "Default name for Zabbix Item key name",
+                "cs": "Default name for Zabbix Item key name"
+            },
             "defval": "Unsent-Documents-{ABRAFLEXI_COMPANY}",
-            "required": false
+            "required": false,
+            "category": "Other"
         }
     },
     "produces": {
         "unsent_invoices": {
             "type": "array",
             "format": "json",
-            "description": "List of unsent invoice documents with recipient information"
+            "description": {
+                "en": "List of unsent invoice documents with recipient information",
+                "cs": "List of unsent invoice documents with recipient information"
+            }
         }
-    },
-    "multiflexi": "1.7.2"
+    }
 }
