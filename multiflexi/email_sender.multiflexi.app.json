@@ -16,7 +16,6 @@
         "Sender"
     ],
     "homepage": "https://github.com/VitexSoftware/abraflexi-mailer/",
-    "image": "",
     "ociimage": "docker.io/vitexsoftware/abraflexi-mailer",
     "executable": "abraflexi-send-unsent-with-attachments",
     "environment": {

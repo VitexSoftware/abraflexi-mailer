@@ -17,7 +17,6 @@
         "Json"
     ],
     "homepage": "https://github.com/VitexSoftware/abraflexi-mailer/",
-    "image": "",
     "ociimage": "docker.io/vitexsoftware/abraflexi-mailer",
     "executable": "abraflexi-show-unsent",
     "environment": {
