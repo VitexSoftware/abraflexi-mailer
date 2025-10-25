@@ -1,0 +1,13 @@
+#!/bin/sh
+# postrm script for abraflexi-mailer
+
+set -e
+
+if [ -f /usr/lib/abraflexi-mailer/composer.lock ] ; then
+    rm -f /usr/lib/abraflexi-mailer/composer.lock
+fi
+
+
+#DEBHELPER#
+
+exit 0
