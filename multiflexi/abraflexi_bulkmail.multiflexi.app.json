@@ -4,11 +4,11 @@
     "uuid": "a5caea28-2580-42b5-bad9-5b3092385eca",
     "name": {
         "en": "AbraFlexi Bulk Mailer",
-        "cs": "AbraFlexi Bulk Mailer"
+        "cs": "AbraFlexi Hromadný Mailér"
     },
     "description": {
         "en": "By Query select recipients from Addressbook and send mail based on template",
-        "cs": "By Query select recipients from Addressbook and odeslat e-mail based on template"
+        "cs": "Pomocí dotazu vybere příjemce z adresáře a odešle e-mail na základě šablony"
     },
     "tags": [
         "AbraFlexi",
@@ -22,7 +22,7 @@
             "type": "string",
             "description": {
                 "en": "AbraFlexi comapny code",
-                "cs": "AbraFlexi comapny code"
+                "cs": "Kód společnosti v AbraFlexi"
             },
             "defval": "demo_de",
             "required": true,
@@ -32,7 +32,7 @@
             "type": "string",
             "description": {
                 "en": "AbraFlexi Login",
-                "cs": "AbraFlexi Login"
+                "cs": "Přihlašovací jméno do AbraFlexi"
             },
             "defval": "winstrom",
             "required": true,
@@ -42,7 +42,7 @@
             "type": "password",
             "description": {
                 "en": "AbraFlexi password",
-                "cs": "AbraFlexi password"
+                "cs": "Heslo pro AbraFlexi"
             },
             "defval": "winstrom",
             "required": true,
@@ -52,17 +52,17 @@
             "type": "string",
             "description": {
                 "en": "AbraFlexi Server URI",
-                "cs": "AbraFlexi Server URI"
+                "cs": "URI adresa AbraFlexi serveru"
             },
             "defval": "https://demo.flexibee.eu:5434",
             "required": true,
             "category": "API"
         },
         "ABRAFLEXI_BULKMAIL_TEMPLATE": {
-            "type": "file",
+            "type": "file-path",
             "description": {
                 "en": "Mail Template Filename",
-                "cs": "Mail Template Filename"
+                "cs": "Název souboru šablony e-mailu"
             },
             "defval": "",
             "required": true,
@@ -72,7 +72,7 @@
             "type": "string",
             "description": {
                 "en": "Filter of recipients",
-                "cs": "Filter of recipients"
+                "cs": "Filtr příjemců"
             },
             "defval": "kod='ZAKAZNIKA' or kod='ZAKAZNIKB' or kod='ZAKAZNIKC'",
             "required": true,
@@ -82,7 +82,7 @@
             "type": "email",
             "description": {
                 "en": "sender email address",
-                "cs": "odeslater ee-mail address"
+                "cs": "e-mailová adresa odesílatele"
             },
             "defval": "",
             "required": true,
@@ -92,7 +92,7 @@
             "type": "string",
             "description": {
                 "en": "Subject for mails",
-                "cs": "Subject for mails"
+                "cs": "Předmět e-mailů"
             },
             "defval": "",
             "required": true,
@@ -102,7 +102,7 @@
             "type": "string",
             "description": {
                 "en": "configuration string for Pear_Mail",
-                "cs": "configuration string for Pear_Mail"
+                "cs": "konfigurační řetězec pro Pear_Mail"
             },
             "defval": "",
             "required": true,
@@ -112,7 +112,7 @@
             "type": "string",
             "description": {
                 "en": "Localize to choosen language",
-                "cs": "Localize to choosen language"
+                "cs": "Lokalizace do vybraného jazyka"
             },
             "defval": "cs_CZ",
             "options": [
@@ -126,7 +126,7 @@
             "type": "string",
             "description": {
                 "en": "write log messages using",
-                "cs": "write log messages using"
+                "cs": "zapisovat zprávy do logu pomocí"
             },
             "defval": "console|syslog",
             "required": false,
@@ -136,7 +136,7 @@
             "type": "bool",
             "description": {
                 "en": "show app version at startup",
-                "cs": "show app version at startup"
+                "cs": "zobrazit verzi aplikace při spuštění"
             },
             "defval": "",
             "required": false,
@@ -146,7 +146,7 @@
             "type": "bool",
             "description": {
                 "en": "true to dry run",
-                "cs": "true to dry run"
+                "cs": "true pro zkušební spuštění"
             },
             "defval": "",
             "required": false,
@@ -156,7 +156,7 @@
             "type": "string",
             "description": {
                 "en": "Company name to be used in messages",
-                "cs": "Company name to be used in messages"
+                "cs": "Název společnosti pro použití ve zprávách"
             },
             "defval": "Demo Company",
             "required": false,
@@ -166,7 +166,7 @@
             "type": "email",
             "description": {
                 "en": "Company email address",
-                "cs": "Company email address"
+                "cs": "E-mailová adresa společnosti"
             },
             "defval": "info@democompany.com",
             "required": false,
@@ -176,7 +176,7 @@
             "type": "string",
             "description": {
                 "en": "Company email signature",
-                "cs": "Company email signature"
+                "cs": "E-mailový podpis společnosti"
             },
             "defval": "Best regards,\nDemo Company",
             "required": false,
