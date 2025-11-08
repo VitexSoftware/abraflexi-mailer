@@ -4,11 +4,11 @@
     "uuid": "37386766-78e5-46f6-8240-a15fb8d895ba",
     "name": {
         "en": "AbraFlexi send",
-        "cs": "AbraFlexi send"
+        "cs": "AbraFlexi odesílání"
     },
     "description": {
         "en": "Simple trigger AbraFlexi to send all unsent documents in Issued Invoices Agenda",
-        "cs": "Simple trigger AbraFlexi to send all unsent documents in Issued Invoices Agenda"
+        "cs": "Jednoduché spuštění AbraFlexi pro odeslání všech neodeslanych dokladů v agendě vydanych faktur"
     },
     "tags": [
         "AbraFlexi",
@@ -23,7 +23,7 @@
             "type": "string",
             "description": {
                 "en": "AbraFlexi comapny code",
-                "cs": "AbraFlexi comapny code"
+                "cs": "Kód společnosti v AbraFlexi"
             },
             "defval": "demo_de",
             "required": true,
@@ -33,7 +33,7 @@
             "type": "string",
             "description": {
                 "en": "AbraFlexi Login",
-                "cs": "AbraFlexi Login"
+                "cs": "Přihlašovací jméno do AbraFlexi"
             },
             "defval": "winstrom",
             "required": true,
@@ -43,7 +43,7 @@
             "type": "password",
             "description": {
                 "en": "AbraFlexi password",
-                "cs": "AbraFlexi password"
+                "cs": "Heslo pro AbraFlexi"
             },
             "defval": "winstrom",
             "required": true,
@@ -53,7 +53,7 @@
             "type": "string",
             "description": {
                 "en": "AbraFlexi Server URI",
-                "cs": "AbraFlexi Server URI"
+                "cs": "URI adresa AbraFlexi serveru"
             },
             "defval": "https://demo.flexibee.eu:5434",
             "required": true,
@@ -63,7 +63,7 @@
             "type": "string",
             "description": {
                 "en": "configuration string for Pear_Mail",
-                "cs": "configuration string for Pear_Mail"
+                "cs": "konfigurační řetězec pro Pear_Mail"
             },
             "defval": "",
             "required": true,
@@ -73,7 +73,7 @@
             "type": "string",
             "description": {
                 "en": "write log messages using",
-                "cs": "write log messages using"
+                "cs": "zapisovat zprávy do logu pomocí"
             },
             "defval": "console|syslog",
             "required": false,
@@ -83,7 +83,7 @@
             "type": "bool",
             "description": {
                 "en": "show app version at startup",
-                "cs": "show app version at startup"
+                "cs": "zobrazit verzi aplikace při spuštění"
             },
             "defval": "",
             "required": false,
@@ -93,7 +93,7 @@
             "type": "bool",
             "description": {
                 "en": "true to dry run",
-                "cs": "true to dry run"
+                "cs": "true pro zkušební spuštění"
             },
             "defval": "",
             "required": false,

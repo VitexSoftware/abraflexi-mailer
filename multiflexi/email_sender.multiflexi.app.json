@@ -4,11 +4,11 @@
     "uuid": "97c1c85d-3800-4d12-aabb-b60b15cd8df0",
     "name": {
         "en": "Email Sender",
-        "cs": "Email Sender"
+        "cs": "Odesílač e-mailů"
     },
     "description": {
         "en": "Send unsent documents with attachments",
-        "cs": "Send unsent documents with attachments"
+        "cs": "Odeslání neodeslanych dokladů s přílohami"
     },
     "tags": [
         "AbraFlexi",
@@ -23,7 +23,7 @@
             "type": "string",
             "description": {
                 "en": "AbraFlexi comapny code",
-                "cs": "AbraFlexi comapny code"
+                "cs": "Kód společnosti v AbraFlexi"
             },
             "defval": "demo_de",
             "required": true,
@@ -33,7 +33,7 @@
             "type": "string",
             "description": {
                 "en": "AbraFlexi Login",
-                "cs": "AbraFlexi Login"
+                "cs": "Přihlašovací jméno do AbraFlexi"
             },
             "defval": "winstrom",
             "required": true,
@@ -43,7 +43,7 @@
             "type": "password",
             "description": {
                 "en": "AbraFlexi password",
-                "cs": "AbraFlexi password"
+                "cs": "Heslo pro AbraFlexi"
             },
             "defval": "winstrom",
             "required": true,
@@ -53,7 +53,7 @@
             "type": "string",
             "description": {
                 "en": "AbraFlexi Server URI",
-                "cs": "AbraFlexi Server URI"
+                "cs": "URI adresa AbraFlexi serveru"
             },
             "defval": "https://demo.flexibee.eu:5434",
             "required": true,
@@ -63,17 +63,17 @@
             "type": "string",
             "description": {
                 "en": "configuration string for Pear_Mail",
-                "cs": "configuration string for Pear_Mail"
+                "cs": "konfigurační řetězec pro Pear_Mail"
             },
             "defval": "",
             "required": true,
             "category": "Other"
         },
         "APP_DEBUG": {
-            "type": "checkbox",
+            "type": "bool",
             "description": {
                 "en": "Show debug messages",
-                "cs": "Show debug messages"
+                "cs": "Zobrazit ladící zprávy"
             },
             "defval": "False",
             "required": true,
@@ -83,7 +83,7 @@
             "type": "string",
             "description": {
                 "en": "Localize to choosen language",
-                "cs": "Localize to choosen language"
+                "cs": "Lokalizace do vybraného jazyka"
             },
             "defval": "cs_CZ",
             "options": [
@@ -94,10 +94,10 @@
             "category": "Other"
         },
         "MUTE": {
-            "type": "checkbox",
+            "type": "bool",
             "description": {
                 "en": "Do not send messages to customer",
-                "cs": "Do not send messages to customer"
+                "cs": "Neposílat zprávy zákazníkům"
             },
             "defval": "False",
             "required": false,
@@ -107,27 +107,27 @@
             "type": "email",
             "description": {
                 "en": "Default target whe MUTE is ON",
-                "cs": "Default target whe MUTE is ON"
+                "cs": "Výchozí příjemce při zapnutém MUTE"
             },
             "defval": "",
             "required": false,
             "category": "Other"
         },
         "ADD_LOGO": {
-            "type": "checkbox",
+            "type": "bool",
             "description": {
                 "en": "Include Graphical Logo into messages",
-                "cs": "Include Graphical Logo into messages"
+                "cs": "Zahrnout grafické logo do zpráv"
             },
             "defval": "False",
             "required": false,
             "category": "Other"
         },
         "ADD_QRCODE": {
-            "type": "checkbox",
+            "type": "bool",
             "description": {
                 "en": "Include Payment QR Code into messages",
-                "cs": "Include Payment QR Code into messages"
+                "cs": "Zahrnout platební QR kód do zpráv"
             },
             "defval": "False",
             "required": false,
@@ -137,7 +137,7 @@
             "type": "email",
             "description": {
                 "en": "Carbon Copy for every message sent",
-                "cs": "Carbon Copy for every message sent"
+                "cs": "Kopie pro každou odeslanou zprávu"
             },
             "defval": "",
             "required": false,
@@ -147,27 +147,27 @@
             "type": "email",
             "description": {
                 "en": "Default sender address",
-                "cs": "Default sender address"
+                "cs": "Výchozí adresa odesílatele"
             },
             "defval": "",
             "required": false,
             "category": "Other"
         },
         "SEND_LOCKED": {
-            "type": "checkbox",
+            "type": "bool",
             "description": {
                 "en": "Try to temporary unlock document to save sent date in it",
-                "cs": "Try to temporary unlock document to save sent date in it"
+                "cs": "Pokusit se dočasně odemknout dokument pro uložení data odeslání"
             },
             "defval": "False",
             "required": false,
             "category": "Other"
         },
         "DRY_RUN": {
-            "type": "checkbox",
+            "type": "bool",
             "description": {
                 "en": "Do not modify document in AbraFlexi (send state/date)",
-                "cs": "Do not modify document in AbraFlexi (send state/date)"
+                "cs": "Neupravovat dokument v AbraFlexi (stav/datum odeslání)"
             },
             "defval": "False",
             "required": false,
@@ -177,7 +177,7 @@
             "type": "string",
             "description": {
                 "en": "write log messages using",
-                "cs": "write log messages using"
+                "cs": "zapisovat log zprávy pomocí"
             },
             "defval": "console|syslog",
             "required": false,
@@ -187,7 +187,7 @@
             "type": "string",
             "description": {
                 "en": "Company name to be used in messages",
-                "cs": "Company name to be used in messages"
+                "cs": "Název firmy pro použití ve zprávách"
             },
             "defval": "Demo Company",
             "required": false,
@@ -197,7 +197,7 @@
             "type": "email",
             "description": {
                 "en": "Company email address",
-                "cs": "Company email address"
+                "cs": "E-mailová adresa firmy"
             },
             "defval": "info@democompany.com",
             "required": false,
@@ -207,7 +207,7 @@
             "type": "string",
             "description": {
                 "en": "Company email signature",
-                "cs": "Company email signature"
+                "cs": "E-mailový podpis firmy"
             },
             "defval": "Best regards,\nDemo Company",
             "required": false,
