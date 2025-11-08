@@ -117,7 +117,7 @@ php -l filename.php
 vendor/bin/phpunit tests/
 
 # Validate MultiFlexi configs
-multiflexi-cli application validate-json --json multiflexi/app.json
+multiflexi-cli application validate-json --file multiflexi/app.json
 
 # Build packages
 make clean && make deb

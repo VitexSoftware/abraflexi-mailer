@@ -1,7 +1,7 @@
-![Package Logo](social-preview.svg?raw=true "Project Logo")
-
 Odesílač dokladů pro AbraFlexi
 ==============================
+
+![Package Logo](social-preview.svg?raw=true "Project Logo")
 
 K dispozici jsou skripty pro odesílání dokladů:
 
@@ -43,7 +43,7 @@ MAIL_CC=info@vitexsoftware.cz                   - všechny maily odesílat také
 MAIL_FROM=office@vitexsoftware.cz               - adresa odesilatele
 
 EASE_LOGGER="console|syslog"                    - způsob logování
-SEND_LOCKED=False                               - pokusi se dočasně odemknout zamknutý doklad          
+SEND_LOCKED=False                               - pokusi se dočasně odemknout zamknutý doklad
 DRY_RUN=False                                   - je-li povoleno nezapisuje do dokladů datum a stav odeslání
 ```
 
@@ -78,7 +78,7 @@ Od verze 1.3.8 hlášení odpovídají [schématu hlášení MultiFlexi](https:/
 Šablony
 -------
 
-Předpokládá se že šablona se jmenuje dle evidence. např. **faktura-vydana.ftl** 
+Předpokládá se že šablona se jmenuje dle evidence. např. **faktura-vydana.ftl**
 a je uložena ve složce "templates" ( /usr/share/abraflexi-mailer/templates v Debianu )
 
 V šablonách je možné použít následující proměnné:
@@ -95,14 +95,14 @@ V šablonách je možné použít následující proměnné:
 Hromadný rozesílač
 ------------------
 
-Pokud chceme obeslat všechny klienty z Pražské nerudovy ulice: 
+Pokud chceme obeslat všechny klienty z Pražské nerudovy ulice:
 
 ```shell
 abraflexi-bulkmail templates/template.ftl "(mesto='Praha' AND ulice='Nerudova')"
 ```
 
 Při použití v [šabloně](tests/test.ftl) se proměnné pro každou odeslanou zprávu
-naplní z https://demo.flexibee.eu/c/demo_de/adresar/properties
+naplní z <https://demo.flexibee.eu/c/demo_de/adresar/properties>
 
 Závislosti
 ----------
@@ -118,7 +118,7 @@ Poděkování
 
 Tento software by nevznikl pez podpory:
 
-[ ![Spoje.Net](doc/spojenet.gif?raw=true "Spoje.Net s.r.o.") ](https://spoje.net/)
+[![Spoje.Net](doc/spojenet.gif?raw=true "Spoje.Net s.r.o.")](https://spoje.net/)
 
 Další software pro AbraFlexi
 ---------------------------
@@ -129,7 +129,6 @@ Další software pro AbraFlexi
 * [Nástroje pro testování a správu AbraFlexi](https://github.com/VitexSoftware/AbraFlexi-TestingTools)
 * [Monitoring funkce AbraFlexi serveru](https://github.com/VitexSoftware/monitoring-plugins-abraflexi)
 * [AbraFlexi server bez grafických závislostí](https://github.com/VitexSoftware/abraflexi-server-deb)
-
 
 MultiFlexi
 ----------

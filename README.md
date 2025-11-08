@@ -1,7 +1,7 @@
-![Package Logo](social-preview.svg?raw=true "Project Logo")
-
 Document Sender for AbraFlexi
 =============================
+
+![Package Logo](social-preview.svg?raw=true "Project Logo")
 
 Scripts for sending documents are available:
 
