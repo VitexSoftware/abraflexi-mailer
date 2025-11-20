@@ -172,3 +172,11 @@ After installing the package, the following new commands are available in the sy
 * **abraflexi-show-unsent**             - lists unsent documents
 * **abraflexi-bulkmail**                - sends emails to contacts from the address book in bulk
 
+
+## Exit Codes
+
+This application uses the following exit codes:
+
+- `0`: Success
+- `1`: General error
+- `2`: Misuse of shell command

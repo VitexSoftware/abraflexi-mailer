@@ -158,3 +158,11 @@ Po instalaci balíku jsou v systému k dispozici tyto nové příkazy:
 * **abraflexi-send-unsent-attachments** - odešle neodeslané s přílohami
 * **abraflexi-show-unsent**             - vypíše neodeslané doklady
 * **abraflexi-bulkmail**                - hromadně odešle maily kontaktům z adresáře
+
+## Exit Codes
+
+This application uses the following exit codes:
+
+- `0`: Success
+- `1`: General error
+- `2`: Misuse of shell command

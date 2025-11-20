@@ -1,6 +1,6 @@
 {
     "$schema": "https://raw.githubusercontent.com/VitexSoftware/php-vitexsoftware-multiflexi-core/refs/heads/main/multiflexi.app.schema.json",
-    "schemaVersion": "3.0.0",
+    "schemaVersion": "3.1.0",
     "uuid": "a5caea28-2580-42b5-bad9-5b3092385eca",
     "name": {
         "en": "AbraFlexi Bulk Mailer",
@@ -181,6 +181,32 @@
             "defval": "Best regards,\nDemo Company",
             "required": false,
             "category": "Other"
+        }
+    },
+    "exitCodes": {
+        "0": {
+            "description": {
+                "en": "Success",
+                "cs": "Úspěch"
+            },
+            "severity": "success",
+            "retry": false
+        },
+        "1": {
+            "description": {
+                "en": "General error",
+                "cs": "Obecná chyba"
+            },
+            "severity": "error",
+            "retry": true
+        },
+        "2": {
+            "description": {
+                "en": "Misuse of shell command",
+                "cs": "Nesprávné použití příkazu"
+            },
+            "severity": "error",
+            "retry": false
         }
     }
 }

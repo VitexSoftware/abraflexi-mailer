@@ -69,7 +69,7 @@ $this->addStatusMessage(_('Failed to send document'), 'error');
 ### MultiFlexi App Configuration
 - **Location**: `multiflexi/*.app.json`
 - **Schema**: https://raw.githubusercontent.com/VitexSoftware/php-vitexsoftware-multiflexi-core/refs/heads/main/multiflexi.app.schema.json
-- **Validation**: Run `multiflexi-cli application validate-json --json multiflexi/[filename].app.json`
+- **Validation**: Run `multiflexi-cli application validate-json --file multiflexi/[filename].app.json`
 
 ### Report Generation
 - **Schema**: https://raw.githubusercontent.com/VitexSoftware/php-vitexsoftware-multiflexi-core/refs/heads/main/multiflexi.report.schema.json
