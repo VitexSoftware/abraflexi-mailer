@@ -89,7 +89,7 @@ class DocumentMailer extends HtmlMailer
             if (empty($sendTo) && method_exists($this->document, 'getEmail')) {
                 $sendTo = $this->document->getRecipients();
             } else {
-                $this->addStatusMessage(sprintf(_('%s does not have getEmail method'), \Ease\Logger\Message::getCallerName($this->document)  ) , 'warning');
+                $this->addStatusMessage(sprintf(_('%s does not have getEmail method'), \Ease\Logger\Message::getCallerName($this->document)), 'warning');
             }
         }
 

@@ -43,12 +43,12 @@ $report = [
     'timestamp' => date('c'), // ISO8601 format
     'message' => '',
     'artifacts' => [
-        'unsent_invoices' => []
+        'unsent_invoices' => [],
     ],
     'metrics' => [
         'total_unsent' => 0,
-        'companies_affected' => 0
-    ]
+        'companies_affected' => 0,
+    ],
 ];
 
 if (empty($unsent)) {
@@ -57,6 +57,7 @@ if (empty($unsent)) {
     $report['status'] = 'success';
 } else {
     $companies = [];
+
     foreach ($unsent as $unsentData) {
         $invoicer->setData($unsentData);
         $unsent[$unsentData['kod']]['email'] = $invoicer->getEmail();
@@ -69,11 +70,11 @@ if (empty($unsent)) {
     }
 
     $report['artifacts']['unsent_invoices'] = array_values($unsent);
-    $report['metrics']['total_unsent'] = count($unsent);
-    $report['metrics']['companies_affected'] = count($companies);
-    $report['message'] = sprintf(_('%d unsent invoices found affecting %d companies'), count($unsent), count($companies));
+    $report['metrics']['total_unsent'] = \count($unsent);
+    $report['metrics']['companies_affected'] = \count($companies);
+    $report['message'] = sprintf(_('%d unsent invoices found affecting %d companies'), \count($unsent), \count($companies));
     $report['status'] = 'warning';
-    
+
     $invoicer->addStatusMessage(\count($unsent).' '._('total'), 'warning');
 }
 

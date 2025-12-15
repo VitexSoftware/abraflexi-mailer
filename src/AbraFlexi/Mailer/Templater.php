@@ -172,7 +172,7 @@ class Templater extends \Ease\Document implements mailbody
                             if ($prop) {
                                 $templateBody = str_replace(
                                     $key,
-                                    (string) \Ease\Shared::cfg('COMPANY_' . strtoupper($prop), ''),
+                                    (string) \Ease\Shared::cfg('COMPANY_'.strtoupper($prop), ''),
                                     $templateBody,
                                 );
                             } else {
@@ -183,6 +183,7 @@ class Templater extends \Ease\Document implements mailbody
                                 );
                             }
                         }
+
                         break;
                     case 'object':
                         $objectData = $this->document->getData();
