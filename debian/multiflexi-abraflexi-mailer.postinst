@@ -7,7 +7,7 @@ set -e
 APPLICATION=`echo $DPKG_MAINTSCRIPT_PACKAGE | sed 's/multiflexi-//'`
 for file in `ls /usr/lib/$APPLICATION/multiflexi/*.json`
 do
-	multiflexi-json2app $file
+	multiflexi-cli application import --file $file
 done
 
 sed -i 's/null, $value);/"", $value);/' /usr/share/php/Mail.php

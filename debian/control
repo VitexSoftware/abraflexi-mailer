@@ -16,7 +16,7 @@ Description: External mailer for Abra Flexi
  Send AbraFlexi documents and its attachments via email
 
 Package: multiflexi-abraflexi-mailer
-Depends: abraflexi-mailer, multiflexi
+Depends: abraflexi-mailer, multiflexi-cli
 Architecture: all
 Section: web
 Priority: optional
