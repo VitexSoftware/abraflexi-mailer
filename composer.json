@@ -1,34 +1,35 @@
 {
-    "name": "vitexsoftware/abraflexi-mailer",
-    "description": "Document sender for AbraFlexi",
-    "authors": [
-        {
-            "name": "Vítězslav Dvořák",
-            "email": "info@vitexsoftware.cz"
-        }
-    ],
-    "require": {
-        "php": ">=8.1",
-        "vitexsoftware/abraflexi-bricks": "dev-main",
-        "pear/net_smtp": "dev-master"
-    },
-    "require-dev": {
-        "phpunit/phpunit": "*",
-        "phpstan/phpstan": "*",
-        "friendsofphp/php-cs-fixer": "^3.84",
-        "ergebnis/composer-normalize": "^2.47",
-        "ergebnis/php-cs-fixer-config": "^6.50"
-    },
-    "minimum-stability": "dev",
-    "autoload": {
-        "psr-4": {
-            "AbraFlexi\\": "src/AbraFlexi/",
-            "AbraFlexi\\Mailer\\": "src/AbraFlexi/Mailer/"
-        }
-    },
-    "config": {
-        "allow-plugins": {
-            "ergebnis/composer-normalize": true
-        }
+  "name": "vitexsoftware/abraflexi-mailer",
+  "description": "Document sender for AbraFlexi",
+  "authors": [
+    {
+      "name": "Vítězslav Dvořák",
+      "email": "info@vitexsoftware.cz"
     }
+  ],
+  "require": {
+    "php": ">=8.1",
+    "vitexsoftware/abraflexi-bricks": "dev-main",
+    "pear/net_smtp": "dev-master"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "*",
+    "phpstan/phpstan": "*",
+    "friendsofphp/php-cs-fixer": "^3.84",
+    "ergebnis/composer-normalize": "^2.47",
+    "ergebnis/php-cs-fixer-config": "^6.50"
+  },
+  "minimum-stability": "dev",
+  "autoload": {
+    "psr-4": {
+      "AbraFlexi\\": "src/AbraFlexi/",
+      "AbraFlexi\\Mailer\\": "src/AbraFlexi/Mailer/"
+    }
+  },
+  "config": {
+    "allow-plugins": {
+      "ergebnis/composer-normalize": true
+    }
+  },
+  "type": "library"
 }
