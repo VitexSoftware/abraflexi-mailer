@@ -1,218 +1,211 @@
 {
-    "$schema": "https://raw.githubusercontent.com/VitexSoftware/php-vitexsoftware-multiflexi-core/refs/heads/main/multiflexi.app.schema.json",
-    "schemaVersion": "3.0.0",
-    "version": "1.3.8",
-    "uuid": "97c1c85d-3800-4d12-aabb-b60b15cd8df0",
-    "name": {
-        "en": "Email Sender",
-        "cs": "Odesílač e-mailů"
+  "$schema": "https://raw.githubusercontent.com/VitexSoftware/php-vitexsoftware-multiflexi-core/refs/heads/main/multiflexi.app.schema.json",
+  "schemaVersion": "3.0.0",
+  "version": "1.3.8",
+  "uuid": "97c1c85d-3800-4d12-aabb-b60b15cd8df0",
+  "name": {
+    "en": "Email Sender",
+    "cs": "Odesílač e-mailů"
+  },
+  "description": {
+    "en": "Send unsent documents with attachments",
+    "cs": "Odeslání neodeslanych dokladů s přílohami"
+  },
+  "tags": ["AbraFlexi", "Mail", "Sender"],
+  "homepage": "https://github.com/VitexSoftware/abraflexi-mailer/",
+  "ociimage": "docker.io/vitexsoftware/abraflexi-mailer",
+  "executable": "abraflexi-send-unsent-with-attachments",
+  "environment": {
+    "ABRAFLEXI_COMPANY": {
+      "type": "string",
+      "description": {
+        "en": "AbraFlexi comapny code",
+        "cs": "Kód společnosti v AbraFlexi"
+      },
+      "defval": "demo_de",
+      "required": true,
+      "category": "API"
     },
-    "description": {
-        "en": "Send unsent documents with attachments",
-        "cs": "Odeslání neodeslanych dokladů s přílohami"
+    "ABRAFLEXI_LOGIN": {
+      "type": "string",
+      "description": {
+        "en": "AbraFlexi Login",
+        "cs": "Přihlašovací jméno do AbraFlexi"
+      },
+      "defval": "winstrom",
+      "required": true,
+      "category": "API"
     },
-    "tags": [
-        "AbraFlexi",
-        "Mail",
-        "Sender"
-    ],
-    "homepage": "https://github.com/VitexSoftware/abraflexi-mailer/",
-    "ociimage": "docker.io/vitexsoftware/abraflexi-mailer",
-    "executable": "abraflexi-send-unsent-with-attachments",
-    "environment": {
-        "ABRAFLEXI_COMPANY": {
-            "type": "string",
-            "description": {
-                "en": "AbraFlexi comapny code",
-                "cs": "Kód společnosti v AbraFlexi"
-            },
-            "defval": "demo_de",
-            "required": true,
-            "category": "API"
-        },
-        "ABRAFLEXI_LOGIN": {
-            "type": "string",
-            "description": {
-                "en": "AbraFlexi Login",
-                "cs": "Přihlašovací jméno do AbraFlexi"
-            },
-            "defval": "winstrom",
-            "required": true,
-            "category": "API"
-        },
-        "ABRAFLEXI_PASSWORD": {
-            "type": "password",
-            "description": {
-                "en": "AbraFlexi password",
-                "cs": "Heslo pro AbraFlexi"
-            },
-            "defval": "winstrom",
-            "required": true,
-            "category": "API"
-        },
-        "ABRAFLEXI_URL": {
-            "type": "string",
-            "description": {
-                "en": "AbraFlexi Server URI",
-                "cs": "URI adresa AbraFlexi serveru"
-            },
-            "defval": "https://demo.flexibee.eu:5434",
-            "required": true,
-            "category": "API"
-        },
-        "EASE_SMTP": {
-            "type": "string",
-            "description": {
-                "en": "configuration string for Pear_Mail",
-                "cs": "konfigurační řetězec pro Pear_Mail"
-            },
-            "defval": "",
-            "required": true,
-            "category": "Other"
-        },
-        "APP_DEBUG": {
-            "type": "bool",
-            "description": {
-                "en": "Show debug messages",
-                "cs": "Zobrazit ladící zprávy"
-            },
-            "defval": "False",
-            "required": true,
-            "category": "Behavior"
-        },
-        "LOCALIZE": {
-            "type": "string",
-            "description": {
-                "en": "Localize to choosen language",
-                "cs": "Lokalizace do vybraného jazyka"
-            },
-            "defval": "cs_CZ",
-            "options": [
-                "cs_CS",
-                "en_US"
-            ],
-            "required": false,
-            "category": "Other"
-        },
-        "MUTE": {
-            "type": "bool",
-            "description": {
-                "en": "Do not send messages to customer",
-                "cs": "Neposílat zprávy zákazníkům"
-            },
-            "defval": "False",
-            "required": false,
-            "category": "Behavior"
-        },
-        "EASE_MAILTO": {
-            "type": "email",
-            "description": {
-                "en": "Default target whe MUTE is ON",
-                "cs": "Výchozí příjemce při zapnutém MUTE"
-            },
-            "defval": "",
-            "required": false,
-            "category": "Other"
-        },
-        "ADD_LOGO": {
-            "type": "bool",
-            "description": {
-                "en": "Include Graphical Logo into messages",
-                "cs": "Zahrnout grafické logo do zpráv"
-            },
-            "defval": "False",
-            "required": false,
-            "category": "Other"
-        },
-        "ADD_QRCODE": {
-            "type": "bool",
-            "description": {
-                "en": "Include Payment QR Code into messages",
-                "cs": "Zahrnout platební QR kód do zpráv"
-            },
-            "defval": "False",
-            "required": false,
-            "category": "Other"
-        },
-        "MAIL_CC": {
-            "type": "email",
-            "description": {
-                "en": "Carbon Copy for every message sent",
-                "cs": "Kopie pro každou odeslanou zprávu"
-            },
-            "defval": "",
-            "required": false,
-            "category": "Other"
-        },
-        "MAIL_FROM": {
-            "type": "email",
-            "description": {
-                "en": "Default sender address",
-                "cs": "Výchozí adresa odesílatele"
-            },
-            "defval": "",
-            "required": false,
-            "category": "Other"
-        },
-        "SEND_LOCKED": {
-            "type": "bool",
-            "description": {
-                "en": "Try to temporary unlock document to save sent date in it",
-                "cs": "Pokusit se dočasně odemknout dokument pro uložení data odeslání"
-            },
-            "defval": "False",
-            "required": false,
-            "category": "Other"
-        },
-        "DRY_RUN": {
-            "type": "bool",
-            "description": {
-                "en": "Do not modify document in AbraFlexi (send state/date)",
-                "cs": "Neupravovat dokument v AbraFlexi (stav/datum odeslání)"
-            },
-            "defval": "False",
-            "required": false,
-            "category": "Other"
-        },
-        "EASE_LOGGER": {
-            "type": "string",
-            "description": {
-                "en": "write log messages using",
-                "cs": "zapisovat log zprávy pomocí"
-            },
-            "defval": "console|syslog",
-            "required": false,
-            "category": "Behavior"
-        },
-        "COMPANY_NAME": {
-            "type": "string",
-            "description": {
-                "en": "Company name to be used in messages",
-                "cs": "Název firmy pro použití ve zprávách"
-            },
-            "defval": "Demo Company",
-            "required": false,
-            "category": "Other"
-        },
-        "COMPANY_EMAIL": {
-            "type": "email",
-            "description": {
-                "en": "Company email address",
-                "cs": "E-mailová adresa firmy"
-            },
-            "defval": "info@democompany.com",
-            "required": false,
-            "category": "Other"
-        },
-        "COMPANY_SIGNATURE": {
-            "type": "string",
-            "description": {
-                "en": "Company email signature",
-                "cs": "E-mailový podpis firmy"
-            },
-            "defval": "Best regards,\nDemo Company",
-            "required": false,
-            "category": "Other"
-        }
+    "ABRAFLEXI_PASSWORD": {
+      "type": "password",
+      "description": {
+        "en": "AbraFlexi password",
+        "cs": "Heslo pro AbraFlexi"
+      },
+      "defval": "winstrom",
+      "required": true,
+      "category": "API"
+    },
+    "ABRAFLEXI_URL": {
+      "type": "string",
+      "description": {
+        "en": "AbraFlexi Server URI",
+        "cs": "URI adresa AbraFlexi serveru"
+      },
+      "defval": "https://demo.flexibee.eu:5434",
+      "required": true,
+      "category": "API"
+    },
+    "EASE_SMTP": {
+      "type": "string",
+      "description": {
+        "en": "configuration string for Pear_Mail",
+        "cs": "konfigurační řetězec pro Pear_Mail"
+      },
+      "defval": "",
+      "required": true,
+      "category": "Other"
+    },
+    "APP_DEBUG": {
+      "type": "bool",
+      "description": {
+        "en": "Show debug messages",
+        "cs": "Zobrazit ladící zprávy"
+      },
+      "defval": "False",
+      "required": true,
+      "category": "Behavior"
+    },
+    "LOCALIZE": {
+      "type": "string",
+      "description": {
+        "en": "Localize to choosen language",
+        "cs": "Lokalizace do vybraného jazyka"
+      },
+      "defval": "cs_CZ",
+      "options": ["cs_CS", "en_US"],
+      "required": false,
+      "category": "Other"
+    },
+    "MUTE": {
+      "type": "bool",
+      "description": {
+        "en": "Do not send messages to customer",
+        "cs": "Neposílat zprávy zákazníkům"
+      },
+      "defval": "False",
+      "required": false,
+      "category": "Behavior"
+    },
+    "EASE_MAILTO": {
+      "type": "email",
+      "description": {
+        "en": "Default target whe MUTE is ON",
+        "cs": "Výchozí příjemce při zapnutém MUTE"
+      },
+      "defval": "",
+      "required": false,
+      "category": "Other"
+    },
+    "ADD_LOGO": {
+      "type": "bool",
+      "description": {
+        "en": "Include Graphical Logo into messages",
+        "cs": "Zahrnout grafické logo do zpráv"
+      },
+      "defval": "False",
+      "required": false,
+      "category": "Other"
+    },
+    "ADD_QRCODE": {
+      "type": "bool",
+      "description": {
+        "en": "Include Payment QR Code into messages",
+        "cs": "Zahrnout platební QR kód do zpráv"
+      },
+      "defval": "False",
+      "required": false,
+      "category": "Other"
+    },
+    "MAIL_CC": {
+      "type": "email",
+      "description": {
+        "en": "Carbon Copy for every message sent",
+        "cs": "Kopie pro každou odeslanou zprávu"
+      },
+      "defval": "",
+      "required": false,
+      "category": "Other"
+    },
+    "MAIL_FROM": {
+      "type": "email",
+      "description": {
+        "en": "Default sender address",
+        "cs": "Výchozí adresa odesílatele"
+      },
+      "defval": "",
+      "required": false,
+      "category": "Other"
+    },
+    "SEND_LOCKED": {
+      "type": "bool",
+      "description": {
+        "en": "Try to temporary unlock document to save sent date in it",
+        "cs": "Pokusit se dočasně odemknout dokument pro uložení data odeslání"
+      },
+      "defval": "False",
+      "required": false,
+      "category": "Other"
+    },
+    "DRY_RUN": {
+      "type": "bool",
+      "description": {
+        "en": "Do not modify document in AbraFlexi (send state/date)",
+        "cs": "Neupravovat dokument v AbraFlexi (stav/datum odeslání)"
+      },
+      "defval": "False",
+      "required": false,
+      "category": "Other"
+    },
+    "EASE_LOGGER": {
+      "type": "string",
+      "description": {
+        "en": "write log messages using",
+        "cs": "zapisovat log zprávy pomocí"
+      },
+      "defval": "console|syslog",
+      "required": false,
+      "category": "Behavior"
+    },
+    "COMPANY_NAME": {
+      "type": "string",
+      "description": {
+        "en": "Company name to be used in messages",
+        "cs": "Název firmy pro použití ve zprávách"
+      },
+      "defval": "Demo Company",
+      "required": false,
+      "category": "Other"
+    },
+    "COMPANY_EMAIL": {
+      "type": "email",
+      "description": {
+        "en": "Company email address",
+        "cs": "E-mailová adresa firmy"
+      },
+      "defval": "info@democompany.com",
+      "required": false,
+      "category": "Other"
+    },
+    "COMPANY_SIGNATURE": {
+      "type": "string",
+      "description": {
+        "en": "Company email signature",
+        "cs": "E-mailový podpis firmy"
+      },
+      "defval": "Best regards,\nDemo Company",
+      "required": false,
+      "category": "Other"
     }
+  }
 }

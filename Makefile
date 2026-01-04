@@ -69,3 +69,16 @@ buildx:
 	docker buildx build  -f Containerfile  . --push --platform linux/arm/v7,linux/arm64/v8,linux/amd64 --tag vitexsoftware/abraflexi-mailer:latest
 
 .PHONY : install
+
+.PHONY: validate-multiflexi-app
+validate-multiflexi-app: ## Validates the multiflexi JSON
+	@if [ -d multiflexi ]; then \
+		for file in multiflexi/*.multiflexi.app.json; do \
+			if [ -f "$$file" ]; then \
+				echo "Validating $$file"; \
+				multiflexi-cli app validate-json --file="$$file"; \
+			fi; \
+		done; \
+	else \
+		echo "No multiflexi directory found"; \
+	fi

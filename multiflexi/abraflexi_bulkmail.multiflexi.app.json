@@ -1,213 +1,207 @@
 {
-    "$schema": "https://raw.githubusercontent.com/VitexSoftware/php-vitexsoftware-multiflexi-core/refs/heads/main/multiflexi.app.schema.json",
-    "schemaVersion": "3.2.1",
-    "version": "1.3.8",
-    "uuid": "a5caea28-2580-42b5-bad9-5b3092385eca",
-    "name": {
-        "en": "AbraFlexi Bulk Mailer",
-        "cs": "AbraFlexi Hromadný Mailér"
+  "$schema": "https://raw.githubusercontent.com/VitexSoftware/php-vitexsoftware-multiflexi-core/refs/heads/main/multiflexi.app.schema.json",
+  "schemaVersion": "3.2.1",
+  "version": "1.3.8",
+  "uuid": "a5caea28-2580-42b5-bad9-5b3092385eca",
+  "name": {
+    "en": "AbraFlexi Bulk Mailer",
+    "cs": "AbraFlexi Hromadný Mailér"
+  },
+  "description": {
+    "en": "By Query select recipients from Addressbook and send mail based on template",
+    "cs": "Pomocí dotazu vybere příjemce z adresáře a odešle e-mail na základě šablony"
+  },
+  "tags": ["AbraFlexi", "Bulkmail"],
+  "homepage": "https://github.com/VitexSoftware/abraflexi-mailer/",
+  "ociimage": "docker.io/vitexsoftware/abraflexi-mailer",
+  "executable": "abraflexi-bulkmail",
+  "environment": {
+    "ABRAFLEXI_COMPANY": {
+      "type": "string",
+      "description": {
+        "en": "AbraFlexi comapny code",
+        "cs": "Kód společnosti v AbraFlexi"
+      },
+      "defval": "demo_de",
+      "required": true,
+      "category": "API"
     },
-    "description": {
-        "en": "By Query select recipients from Addressbook and send mail based on template",
-        "cs": "Pomocí dotazu vybere příjemce z adresáře a odešle e-mail na základě šablony"
+    "ABRAFLEXI_LOGIN": {
+      "type": "string",
+      "description": {
+        "en": "AbraFlexi Login",
+        "cs": "Přihlašovací jméno do AbraFlexi"
+      },
+      "defval": "winstrom",
+      "required": true,
+      "category": "API"
     },
-    "tags": [
-        "AbraFlexi",
-        "Bulkmail"
-    ],
-    "homepage": "https://github.com/VitexSoftware/abraflexi-mailer/",
-    "ociimage": "docker.io/vitexsoftware/abraflexi-mailer",
-    "executable": "abraflexi-bulkmail",
-    "environment": {
-        "ABRAFLEXI_COMPANY": {
-            "type": "string",
-            "description": {
-                "en": "AbraFlexi comapny code",
-                "cs": "Kód společnosti v AbraFlexi"
-            },
-            "defval": "demo_de",
-            "required": true,
-            "category": "API"
-        },
-        "ABRAFLEXI_LOGIN": {
-            "type": "string",
-            "description": {
-                "en": "AbraFlexi Login",
-                "cs": "Přihlašovací jméno do AbraFlexi"
-            },
-            "defval": "winstrom",
-            "required": true,
-            "category": "API"
-        },
-        "ABRAFLEXI_PASSWORD": {
-            "type": "password",
-            "description": {
-                "en": "AbraFlexi password",
-                "cs": "Heslo pro AbraFlexi"
-            },
-            "defval": "winstrom",
-            "required": true,
-            "category": "API"
-        },
-        "ABRAFLEXI_URL": {
-            "type": "string",
-            "description": {
-                "en": "AbraFlexi Server URI",
-                "cs": "URI adresa AbraFlexi serveru"
-            },
-            "defval": "https://demo.flexibee.eu:5434",
-            "required": true,
-            "category": "API"
-        },
-        "ABRAFLEXI_BULKMAIL_TEMPLATE": {
-            "type": "file-path",
-            "description": {
-                "en": "Mail Template Filename",
-                "cs": "Název souboru šablony e-mailu"
-            },
-            "defval": "",
-            "required": true,
-            "category": "API"
-        },
-        "ABRAFLEXI_BULKMAIL_QUERY": {
-            "type": "string",
-            "description": {
-                "en": "Filter of recipients",
-                "cs": "Filtr příjemců"
-            },
-            "defval": "kod='ZAKAZNIKA' or kod='ZAKAZNIKB' or kod='ZAKAZNIKC'",
-            "required": true,
-            "category": "API"
-        },
-        "MAIL_FROM": {
-            "type": "email",
-            "description": {
-                "en": "sender email address",
-                "cs": "e-mailová adresa odesílatele"
-            },
-            "defval": "",
-            "required": true,
-            "category": "Other"
-        },
-        "MAIL_SUBJECT": {
-            "type": "string",
-            "description": {
-                "en": "Subject for mails",
-                "cs": "Předmět e-mailů"
-            },
-            "defval": "",
-            "required": true,
-            "category": "Other"
-        },
-        "EASE_SMTP": {
-            "type": "string",
-            "description": {
-                "en": "configuration string for Pear_Mail",
-                "cs": "konfigurační řetězec pro Pear_Mail"
-            },
-            "defval": "",
-            "required": true,
-            "category": "Other"
-        },
-        "LOCALIZE": {
-            "type": "string",
-            "description": {
-                "en": "Localize to choosen language",
-                "cs": "Lokalizace do vybraného jazyka"
-            },
-            "defval": "cs_CZ",
-            "options": [
-                "cs_CS",
-                "en_US"
-            ],
-            "required": false,
-            "category": "Other"
-        },
-        "EASE_LOGGER": {
-            "type": "string",
-            "description": {
-                "en": "write log messages using",
-                "cs": "zapisovat zprávy do logu pomocí"
-            },
-            "defval": "console|syslog",
-            "required": false,
-            "category": "Behavior"
-        },
-        "APP_DEBUG": {
-            "type": "bool",
-            "description": {
-                "en": "show app version at startup",
-                "cs": "zobrazit verzi aplikace při spuštění"
-            },
-            "defval": "",
-            "required": false,
-            "category": "Behavior"
-        },
-        "MUTE": {
-            "type": "bool",
-            "description": {
-                "en": "true to dry run",
-                "cs": "true pro zkušební spuštění"
-            },
-            "defval": "",
-            "required": false,
-            "category": "Behavior"
-        },
-        "COMPANY_NAME": {
-            "type": "string",
-            "description": {
-                "en": "Company name to be used in messages",
-                "cs": "Název společnosti pro použití ve zprávách"
-            },
-            "defval": "Demo Company",
-            "required": false,
-            "category": "Other"
-        },
-        "COMPANY_EMAIL": {
-            "type": "email",
-            "description": {
-                "en": "Company email address",
-                "cs": "E-mailová adresa společnosti"
-            },
-            "defval": "info@democompany.com",
-            "required": false,
-            "category": "Other"
-        },
-        "COMPANY_SIGNATURE": {
-            "type": "string",
-            "description": {
-                "en": "Company email signature",
-                "cs": "E-mailový podpis společnosti"
-            },
-            "defval": "Best regards,\nDemo Company",
-            "required": false,
-            "category": "Other"
-        }
+    "ABRAFLEXI_PASSWORD": {
+      "type": "password",
+      "description": {
+        "en": "AbraFlexi password",
+        "cs": "Heslo pro AbraFlexi"
+      },
+      "defval": "winstrom",
+      "required": true,
+      "category": "API"
     },
-    "exitCodes": {
-        "0": {
-            "description": {
-                "en": "Success",
-                "cs": "Úspěch"
-            },
-            "severity": "success",
-            "retry": false
-        },
-        "1": {
-            "description": {
-                "en": "General error",
-                "cs": "Obecná chyba"
-            },
-            "severity": "error",
-            "retry": true
-        },
-        "2": {
-            "description": {
-                "en": "Misuse of shell command",
-                "cs": "Nesprávné použití příkazu"
-            },
-            "severity": "error",
-            "retry": false
-        }
+    "ABRAFLEXI_URL": {
+      "type": "string",
+      "description": {
+        "en": "AbraFlexi Server URI",
+        "cs": "URI adresa AbraFlexi serveru"
+      },
+      "defval": "https://demo.flexibee.eu:5434",
+      "required": true,
+      "category": "API"
+    },
+    "ABRAFLEXI_BULKMAIL_TEMPLATE": {
+      "type": "file-path",
+      "description": {
+        "en": "Mail Template Filename",
+        "cs": "Název souboru šablony e-mailu"
+      },
+      "defval": "",
+      "required": true,
+      "category": "API"
+    },
+    "ABRAFLEXI_BULKMAIL_QUERY": {
+      "type": "string",
+      "description": {
+        "en": "Filter of recipients",
+        "cs": "Filtr příjemců"
+      },
+      "defval": "kod='ZAKAZNIKA' or kod='ZAKAZNIKB' or kod='ZAKAZNIKC'",
+      "required": true,
+      "category": "API"
+    },
+    "MAIL_FROM": {
+      "type": "email",
+      "description": {
+        "en": "sender email address",
+        "cs": "e-mailová adresa odesílatele"
+      },
+      "defval": "",
+      "required": true,
+      "category": "Other"
+    },
+    "MAIL_SUBJECT": {
+      "type": "string",
+      "description": {
+        "en": "Subject for mails",
+        "cs": "Předmět e-mailů"
+      },
+      "defval": "",
+      "required": true,
+      "category": "Other"
+    },
+    "EASE_SMTP": {
+      "type": "string",
+      "description": {
+        "en": "configuration string for Pear_Mail",
+        "cs": "konfigurační řetězec pro Pear_Mail"
+      },
+      "defval": "",
+      "required": true,
+      "category": "Other"
+    },
+    "LOCALIZE": {
+      "type": "string",
+      "description": {
+        "en": "Localize to choosen language",
+        "cs": "Lokalizace do vybraného jazyka"
+      },
+      "defval": "cs_CZ",
+      "options": ["cs_CS", "en_US"],
+      "required": false,
+      "category": "Other"
+    },
+    "EASE_LOGGER": {
+      "type": "string",
+      "description": {
+        "en": "write log messages using",
+        "cs": "zapisovat zprávy do logu pomocí"
+      },
+      "defval": "console|syslog",
+      "required": false,
+      "category": "Behavior"
+    },
+    "APP_DEBUG": {
+      "type": "bool",
+      "description": {
+        "en": "show app version at startup",
+        "cs": "zobrazit verzi aplikace při spuštění"
+      },
+      "defval": "",
+      "required": false,
+      "category": "Behavior"
+    },
+    "MUTE": {
+      "type": "bool",
+      "description": {
+        "en": "true to dry run",
+        "cs": "true pro zkušební spuštění"
+      },
+      "defval": "",
+      "required": false,
+      "category": "Behavior"
+    },
+    "COMPANY_NAME": {
+      "type": "string",
+      "description": {
+        "en": "Company name to be used in messages",
+        "cs": "Název společnosti pro použití ve zprávách"
+      },
+      "defval": "Demo Company",
+      "required": false,
+      "category": "Other"
+    },
+    "COMPANY_EMAIL": {
+      "type": "email",
+      "description": {
+        "en": "Company email address",
+        "cs": "E-mailová adresa společnosti"
+      },
+      "defval": "info@democompany.com",
+      "required": false,
+      "category": "Other"
+    },
+    "COMPANY_SIGNATURE": {
+      "type": "string",
+      "description": {
+        "en": "Company email signature",
+        "cs": "E-mailový podpis společnosti"
+      },
+      "defval": "Best regards,\nDemo Company",
+      "required": false,
+      "category": "Other"
     }
+  },
+  "exitCodes": {
+    "0": {
+      "description": {
+        "en": "Success",
+        "cs": "Úspěch"
+      },
+      "severity": "success",
+      "retry": false
+    },
+    "1": {
+      "description": {
+        "en": "General error",
+        "cs": "Obecná chyba"
+      },
+      "severity": "error",
+      "retry": true
+    },
+    "2": {
+      "description": {
+        "en": "Misuse of shell command",
+        "cs": "Nesprávné použití příkazu"
+      },
+      "severity": "error",
+      "retry": false
+    }
+  }
 }
