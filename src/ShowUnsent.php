@@ -62,7 +62,7 @@ if (empty($unsent)) {
         $invoicer->setData($unsentData);
         $unsent[$unsentData['kod']]['email'] = $invoicer->getEmail();
         $unsent[$unsentData['kod']]['recipients'] = $invoicer->getRecipients();
-        $companies[(string) $unsentData['firma']->getValue()] = true;
+        $companies[(string) $unsentData['firma']] = true;
         $invoicer->addStatusMessage(
             $unsentData['kod']."\t".$unsentData['firma']."\t".$unsent[$unsentData['kod']]['email'].' '.$unsent[$unsentData['kod']]['recipients']."\t".$unsentData['poznam'],
             'warning',
