@@ -163,7 +163,8 @@
         "en": "Company email address",
         "cs": "E-mailová adresa společnosti"
       },
-      "defval": "info@democompany.com",
+      "defval": "",
+      "hint": "info@democompany.com",
       "required": false,
       "category": "Other"
     },
