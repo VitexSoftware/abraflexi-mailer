@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>io.github.vitexsoftware.abraflexi_mailer</id>
+  <metadata_license>MIT</metadata_license>
+  <project_license>MIT</project_license>
+  <name>abraflexi-mailer</name>
+  <summary>External mailer for Abra Flexi</summary>
+  <description>
+    <p>
+      Send AbraFlexi documents and its attachments via email Add Mailer's applications into MultiFlexi
+    </p>
+  </description>
+  <categories>
+    <category>Utility</category>
+  </categories>
+  <url type="homepage">https://github.com/VitexSoftware/abraflexi-mailer</url>
+  <url type="bugtracker">https://github.com/VitexSoftware/abraflexi-mailer/issues</url>
+  <developer id="cz.vitexsoftware">
+    <name>VitexSoftware</name>
+  </developer>
+  <content_rating type="oars-1.1"/>
+</component>
