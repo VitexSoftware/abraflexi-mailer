@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100mm" height="100mm">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2196F3"/>
+      <stop offset="1" stop-color="#1565C0"/>
+    </linearGradient>
+  </defs>
+  <!-- Background -->
+  <rect width="100" height="100" rx="15" fill="url(#bg)"/>
+  <!-- Envelope body -->
+  <rect x="15" y="30" width="50" height="35" rx="3" fill="#ffffff" opacity="0.95"/>
+  <!-- Envelope flap -->
+  <polygon points="15,30 40,50 65,30" fill="#e8e8e8" stroke="#ffffff" stroke-width="0.5"/>
+  <!-- Envelope lines (letter content) -->
+  <line x1="22" y1="45" x2="58" y2="45" stroke="#ccc" stroke-width="1.5"/>
+  <line x1="22" y1="50" x2="50" y2="50" stroke="#ccc" stroke-width="1.5"/>
+  <line x1="22" y1="55" x2="45" y2="55" stroke="#ccc" stroke-width="1.5"/>
+  <!-- Document/invoice icon -->
+  <rect x="60" y="48" width="26" height="34" rx="2" fill="#ffffff" stroke="#90CAF9" stroke-width="1"/>
+  <polygon points="78,48 86,56 78,56" fill="#90CAF9"/>
+  <line x1="65" y1="60" x2="81" y2="60" stroke="#BBDEFB" stroke-width="1.5"/>
+  <line x1="65" y1="65" x2="78" y2="65" stroke="#BBDEFB" stroke-width="1.5"/>
+  <line x1="65" y1="70" x2="80" y2="70" stroke="#BBDEFB" stroke-width="1.5"/>
+  <line x1="65" y1="75" x2="74" y2="75" stroke="#BBDEFB" stroke-width="1.5"/>
+  <!-- Checkmark badge -->
+  <circle cx="30" cy="25" r="12" fill="#ffffff"/>
+  <circle cx="30" cy="25" r="10" fill="#2196F3"/>
+  <polyline points="24,25 28,29 36,21" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

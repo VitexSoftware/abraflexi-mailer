@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100mm" height="100mm">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FF9800"/>
+      <stop offset="1" stop-color="#E65100"/>
+    </linearGradient>
+  </defs>
+  <!-- Background -->
+  <rect width="100" height="100" rx="15" fill="url(#bg)"/>
+  <!-- Envelope body -->
+  <rect x="15" y="30" width="50" height="35" rx="3" fill="#ffffff" opacity="0.95"/>
+  <!-- Envelope flap -->
+  <polygon points="15,30 40,50 65,30" fill="#e8e8e8" stroke="#ffffff" stroke-width="0.5"/>
+  <!-- Envelope lines (letter content) -->
+  <line x1="22" y1="45" x2="58" y2="45" stroke="#ccc" stroke-width="1.5"/>
+  <line x1="22" y1="50" x2="50" y2="50" stroke="#ccc" stroke-width="1.5"/>
+  <line x1="22" y1="55" x2="45" y2="55" stroke="#ccc" stroke-width="1.5"/>
+  <!-- Coin/payment circle -->
+  <circle cx="72" cy="62" r="18" fill="#FFC107" stroke="#FF8F00" stroke-width="1.5"/>
+  <text x="72" y="68" font-family="Arial,sans-serif" font-size="18" font-weight="bold" fill="#FF8F00" text-anchor="middle">$</text>
+  <!-- Send arrow badge -->
+  <circle cx="30" cy="25" r="12" fill="#ffffff"/>
+  <circle cx="30" cy="25" r="10" fill="#FF9800"/>
+  <polygon points="25,25 33,25 33,21 38,25 33,29 33,25" fill="#ffffff"/>
+</svg>
