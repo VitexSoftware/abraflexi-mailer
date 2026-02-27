@@ -1,0 +1,165 @@
+{
+  "$schema": "https://raw.githubusercontent.com/VitexSoftware/php-vitexsoftware-multiflexi-core/refs/heads/main/schema/application.json",
+  "schemaVersion": "3.3.0",
+  "version": "1.4.0",
+  "uuid": "dc2933e5-eac8-479d-b68d-d186d9de5fab",
+  "name": {
+    "en": "Payment Sent Confirmation",
+    "cs": "Potvrzení odeslání úhrady"
+  },
+  "description": {
+    "en": "Send confirmation of payment being sent (bank order) to the supplier based on document ID",
+    "cs": "Odeslání potvrzení o odeslání úhrady (bankovního příkazu) dodavateli na základě ID dokumentu"
+  },
+  "tags": ["AbraFlexi", "Mail", "Confirmation", "Payment"],
+  "homepage": "https://github.com/VitexSoftware/abraflexi-mailer/",
+  "ociimage": "docker.io/vitexsoftware/abraflexi-mailer",
+  "executable": "abraflexi-potvrzeni-odeslani-uhrady",
+  "environment": {
+    "ABRAFLEXI_COMPANY": {
+      "type": "string",
+      "description": {
+        "en": "AbraFlexi company code",
+        "cs": "Kód společnosti v AbraFlexi"
+      },
+      "defval": "demo_de",
+      "required": true,
+      "category": "API"
+    },
+    "ABRAFLEXI_LOGIN": {
+      "type": "string",
+      "description": {
+        "en": "AbraFlexi Login",
+        "cs": "Přihlašovací jméno do AbraFlexi"
+      },
+      "defval": "winstrom",
+      "required": true,
+      "category": "API"
+    },
+    "ABRAFLEXI_PASSWORD": {
+      "type": "password",
+      "description": {
+        "en": "AbraFlexi password",
+        "cs": "Heslo pro AbraFlexi"
+      },
+      "defval": "winstrom",
+      "required": true,
+      "category": "API"
+    },
+    "ABRAFLEXI_URL": {
+      "type": "string",
+      "description": {
+        "en": "AbraFlexi Server URI",
+        "cs": "URI adresa AbraFlexi serveru"
+      },
+      "defval": "https://demo.flexibee.eu:5434",
+      "required": true,
+      "category": "API"
+    },
+    "DOCID": {
+      "type": "string",
+      "description": {
+        "en": "Document identifier (invoice code or numeric ID)",
+        "cs": "Identifikátor dokumentu (kód faktury nebo číselné ID)"
+      },
+      "defval": "",
+      "required": true,
+      "category": "API"
+    },
+    "MAIL_FROM": {
+      "type": "email",
+      "description": {
+        "en": "Sender email address",
+        "cs": "E-mailová adresa odesílatele"
+      },
+      "defval": "",
+      "required": true,
+      "category": "Other"
+    },
+    "MAIL_SIGNATURE": {
+      "type": "text",
+      "description": {
+        "en": "Email signature text",
+        "cs": "Text podpisu e-mailu"
+      },
+      "defval": "",
+      "required": false,
+      "category": "Other"
+    },
+    "SEND_INFO_TO": {
+      "type": "email",
+      "description": {
+        "en": "Send copy (Cc) to this address",
+        "cs": "Odeslat kopii (Cc) na tuto adresu"
+      },
+      "defval": "",
+      "required": false,
+      "category": "Other"
+    },
+    "EASE_SMTP": {
+      "type": "string",
+      "description": {
+        "en": "Configuration string for Pear_Mail",
+        "cs": "Konfigurační řetězec pro Pear_Mail"
+      },
+      "defval": "",
+      "required": true,
+      "category": "Other"
+    },
+    "EASE_LOGGER": {
+      "type": "string",
+      "description": {
+        "en": "Write log messages using",
+        "cs": "Zapisovat zprávy do logu pomocí"
+      },
+      "defval": "console|syslog",
+      "required": false,
+      "category": "Behavior"
+    },
+    "APP_DEBUG": {
+      "type": "bool",
+      "description": {
+        "en": "Show app version at startup",
+        "cs": "Zobrazit verzi aplikace při spuštění"
+      },
+      "defval": "",
+      "required": false,
+      "category": "Behavior"
+    }
+  },
+  "exitCodes": {
+    "0": {
+      "description": {
+        "en": "Success - confirmation sent",
+        "cs": "Úspěch - potvrzení odesláno"
+      },
+      "severity": "success",
+      "retry": false
+    },
+    "1": {
+      "description": {
+        "en": "Missing document ID",
+        "cs": "Chybí identifikátor dokumentu"
+      },
+      "severity": "error",
+      "retry": false
+    },
+    "2": {
+      "description": {
+        "en": "Failed to send confirmation email",
+        "cs": "Nepodařilo se odeslat potvrzovací e-mail"
+      },
+      "severity": "error",
+      "retry": true
+    },
+    "3": {
+      "description": {
+        "en": "Cannot read document from AbraFlexi",
+        "cs": "Nelze přečíst dokument z AbraFlexi"
+      },
+      "severity": "error",
+      "retry": true
+    }
+  },
+  "requirements": ["AbraFlexi"]
+}

@@ -76,43 +76,6 @@ abraflexi-bulkmail templates/template.ftl "(city='Prague' AND street='Nerudova')
 When used in a [template](tests/test.ftl), the variables for each sent message
 are filled from https://demo.flexibee.eu/c/demo_de/addressbook/properties
 
-Unsent mail reporter
---------------------
-
-Script which produces reports of unsent invoices in MultiFlexi-compliant format.
-
-Since version 1.3.8, reports conform to the [MultiFlexi report schema](https://raw.githubusercontent.com/VitexSoftware/php-vitexsoftware-multiflexi-core/refs/heads/main/multiflexi.report.schema.json):
-
-```json
-{
-  "status": "warning",
-  "timestamp": "2025-10-04T01:00:00+00:00",
-  "message": "2 unsent invoices found affecting 1 companies",
-  "artifacts": {
-    "unsent_invoices": [
-      {
-        "id": 1131,
-        "firma": {
-          "value": "code:CUSTOMER",
-          "target": "adresar",
-          "ref": "/c/vitex_software/adresar/827.odeslat')",
-          "showAs": "CUSTOMER: CUSTOMER l.t.d."
-        },
-        "kontaktEmail": "info@customer.com",
-        "poznam": "",
-        "kod": "VF1-0077/2024",
-        "email": "info@customer.com",
-        "recipients": "info@customer.com"
-      }
-    ]
-  },
-  "metrics": {
-    "total_unsent": 2,
-    "companies_affected": 1
-  }
-}
-```
-
 
 
 Dependencies
@@ -165,12 +128,31 @@ For Linux, .deb packages are available. Please use the repo:
 
 After installing the package, the following new commands are available in the system:
 
-* **abraflexi-send**                    - sends a document
-* **abraflexi-send-unsent**             - sends unsent documents
-* **abraflexi-send-attachments**        - sends a document with attachments (TODO)
-* **abraflexi-send-unsent-attachments** - sends unsent documents with attachments
-* **abraflexi-show-unsent**             - lists unsent documents
-* **abraflexi-bulkmail**                - sends emails to contacts from the address book in bulk
+* **abraflexi-send**                           - sends a document
+* **abraflexi-send-unsent**                    - sends unsent documents
+* **abraflexi-send-attachments**               - sends a document with attachments (TODO)
+* **abraflexi-send-unsent-attachments**        - sends unsent documents with attachments
+* **abraflexi-show-unsent**                    - lists unsent documents
+* **abraflexi-bulkmail**                       - sends emails to contacts from the address book in bulk
+* **abraflexi-potvrzeni-prijeti-uhrady**       - sends payment receipt confirmation to the customer
+* **abraflexi-potvrzeni-prijeti-faktury**      - sends invoice receipt confirmation to the supplier
+* **abraflexi-potvrzeni-odeslani-uhrady**      - sends payment sent (bank order) confirmation to the supplier
+
+Confirmation Commands
+---------------------
+
+The confirmation commands accept a document identifier via `--docid` parameter or `DOCID` environment variable.
+Based on the document ID, the recipient is determined from the address book and a confirmation email is sent.
+
+```shell
+abraflexi-potvrzeni-prijeti-uhrady --docid=VF1-0001/2026
+DOCID=123 abraflexi-potvrzeni-prijeti-faktury
+```
+
+Additional environment variables for confirmations:
+
+* `MAIL_SIGNATURE` - email signature text appended to the message
+* `SEND_INFO_TO` - Cc address for confirmation copies
 
 
 ## Exit Codes
@@ -178,5 +160,6 @@ After installing the package, the following new commands are available in the sy
 This application uses the following exit codes:
 
 - `0`: Success
-- `1`: General error
-- `2`: Misuse of shell command
+- `1`: General error / Missing document ID
+- `2`: Failed to send email
+- `3`: Cannot read document from AbraFlexi

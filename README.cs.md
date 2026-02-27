@@ -47,34 +47,6 @@ SEND_LOCKED=False                               - pokusi se dočasně odemknout 
 DRY_RUN=False                                   - je-li povoleno nezapisuje do dokladů datum a stav odeslání
 ```
 
-Hlášení neodešlaných dokladů
------------------------------
-
-Skript, který vytváří hlášení o neodešlaných fakturách ve formátu kompatibilním s MultiFlexi.
-
-Od verze 1.3.8 hlášení odpovídají [schématu hlášení MultiFlexi](https://raw.githubusercontent.com/VitexSoftware/php-vitexsoftware-multiflexi-core/refs/heads/main/multiflexi.report.schema.json):
-
-```json
-{
-  "status": "warning",
-  "timestamp": "2025-10-04T01:00:00+00:00",
-  "message": "Nalezeno 2 neodešlané faktury ovlivňující 1 společnosti",
-  "artifacts": {
-    "unsent_invoices": [
-      {
-        "kod": "VF1-0077/2024",
-        "firma": "ZÁKAZNÍK s.r.o.",
-        "email": "info@zakaznik.cz"
-      }
-    ]
-  },
-  "metrics": {
-    "total_unsent": 2,
-    "companies_affected": 1
-  }
-}
-```
-
 Šablony
 -------
 
@@ -152,17 +124,38 @@ Pro Linux jsou k dispozici .deb balíčky. Prosím použijte repo:
 
 Po instalaci balíku jsou v systému k dispozici tyto nové příkazy:
 
-* **abraflexi-send**                    - odešle doklad (TODO)
-* **abraflexi-send-unsent**             - odešle neodeslané
-* **abraflexi-send-attachments**        - odešle doklad s přílohami (TODO)
-* **abraflexi-send-unsent-attachments** - odešle neodeslané s přílohami
-* **abraflexi-show-unsent**             - vypíše neodeslané doklady
-* **abraflexi-bulkmail**                - hromadně odešle maily kontaktům z adresáře
+* **abraflexi-send**                           - odešle doklad (TODO)
+* **abraflexi-send-unsent**                    - odešle neodeslané
+* **abraflexi-send-attachments**               - odešle doklad s přílohami (TODO)
+* **abraflexi-send-unsent-attachments**        - odešle neodeslané s přílohami
+* **abraflexi-show-unsent**                    - vypíše neodeslané doklady
+* **abraflexi-bulkmail**                       - hromadně odešle maily kontaktům z adresáře
+* **abraflexi-potvrzeni-prijeti-uhrady**       - odešle potvrzení o přijetí úhrady zákazníkovi
+* **abraflexi-potvrzeni-prijeti-faktury**      - odešle potvrzení o přijetí faktury dodavateli
+* **abraflexi-potvrzeni-odeslani-uhrady**      - odešle potvrzení o odeslání úhrady (bankovního příkazu) dodavateli
+
+Příkazy pro potvrzení
+---------------------
+
+Příkazy pro potvrzení přijímají identifikátor dokumentu přes parametr `--docid` nebo proměnnou prostředí `DOCID`.
+Na základě ID dokumentu je z adresáře určen příjemce a je mu odeslán potvrzovací e-mail.
+
+```shell
+abraflexi-potvrzeni-prijeti-uhrady --docid=VF1-0001/2026
+DOCID=123 abraflexi-potvrzeni-prijeti-faktury
+```
+
+Další proměnné prostředí pro potvrzení:
+
+* `MAIL_SIGNATURE` - text podpisu e-mailu připojený ke zprávě
+* `SEND_INFO_TO` - adresa pro kopii (Cc) potvrzení
+
 
 ## Exit Codes
 
-This application uses the following exit codes:
+Aplikace používá následující návratové kódy:
 
-- `0`: Success
-- `1`: General error
-- `2`: Misuse of shell command
+- `0`: Úspěch
+- `1`: Obecná chyba / Chybí identifikátor dokumentu
+- `2`: Nepodařilo se odeslat e-mail
+- `3`: Nelze přečíst dokument z AbraFlexi

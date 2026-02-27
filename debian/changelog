@@ -1,3 +1,16 @@
+abraflexi-mailer (1.4.0) UNRELEASED; urgency=medium
+
+  * Added confirmation mailers: PotvrzeniPrijetiUhrady, PotvrzeniPrijetiFaktury,
+    PotvrzeniOdeslaniUhrady
+  * New commands: abraflexi-potvrzeni-prijeti-uhrady,
+    abraflexi-potvrzeni-prijeti-faktury, abraflexi-potvrzeni-odeslani-uhrady
+  * Document ID passed via --docid or DOCID environment variable
+  * MultiFlexi app definitions for all new commands
+  * JSON report output conforming to MultiFlexi report schema
+  * Configurable MAIL_SIGNATURE and SEND_INFO_TO environment variables
+
+ -- vitex <info@vitexsoftware.cz>  Thu, 27 Feb 2026 19:04:00 +0100
+
 abraflexi-mailer (1.3.8) UNRELEASED; urgency=medium
 
   * Updated reports to conform to MultiFlexi report schema
