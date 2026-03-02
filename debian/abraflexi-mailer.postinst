@@ -1,9 +1,5 @@
 #!/bin/sh
-# postinst script for abraflexi-mailer
-
 set -e
-
-composer-debian abraflexi-mailer
 
 #DEBHELPER#
 

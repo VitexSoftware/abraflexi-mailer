@@ -2,7 +2,7 @@
   "$schema": "https://raw.githubusercontent.com/VitexSoftware/php-vitexsoftware-multiflexi-core/refs/heads/main/schema/application.json",
   "schemaVersion": "3.3.0",
   "version": "1.4.0",
-  "uuid": "ea558fe5-3330-45bc-8ed8-2bca69bf3933",
+  "uuid": "c2feac3d-1351-48d3-a019-ecd0b102ef87",
   "name": {
     "en": "Payment Receipt Confirmation",
     "cs": "Potvrzení přijetí úhrady"

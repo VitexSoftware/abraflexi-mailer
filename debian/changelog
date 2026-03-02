@@ -1,4 +1,4 @@
-abraflexi-mailer (1.4.0) UNRELEASED; urgency=medium
+abraflexi-mailer (1.4.0) unstable; urgency=medium
 
   * Added confirmation mailers: PotvrzeniPrijetiUhrady, PotvrzeniPrijetiFaktury,
     PotvrzeniOdeslaniUhrady
@@ -8,6 +8,7 @@ abraflexi-mailer (1.4.0) UNRELEASED; urgency=medium
   * MultiFlexi app definitions for all new commands
   * JSON report output conforming to MultiFlexi report schema
   * Configurable MAIL_SIGNATURE and SEND_INFO_TO environment variables
+  * Modernize Debian packaging: debhelper-compat 13, remove composer-debian
 
  -- vitex <info@vitexsoftware.cz>  Thu, 27 Feb 2026 19:04:00 +0100
 

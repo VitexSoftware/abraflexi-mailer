@@ -35,7 +35,7 @@ use Ease\Shared;
  * AbraFlexi Mailer class.
  *
  * @author     Vítězslav Dvořák <info@vitexsofware.cz>
- * @copyright  (G) 2021-2024 Vitex Software
+ * @copyright  (G) 2021-2026 Vitex Software
  */
 class DocumentMailer extends HtmlMailer
 {

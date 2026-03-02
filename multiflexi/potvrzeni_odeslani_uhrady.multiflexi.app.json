@@ -2,7 +2,7 @@
   "$schema": "https://raw.githubusercontent.com/VitexSoftware/php-vitexsoftware-multiflexi-core/refs/heads/main/schema/application.json",
   "schemaVersion": "3.3.0",
   "version": "1.4.0",
-  "uuid": "dc2933e5-eac8-479d-b68d-d186d9de5fab",
+  "uuid": "fa4a70bd-c3fe-4c35-8c01-e37ee3ef381a",
   "name": {
     "en": "Payment Sent Confirmation",
     "cs": "Potvrzení odeslání úhrady"
