@@ -21,7 +21,6 @@ If an address with the prefix cc is found in the document note, e.g., "cc:email@
 Configuration
 -------------
 
-
 Configuration is done by entering directives into the .env file, defining them as constants, or setting environment variables.
 The Debian package expects the configuration file in the /etc/abraflexi-mailer folder, where a sample file .env.template is available.
 
@@ -88,9 +87,7 @@ abraflexi-bulkmail templates/template.ftl "(city='Prague' AND street='Nerudova')
 ```
 
 When used in a [template](tests/test.ftl), the variables for each sent message
-are filled from https://demo.flexibee.eu/c/demo_de/addressbook/properties
-
-
+are filled from <https://demo.flexibee.eu/c/demo_de/addressbook/properties>
 
 Dependencies
 ------------
@@ -106,7 +103,7 @@ Acknowledgements
 
 This software would not have been created without the support of:
 
-[ ![Spoje.Net](doc/spojenet.gif?raw=true "Spoje.Net s.r.o.") ](https://spoje.net/)
+[![Spoje.Net](doc/spojenet.gif?raw=true "Spoje.Net s.r.o.")](https://spoje.net/)
 
 Other software for AbraFlexi
 ----------------------------
@@ -168,12 +165,11 @@ Additional environment variables for confirmations:
 * `MAIL_SIGNATURE` - email signature text appended to the message
 * `SEND_INFO_TO` - Cc address for confirmation copies
 
-
 ## Exit Codes
 
 This application uses the following exit codes:
 
-- `0`: Success
-- `1`: General error / Missing document ID
-- `2`: Failed to send email
-- `3`: Cannot read document from AbraFlexi
+* `0`: Success
+* `1`: General error / Missing document ID
+* `2`: Failed to send email
+* `3`: Cannot read document from AbraFlexi
