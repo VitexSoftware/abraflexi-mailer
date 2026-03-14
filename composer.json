@@ -10,7 +10,9 @@
   "require": {
     "php": ">=8.1",
     "vitexsoftware/abraflexi-bricks": "dev-main",
-    "pear/net_smtp": "dev-master"
+    "symfony/mailer": "8.1.x-dev",
+    "symfony/mime": "8.1.x-dev",
+    "vitexsoftware/ease-html": "dev-main"
   },
   "require-dev": {
     "phpunit/phpunit": "*",

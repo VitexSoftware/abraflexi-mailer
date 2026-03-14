@@ -28,7 +28,6 @@ use Ease\Html\TableTag;
 use Ease\Html\TdTag;
 use Ease\Html\TitleTag;
 use Ease\Html\TrTag;
-use Ease\HtmlMailer;
 use Ease\Shared;
 
 /**

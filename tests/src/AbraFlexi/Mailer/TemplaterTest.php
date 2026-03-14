@@ -33,10 +33,9 @@ class TemplaterTest extends \PHPUnit\Framework\TestCase
     {
         $this->invoicer = new \AbraFlexi\FakturaVydana();
         $this->invoicer->loadFromAbraFlexi($this->invoicer->getFirstRecordID());
-        $helper = new \AbraFlexi\Mailer\Mailer($this->invoicer);
         $this->object = new Templater(
-            $this->invoicer,
             'tests/test.ftl',
+            $this->invoicer,
         );
     }
 

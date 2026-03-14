@@ -22,7 +22,7 @@ use Ease\Shared;
  *
  * @author Vítězslav Dvořák <info@vitexsoftware.cz>
  */
-class PotvrzeniOdeslaniUhrady extends \Ease\HtmlMailer
+class PotvrzeniOdeslaniUhrady extends \AbraFlexi\Mailer\HtmlMailer
 {
     /**
      * Send payment sent confirmation.
@@ -37,7 +37,7 @@ class PotvrzeniOdeslaniUhrady extends \Ease\HtmlMailer
         $customerName = $invoice->getDataValue('firma@showAs');
 
         if (empty($customerName)) {
-            $customerName = \AbraFlexi\Functions::uncode($invoice->getDataValue('firma'));
+            $customerName = \AbraFlexi\Functions::uncode((string) $invoice->getDataValue('firma'));
         }
 
         $subject = sprintf(
