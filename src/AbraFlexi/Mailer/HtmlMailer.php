@@ -23,11 +23,11 @@ use Ease\Html\TitleTag;
 use Ease\Sand;
 use Symfony\Component\Mailer\Mailer;
 use Symfony\Component\Mailer\Transport;
-use Symfony\Component\Mime\Email;
 use Symfony\Component\Mime\Address;
+use Symfony\Component\Mime\Email;
 
 /**
- * Build & Send email using Symfony Mailer
+ * Build & Send email using Symfony Mailer.
  */
 class HtmlMailer extends Sand
 {
@@ -66,10 +66,8 @@ class HtmlMailer extends Sand
      * Pointer to the BODY html document.
      */
     public $htmlBody;
-
     public array $mailHeaders = [];
     public bool $finalized = false;
-
     private Email $email;
     private Mailer $mailer;
 
@@ -83,7 +81,7 @@ class HtmlMailer extends Sand
         string $emailAddress,
         string $mailSubject,
         string $emailContents = '',
-        array $headers = []
+        array $headers = [],
     ) {
         if (\is_array($emailAddress)) {
             $emailAddress = current($emailAddress).' <'.key($emailAddress).'>';
@@ -99,7 +97,7 @@ class HtmlMailer extends Sand
                 'Subject' => $mailSubject,
                 'Content-Type' => 'text/html; charset=utf-8',
                 'Content-Transfer-Encoding' => '8bit',
-            ], $headers)
+            ], $headers),
         );
 
         $this->htmlDocument = new HtmlTag();
@@ -107,8 +105,9 @@ class HtmlMailer extends Sand
         $this->htmlBody = $this->htmlDocument->addItem(new BodyTag($emailContents));
 
         $dsn = \Ease\Shared::cfg('MAIL_DSN', '');
+
         if (empty($dsn)) {
-            $dsn = 'sendmail://default'; 
+            $dsn = 'sendmail://default';
         }
 
         $transport = Transport::fromDsn($dsn);
@@ -149,9 +148,10 @@ class HtmlMailer extends Sand
 
         if (isset($this->mailHeaders['Subject'])) {
             $this->emailSubject = $this->mailHeaders['Subject'];
+
             // Remove base64 encoding prefix applied by Ease\HtmlMailer compatibility if we ever get it
-            if (strpos($this->emailSubject, '=?UTF-8?B?') === 0) {
-                $this->emailSubject = base64_decode(substr($this->emailSubject, 10, -2));
+            if (str_starts_with($this->emailSubject, '=?UTF-8?B?')) {
+                $this->emailSubject = base64_decode(substr($this->emailSubject, 10, -2), true);
             }
         }
 
@@ -211,8 +211,8 @@ class HtmlMailer extends Sand
     /**
      * Attaches an attachment from a file to the mail.
      *
-     * @param string|null $filename path / file name to attach
-     * @param string $mimeType MIME attachment type
+     * @param null|string $filename path / file name to attach
+     * @param string      $mimeType MIME attachment type
      *
      * @return bool file attachment successful
      */
@@ -221,6 +221,7 @@ class HtmlMailer extends Sand
         if ($filename !== null && file_exists($filename)) {
             $this->email->attachFromPath($filename, basename($filename), $mimeType ?: null);
         }
+
         return true;
     }
 
@@ -230,6 +231,7 @@ class HtmlMailer extends Sand
     public function finalize(): void
     {
         $htmlBodyRendered = '';
+
         if (method_exists($this->htmlDocument, 'GetRendered')) {
             $htmlBodyRendered = $this->htmlDocument->getRendered();
         } else {
@@ -261,7 +263,7 @@ class HtmlMailer extends Sand
                 }
             }
         }
-        
+
         if (isset($this->mailHeaders['Bcc'])) {
             foreach (explode(',', $this->mailHeaders['Bcc']) as $address) {
                 if (trim($address) !== '') {
@@ -269,14 +271,15 @@ class HtmlMailer extends Sand
                 }
             }
         }
-        
+
         if (isset($this->mailHeaders['Reply-To'])) {
             $this->email->replyTo(Address::create($this->mailHeaders['Reply-To']));
         }
 
         $headers = $this->email->getHeaders();
+
         foreach ($this->mailHeaders as $headerName => $headerValue) {
-            if (!\in_array(strtolower($headerName), ['to', 'from', 'subject', 'cc', 'bcc', 'reply-to', 'content-type', 'content-transfer-encoding', 'date'])) {
+            if (!\in_array(strtolower($headerName), ['to', 'from', 'subject', 'cc', 'bcc', 'reply-to', 'content-type', 'content-transfer-encoding', 'date'], true)) {
                 $headers->addTextHeader($headerName, $headerValue);
             }
         }
@@ -306,15 +309,17 @@ class HtmlMailer extends Sand
             $this->sendResult = true;
         } catch (\Exception $e) {
             $this->sendResult = false;
+
             if ($this->notify === true) {
                 $mailStripped = str_replace(['<', '>'], '', $this->emailAddress);
                 $this->addStatusMessage(sprintf(
                     _('Message %s, for %s was not sent because of %s'),
                     $this->emailSubject,
                     $mailStripped,
-                    $e->getMessage()
+                    $e->getMessage(),
                 ), 'warning');
             }
+
             return false;
         }
 

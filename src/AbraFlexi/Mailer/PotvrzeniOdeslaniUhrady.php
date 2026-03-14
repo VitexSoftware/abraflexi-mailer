@@ -26,8 +26,6 @@ class PotvrzeniOdeslaniUhrady extends \AbraFlexi\Mailer\HtmlMailer
 {
     /**
      * Send payment sent confirmation.
-     *
-     * @param \AbraFlexi\FakturaPrijata $invoice
      */
     public function __construct(\AbraFlexi\FakturaPrijata $invoice)
     {

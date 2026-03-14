@@ -59,7 +59,7 @@ if ($invoice->lastResponseCode === 200) {
         $message = sprintf(_('Failed to send invoice receipt confirmation for %s'), RO::uncode($invoice->getRecordCode()));
         $invoice->addStatusMessage($message, 'error');
         $report['message'] = $message;
-        echo json_encode($report, \JSON_PRETTY_PRINT | \JSON_UNESCAPED_UNICODE) . "\n";
+        echo json_encode($report, \JSON_PRETTY_PRINT | \JSON_UNESCAPED_UNICODE)."\n";
 
         exit(2);
     }
@@ -67,9 +67,9 @@ if ($invoice->lastResponseCode === 200) {
     $message = sprintf(_('Cannot read document %s from evidence %s'), $docId, 'faktura-prijata');
     $invoice->addStatusMessage($message, 'error');
     $report['message'] = $message;
-    echo json_encode($report, \JSON_PRETTY_PRINT | \JSON_UNESCAPED_UNICODE) . "\n";
+    echo json_encode($report, \JSON_PRETTY_PRINT | \JSON_UNESCAPED_UNICODE)."\n";
 
     exit(3);
 }
 
-echo json_encode($report, \JSON_PRETTY_PRINT | \JSON_UNESCAPED_UNICODE) . "\n";
+echo json_encode($report, \JSON_PRETTY_PRINT | \JSON_UNESCAPED_UNICODE)."\n";

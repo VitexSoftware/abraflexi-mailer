@@ -319,7 +319,9 @@ class DocumentMailer extends HtmlMailer
         $result = parent::send();
 
         foreach ($this->cleanup as $tmp) {
-            unlink($tmp);
+            if ($tmp) {
+                unlink($tmp);
+            }
         }
 
         return $result;

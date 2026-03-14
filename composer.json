@@ -10,8 +10,8 @@
   "require": {
     "php": ">=8.1",
     "vitexsoftware/abraflexi-bricks": "dev-main",
-    "symfony/mailer": "8.1.x-dev",
-    "symfony/mime": "8.1.x-dev",
+    "symfony/mailer": "^6.4",
+    "symfony/mime": "^6.4",
     "vitexsoftware/ease-html": "dev-main"
   },
   "require-dev": {

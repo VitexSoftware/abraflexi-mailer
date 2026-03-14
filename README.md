@@ -21,14 +21,28 @@ If an address with the prefix cc is found in the document note, e.g., "cc:email@
 Configuration
 -------------
 
+
 Configuration is done by entering directives into the .env file, defining them as constants, or setting environment variables.
 The Debian package expects the configuration file in the /etc/abraflexi-mailer folder, where a sample file .env.template is available.
+
+### Mail Transport (MAIL_DSN)
+
+The mailer now uses the `MAIL_DSN` variable, following the [Symfony mailer DSN format](https://symfony.com/doc/current/mailer.html). The previously used `EASE_SMTP` is deprecated.
+
+Example for SMTP:
+
+```env
+MAIL_DSN="smtp://username:password@mail.example.com:587?encryption=tls&auth_mode=plain"
+```
+
+Replace `username`, `password`, and `mail.example.com` with your actual SMTP credentials and server.
 
 ```env
 APP_NAME=AbraFlexiMailer                        - application name in syslog
 APP_DEBUG=true                                  - enable debug mode
 MUTE=true                                       - do not send messages to recipients but to
 
+MAIL_DSN="smtp://username:password@mail.example.com:587?encryption=tls&auth_mode=plain"  - mail transport DSN (Symfony format)
 EASE_MAILTO=info@vitexsoftware.cz               - messages are sent here if mute is active
 
 ABRAFLEXI_URL="https://demo.abraflexi.eu:5434"
