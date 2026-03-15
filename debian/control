@@ -18,10 +18,9 @@ Description: External mailer for Abra Flexi
  Send AbraFlexi documents and its attachments via email
 
 Package: multiflexi-abraflexi-mailer
-Depends: abraflexi-mailer, multiflexi-cli, multiflexi-mail
+Depends: abraflexi-mailer, multiflexi-cli, multiflexi-mail, multiflexi-abraflexi
 Architecture: all
 Section: web
 Priority: optional
 Description: Add External mailer for AbraFlexi to MultiFlexi
  Add Mailer's applications into MultiFlexi
-

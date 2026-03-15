@@ -11,7 +11,12 @@
     "en": "Send confirmation of payment being sent (bank order) to the supplier based on document ID",
     "cs": "Odeslání potvrzení o odeslání úhrady (bankovního příkazu) dodavateli na základě ID dokumentu"
   },
-  "tags": ["AbraFlexi", "Mail", "Confirmation", "Payment"],
+  "tags": [
+    "AbraFlexi",
+    "Mail",
+    "Confirmation",
+    "Payment"
+  ],
   "homepage": "https://github.com/VitexSoftware/abraflexi-mailer/",
   "ociimage": "docker.io/vitexsoftware/abraflexi-mailer",
   "executable": "abraflexi-potvrzeni-odeslani-uhrady",
@@ -161,5 +166,7 @@
       "retry": true
     }
   },
-  "requirements": ["AbraFlexi"]
+  "requirements": [
+    "AbraFlexi"
+  ]
 }

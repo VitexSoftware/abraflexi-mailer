@@ -1,7 +1,7 @@
 {
-  "$schema": "https://raw.githubusercontent.com/VitexSoftware/php-vitexsoftware-multiflexi-core/refs/heads/main/multiflexi.app.schema.json",
+  "$schema": "https://raw.githubusercontent.com/VitexSoftware/php-vitexsoftware-multiflexi-core/refs/heads/main/schema/application.json",
   "schemaVersion": "3.0.0",
-"version": "1.4.0",
+  "version": "1.4.0",
   "uuid": "97c1c85d-3800-4d12-aabb-b60b15cd8df0",
   "name": {
     "en": "Email Sender",
@@ -11,7 +11,15 @@
     "en": "Send unsent documents with attachments",
     "cs": "Odeslání neodeslanych dokladů s přílohami"
   },
-  "tags": ["AbraFlexi", "Mail", "Sender"],
+  "tags": [
+    "AbraFlexi",
+    "Mail",
+    "Sender"
+  ],
+  "requirements": [
+    "Mail",
+    "AbraFlexi"
+  ],
   "homepage": "https://github.com/VitexSoftware/abraflexi-mailer/",
   "ociimage": "docker.io/vitexsoftware/abraflexi-mailer",
   "executable": "abraflexi-send-unsent-with-attachments",
@@ -19,7 +27,7 @@
     "ABRAFLEXI_COMPANY": {
       "type": "string",
       "description": {
-        "en": "AbraFlexi comapny code",
+        "en": "AbraFlexi company code",
         "cs": "Kód společnosti v AbraFlexi"
       },
       "defval": "demo_de",
@@ -83,7 +91,10 @@
         "cs": "Lokalizace do vybraného jazyka"
       },
       "defval": "cs_CZ",
-      "options": ["cs_CS", "en_US"],
+      "options": [
+        "cs_CS",
+        "en_US"
+      ],
       "required": false,
       "category": "Other"
     },

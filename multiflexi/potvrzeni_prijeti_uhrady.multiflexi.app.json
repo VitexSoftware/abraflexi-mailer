@@ -11,7 +11,12 @@
     "en": "Send confirmation of payment receipt to the customer based on document ID",
     "cs": "Odeslání potvrzení o přijetí úhrady zákazníkovi na základě ID dokumentu"
   },
-  "tags": ["AbraFlexi", "Mail", "Confirmation", "Payment"],
+  "tags": [
+    "AbraFlexi",
+    "Mail",
+    "Confirmation",
+    "Payment"
+  ],
   "homepage": "https://github.com/VitexSoftware/abraflexi-mailer/",
   "ociimage": "docker.io/vitexsoftware/abraflexi-mailer",
   "executable": "abraflexi-potvrzeni-prijeti-uhrady",
@@ -161,5 +166,8 @@
       "retry": true
     }
   },
-  "requirements": ["AbraFlexi"]
+  "requirements": [
+    "Mail",
+    "AbraFlexi"
+  ]
 }

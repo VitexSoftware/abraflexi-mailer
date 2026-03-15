@@ -11,7 +11,12 @@
     "en": "Send confirmation of invoice receipt to the supplier based on document ID",
     "cs": "Odeslání potvrzení o přijetí faktury dodavateli na základě ID dokumentu"
   },
-  "tags": ["AbraFlexi", "Mail", "Confirmation", "Invoice"],
+  "tags": [
+    "AbraFlexi",
+    "Mail",
+    "Confirmation",
+    "Invoice"
+  ],
   "homepage": "https://github.com/VitexSoftware/abraflexi-mailer/",
   "ociimage": "docker.io/vitexsoftware/abraflexi-mailer",
   "executable": "abraflexi-potvrzeni-prijeti-faktury",
@@ -161,5 +166,7 @@
       "retry": true
     }
   },
-  "requirements": ["AbraFlexi"]
+  "requirements": [
+    "AbraFlexi"
+  ]
 }
