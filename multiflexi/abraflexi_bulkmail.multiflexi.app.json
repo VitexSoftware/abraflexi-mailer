@@ -1,7 +1,7 @@
 {
-  "$schema": "https://raw.githubusercontent.com/VitexSoftware/php-vitexsoftware-multiflexi-core/refs/heads/main/multiflexi.app.schema.json",
+  "$schema": "https://raw.githubusercontent.com/VitexSoftware/php-vitexsoftware-multiflexi-core/refs/heads/main/schema/application.json",
   "schemaVersion": "3.2.1",
-"version": "1.4.0",
+  "version": "1.4.0",
   "uuid": "a5caea28-2580-42b5-bad9-5b3092385eca",
   "name": {
     "en": "AbraFlexi Bulk Mailer",
@@ -11,7 +11,14 @@
     "en": "By Query select recipients from Addressbook and send mail based on template",
     "cs": "Pomocí dotazu vybere příjemce z adresáře a odešle e-mail na základě šablony"
   },
-  "tags": ["AbraFlexi", "Bulkmail"],
+  "tags": [
+    "AbraFlexi",
+    "Bulkmail"
+  ],
+  "requirements": [
+    "Mail",
+    "AbraFlexi"
+  ],
   "homepage": "https://github.com/VitexSoftware/abraflexi-mailer/",
   "ociimage": "docker.io/vitexsoftware/abraflexi-mailer",
   "executable": "abraflexi-bulkmail",
@@ -113,7 +120,10 @@
         "cs": "Lokalizace do vybraného jazyka"
       },
       "defval": "cs_CZ",
-      "options": ["cs_CS", "en_US"],
+      "options": [
+        "cs_CS",
+        "en_US"
+      ],
       "required": false,
       "category": "Other"
     },
