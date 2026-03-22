@@ -1,5 +1,6 @@
-#!/bin/bash
+#!/bin/sh
 # rm script for abraflexi-mailer
+set -e
 
 rm -rf /usr/share/abraflexi-mailer/composer.lock /var/lib/abraflexi-mailer
 

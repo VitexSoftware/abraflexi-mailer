@@ -11,3 +11,7 @@ do
 done
 
 sed -i 's/null, $value);/"", $value);/' /usr/share/php/Mail.php
+
+#DEBHELPER#
+
+exit 0
