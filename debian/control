@@ -9,7 +9,7 @@ Homepage: https://github.com/VitexSoftware/php-abraflexi-mailer
 Rules-Requires-Root: no
 
 Package: abraflexi-mailer
-Depends: ${misc:Depends},  php-vitexsoftware-abraflexi-bricks, php-cli, php-vitexsoftware-ease-core (>= 1.38), php-symfony-mailer, php-vitexsoftware-ease-html
+Depends: ${misc:Depends}, php-vitexsoftware-abraflexi-bricks, php-cli, php-vitexsoftware-ease-core (>= 1.38), php-symfony-mailer, php-vitexsoftware-ease-html
 Suggests: abraflexi-server, abraflexi-client-config, multiflexi
 Architecture: all
 Section: web
