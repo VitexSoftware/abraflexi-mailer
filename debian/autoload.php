@@ -1,11 +1,9 @@
 <?php
 // Debian autoloader for abraflexi-mailer
 require_once '/usr/share/php/AbraFlexi/autoload.php';
+require_once '/usr/share/php/EaseHtml/autoload.php';
 require_once '/usr/share/php/AbraFlexiBricks/autoload.php';
 require_once '/usr/share/php/Symfony/Component/Mailer/autoload.php';
-
-
-
 
 spl_autoload_register(function ($class) {
     $prefix = 'AbraFlexi\\Mailer\\';
