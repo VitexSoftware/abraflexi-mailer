@@ -1,5 +1,8 @@
 #!/usr/bin/make -f
 
+PKG_VERSION := $(shell dpkg-parsechangelog -S Version | sed 's/~.*//')
+PKG_SOURCE  := $(shell dpkg-parsechangelog -S Source)
+
 %:
 	dh $@ --with phpcomposer
 
@@ -7,6 +10,10 @@ override_dh_install:
 	mkdir -p debian/tmp/
 	jq '.version = "'`dpkg-parsechangelog | sed -n 's/^Version: //p'| sed 's/~.*//'`'"'  debian/conf/composer.json |sponge debian/tmp/composer.json
 	dh_install
+	sed -i "1a defined('APP_NAME') || define('APP_NAME', '$(PKG_SOURCE)');" \
+		debian/abraflexi-mailer/usr/lib/abraflexi-mailer/autoload.php
+	sed -i "2a defined('APP_VERSION') || define('APP_VERSION', '$(PKG_VERSION)');" \
+		debian/abraflexi-mailer/usr/lib/abraflexi-mailer/autoload.php
 	# Install Debian autoloader
 	sed -i -e 's/..\/vendor/\/usr\/lib\/abraflexi-mailer/'    debian/abraflexi-mailer/usr/lib/abraflexi-mailer/*.php
 	sed -i -e 's/..\/.env//'                                  debian/abraflexi-mailer/usr/lib/abraflexi-mailer/*.php
