@@ -5,4 +5,3 @@ debian/man/abraflexi-potvrzeni-prijeti-uhrady.1
 debian/man/abraflexi-send-unsent-with-attachments.1
 debian/man/abraflexi-send-unsent.1
 debian/man/abraflexi-send.1
-debian/man/abraflexi-show-unsent.1
