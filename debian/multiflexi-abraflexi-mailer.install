@@ -1,4 +1,4 @@
 multiflexi/*.json  usr/lib/abraflexi-mailer/multiflexi/
-multiflexi/*.svg  usr/share/multiflexi/images/
+multiflexi/*.svg   usr/share/multiflexi-web/images/
 
 

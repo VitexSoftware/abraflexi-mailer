@@ -76,7 +76,7 @@ validate-multiflexi-app: ## Validates the multiflexi JSON
 		for file in multiflexi/*.multiflexi.app.json; do \
 			if [ -f "$$file" ]; then \
 				echo "Validating $$file"; \
-				multiflexi-cli app validate-json --file="$$file"; \
+				multiflexi-cli app:validate-json --file="$$file"; \
 			fi; \
 		done; \
 	else \
