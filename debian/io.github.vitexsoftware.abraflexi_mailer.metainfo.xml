@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop-application">
   <id>io.github.vitexsoftware.abraflexi_mailer</id>
+  <icon type="stock">abraflexi-mailer</icon>
   <metadata_license>MIT</metadata_license>
   <project_license>MIT</project_license>
   <name>abraflexi-mailer</name>
