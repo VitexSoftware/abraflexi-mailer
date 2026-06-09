@@ -1,6 +1,6 @@
 {
   "$schema": "https://raw.githubusercontent.com/VitexSoftware/php-vitexsoftware-multiflexi-core/refs/heads/main/schema/application.json",
-  "schemaVersion": "3.3.0",
+  "schemaVersion": "3.4.0",
   "version": "1.4.0",
   "uuid": "d29b632f-6d07-4261-8cb4-58b567dab378",
   "name": {
@@ -20,6 +20,14 @@
   "homepage": "https://github.com/VitexSoftware/abraflexi-mailer/",
   "ociimage": "docker.io/vitexsoftware/abraflexi-mailer",
   "executable": "abraflexi-potvrzeni-prijeti-faktury",
+  "events": {
+    "consumes": {
+      "invoice.received": {
+        "description": "A received (supplier) invoice was recorded",
+        "format": "json"
+      }
+    }
+  },
   "environment": {
     "ABRAFLEXI_COMPANY": {
       "type": "string",

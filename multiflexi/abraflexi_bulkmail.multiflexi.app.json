@@ -1,6 +1,6 @@
 {
   "$schema": "https://raw.githubusercontent.com/VitexSoftware/php-vitexsoftware-multiflexi-core/refs/heads/main/schema/application.json",
-  "schemaVersion": "3.2.1",
+  "schemaVersion": "3.4.0",
   "version": "1.4.0",
   "uuid": "a5caea28-2580-42b5-bad9-5b3092385eca",
   "name": {
@@ -22,6 +22,19 @@
   "homepage": "https://github.com/VitexSoftware/abraflexi-mailer/",
   "ociimage": "docker.io/vitexsoftware/abraflexi-mailer",
   "executable": "abraflexi-bulkmail",
+  "events": {
+    "consumes": {
+      "mail.queued": {
+        "description": "A message is queued for delivery",
+        "format": "json"
+      }
+    },
+    "emits": {
+      "mail.sent": {
+        "description": "A message was sent"
+      }
+    }
+  },
   "environment": {
     "ABRAFLEXI_COMPANY": {
       "type": "string",

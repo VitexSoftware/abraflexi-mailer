@@ -1,6 +1,6 @@
 {
   "$schema": "https://raw.githubusercontent.com/VitexSoftware/php-vitexsoftware-multiflexi-core/refs/heads/main/schema/application.json",
-  "schemaVersion": "3.3.0",
+  "schemaVersion": "3.4.0",
   "version": "1.4.0",
   "uuid": "c2feac3d-1351-48d3-a019-ecd0b102ef87",
   "name": {
@@ -20,6 +20,17 @@
   "homepage": "https://github.com/VitexSoftware/abraflexi-mailer/",
   "ociimage": "docker.io/vitexsoftware/abraflexi-mailer",
   "executable": "abraflexi-potvrzeni-prijeti-uhrady",
+  "events": {
+    "consumes": {
+      "payment.received": {
+        "description": {
+          "en": "A payment was received and matched to a document; send the confirmation",
+          "cs": "Byla přijata úhrada spárovaná s dokladem; odešli potvrzení"
+        },
+        "format": "json"
+      }
+    }
+  },
   "environment": {
     "ABRAFLEXI_COMPANY": {
       "type": "string",

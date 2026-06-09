@@ -1,6 +1,6 @@
 {
   "$schema": "https://raw.githubusercontent.com/VitexSoftware/php-vitexsoftware-multiflexi-core/refs/heads/main/schema/application.json",
-  "schemaVersion": "3.3.0",
+  "schemaVersion": "3.4.0",
   "version": "1.4.0",
   "uuid": "fa4a70bd-c3fe-4c35-8c01-e37ee3ef381a",
   "name": {
@@ -20,6 +20,14 @@
   "homepage": "https://github.com/VitexSoftware/abraflexi-mailer/",
   "ociimage": "docker.io/vitexsoftware/abraflexi-mailer",
   "executable": "abraflexi-potvrzeni-odeslani-uhrady",
+  "events": {
+    "consumes": {
+      "payment.sent": {
+        "description": "An outgoing payment was confirmed",
+        "format": "json"
+      }
+    }
+  },
   "environment": {
     "ABRAFLEXI_COMPANY": {
       "type": "string",

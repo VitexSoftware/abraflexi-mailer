@@ -1,6 +1,6 @@
 {
   "$schema": "https://raw.githubusercontent.com/VitexSoftware/php-vitexsoftware-multiflexi-core/refs/heads/main/schema/application.json",
-  "schemaVersion": "3.0.0",
+  "schemaVersion": "3.4.0",
   "version": "1.4.0",
   "uuid": "97c1c85d-3800-4d12-aabb-b60b15cd8df0",
   "name": {
@@ -23,6 +23,19 @@
   "homepage": "https://github.com/VitexSoftware/abraflexi-mailer/",
   "ociimage": "docker.io/vitexsoftware/abraflexi-mailer",
   "executable": "abraflexi-send-unsent-with-attachments",
+  "events": {
+    "consumes": {
+      "mail.queued": {
+        "description": "A message is queued for delivery",
+        "format": "json"
+      }
+    },
+    "emits": {
+      "mail.sent": {
+        "description": "A message was sent"
+      }
+    }
+  },
   "environment": {
     "ABRAFLEXI_COMPANY": {
       "type": "string",
