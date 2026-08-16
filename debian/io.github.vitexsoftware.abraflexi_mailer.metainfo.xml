@@ -6,9 +6,13 @@
   <project_license>MIT</project_license>
   <name>abraflexi-mailer</name>
   <summary>External mailer for Abra Flexi</summary>
+  <summary xml:lang="cs">Externí odesílač pošty pro AbraFlexi</summary>
   <description>
     <p>
       Send AbraFlexi documents and its attachments via email Add Mailer's applications into MultiFlexi
+    </p>
+    <p xml:lang="cs">
+      Odesílá dokumenty AbraFlexi a jejich přílohy e-mailem. Přidává aplikace Maileru do MultiFlexi.
     </p>
   </description>
   <categories>
