@@ -17,6 +17,7 @@
     "Sender"
   ],
   "requirements": [
+    "Mail",
     "AbraFlexi"
   ],
   "homepage": "https://github.com/VitexSoftware/abraflexi-mailer/",

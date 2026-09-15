@@ -31,6 +31,17 @@
       }
     }
   },
+  "consumes": {
+    "matched_document": {
+      "description": {
+        "en": "One matched invoice code from a payment-matching job's result",
+        "cs": "Jeden kód spárované faktury z výsledku párovacího jobu"
+      },
+      "format": "text",
+      "required": true,
+      "target": "DOCID"
+    }
+  },
   "environment": {
     "ABRAFLEXI_COMPANY": {
       "type": "string",
