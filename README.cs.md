@@ -73,6 +73,10 @@ Pokud chceme obeslat všechny klienty z Pražské nerudovy ulice:
 abraflexi-bulkmail templates/template.ftl "(mesto='Praha' AND ulice='Nerudova')"
 ```
 
+Příjemci se standardně vybírají z adresáře (`adresar`). Klíčem `ABRAFLEXI_BULKMAIL_EVIDENCE` lze zvolit jinou evidenci
+(např. `kontakt`, `osoba`, `faktura-vydana`); dotaz se pak aplikuje na ni a adresa se bere ze sloupce `email`
+(u dokladů `kontaktEmail`). Na každou adresu se odešle pouze jeden e-mail.
+
 Při použití v [šabloně](tests/test.ftl) se proměnné pro každou odeslanou zprávu
 naplní z <https://demo.flexibee.eu/c/demo_de/adresar/properties>
 

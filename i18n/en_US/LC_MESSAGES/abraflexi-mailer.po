@@ -71,8 +71,8 @@ msgstr "Sending to %s %s %s"
 
 #: BulkMail.php:53
 #, php-format
-msgid "Address and contact %s without email address"
-msgstr "Address and contact %s without email address"
+msgid "Record %s without email address"
+msgstr "Record %s without email address"
 
 #: BulkMail.php:62
 #, php-format
@@ -2912,3 +2912,14 @@ msgstr "Saving result to %s"
 
 #~ msgid "Založit kontakt <i class=\"icon-edit\"></i>"
 #~ msgstr "Založit kontakt <i class=\"icon-edit\"></i>"
+
+#, php-format
+msgid "Unsupported recipients evidence %s"
+msgstr "Unsupported recipients evidence %s"
+
+#, php-format
+msgid "Skipping %s: already sent to %s"
+msgstr "Skipping %s: already sent to %s"
+
+msgid "Recipients evidence is selected by ABRAFLEXI_BULKMAIL_EVIDENCE (default adresar)"
+msgstr "Recipients evidence is selected by ABRAFLEXI_BULKMAIL_EVIDENCE (default adresar)"

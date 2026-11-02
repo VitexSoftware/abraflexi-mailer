@@ -90,6 +90,10 @@ If we want to send emails to all clients from Nerudova Street in Prague:
 abraflexi-bulkmail templates/template.ftl "(city='Prague' AND street='Nerudova')"
 ```
 
+By default recipients are selected from the address book (`adresar`). Set `ABRAFLEXI_BULKMAIL_EVIDENCE` to use another evidence
+(e.g. `kontakt`, `osoba`, `faktura-vydana`); the query is then applied to that evidence and the address is taken from its
+`email` column (`kontaktEmail` for documents). Each address is mailed only once.
+
 When used in a [template](tests/test.ftl), the variables for each sent message
 are filled from <https://demo.flexibee.eu/c/demo_de/addressbook/properties>
 

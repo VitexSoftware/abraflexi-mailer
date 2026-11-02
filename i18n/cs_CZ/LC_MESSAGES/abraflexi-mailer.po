@@ -71,8 +71,8 @@ msgstr "Odesílám na %s %s %s"
 
 #: BulkMail.php:53
 #, php-format
-msgid "Address and contact %s without email address"
-msgstr "Adresa a  kontakt %s bez emailové adresy"
+msgid "Record %s without email address"
+msgstr "Záznam %s bez emailové adresy"
 
 #: BulkMail.php:62
 #, php-format
@@ -2912,3 +2912,14 @@ msgstr "Ukládám vysledek do %s"
 
 #~ msgid "Založit kontakt <i class=\"icon-edit\"></i>"
 #~ msgstr "Založit kontakt <i class=\"icon-edit\"></i>"
+
+#, php-format
+msgid "Unsupported recipients evidence %s"
+msgstr "Nepodporovaná evidence příjemců %s"
+
+#, php-format
+msgid "Skipping %s: already sent to %s"
+msgstr "Přeskakuji %s: na %s již bylo odesláno"
+
+msgid "Recipients evidence is selected by ABRAFLEXI_BULKMAIL_EVIDENCE (default adresar)"
+msgstr "Evidence příjemců se volí pomocí ABRAFLEXI_BULKMAIL_EVIDENCE (výchozí adresar)"

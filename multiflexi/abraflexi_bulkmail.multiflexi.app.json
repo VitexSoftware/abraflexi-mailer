@@ -1,7 +1,7 @@
 {
   "$schema": "https://raw.githubusercontent.com/VitexSoftware/php-vitexsoftware-multiflexi-core/refs/heads/main/schema/application.json",
   "schemaVersion": "3.4.0",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "uuid": "a5caea28-2580-42b5-bad9-5b3092385eca",
   "name": {
     "en": "AbraFlexi Bulk Mailer",
@@ -89,11 +89,45 @@
     "ABRAFLEXI_BULKMAIL_QUERY": {
       "type": "string",
       "description": {
-        "en": "Filter of recipients",
-        "cs": "Filtr příjemců"
+        "en": "Filter of recipients (applied to the selected evidence)",
+        "cs": "Filtr příjemců (nad zvolenou evidencí)"
       },
       "defval": "kod='ZAKAZNIKA' or kod='ZAKAZNIKB' or kod='ZAKAZNIKC'",
       "required": true,
+      "category": "API"
+    },
+    "ABRAFLEXI_BULKMAIL_EVIDENCE": {
+      "type": "set",
+      "description": {
+        "en": "Evidence to select recipients from",
+        "cs": "Evidence, ze které se vybírají příjemci"
+      },
+      "defval": "adresar",
+      "required": false,
+      "options": [
+        "adresar",
+        "kontakt",
+        "osoba",
+        "misto-urceni",
+        "faktura-vydana",
+        "faktura-prijata",
+        "nabidka-vydana",
+        "nabidka-prijata",
+        "objednavka-vydana",
+        "objednavka-prijata",
+        "poptavka-vydana",
+        "poptavka-prijata",
+        "pohledavka",
+        "zavazek",
+        "prodejka",
+        "interni-doklad",
+        "pokladni-pohyb",
+        "banka",
+        "skladovy-pohyb",
+        "uplatneni-dane-zavazku",
+        "vzajemny-zapocet",
+        "doklad-k-uhrade"
+      ],
       "category": "API"
     },
     "MAIL_FROM": {

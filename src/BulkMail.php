@@ -32,7 +32,19 @@ if ($argc > 2) {
             $templater->logBanner();
         }
 
-        $document = new \AbraFlexi\Adresar(null, ['limit' => 0, 'detail' => 'full']);
+        $evidence = Shared::cfg('ABRAFLEXI_BULKMAIL_EVIDENCE', \AbraFlexi\Mailer\RecipientSource::DEFAULT_EVIDENCE);
+
+        if (!\AbraFlexi\Mailer\RecipientSource::isSupported($evidence)) {
+            fwrite(\STDERR, sprintf(_('Unsupported recipients evidence %s'), $evidence).\PHP_EOL);
+
+            exit(1);
+        }
+
+        $emailColumn = \AbraFlexi\Mailer\RecipientSource::getEmailColumn($evidence);
+        $document = 'adresar' === $evidence
+            ? new \AbraFlexi\Adresar(null, ['limit' => 0, 'detail' => 'full'])
+            : new \AbraFlexi\RO(null, ['evidence' => $evidence, 'limit' => 0, 'detail' => 'full']);
+        $sent = [];
 
         try {
             $to = $document->getFlexiData('', [$query, 'limit' => 0]);
@@ -42,15 +54,22 @@ if ($argc > 2) {
             foreach ($to as $recipient) {
                 $document->setData($recipient, true);
                 $document->updateApiURL();
-                $mailAddress = $document->getNotificationEmailAddress();
+                $mailAddress = 'adresar' === $evidence ? $document->getNotificationEmailAddress() : trim((string) $document->getDataValue($emailColumn));
+
+                if ($mailAddress && isset($sent[$mailAddress])) {
+                    $document->addStatusMessage(sprintf(_('Skipping %s: already sent to %s'), $document->getRecordCode(), $mailAddress), 'debug');
+
+                    continue;
+                }
 
                 if ($mailAddress) {
-                    $document->addStatusMessage(sprintf(_('Sending to %s %s %s'), $document->getRecordCode(), $document->getDataValue('nazev'), $mailAddress));
+                    $sent[$mailAddress] = true;
+                    $document->addStatusMessage(sprintf(_('Sending to %s %s %s'), $document->getRecordCode(), (string) ($document->getDataValue('nazev') ?: $document->getDataValue('jmeno') ?: ''), $mailAddress));
                     $templater->populate($document);
                     $mailer = new \AbraFlexi\Mailer\HtmlMailer($mailAddress, Shared::cfg('MAIL_SUBJECT', pathinfo($template, \PATHINFO_FILENAME)), $templater->getRendered(), ['From' => Shared::cfg('MAIL_FROM')]);
                     $mailer->send();
                 } else {
-                    $document->addStatusMessage(sprintf(_('Address and contact %s without email address'), $document), 'warning');
+                    $document->addStatusMessage(sprintf(_('Record %s without email address'), $document), 'warning');
                 }
             }
         } catch (\AbraFlexi\Exception $ex) {
@@ -66,5 +85,6 @@ if ($argc > 2) {
 } else {
     echo _('AbraFlexi BulkMail')."\n";
     echo "abraflexi-bulkmail <template> [recipient query] [config/file.env]\n";
+    echo _('Recipients evidence is selected by ABRAFLEXI_BULKMAIL_EVIDENCE (default adresar)')."\n";
     echo "abraflexi-bulkmail oznameni_vypadku.ftl \"ulice=Lomená AND mesto=Praha\" \n";
 }
