@@ -116,16 +116,6 @@
       "required": true,
       "category": "Other"
     },
-    "EASE_SMTP": {
-      "type": "string",
-      "description": {
-        "en": "configuration string for Pear_Mail",
-        "cs": "konfigurační řetězec pro Pear_Mail"
-      },
-      "defval": "",
-      "required": true,
-      "category": "Other"
-    },
     "LOCALIZE": {
       "type": "string",
       "description": {
@@ -200,6 +190,16 @@
       "defval": "Best regards,\nDemo Company",
       "required": false,
       "category": "Other"
+    },
+    "MAIL_DSN": {
+      "type": "password",
+      "description": {
+        "en": "Symfony Mailer DSN for sending mail (e.g. smtp://user:pass@host:port). Defaults to local sendmail if empty. Only use insecure options like verify_peer=0 for trusted internal/private relays; prefer peer_fingerprint to pin a self-signed cert instead of disabling TLS verification.",
+        "cs": "DSN pro Symfony Mailer k odesílání pošty (např. smtp://user:pass@host:port). Pokud je prázdné, použije se lokální sendmail. Nezabezpečené volby jako verify_peer=0 používejte pouze pro důvěryhodné interní/privátní relaye; pro self-signed certifikát preferujte peer_fingerprint místo vypnutí ověřování TLS."
+      },
+      "defval": "",
+      "required": false,
+      "category": "Other"
     }
   },
   "exitCodes": {
@@ -213,19 +213,19 @@
     },
     "1": {
       "description": {
-        "en": "General error",
-        "cs": "Obecná chyba"
-      },
-      "severity": "error",
-      "retry": true
-    },
-    "2": {
-      "description": {
-        "en": "Misuse of shell command",
-        "cs": "Nesprávné použití příkazu"
+        "en": "Template file not found",
+        "cs": "Soubor šablony nebyl nalezen"
       },
       "severity": "error",
       "retry": false
+    },
+    "2": {
+      "description": {
+        "en": "AbraFlexi API error while querying recipients",
+        "cs": "Chyba AbraFlexi API při dotazu na příjemce"
+      },
+      "severity": "error",
+      "retry": true
     }
   }
 }

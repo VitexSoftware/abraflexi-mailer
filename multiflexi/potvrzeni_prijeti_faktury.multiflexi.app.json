@@ -109,16 +109,6 @@
       "required": false,
       "category": "Other"
     },
-    "EASE_SMTP": {
-      "type": "string",
-      "description": {
-        "en": "Configuration string for Pear_Mail",
-        "cs": "Konfigurační řetězec pro Pear_Mail"
-      },
-      "defval": "",
-      "required": true,
-      "category": "Other"
-    },
     "EASE_LOGGER": {
       "type": "string",
       "description": {
@@ -138,6 +128,16 @@
       "defval": "",
       "required": false,
       "category": "Behavior"
+    },
+    "MAIL_DSN": {
+      "type": "password",
+      "description": {
+        "en": "Symfony Mailer DSN for sending mail (e.g. smtp://user:pass@host:port). Defaults to local sendmail if empty. Only use insecure options like verify_peer=0 for trusted internal/private relays; prefer peer_fingerprint to pin a self-signed cert instead of disabling TLS verification.",
+        "cs": "DSN pro Symfony Mailer k odesílání pošty (např. smtp://user:pass@host:port). Pokud je prázdné, použije se lokální sendmail. Nezabezpečené volby jako verify_peer=0 používejte pouze pro důvěryhodné interní/privátní relaye; pro self-signed certifikát preferujte peer_fingerprint místo vypnutí ověřování TLS."
+      },
+      "defval": "",
+      "required": false,
+      "category": "Other"
     }
   },
   "exitCodes": {

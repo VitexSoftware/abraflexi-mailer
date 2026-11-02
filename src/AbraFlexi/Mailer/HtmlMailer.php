@@ -68,7 +68,14 @@ class HtmlMailer extends Sand
     public $htmlBody;
     public array $mailHeaders = [];
     public bool $finalized = false;
-    private Email $email;
+
+    /**
+     * List of attachment files.
+     *
+     * @var array<string>
+     */
+    public array $attachments = [];
+    protected Email $email;
     private Mailer $mailer;
 
     /**
@@ -83,8 +90,8 @@ class HtmlMailer extends Sand
         string $emailContents = '',
         array $headers = [],
     ) {
-        if (\is_array($emailAddress)) {
-            $emailAddress = current($emailAddress).' <'.key($emailAddress).'>';
+        if (strtolower((string) \Ease\Shared::cfg('MUTE', 'false')) === 'true') {
+            $emailAddress = \Ease\Shared::cfg('EASE_MAILTO', $emailAddress);
         }
 
         $this->fromEmailAddress = \Ease\Shared::cfg('MAIL_FROM', \Ease\Shared::cfg('EMAIL_FROM', 'noreply@example.com'));
@@ -148,11 +155,6 @@ class HtmlMailer extends Sand
 
         if (isset($this->mailHeaders['Subject'])) {
             $this->emailSubject = $this->mailHeaders['Subject'];
-
-            // Remove base64 encoding prefix applied by Ease\HtmlMailer compatibility if we ever get it
-            if (str_starts_with($this->emailSubject, '=?UTF-8?B?')) {
-                $this->emailSubject = base64_decode(substr($this->emailSubject, 10, -2), true);
-            }
         }
 
         $this->finalized = false;
@@ -218,11 +220,53 @@ class HtmlMailer extends Sand
      */
     public function addFile(?string $filename, string $mimeType = 'text/plain'): bool
     {
-        if ($filename !== null && file_exists($filename)) {
-            $this->email->attachFromPath($filename, basename($filename), $mimeType ?: null);
+        if ($filename === null || $filename === '' || !file_exists($filename)) {
+            return false;
         }
 
+        $this->email->attachFromPath($filename, basename($filename), $mimeType ?: null);
+        $this->attachments[] = $filename;
+        $this->finalized = false;
+
         return true;
+    }
+
+    /**
+     * Count current mail size.
+     *
+     * @return int Size in bytes
+     */
+    public function getCurrentMailSize(): int
+    {
+        $this->finalize();
+        $this->finalized = false;
+
+        return \strlen($this->email->toString());
+    }
+
+    public function getSignature(): string
+    {
+        return '';
+    }
+
+    /**
+     * Split comma separated address list into unique Address objects.
+     *
+     * @return Address[]
+     */
+    private function parseAddresses(string $list): array
+    {
+        $addresses = [];
+
+        foreach (explode(',', $list) as $address) {
+            $address = trim($address);
+
+            if ($address !== '') {
+                $addresses[strtolower($address)] = Address::create($address);
+            }
+        }
+
+        return array_values($addresses);
     }
 
     /**
@@ -245,11 +289,8 @@ class HtmlMailer extends Sand
         }
 
         if (!empty($this->emailAddress)) {
-            foreach (explode(',', $this->emailAddress) as $address) {
-                if (trim($address) !== '') {
-                    $this->email->addTo(Address::create(trim($address)));
-                }
-            }
+            // finalize() may run repeatedly, so replace recipients instead of appending
+            $this->email->to(...$this->parseAddresses($this->emailAddress));
         }
 
         if (!empty($this->emailSubject)) {
@@ -257,19 +298,11 @@ class HtmlMailer extends Sand
         }
 
         if (isset($this->mailHeaders['Cc'])) {
-            foreach (explode(',', $this->mailHeaders['Cc']) as $address) {
-                if (trim($address) !== '') {
-                    $this->email->addCc(Address::create(trim($address)));
-                }
-            }
+            $this->email->cc(...$this->parseAddresses($this->mailHeaders['Cc']));
         }
 
         if (isset($this->mailHeaders['Bcc'])) {
-            foreach (explode(',', $this->mailHeaders['Bcc']) as $address) {
-                if (trim($address) !== '') {
-                    $this->email->addBcc(Address::create(trim($address)));
-                }
-            }
+            $this->email->bcc(...$this->parseAddresses($this->mailHeaders['Bcc']));
         }
 
         if (isset($this->mailHeaders['Reply-To'])) {

@@ -47,7 +47,7 @@ if ($argc > 2) {
                 if ($mailAddress) {
                     $document->addStatusMessage(sprintf(_('Sending to %s %s %s'), $document->getRecordCode(), $document->getDataValue('nazev'), $mailAddress));
                     $templater->populate($document);
-                    $mailer = new \Ease\HtmlMailer($mailAddress, Shared::cfg('MAIL_SUBJECT', pathinfo($template, \PATHINFO_FILENAME)), $templater->getRendered(), ['From' => Shared::cfg('MAIL_FROM')]);
+                    $mailer = new \AbraFlexi\Mailer\HtmlMailer($mailAddress, Shared::cfg('MAIL_SUBJECT', pathinfo($template, \PATHINFO_FILENAME)), $templater->getRendered(), ['From' => Shared::cfg('MAIL_FROM')]);
                     $mailer->send();
                 } else {
                     $document->addStatusMessage(sprintf(_('Address and contact %s without email address'), $document), 'warning');

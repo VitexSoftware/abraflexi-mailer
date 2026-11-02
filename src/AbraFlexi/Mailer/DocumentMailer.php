@@ -81,7 +81,7 @@ class DocumentMailer extends HtmlMailer
         $this->setObjectName();
 
         if (strtolower(Shared::cfg('MUTE', '')) === 'true') {
-            $sendTo = Shared::cfg('EASE_MAILTO');
+            $sendTo = Shared::cfg('EASE_MAILTO', '');
             $this->muted = true;
             $this->addStatusMessage(sprintf(_('Mute mode: SendTo forced: %s'), $sendTo), 'warning');
         } else {
@@ -161,48 +161,21 @@ class DocumentMailer extends HtmlMailer
      */
     public function &addItem($item, $pageItemName = null)
     {
-        $mailBody = '';
-
-        if (\is_object($item)) {
-            if (\is_object($this->htmlDocument)) {
-                if (null === $this->htmlBody) {
-                    $this->htmlBody = new BodyTag();
-                }
-
-                $mailBody = $this->htmlBody->addItem($item, $pageItemName);
-            } else {
-                $mailBody = $this->htmlDocument;
-            }
-        } else {
-            $this->textBody .= \is_array($item) ? implode("\n", $item) : $item;
-            $this->mimer->setTXTBody($this->textBody);
+        if (null === $this->htmlBody) {
+            $this->htmlBody = new BodyTag();
         }
 
-        return $mailBody;
+        if (!\is_object($item)) {
+            $item = \is_array($item) ? implode("\n", $item) : (string) $item;
+        }
+
+        $added = $this->htmlBody->addItem($item, $pageItemName);
+
+        return $added;
     }
 
     public function getCss(): void
     {
-    }
-
-    /**
-     * Count current mail size.
-     *
-     * @return int Size in bytes
-     */
-    public function getCurrentMailSize()
-    {
-        $this->finalize();
-        $this->finalized = false;
-
-        if (
-            \function_exists('mb_internal_encoding')
-            && (((int) \ini_get('mbstring.func_overload')) & 2)
-        ) {
-            return mb_strlen($this->mailBody, '8bit');
-        }
-
-        return \strlen($this->mailBody);
     }
 
     /**
@@ -319,7 +292,7 @@ class DocumentMailer extends HtmlMailer
         $result = parent::send();
 
         foreach ($this->cleanup as $tmp) {
-            if ($tmp) {
+            if ($tmp && file_exists($tmp)) {
                 unlink($tmp);
             }
         }
