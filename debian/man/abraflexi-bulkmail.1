@@ -3,8 +3,44 @@
 abraflexi-bulkmail \- AbraFlexi Document Mailer component
 .SH SYNOPSIS
 .B abraflexi-bulkmail
+.I template
+.RI [ query ]
+.RI [ config.env ]
 .SH DESCRIPTION
 .B abraflexi-bulkmail
 is a component of the abraflexi-mailer package.
+It selects recipients from AbraFlexi by the given query and sends
+each of them a message rendered from the template.
+Every e-mail address is mailed only once.
+.SH ENVIRONMENT
+.TP
+.B ABRAFLEXI_BULKMAIL_TEMPLATE
+Template file (used when not given as the first argument).
+.TP
+.B ABRAFLEXI_BULKMAIL_QUERY
+Filter of recipients, applied to the selected evidence (used when not given as the second argument).
+.TP
+.B ABRAFLEXI_BULKMAIL_EVIDENCE
+Evidence to select recipients from. Default is
+.BR adresar ,
+where the address is taken from the primary contact or the address book record.
+Other supported evidences are
+.BR kontakt ,
+.BR osoba ,
+.B misto-urceni
+(column
+.BR email )
+and documents such as
+.BR faktura-vydana ,
+.BR faktura-prijata ,
+.BR nabidka-vydana ,
+.BR objednavka-prijata
+(column
+.BR kontaktEmail ).
+.SH EXAMPLES
+.nf
+abraflexi-bulkmail template.ftl "mesto='Praha' AND ulice='Nerudova'"
+ABRAFLEXI_BULKMAIL_EVIDENCE=faktura-vydana abraflexi-bulkmail template.ftl "kod='VF1-0001/2026'"
+.fi
 .SH AUTHOR
 Vítězslav Dvořák <info@vitexsoftware.cz>
