@@ -1,0 +1,163 @@
+{
+  "$schema": "https://raw.githubusercontent.com/VitexSoftware/php-vitexsoftware-multiflexi-core/refs/heads/main/schema/application.json",
+  "schemaVersion": "3.4.0",
+  "version": "1.0.0",
+  "uuid": "a60bfd12-565b-421d-abd8-2d48c312c293",
+  "name": {
+    "en": "AbraFlexi Send Document",
+    "cs": "AbraFlexi odeslání dokladu"
+  },
+  "description": {
+    "en": "Send a single AbraFlexi document (e.g. a contract) to its email address. Document ID and evidence are usually provided by an event rule (DOC_ID/DOC_EVIDENCE from recordid/evidence).",
+    "cs": "Odešle jeden doklad z AbraFlexi (např. smlouvu) na jeho e-mail. ID dokladu a evidenci obvykle dodá event rule (DOC_ID/DOC_EVIDENCE z recordid/evidence)."
+  },
+  "tags": [
+    "AbraFlexi",
+    "Mail",
+    "Sender",
+    "Document"
+  ],
+  "requirements": [
+    "Mail",
+    "AbraFlexi"
+  ],
+  "homepage": "https://github.com/VitexSoftware/abraflexi-mailer/",
+  "ociimage": "docker.io/vitexsoftware/abraflexi-mailer",
+  "executable": "abraflexi-send",
+  "cmdparamsTemplate": "${DOC_ID} ${DOC_EVIDENCE} ${DOC_RECIPIENT}",
+  "events": {
+    "consumes": {
+      "mail.queued": {
+        "description": "A message is queued for delivery",
+        "format": "json"
+      }
+    },
+    "emits": {
+      "mail.sent": {
+        "description": "A message was sent"
+      }
+    }
+  },
+  "environment": {
+    "DOC_ID": {
+      "type": "string",
+      "description": {
+        "en": "AbraFlexi document ID or code (set from EVENT_RECORD_ID by the smlouva event rule)",
+        "cs": "ID nebo kód dokladu v AbraFlexi (nastaví event rule pro smlouvu z EVENT_RECORD_ID)"
+      },
+      "defval": "",
+      "required": false,
+      "category": "Behavior"
+    },
+    "DOC_EVIDENCE": {
+      "type": "string",
+      "description": {
+        "en": "AbraFlexi evidence code (e.g. smlouva, faktura-vydana)",
+        "cs": "Kód evidence v AbraFlexi (např. smlouva, faktura-vydana)"
+      },
+      "defval": "smlouva",
+      "required": false,
+      "category": "Behavior"
+    },
+    "DOC_RECIPIENT": {
+      "type": "string",
+      "description": {
+        "en": "Recipient e-mail (comma separated). Empty = e-mail stored on the document",
+        "cs": "E-mail příjemce (oddělené čárkou). Prázdné = e-mail uložený na dokladu"
+      },
+      "defval": "",
+      "required": false,
+      "category": "Behavior"
+    },
+    "ABRAFLEXI_COMPANY": {
+      "type": "string",
+      "description": {
+        "en": "AbraFlexi company code",
+        "cs": "Kód společnosti v AbraFlexi"
+      },
+      "defval": "demo_de",
+      "required": true,
+      "category": "API"
+    },
+    "ABRAFLEXI_LOGIN": {
+      "type": "string",
+      "description": {
+        "en": "AbraFlexi Login",
+        "cs": "Přihlašovací jméno do AbraFlexi"
+      },
+      "defval": "winstrom",
+      "required": true,
+      "category": "API"
+    },
+    "ABRAFLEXI_PASSWORD": {
+      "type": "password",
+      "description": {
+        "en": "AbraFlexi password",
+        "cs": "Heslo pro AbraFlexi"
+      },
+      "defval": "winstrom",
+      "required": true,
+      "category": "API"
+    },
+    "ABRAFLEXI_URL": {
+      "type": "string",
+      "description": {
+        "en": "AbraFlexi Server URI",
+        "cs": "URI adresa AbraFlexi serveru"
+      },
+      "defval": "https://demo.flexibee.eu:5434",
+      "required": true,
+      "category": "API"
+    },
+    "EASE_LOGGER": {
+      "type": "string",
+      "description": {
+        "en": "write log messages using",
+        "cs": "zapisovat zprávy do logu pomocí"
+      },
+      "defval": "console|syslog",
+      "required": false,
+      "category": "Behavior"
+    },
+    "APP_DEBUG": {
+      "type": "bool",
+      "description": {
+        "en": "show app version at startup",
+        "cs": "zobrazit verzi aplikace při spuštění"
+      },
+      "defval": "",
+      "required": false,
+      "category": "Behavior"
+    },
+    "MUTE": {
+      "type": "bool",
+      "description": {
+        "en": "true to dry run",
+        "cs": "true pro zkušební spuštění"
+      },
+      "defval": "",
+      "required": false,
+      "category": "Behavior"
+    },
+    "MAIL_DSN": {
+      "type": "password",
+      "description": {
+        "en": "Symfony Mailer DSN for sending mail (e.g. smtp://user:pass@host:port). Defaults to local sendmail if empty. Only use insecure options like verify_peer=0 for trusted internal/private relays; prefer peer_fingerprint to pin a self-signed cert instead of disabling TLS verification.",
+        "cs": "DSN pro Symfony Mailer k odesílání pošty (např. smtp://user:pass@host:port). Pokud je prázdné, použije se lokální sendmail. Nezabezpečené volby jako verify_peer=0 používejte pouze pro důvěryhodné interní/privátní relaye; pro self-signed certifikát preferujte peer_fingerprint místo vypnutí ověřování TLS."
+      },
+      "defval": "",
+      "required": false,
+      "category": "Other"
+    }
+  },
+  "exitCodes": {
+    "0": {
+      "description": {
+        "en": "Success",
+        "cs": "Úspěch"
+      },
+      "severity": "success",
+      "retry": false
+    }
+  }
+}
