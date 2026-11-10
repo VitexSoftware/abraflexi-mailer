@@ -52,6 +52,7 @@ if ($argc > 2) {
             $document->addStatusMessage(sprintf(_('Query "%s" found %d recipients'), $query, \count($to)), 'debug');
 
             foreach ($to as $recipient) {
+                unset($recipient['external-ids']);
                 $document->setData($recipient, true);
                 $document->updateApiURL();
                 $mailAddress = 'adresar' === $evidence ? $document->getNotificationEmailAddress() : trim((string) $document->getDataValue($emailColumn));

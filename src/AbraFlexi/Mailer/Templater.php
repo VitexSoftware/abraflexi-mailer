@@ -35,6 +35,20 @@ class Templater extends \Ease\Document implements mailbody
     private ?\AbraFlexi\Nastaveni $myCompany = null;
 
     /**
+     * Legacy relation column names used in AbraFlexi mail templates.
+     *
+     * @var array<string, string>
+     */
+    private static array $relationAliases = ['bspBan' => 'bankovniUcet'];
+
+    /**
+     * Loaded related records cache.
+     *
+     * @var array<string, null|\AbraFlexi\RO>
+     */
+    private array $related = [];
+
+    /**
      * Template.
      *
      * @param string        $template          .ftl file content
@@ -57,27 +71,21 @@ class Templater extends \Ease\Document implements mailbody
     {
         $this->emptyContents();
         $this->document = $abraflexiDocument;
+        $this->related = [];
 
-        try {
-            $this->myCompany = new \AbraFlexi\Nastaveni(1);
-            $companyData = $this->myCompany->getData();
-        } catch (\AbraFlexi\Exception $e) {
-            $this->addStatusMessage(_('Failed to load company settings').':'.$e->getMessage(), 'warning');
-            $companyData = [
-                'nazev' => \Ease\Shared::cfg('COMPANY_NAME', ''),
-                'email' => \Ease\Shared::cfg('COMPANY_EMAIL', ''),
-                'signature' => \Ease\Shared::cfg('COMPANY_SIGNATURE', ''),
-            ];
-            $this->myCompany = null;
-            $this->addStatusMessage(_('Using default company settings. Please set COMPANY_NAME, COMPANY_EMAIL, and COMPANY_SIGNATURE in the configuration.'), 'warning');
+        $this->myCompany = null;
+
+        if (empty(\Ease\Shared::cfg('COMPANY_NAME', ''))) {
+            // Read company identity from AbraFlexi settings only when not configured:
+            // the API user may not be permitted to access the nastaveni evidence.
+            try {
+                $this->myCompany = new \AbraFlexi\Nastaveni(1);
+            } catch (\AbraFlexi\Exception $e) {
+                $this->addStatusMessage(_('Failed to load company settings').':'.$e->getMessage(), 'warning');
+                $this->addStatusMessage(_('Using default company settings. Please set COMPANY_NAME, COMPANY_EMAIL, and COMPANY_SIGNATURE in the configuration.'), 'warning');
+            }
         }
 
-        $templateData = [
-            'company' => $companyData,
-            'object' => $this->document->getData(),
-        ];
-
-        file_put_contents('/tmp/templatedata.json', json_encode($templateData));
         $this->addItem($this->process($this->template));
     }
 
@@ -187,8 +195,17 @@ class Templater extends \Ease\Document implements mailbody
                         break;
                     case 'object':
                         $objectData = $this->document->getData();
+                        $path = explode('.', $var);
 
-                        if ($prop === '') {
+                        if (\count($path) > 2) {
+                            $value = $this->relatedValue($path[1], $path[2]);
+
+                            if (null !== $value) {
+                                $templateBody = str_replace($key, $value, $templateBody);
+                            } else {
+                                $this->addStatusMessage(sprintf(_('Cannot find %s in %s'), $key, $this->document), 'warning');
+                            }
+                        } elseif ($prop === '') {
                             $templateBody = str_replace($key, $this->document->getRecordCode(), $templateBody);
                         } elseif (\array_key_exists($prop, $objectData)) {
                             $templateBody = str_replace($key, \AbraFlexi\Functions::uncode((string) $this->document->getDataValue($prop)), $templateBody);
@@ -211,6 +228,38 @@ class Templater extends \Ease\Document implements mailbody
         }
 
         return $templateBody;
+    }
+
+    /**
+     * Obtain property of a record related to the document, e.g. bankovniUcet.buc.
+     *
+     * @param string $relation document column holding the relation
+     * @param string $property property of the related record
+     */
+    public function relatedValue(string $relation, string $property): ?string
+    {
+        $relation = self::$relationAliases[$relation] ?? $relation;
+
+        if (!\array_key_exists($relation, $this->related)) {
+            $this->related[$relation] = null;
+            $relationValue = $this->document->getDataValue($relation);
+
+            if ($relationValue instanceof \AbraFlexi\Relation) {
+                try {
+                    $this->related[$relation] = $relationValue->getRelationTarget();
+                } catch (\AbraFlexi\Exception $exc) {
+                    $this->addStatusMessage(sprintf(_('Cannot load %s: %s'), $relation, $exc->getMessage()), 'warning');
+                }
+            }
+        }
+
+        if (null === $this->related[$relation]) {
+            return null;
+        }
+
+        $value = $this->related[$relation]->getDataValue($property);
+
+        return null === $value ? null : \AbraFlexi\Functions::uncode((string) $value);
     }
 
     /**

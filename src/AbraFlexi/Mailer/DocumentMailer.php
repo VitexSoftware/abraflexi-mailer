@@ -253,15 +253,26 @@ class DocumentMailer extends HtmlMailer
      */
     public function addAttachments()
     {
-        $attachments = Priloha::getAttachmentsList($this->document);
         $attached = [];
+
+        try {
+            $attachments = Priloha::getAttachmentsList($this->document);
+        } catch (\AbraFlexi\Exception $exc) {
+            $this->addStatusMessage(sprintf(_('Cannot obtain attachments of %s: %s'), $this->document->getRecordCode(), $exc->getMessage()), 'warning');
+
+            return $attached;
+        }
 
         if ($attachments) {
             foreach ($attachments as $attachmentID => $attachment) {
-                if (Priloha::saveToFile($attachmentID, sys_get_temp_dir())) {
-                    $tmpfile = sys_get_temp_dir().'/'.$attachment['nazSoub'];
-                    $this->addFile($tmpfile, $attachment['contentType']);
-                    $attached[$attachmentID] = $attachment['nazSoub'];
+                try {
+                    if (Priloha::saveToFile($attachmentID, sys_get_temp_dir())) {
+                        $tmpfile = sys_get_temp_dir().'/'.$attachment['nazSoub'];
+                        $this->addFile($tmpfile, $attachment['contentType']);
+                        $attached[$attachmentID] = $attachment['nazSoub'];
+                    }
+                } catch (\AbraFlexi\Exception $exc) {
+                    $this->addStatusMessage(sprintf(_('Cannot download attachment %s: %s'), $attachment['nazSoub'], $exc->getMessage()), 'warning');
                 }
             }
         }

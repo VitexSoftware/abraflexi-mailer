@@ -1,3 +1,15 @@
+abraflexi-mailer (1.4.1) unstable; urgency=medium
+
+  * SendUnsentWithAttachments: address documents by code instead of
+    (possibly malformed) external id; a failing document no longer aborts
+    the whole batch
+  * DocumentMailer: attachment retrieval errors are logged, not fatal
+  * Templater: do not read AbraFlexi nastaveni when COMPANY_NAME is set;
+    support nested ${object.relation.property} (bspBan alias of bankovniUcet);
+    drop /tmp/templatedata.json debug dump
+
+ -- Vítězslav Dvořák <info@vitexsoftware.cz>  Wed, 11 Nov 2026 00:55:00 +0100
+
 abraflexi-mailer (1.4.0) unstable; urgency=medium
 
   * Added confirmation mailers: PotvrzeniPrijetiUhrady, PotvrzeniPrijetiFaktury,

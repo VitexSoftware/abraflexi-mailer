@@ -194,8 +194,8 @@
     "COMPANY_NAME": {
       "type": "string",
       "description": {
-        "en": "Company name to be used in messages",
-        "cs": "Název firmy pro použití ve zprávách"
+        "en": "Company name to be used in messages. When set, AbraFlexi company settings (nastaveni) are not read",
+        "cs": "Název firmy pro použití ve zprávách. Je-li vyplněn, nečte se nastavení firmy (nastaveni) z AbraFlexi"
       },
       "defval": "Demo Company",
       "required": false,

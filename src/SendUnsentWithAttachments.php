@@ -41,89 +41,104 @@ $unsent = $invoicer->getColumnsFromAbraFlexi(
 if (empty($unsent)) {
     $invoicer->addStatusMessage(_('all sent'), 'success');
 } else {
+    $failed = 0;
+
     foreach ($unsent as $unsentId => $unsentData) {
+        // External IDs may be malformed (e.g. "ext:XYZ" without system part) and unresolvable
+        // by AbraFlexi; address the record by its code instead.
+        unset($unsentData['external-ids']);
         $invoicer->setData($unsentData);
         $invoicer->updateApiURL();
-        $mailer = new DocumentMailer($invoicer);
-        preg_match_all(
-            '/cc:[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}/i',
-            $unsentData['poznam'],
-            $ccs,
-        );
 
-        if (!empty($ccs[0])) {
-            $mailer->setMailHeaders(['Cc' => str_replace(
-                'cc:',
-                '',
-                implode(',', $ccs[0]),
-            )]);
-        }
+        try {
+            $mailer = new DocumentMailer($invoicer);
+            preg_match_all(
+                '/cc:[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}/i',
+                $unsentData['poznam'],
+                $ccs,
+            );
 
-        $mailer->addItem(new PTag($invoicer->getDataValue('popis')));
-        $mailer->addAttachments();
+            if (!empty($ccs[0])) {
+                $mailer->setMailHeaders(['Cc' => str_replace(
+                    'cc:',
+                    '',
+                    implode(',', $ccs[0]),
+                )]);
+            }
 
-        if (Shared::cfg('ADD_QRCODE')) {
-            $mailer->addQrCode();
-        }
+            $mailer->addItem(new PTag($invoicer->getDataValue('popis')));
+            $mailer->addAttachments();
 
-        $lock = false;
+            if (Shared::cfg('ADD_QRCODE')) {
+                $mailer->addQrCode();
+            }
 
-        if ($invoicer->getDataValue('zamekK') !== 'zamek.otevreno') {
-            if (\Ease\Shared::cfg('SEND_LOCKED', false) === 'True') {
-                $unlock = $invoicer->performAction('unlock', 'int');
+            $lock = false;
 
-                if ($unlock === false) {
-                    $invoicer->addStatusMessage(sprintf(_('Invoice %s cannot unlock: skipping process'), $invoicer->getRecordCode()), 'warning');
+            if ($invoicer->getDataValue('zamekK') !== 'zamek.otevreno') {
+                if (\Ease\Shared::cfg('SEND_LOCKED', false) === 'True') {
+                    $unlock = $invoicer->performAction('unlock', 'int');
+
+                    if ($unlock === false) {
+                        $invoicer->addStatusMessage(sprintf(_('Invoice %s cannot unlock: skipping process'), $invoicer->getRecordCode()), 'warning');
+
+                        continue;
+                    }
+                } else {
+                    $invoicer->addStatusMessage(sprintf(_('Invoice %s locked: skipping process'), $invoicer->getRecordCode()), 'info');
 
                     continue;
                 }
-            } else {
-                $invoicer->addStatusMessage(sprintf(_('Invoice %s locked: skipping process'), $invoicer->getRecordCode()), 'info');
-
-                continue;
             }
-        }
 
-        $result = false;
-
-        if (strtolower(Shared::cfg('DRY_RUN', '')) !== 'true') {
-            try {
-                $sendResult = $mailer->send();
-
-                if ($sendResult && ($mailer->isMuted() === false)) {
-                    $invoiceUpdate = $invoicer->sync(['id' => $invoicer->getRecordIdent(), 'stavMailK' => 'stavMail.odeslano']);
-                } else {
-                    $invoiceUpdate = false;
-                }
-
-                $invoicer->addStatusMessage(sprintf(_('Updating Mail State of %s to "sent"'), $invoicer), $invoiceUpdate ? 'success' : 'event');
-                $result = ($sendResult && $invoiceUpdate);
-            } catch (\Exception $exc) {
-                $mailer->addStatusMessage('Problem sending document '.$invoicer->getRecordCode(), 'error');
-            }
-        } else {
             $result = false;
-        }
 
-        if ($result === true) {
-            unset($unsent[$unsentId]);
-        }
+            if (strtolower(Shared::cfg('DRY_RUN', '')) !== 'true') {
+                try {
+                    $sendResult = $mailer->send();
 
-        $invoicer->addStatusMessage(
-            $unsentData['kod']."\t".$unsentData['firma']."\t".$invoicer->getEmail()."\t".$unsentData['poznam'],
-            $result ? 'success' : 'error',
-        );
+                    if ($sendResult && ($mailer->isMuted() === false)) {
+                        $invoiceUpdate = $invoicer->sync(['id' => $invoicer->getRecordIdent(), 'stavMailK' => 'stavMail.odeslano']);
+                    } else {
+                        $invoiceUpdate = false;
+                    }
 
-        if ($lock === true) {
-            $lock = $invoicer->performAction('lock', 'int');
-
-            if ($lock['success'] === 'true') {
-                $this->addStatusMessage(sprintf(_('Invoice %s locked again'), $invoicer), 'success');
+                    $invoicer->addStatusMessage(sprintf(_('Updating Mail State of %s to "sent"'), $invoicer), $invoiceUpdate ? 'success' : 'event');
+                    $result = ($sendResult && $invoiceUpdate);
+                } catch (\Exception $exc) {
+                    $mailer->addStatusMessage('Problem sending document '.$invoicer->getRecordCode(), 'error');
+                }
             } else {
-                $this->addStatusMessage(sprintf(_('Invoice %s locking failed'), $invoicer), 'warning');
+                $result = false;
             }
+
+            if ($result === true) {
+                unset($unsent[$unsentId]);
+            }
+
+            $invoicer->addStatusMessage(
+                $unsentData['kod']."\t".$unsentData['firma']."\t".$invoicer->getEmail()."\t".$unsentData['poznam'],
+                $result ? 'success' : 'error',
+            );
+
+            if ($lock === true) {
+                $lock = $invoicer->performAction('lock', 'int');
+
+                if ($lock['success'] === 'true') {
+                    $this->addStatusMessage(sprintf(_('Invoice %s locked again'), $invoicer), 'success');
+                } else {
+                    $this->addStatusMessage(sprintf(_('Invoice %s locking failed'), $invoicer), 'warning');
+                }
+            }
+        } catch (\AbraFlexi\Exception $exc) {
+            ++$failed;
+            $invoicer->addStatusMessage(sprintf(_('Processing of %s failed: %s'), $unsentData['kod'], $exc->getMessage()), 'error');
         }
     }
 
     $invoicer->addStatusMessage(\count($unsent).' '._('total'), 'info');
+
+    if ($failed) {
+        exit(1);
+    }
 }
