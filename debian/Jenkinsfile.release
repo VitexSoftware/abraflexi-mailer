@@ -18,8 +18,10 @@ properties([
 node() {
     ansiColor('xterm') {
         stage('SCM Checkout') {
-            sh 'sudo chown -R jenkins:jenkins . || true'
+            sh 'sudo chown -R jenkins:jenkins . 2>/dev/null || true'
             checkout scm
+            // Checked out once here; every parallel branch below unstashes this.
+            stash name: 'src', useDefaultExcludes: false
         }
     }
 }
@@ -37,10 +39,15 @@ distributions.each { distro ->
         def buildVer = ''
 
         node {
+          // Parallel branches must not share one workspace: they would run dch/debuild
+          // on the same debian/changelog at once. Give every matrix branch its own.
+          ws("${env.JOB_NAME}-${distroCode}") {
             ansiColor('xterm') {
                 stage('Checkout ' + distroName) {
-                    sh 'sudo chown -R jenkins:jenkins . || true'
-                    checkout scm
+                    sh 'sudo chown -R jenkins:jenkins . 2>/dev/null || true'
+                    // Empty the directory in place (deleteDir() races with delayed unlink on NFS).
+                    sh 'find . -mindepth 1 -delete 2>/dev/null || true'
+                    unstash 'src'
                     def imageName = vendor + '/' + imagePrefix + dist[0] + ':' + distroCode
                     buildImage = docker.image(imageName)
                     sh 'git checkout debian/changelog'
@@ -106,6 +113,7 @@ distributions.each { distro ->
                     }
                 }
             }
+          }
         }
     }
 }
