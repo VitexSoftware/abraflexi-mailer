@@ -28,7 +28,7 @@ if ($argc > 2) {
     if (file_exists($template)) {
         $templater = new \AbraFlexi\Mailer\Templater(file_get_contents($template));
 
-        if (Shared::cfg('APP_DEBUG') === 'True') {
+        if (\AbraFlexi\Mailer\Config::bool('APP_DEBUG')) {
             $templater->logBanner();
         }
 

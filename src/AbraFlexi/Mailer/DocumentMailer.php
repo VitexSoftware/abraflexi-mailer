@@ -60,6 +60,11 @@ class DocumentMailer extends HtmlMailer
     private array $cleanup = [];
 
     /**
+     * Private temporary directory of this message (downloaded PDF, ISDOC and attachments).
+     */
+    private string $workDir = '';
+
+    /**
      * Where to look for templates.
      */
     private string $templateDir = '../templates';
@@ -80,7 +85,7 @@ class DocumentMailer extends HtmlMailer
         $this->fromEmailAddress = Shared::cfg('MAIL_FROM');
         $this->setObjectName();
 
-        if (strtolower(Shared::cfg('MUTE', '')) === 'true') {
+        if (Config::bool('MUTE')) {
             $sendTo = Shared::cfg('EASE_MAILTO', '');
             $this->muted = true;
             $this->addStatusMessage(sprintf(_('Mute mode: SendTo forced: %s'), $sendTo), 'warning');
@@ -136,7 +141,17 @@ class DocumentMailer extends HtmlMailer
             $this->addItem(new \Ease\Html\PTag($document->getDataValue('popis')));
         }
 
-        $this->addInvoice();
+        // __destruct() is not called when a constructor throws: clean up here
+        $this->workDir = self::createWorkDir();
+
+        try {
+            $this->addInvoice();
+        } catch (\Throwable $exc) {
+            $this->cleanup();
+
+            throw $exc;
+        }
+
         $this->addItem(new \Ease\Html\HrTag());
         $this->addItem(new \Ease\Html\PTag(_('Send by').' '.\Ease\Shared::appName().' '.\Ease\Shared::appVersion()));
     }
@@ -180,26 +195,28 @@ class DocumentMailer extends HtmlMailer
 
     /**
      * Attach PDF and IsDOCx.
+     *
+     * @throws DocumentIncompleteException when the PDF cannot be obtained
      */
     public function addInvoice(): void
     {
-        $this->addFile(
-            $this->document->downloadInFormat(
-                'pdf',
-                sys_get_temp_dir().'/',
-            ),
-            Formats::$formats['PDF']['content-type'],
-        );
-        $this->addFile(
-            $this->document->downloadInFormat(
-                'isdocx',
-                sys_get_temp_dir().'/',
-            ),
-            Formats::$formats['ISDOCx']['content-type'],
-        );
-        $heading = new DivTag($this->document->getEvidence().' '.\AbraFlexi\Functions::uncode($this->document->getRecordIdent()));
+        $pdf = $this->document->downloadInFormat('pdf', $this->workDir.'/');
 
-        if (Shared::cfg('ADD_LOGO')) {
+        // downloadInFormat() saves the response body even for an error response,
+        // so verify we really got a PDF before it can reach a customer
+        if (!$this->isDownloaded($pdf, '%PDF') || !$this->addFile($pdf, Formats::$formats['PDF']['content-type'])) {
+            throw new DocumentIncompleteException(sprintf(_('Cannot obtain PDF of %s'), \AbraFlexi\Functions::uncode((string) $this->document->getRecordCode())));
+        }
+
+        $isdoc = $this->document->downloadInFormat('isdocx', $this->workDir.'/');
+
+        if (!$this->isDownloaded($isdoc, 'PK') || !$this->addFile($isdoc, Formats::$formats['ISDOCx']['content-type'])) {
+            $this->addStatusMessage(sprintf(_('Cannot obtain ISDOC of %s'), \AbraFlexi\Functions::uncode((string) $this->document->getRecordCode())), 'warning');
+        }
+
+        $heading = new DivTag($this->document->getEvidence().' '.\AbraFlexi\Functions::uncode((string) $this->document->getRecordCode()));
+
+        if (Config::bool('ADD_LOGO')) {
             $this->addCompanyLogo($heading);
         } else {
             $this->addItem($heading);
@@ -254,27 +271,29 @@ class DocumentMailer extends HtmlMailer
     public function addAttachments()
     {
         $attached = [];
+        $code = \AbraFlexi\Functions::uncode((string) $this->document->getRecordCode());
 
         try {
             $attachments = Priloha::getAttachmentsList($this->document);
         } catch (\AbraFlexi\Exception $exc) {
-            $this->addStatusMessage(sprintf(_('Cannot obtain attachments of %s: %s'), $this->document->getRecordCode(), $exc->getMessage()), 'warning');
-
-            return $attached;
+            throw new DocumentIncompleteException(sprintf(_('Cannot obtain attachments of %s: %s'), $code, $exc->getMessage()), 0, $exc);
         }
 
-        if ($attachments) {
-            foreach ($attachments as $attachmentID => $attachment) {
-                try {
-                    if (Priloha::saveToFile($attachmentID, sys_get_temp_dir())) {
-                        $tmpfile = sys_get_temp_dir().'/'.$attachment['nazSoub'];
-                        $this->addFile($tmpfile, $attachment['contentType']);
-                        $attached[$attachmentID] = $attachment['nazSoub'];
-                    }
-                } catch (\AbraFlexi\Exception $exc) {
-                    $this->addStatusMessage(sprintf(_('Cannot download attachment %s: %s'), $attachment['nazSoub'], $exc->getMessage()), 'warning');
-                }
+        foreach ($attachments as $attachmentID => $attachment) {
+            $fileName = basename((string) $attachment['nazSoub']);
+            $tmpfile = $this->workDir.'/'.$fileName;
+
+            try {
+                $saved = Priloha::saveToFile((int) $attachmentID, $tmpfile);
+            } catch (\AbraFlexi\Exception $exc) {
+                throw new DocumentIncompleteException(sprintf(_('Cannot download attachment %s of %s: %s'), $fileName, $code, $exc->getMessage()), 0, $exc);
             }
+
+            if (!$saved || !$this->addFile($tmpfile, $attachment['contentType'])) {
+                throw new DocumentIncompleteException(sprintf(_('Cannot download attachment %s of %s'), $fileName, $code));
+            }
+
+            $attached[$attachmentID] = $fileName;
         }
 
         return $attached;
@@ -301,14 +320,83 @@ class DocumentMailer extends HtmlMailer
     public function send(): bool
     {
         $result = parent::send();
+        $this->cleanup();
 
+        return $result;
+    }
+
+    /**
+     * Remove downloaded files and the private temporary directory.
+     */
+    public function cleanup(): void
+    {
         foreach ($this->cleanup as $tmp) {
-            if ($tmp && file_exists($tmp)) {
-                unlink($tmp);
+            if ($tmp && is_file($tmp)) {
+                @unlink($tmp);
             }
         }
 
-        return $result;
+        $this->cleanup = [];
+
+        if ($this->workDir !== '' && is_dir($this->workDir)) {
+            foreach (glob($this->workDir.'/{,.}*', \GLOB_BRACE) ?: [] as $leftover) {
+                if (is_file($leftover)) {
+                    @unlink($leftover);
+                }
+            }
+
+            @rmdir($this->workDir);
+        }
+    }
+
+    public function __destruct()
+    {
+        // DRY_RUN or failed documents never reach send()
+        $this->cleanup();
+    }
+
+    /**
+     * Was the file downloaded successfully and does it start with the expected signature?
+     */
+    private function isDownloaded(?string $file, string $magic): bool
+    {
+        if (empty($file) || !is_file($file) || (int) $this->document->lastResponseCode !== 200) {
+            if (!empty($file) && is_file($file)) {
+                @unlink($file);
+            }
+
+            return false;
+        }
+
+        $handle = fopen($file, 'rb');
+        $head = $handle ? (string) fread($handle, \strlen($magic)) : '';
+
+        if ($handle) {
+            fclose($handle);
+        }
+
+        if ($head !== $magic) {
+            @unlink($file);
+
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * Create a private temporary directory, so concurrent runs or files left
+     * by other users cannot collide with this message's downloads.
+     */
+    private static function createWorkDir(): string
+    {
+        $dir = sys_get_temp_dir().'/abraflexi-mailer-'.bin2hex(random_bytes(8));
+
+        if (!mkdir($dir, 0700) && !is_dir($dir)) {
+            throw new DocumentIncompleteException(sprintf(_('Cannot create temporary directory %s'), $dir));
+        }
+
+        return $dir;
     }
 
     /**

@@ -22,7 +22,7 @@ Shared::init(['ABRAFLEXI_URL', 'ABRAFLEXI_LOGIN', 'ABRAFLEXI_PASSWORD', 'ABRAFLE
 new \Ease\Locale(Shared::cfg('LOCALIZE', 'cs_CZ'), '../i18n', 'abraflexi-mailer');
 $invoicer = new \AbraFlexi\FakturaVydana();
 
-if (strtolower(Shared::cfg('APP_DEBUG', 'false')) === 'true') {
+if (\AbraFlexi\Mailer\Config::bool('APP_DEBUG')) {
     $invoicer->logBanner(Shared::appName().' v'.Shared::appVersion());
 }
 

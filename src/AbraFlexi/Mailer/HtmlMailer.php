@@ -90,7 +90,7 @@ class HtmlMailer extends Sand
         string $emailContents = '',
         array $headers = [],
     ) {
-        if (strtolower((string) \Ease\Shared::cfg('MUTE', 'false')) === 'true') {
+        if (Config::bool('MUTE')) {
             $emailAddress = \Ease\Shared::cfg('EASE_MAILTO', $emailAddress);
         }
 
@@ -333,6 +333,13 @@ class HtmlMailer extends Sand
      */
     public function send(): bool
     {
+        if (trim(str_replace(['<', '>', ','], '', $this->emailAddress)) === '') {
+            $this->sendResult = false;
+            $this->addStatusMessage(sprintf(_('Message %s was not sent: no recipient address'), $this->emailSubject), 'error');
+
+            return false;
+        }
+
         if (!$this->finalized) {
             $this->finalize();
         }

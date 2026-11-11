@@ -28,9 +28,11 @@ $evidence = \array_key_exists(2, $argv) ? $argv[2] : 'faktura-vydana';
 if ($argc > 1) {
     $documentor = new FakturaVydana($document, ['evidence' => $evidence, 'ignore404' => true]);
 
-    if (\Ease\Shared::cfg('APP_DEBUG') === 'True') {
+    if (\AbraFlexi\Mailer\Config::bool('APP_DEBUG')) {
         $documentor->logBanner(\Ease\Shared::appName().' v'.\Ease\Shared::appVersion());
     }
+
+    $result = false;
 
     if ($documentor->lastResponseCode === 200) {
         $to = (\array_key_exists(3, $argv) ? $argv[3] : $documentor->getEmail());
@@ -38,23 +40,27 @@ if ($argc > 1) {
             RO::uncode($documentor->getRecordCode())."\t".RO::uncode($documentor->getDataValue('firma'))."\t".$to."\t".$documentor->getDataValue('poznam'),
             'success',
         );
-        $mailer = new \AbraFlexi\Mailer\DocumentMailer($documentor, $to);
-        $documentor->addStatusMessage(_('Attaching').': '.implode(
-            ',',
-            $mailer->addAttachments(),
-        ));
 
-        if (\array_key_exists('juhSum', $documentor->getColumnsInfo())) {
-            if (Shared::cfg('ADD_QRCODE')) {
-                $mailer->addQrCode();
+        try {
+            $mailer = new \AbraFlexi\Mailer\DocumentMailer($documentor, $to);
+            $documentor->addStatusMessage(_('Attaching').': '.implode(
+                ',',
+                $mailer->addAttachments(),
+            ));
+
+            if (\array_key_exists('juhSum', $documentor->getColumnsInfo())) {
+                if (\AbraFlexi\Mailer\Config::bool('ADD_QRCODE')) {
+                    $mailer->addQrCode();
+                }
             }
-        }
 
-        if (\array_key_exists('stavMailK', $documentor->getColumnsInfo())) {
-            $result = ($mailer->send() && $documentor->sync(['id' => $documentor->getRecordIdent(),
-                'stavMailK' => 'stavMail.odeslano']));
-        } else {
             $result = $mailer->send();
+
+            if ($result && !$mailer->isMuted() && \array_key_exists('stavMailK', $documentor->getColumnsInfo())) {
+                $result = (bool) $documentor->sync(['id' => $documentor->getRecordIdent(), 'stavMailK' => 'stavMail.odeslano']);
+            }
+        } catch (\AbraFlexi\Mailer\DocumentIncompleteException $exc) {
+            $documentor->addStatusMessage(sprintf(_('Document not sent: %s'), $exc->getMessage()), 'error');
         }
     } else {
         $documentor->addStatusMessage(sprintf(
@@ -63,6 +69,8 @@ if ($argc > 1) {
             $document,
         ));
     }
+
+    exit($result ? 0 : 1);
 } else {
     echo _('AbraFlexi Document Sender')."\n";
     echo "abraflexi-send-document <DocID> [evidence-code] [recipent@email,another@recipient] \n";

@@ -37,7 +37,7 @@ if (empty($docId)) {
 $document = (is_numeric($docId) ? (int) $docId : RO::code(RO::uncode($docId)));
 $invoice = new FakturaPrijata($document, ['ignore404' => true]);
 
-if (Shared::cfg('APP_DEBUG') === 'True') {
+if (\AbraFlexi\Mailer\Config::bool('APP_DEBUG')) {
     $invoice->logBanner(Shared::appName().' v'.Shared::appVersion());
 }
 

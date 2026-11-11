@@ -1,5 +1,5 @@
 {
-  "$schema": "https://raw.githubusercontent.com/VitexSoftware/php-vitexsoftware-multiflexi-core/refs/heads/main/schema/application.json",
+  "$schema": "https://multiflexi.eu/schema/application.json",
   "schemaVersion": "3.4.0",
   "version": "1.0.0",
   "uuid": "a60bfd12-565b-421d-abd8-2d48c312c293",
