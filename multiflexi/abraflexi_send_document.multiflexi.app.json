@@ -24,7 +24,7 @@
   "homepage": "https://github.com/VitexSoftware/abraflexi-mailer/",
   "ociimage": "docker.io/vitexsoftware/abraflexi-mailer",
   "executable": "abraflexi-send",
-  "cmdparamsTemplate": "${DOC_ID} ${DOC_EVIDENCE} ${DOC_RECIPIENT}",
+  "cmdparamsTemplate": "{DOC_ID} {DOC_EVIDENCE} {DOC_RECIPIENT}",
   "events": {
     "consumes": {
       "mail.queued": {

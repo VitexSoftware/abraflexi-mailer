@@ -34,7 +34,7 @@ if (empty($docId)) {
     exit(1);
 }
 
-$document = (is_numeric($docId) ? (int) $docId : RO::code(RO::uncode($docId)));
+$document = (is_numeric($docId) ? (int) $docId : \AbraFlexi\Functions::code(\AbraFlexi\Functions::uncode($docId)));
 $invoice = new FakturaPrijata($document, ['ignore404' => true]);
 
 if (\AbraFlexi\Mailer\Config::bool('APP_DEBUG')) {
@@ -51,12 +51,12 @@ if ($invoice->lastResponseCode === 200) {
     $mailer = new \AbraFlexi\Mailer\PotvrzeniOdeslaniUhrady($invoice);
 
     if ($mailer->send()) {
-        $message = sprintf(_('Payment sent confirmation sent for %s'), RO::uncode($invoice->getRecordCode()));
+        $message = sprintf(_('Payment sent confirmation sent for %s'), \AbraFlexi\Functions::uncode($invoice->getRecordCode()));
         $invoice->addStatusMessage($message, 'success');
         $report['status'] = 'success';
         $report['message'] = $message;
     } else {
-        $message = sprintf(_('Failed to send payment sent confirmation for %s'), RO::uncode($invoice->getRecordCode()));
+        $message = sprintf(_('Failed to send payment sent confirmation for %s'), \AbraFlexi\Functions::uncode($invoice->getRecordCode()));
         $invoice->addStatusMessage($message, 'error');
         $report['message'] = $message;
         echo json_encode($report, \JSON_PRETTY_PRINT | \JSON_UNESCAPED_UNICODE)."\n";

@@ -22,7 +22,10 @@ use Ease\Shared;
 require_once '../vendor/autoload.php';
 Shared::init(['ABRAFLEXI_URL', 'ABRAFLEXI_LOGIN', 'ABRAFLEXI_PASSWORD', 'ABRAFLEXI_COMPANY', 'MAIL_FROM'], '../.env');
 new \Ease\Locale(Shared::cfg('LOCALIZE', 'cs_CZ'), '../i18n', 'abraflexi-mailer');
-$document = (is_numeric($argv[1]) ? (int) ($argv[1]) : RO::code(RO::uncode($argv[1])));
+// MultiFlexi leaves "{VAR}" in the command line when a variable is empty: treat it as not given.
+$argv = array_values(array_filter($argv, static fn ($arg): bool => $arg !== '' && !preg_match('/^\{[A-Z_]+\}$/', $arg)));
+$argc = \count($argv);
+$document = (is_numeric($argv[1]) ? (int) ($argv[1]) : \AbraFlexi\Functions::code(\AbraFlexi\Functions::uncode($argv[1])));
 $evidence = \array_key_exists(2, $argv) ? $argv[2] : 'faktura-vydana';
 
 if ($argc > 1) {
@@ -37,7 +40,7 @@ if ($argc > 1) {
     if ($documentor->lastResponseCode === 200) {
         $to = (\array_key_exists(3, $argv) ? $argv[3] : $documentor->getEmail());
         $documentor->addStatusMessage(
-            RO::uncode($documentor->getRecordCode())."\t".RO::uncode($documentor->getDataValue('firma'))."\t".$to."\t".$documentor->getDataValue('poznam'),
+            \AbraFlexi\Functions::uncode($documentor->getRecordCode())."\t".\AbraFlexi\Functions::uncode((string) $documentor->getDataValue('firma'))."\t".$to."\t".$documentor->getDataValue('poznam'),
             'success',
         );
 

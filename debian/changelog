@@ -1,5 +1,11 @@
 abraflexi-mailer (1.4.3) unstable; urgency=medium
 
+  * abraflexi-send: ignore unresolved {VAR} placeholders (empty DOC_RECIPIENT
+    must not become the recipient address); manifest uses the {VAR} syntax
+    that Job::getCmdParams() substitutes
+  * Compatibility with php-spojenet-abraflexi 3.7: Functions::code()/uncode()
+    instead of RO::, firma relation cast to string, evidences without typDokl
+    (smlouva) no longer break DocumentMailer::getAbraFlexiTemplate()
   * Never send a document without its PDF: download is verified (HTTP 200,
     %PDF signature); missing PDF or attachment leaves it "to send" with error
   * Never send or mark as sent a document without a recipient address

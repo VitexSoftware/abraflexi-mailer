@@ -34,7 +34,7 @@ if (empty($docId)) {
     exit(1);
 }
 
-$document = (is_numeric($docId) ? (int) $docId : RO::code(RO::uncode($docId)));
+$document = (is_numeric($docId) ? (int) $docId : \AbraFlexi\Functions::code(\AbraFlexi\Functions::uncode($docId)));
 $bankRecord = new Banka($document, ['ignore404' => true]);
 
 if (\AbraFlexi\Mailer\Config::bool('APP_DEBUG')) {
@@ -51,12 +51,12 @@ if ($bankRecord->lastResponseCode === 200) {
     $mailer = new \AbraFlexi\Mailer\PotvrzeniPrijetiBankovniPlatby($bankRecord);
 
     if ($mailer->send()) {
-        $message = sprintf(_('Bank payment receipt confirmation sent for %s'), RO::uncode($bankRecord->getRecordCode()));
+        $message = sprintf(_('Bank payment receipt confirmation sent for %s'), \AbraFlexi\Functions::uncode($bankRecord->getRecordCode()));
         $bankRecord->addStatusMessage($message, 'success');
         $report['status'] = 'success';
         $report['message'] = $message;
     } else {
-        $message = sprintf(_('Failed to send bank payment receipt confirmation for %s'), RO::uncode($bankRecord->getRecordCode()));
+        $message = sprintf(_('Failed to send bank payment receipt confirmation for %s'), \AbraFlexi\Functions::uncode($bankRecord->getRecordCode()));
         $bankRecord->addStatusMessage($message, 'error');
         $report['message'] = $message;
         echo json_encode($report, \JSON_PRETTY_PRINT | \JSON_UNESCAPED_UNICODE)."\n";

@@ -92,7 +92,7 @@ class DocumentMailer extends HtmlMailer
         } else {
             if (empty($sendTo) && method_exists($this->document, 'getEmail')) {
                 $sendTo = $this->document->getRecipients();
-            } else {
+            } elseif (empty($sendTo)) {
                 $this->addStatusMessage(sprintf(_('%s does not have getEmail method'), \Ease\Logger\Message::getCallerName($this->document)), 'warning');
             }
         }
@@ -408,6 +408,11 @@ class DocumentMailer extends HtmlMailer
     {
         $template = [];
         $typDoklInfo = $document->getColumnInfo('typDokl');
+
+        // Evidences without document type (e.g. smlouva) have no AbraFlexi mail template
+        if (!\is_array($typDoklInfo)) {
+            return $template;
+        }
 
         if (\array_key_exists('fkEvidencePath', $typDoklInfo)) {
             $typDokl = new \AbraFlexi\RW($document->getDataValue('typDokl'), ['evidence' => $typDoklInfo['fkEvidencePath']]);
