@@ -1,3 +1,14 @@
+abraflexi-mailer (1.4.4) unstable; urgency=medium
+
+  * The mail follows the language of the customer: the label LANG_xx (set by
+    ClientZone) of the company the document belongs to selects the locale
+    (cs_CZ, en_US) and a template written in that language,
+    templates/<lang>/<evidence>.ftl, before templates/<evidence>.ftl.
+    Without the label, or without a translation of the language, the
+    configured LOCALIZE is used.
+
+ -- Vítězslav Dvořák <info@vitexsoftware.cz>  Sat, 14 Nov 2026 21:35:56 +0100
+
 abraflexi-mailer (1.4.3) unstable; urgency=medium
 
   * abraflexi-send: ignore unresolved {VAR} placeholders (empty DOC_RECIPIENT

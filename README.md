@@ -181,3 +181,13 @@ This application uses the following exit codes:
 * `1`: General error / Missing document ID
 * `2`: Failed to send email
 * `3`: Cannot read document from AbraFlexi
+
+## Language of the customer
+
+A mail to a customer is written in the language the customer chose in ClientZone.
+ClientZone remembers it as the label `LANG_CS`, `LANG_EN`, ... of the customer's
+company (adresar) in AbraFlexi, and `abraflexi-send` reads the label of the company
+on the document. It then uses the matching translation (`cs_CZ`, `en_US`) and the
+template `templates/<lang>/<evidence>.ftl` when there is one, otherwise
+`templates/<evidence>.ftl`. Without the label, or for a language without a
+translation, the configured `LOCALIZE` (default `cs_CZ`) is used.

@@ -84,6 +84,7 @@ class DocumentMailer extends HtmlMailer
         $this->document = $document;
         $this->fromEmailAddress = Shared::cfg('MAIL_FROM');
         $this->setObjectName();
+        $this->useCustomerLanguage();
 
         if (Config::bool('MUTE')) {
             $sendTo = Shared::cfg('EASE_MAILTO', '');
@@ -163,7 +164,34 @@ class DocumentMailer extends HtmlMailer
      */
     public function templateFile()
     {
-        return $this->templateDir.'/'.$this->document->getEvidence().'.ftl';
+        $name = $this->document->getEvidence().'.ftl';
+        $language = CustomerLanguage::fromLocale(\Ease\Locale::$localeUsed);
+
+        // A template written in the language of the customer wins: templates/<lang>/<evidence>.ftl
+        if ($language !== null && file_exists($this->templateDir.'/'.$language.'/'.$name)) {
+            return $this->templateDir.'/'.$language.'/'.$name;
+        }
+
+        return $this->templateDir.'/'.$name;
+    }
+
+    /**
+     * Write the mail in the language of the customer.
+     *
+     * The language is the label LANG_xx of the company the document belongs to (set by ClientZone).
+     * Without it, or without a translation of the language, the configured one (LOCALIZE) is used.
+     */
+    protected function useCustomerLanguage(): void
+    {
+        $configured = (string) Shared::cfg('LOCALIZE', 'cs_CZ');
+        $language = CustomerLanguage::forDocument($this->document);
+        $locale = CustomerLanguage::localeFor($language, $configured);
+
+        if ($locale !== \Ease\Locale::$localeUsed) {
+            \Ease\Locale::useLocale($locale);
+        }
+
+        $this->addStatusMessage(sprintf('Mail language: %s (customer: %s)', $locale, $language ?? 'unknown'), 'debug');
     }
 
     /**
