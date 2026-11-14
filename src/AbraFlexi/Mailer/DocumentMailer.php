@@ -167,12 +167,33 @@ class DocumentMailer extends HtmlMailer
         $name = $this->document->getEvidence().'.ftl';
         $language = CustomerLanguage::fromLocale(\Ease\Locale::$localeUsed);
 
-        // A template written in the language of the customer wins: templates/<lang>/<evidence>.ftl
-        if ($language !== null && file_exists($this->templateDir.'/'.$language.'/'.$name)) {
-            return $this->templateDir.'/'.$language.'/'.$name;
+        foreach ($this->templateDirs() as $dir) {
+            // A template written in the language of the customer wins: <dir>/<lang>/<evidence>.ftl
+            if ($language !== null && file_exists($dir.'/'.$language.'/'.$name)) {
+                return $dir.'/'.$language.'/'.$name;
+            }
+
+            if (file_exists($dir.'/'.$name)) {
+                return $dir.'/'.$name;
+            }
         }
 
         return $this->templateDir.'/'.$name;
+    }
+
+    /**
+     * Directories searched for templates, the first one that has the template wins:
+     * the configured MAIL_TEMPLATES, the checkout (../templates) and the installed package.
+     *
+     * @return array<int, string>
+     */
+    protected function templateDirs(): array
+    {
+        return array_values(array_filter([
+            (string) Shared::cfg('MAIL_TEMPLATES', ''),
+            $this->templateDir,
+            '/usr/share/abraflexi-mailer/templates',
+        ], static fn (string $dir): bool => $dir !== ''));
     }
 
     /**

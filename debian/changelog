@@ -1,3 +1,13 @@
+abraflexi-mailer (1.4.5) unstable; urgency=medium
+
+  * Contract mail templates in Czech and English (templates/cs/smlouva.ftl,
+    templates/en/smlouva.ftl), chosen by the language of the customer.
+  * Templates are searched in MAIL_TEMPLATES, ../templates and
+    /usr/share/abraflexi-mailer/templates; the language directories are now
+    installed by the package (they were not shipped at all before).
+
+ -- Vítězslav Dvořák <info@vitexsoftware.cz>  Sat, 14 Nov 2026 21:38:39 +0100
+
 abraflexi-mailer (1.4.4) unstable; urgency=medium
 
   * The mail follows the language of the customer: the label LANG_xx (set by

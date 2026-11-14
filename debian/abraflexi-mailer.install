@@ -8,3 +8,5 @@ i18n/cs_CZ/LC_MESSAGES/*.mo     usr/share/locale/cs_CZ/LC_MESSAGES/
 i18n/en_US/LC_MESSAGES/*.mo     usr/share/locale/en_US/LC_MESSAGES/
 abraflexi-mailer.svg	usr/share/icons/hicolor/scalable/apps/
 debian/io.github.vitexsoftware.abraflexi_mailer.metainfo.xml	usr/share/metainfo/
+templates/cs/*  usr/share/abraflexi-mailer/templates/cs/
+templates/en/*  usr/share/abraflexi-mailer/templates/en/
