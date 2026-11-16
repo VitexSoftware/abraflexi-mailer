@@ -77,8 +77,8 @@
     "DOCID": {
       "type": "string",
       "description": {
-        "en": "Bank record identifier (banka evidence numeric ID or code) — mapped from recordid by event processor",
-        "cs": "Identifikátor záznamu v evidenci banka (číselné ID nebo kód) — mapováno z recordid procesorem událostí"
+        "en": "Payment record identifier (numeric ID or code) in the evidence given by EVIDENCE - mapped from recordid by the event processor",
+        "cs": "Identifikátor záznamu platby (číselné ID nebo kód) v evidenci dané proměnnou EVIDENCE - mapováno z recordid procesorem událostí"
       },
       "defval": "",
       "required": true,
@@ -152,7 +152,7 @@
       },
       "defval": "banka",
       "required": false,
-      "category": "Document"
+      "category": "API"
     }
   },
   "exitCodes": {

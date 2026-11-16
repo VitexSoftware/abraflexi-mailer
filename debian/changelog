@@ -1,3 +1,12 @@
+abraflexi-mailer (1.5.1) unstable; urgency=medium
+
+  * The MultiFlexi application of the payment confirmation (potvrzeni_prijeti_platby)
+    was refused by the import: the category of EVIDENCE must be one of the schema
+    (API, Database, Behavior, Security, Other). Now API; DOCID describes the
+    payment record of the evidence given by EVIDENCE.
+
+ -- Vítězslav Dvořák <info@vitexsoftware.cz>  Mon, 16 Nov 2026 21:34:29 +0100
+
 abraflexi-mailer (1.5.0) unstable; urgency=medium
 
   * New abraflexi-potvrzeni-prijeti-platby (MultiFlexi app "Potvrzení přijetí
