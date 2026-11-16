@@ -8,8 +8,8 @@
     "cs": "Potvrzení přijetí platby (banka / pokladna)"
   },
   "description": {
-    "en": "Confirms to the customer that their payment was received (a bank or cash desk record). Sent once, when the payer is known: the record carries the company (paired with an invoice or the deduction of an advance, or known from the start). A sent confirmation is marked with the label UHRADA_POTVRZENA. Takes DOCID and EVIDENCE (banka or pokladni-pohyb).",
-    "cs": "Potvrdí zákazníkovi přijetí jeho platby (záznam v bance nebo v pokladně). Odešle se jednou, ve chvíli, kdy je plátce znám: záznam nese firmu (spárování s fakturou či odpočtem zálohy, nebo známý od začátku). Odeslané potvrzení se označí štítkem UHRADA_POTVRZENA. Přijímá DOCID a EVIDENCE (banka nebo pokladni-pohyb)."
+    "en": "Confirms a received payment (bank or cash desk record) to the customer, once, when the payer is known. The payment gets the label UHRADA_POTVRZENA. Takes DOCID and EVIDENCE (banka or pokladni-pohyb).",
+    "cs": "Potvrdí zákazníkovi přijetí platby (záznam v bance či pokladně), jednou, ve chvíli, kdy je plátce znám. Platba dostane štítek UHRADA_POTVRZENA. Přijímá DOCID a EVIDENCE (banka nebo pokladni-pohyb)."
   },
   "tags": [
     "AbraFlexi",

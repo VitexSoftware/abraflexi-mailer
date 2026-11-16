@@ -1,3 +1,12 @@
+abraflexi-mailer (1.5.2) unstable; urgency=medium
+
+  * The description of the MultiFlexi application of the payment confirmation fits
+    the column of MultiFlexi (255 characters); it was longer and the import of
+    the application failed, which made the postinst of multiflexi-abraflexi-mailer
+    fail.
+
+ -- Vítězslav Dvořák <info@vitexsoftware.cz>  Mon, 16 Nov 2026 21:43:39 +0100
+
 abraflexi-mailer (1.5.1) unstable; urgency=medium
 
   * The MultiFlexi application of the payment confirmation (potvrzeni_prijeti_platby)
