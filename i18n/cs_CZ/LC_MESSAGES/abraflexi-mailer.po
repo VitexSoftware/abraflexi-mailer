@@ -2923,3 +2923,52 @@ msgstr "Přeskakuji %s: na %s již bylo odesláno"
 
 msgid "Recipients evidence is selected by ABRAFLEXI_BULKMAIL_EVIDENCE (default adresar)"
 msgstr "Evidence příjemců se volí pomocí ABRAFLEXI_BULKMAIL_EVIDENCE (výchozí adresar)"
+
+#, php-format
+msgid "Confirmation of receipt of payment %s"
+msgstr "Potvrzení o přijetí úhrady %s"
+
+#, php-format
+msgid "Dear customer %s,"
+msgstr "Vážený zákazníku %s,"
+
+#, php-format
+msgid "we confirm receipt of your payment of %s %s on %s."
+msgstr "potvrzujeme přijetí Vaší platby ve výši %s %s dne %s."
+
+#, php-format
+msgid "Variable symbol: %s"
+msgstr "Variabilní symbol: %s"
+
+#, php-format
+msgid "The payment was assigned to: %s"
+msgstr "Platba byla přiřazena k: %s"
+
+msgid "Thank you for your payment."
+msgstr "Děkujeme za Vaši platbu."
+
+msgid "With greetings"
+msgstr "S pozdravem"
+
+#, php-format
+msgid "Payment receipt confirmation sent for %s"
+msgstr "Potvrzení o přijetí úhrady odesláno pro %s"
+
+#, php-format
+msgid "Failed to send payment receipt confirmation for %s"
+msgstr "Odeslání potvrzení o přijetí úhrady pro %s selhalo"
+
+#, php-format
+msgid "Cannot read document %s from evidence %s"
+msgstr "Nelze načíst doklad %s z evidence %s"
+
+msgid "Confirmation of receipt of a payment (bank or cash desk)"
+msgstr "Potvrzení o přijetí platby (banka nebo pokladna)"
+
+#, php-format
+msgid "No confirmation of %s %s: %s"
+msgstr "Žádné potvrzení pro %s %s: %s"
+
+#, php-format
+msgid "The payment %s could not be marked as confirmed: nothing was sent"
+msgstr "Platbu %s nelze označit jako potvrzenou: nic nebylo odesláno"

@@ -1,3 +1,20 @@
+abraflexi-mailer (1.5.0) unstable; urgency=medium
+
+  * New abraflexi-potvrzeni-prijeti-platby (MultiFlexi app "Potvrzení přijetí
+    platby"): confirms a received payment - a bank record or a cash desk
+    movement (DOCID, EVIDENCE=banka|pokladni-pohyb) - to the customer who paid.
+    It is sent once, when the payer is known, i.e. when the record carries the
+    company (the payment was paired with an invoice or with the deduction of an
+    advance, or the payer was known from the start); an unknown payer, an
+    outgoing or a cancelled payment is skipped without error. The confirmed
+    payment is marked with the label UHRADA_POTVRZENA (created when missing, for
+    the bank and the cash desk), so the next change of the record does not send
+    it again; the mark is taken back when the sending fails. The mail is in the
+    language of the customer and names the invoices the payment was paired with.
+  * Czech translations of the confirmation texts (they were English only).
+
+ -- Vítězslav Dvořák <info@vitexsoftware.cz>  Mon, 16 Nov 2026 20:52:35 +0100
+
 abraflexi-mailer (1.4.5) unstable; urgency=medium
 
   * Contract mail templates in Czech and English (templates/cs/smlouva.ftl,

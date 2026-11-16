@@ -191,3 +191,22 @@ on the document. It then uses the matching translation (`cs_CZ`, `en_US`) and th
 template `templates/<lang>/<evidence>.ftl` when there is one, otherwise
 `templates/<evidence>.ftl`. Without the label, or for a language without a
 translation, the configured `LOCALIZE` (default `cs_CZ`) is used.
+
+## Confirmation of a received payment
+
+`abraflexi-potvrzeni-prijeti-platby` (MultiFlexi application "Potvrzení přijetí platby") confirms money that
+came to the **bank** or to the **cash desk** to the customer who paid:
+
+```
+DOCID=<id> EVIDENCE=banka|pokladni-pohyb abraflexi-potvrzeni-prijeti-platby
+```
+
+* It is meant to run on every insert or update of a bank / cash desk record (a MultiFlexi event rule on the
+  evidence `banka` and `pokladni-pohyb`, operations `create` and `update`, `DOCID=recordid`, `EVIDENCE=evidence`).
+* The confirmation is sent **once, when the payer is known**: the record carries the company (`firma`) - the
+  payment was paired with an invoice or with the deduction of an advance, or the payer was known from the start.
+  Unknown payer, outgoing or cancelled payment: nothing is sent and it is no error.
+* The confirmed payment gets the label `UHRADA_POTVRZENA` (created when missing), so the following changes
+  of the record do not send it again.
+* The mail is in the language of the customer (label `LANG_xx` of the company) and names the invoices the payment
+  was paired with.
