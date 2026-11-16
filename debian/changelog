@@ -1,3 +1,16 @@
+abraflexi-mailer (1.6.0) unstable; urgency=medium
+
+  * abraflexi-potvrzeni-prijeti-platby without DOCID goes through the payments
+    (bank and cash desk) changed in the last CONFIRM_DAYS_BACK days (3 by
+    default) and confirms those that are to be confirmed and were not yet: an
+    event of MultiFlexi can be lost, and the payer becomes known (the payment is
+    paired) sometimes long after the payment came. It is meant to run now and
+    then besides the event rules; the label UHRADA_POTVRZENA keeps both from
+    sending a confirmation twice.
+  * The confirmation moved to AbraFlexi\Mailer\PaymentConfirmer, shared by both modes.
+
+ -- Vítězslav Dvořák <info@vitexsoftware.cz>  Mon, 16 Nov 2026 22:12:11 +0100
+
 abraflexi-mailer (1.5.2) unstable; urgency=medium
 
   * The description of the MultiFlexi application of the payment confirmation fits

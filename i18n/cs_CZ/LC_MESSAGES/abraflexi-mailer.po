@@ -2972,3 +2972,7 @@ msgstr "Žádné potvrzení pro %s %s: %s"
 #, php-format
 msgid "The payment %s could not be marked as confirmed: nothing was sent"
 msgstr "Platbu %s nelze označit jako potvrzenou: nic nebylo odesláno"
+
+#, php-format
+msgid "Payments checked: %s, confirmations sent: %d, failed: %d"
+msgstr "Zkontrolované platby: %s, odeslaných potvrzení: %d, selhalo: %d"

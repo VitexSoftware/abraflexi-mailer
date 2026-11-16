@@ -8,8 +8,8 @@
     "cs": "Potvrzení přijetí platby (banka / pokladna)"
   },
   "description": {
-    "en": "Confirms a received payment (bank or cash desk record) to the customer, once, when the payer is known. The payment gets the label UHRADA_POTVRZENA. Takes DOCID and EVIDENCE (banka or pokladni-pohyb).",
-    "cs": "Potvrdí zákazníkovi přijetí platby (záznam v bance či pokladně), jednou, ve chvíli, kdy je plátce znám. Platba dostane štítek UHRADA_POTVRZENA. Přijímá DOCID a EVIDENCE (banka nebo pokladni-pohyb)."
+    "en": "Confirms a received payment (bank or cash desk) to the customer, once, when the payer is known. Takes DOCID and EVIDENCE; without DOCID it goes through the payments changed lately and not yet confirmed.",
+    "cs": "Potvrdí zákazníkovi přijetí platby (banka či pokladna), jednou, když je plátce znám. Přijímá DOCID a EVIDENCE; bez DOCID projde nedávno změněné a dosud nepotvrzené platby."
   },
   "tags": [
     "AbraFlexi",
@@ -77,11 +77,11 @@
     "DOCID": {
       "type": "string",
       "description": {
-        "en": "Payment record identifier (numeric ID or code) in the evidence given by EVIDENCE - mapped from recordid by the event processor",
-        "cs": "Identifikátor záznamu platby (číselné ID nebo kód) v evidenci dané proměnnou EVIDENCE - mapováno z recordid procesorem událostí"
+        "en": "Payment record identifier (numeric ID) in the evidence given by EVIDENCE, mapped from recordid by the event processor. Empty: all payments changed lately and not confirmed yet are processed",
+        "cs": "Identifikátor záznamu platby (číselné ID) v evidenci dané proměnnou EVIDENCE, mapováno z recordid procesorem událostí. Prázdné: zpracují se všechny nedávno změněné a dosud nepotvrzené platby"
       },
       "defval": "",
-      "required": true,
+      "required": false,
       "category": "API"
     },
     "MAIL_FROM": {
@@ -153,6 +153,16 @@
       "defval": "banka",
       "required": false,
       "category": "API"
+    },
+    "CONFIRM_DAYS_BACK": {
+      "type": "string",
+      "description": {
+        "en": "Without DOCID: how many days back the changed payments are checked",
+        "cs": "Bez DOCID: za kolik posledních dnů se kontrolují změněné platby"
+      },
+      "defval": "3",
+      "required": false,
+      "category": "Behavior"
     }
   },
   "exitCodes": {

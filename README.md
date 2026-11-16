@@ -210,3 +210,9 @@ DOCID=<id> EVIDENCE=banka|pokladni-pohyb abraflexi-potvrzeni-prijeti-platby
   of the record do not send it again.
 * The mail is in the language of the customer (label `LANG_xx` of the company) and names the invoices the payment
   was paired with.
+
+Without `DOCID` the application goes through the payments of the bank and the cash desk changed in the last
+`CONFIRM_DAYS_BACK` days (3 by default) and confirms those that were not confirmed yet. Run it now and then
+(a MultiFlexi run template with an interval, e.g. every 15 minutes) besides the event rules: an event can be lost,
+and the payer may become known long after the payment came. The label `UHRADA_POTVRZENA` makes sure that a payment
+is confirmed once whichever of the two gets to it first.
